@@ -1,7 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package};
+package es.uma.proyecto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
