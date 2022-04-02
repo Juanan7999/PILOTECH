@@ -10,13 +10,14 @@ import java.util.List;
  * 
  */
 @Entity
+@DiscriminatorValue("empresa")
 @NamedQuery(name="Empresa.findAll", query="SELECT e FROM Empresa e")
-public class Empresa implements Serializable {
+public class Empresa  extends Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String id;
-
+	//@Id
+	//private String id;
+	
 	@Column(name="RAZON_SOCIAL")
 	private String razonSocial;
 
@@ -24,14 +25,10 @@ public class Empresa implements Serializable {
 	@OneToMany(mappedBy="empresa")
 	private List<Autorizacion> autorizacions;
 
-	//bi-directional one-to-one association to Cliente
-	@OneToOne
-	@JoinColumn(name="ID")
-	private Cliente cliente;
-
 	public Empresa() {
 	}
 
+	/*
 	public String getId() {
 		return this.id;
 	}
@@ -39,7 +36,7 @@ public class Empresa implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	*/
 	public String getRazonSocial() {
 		return this.razonSocial;
 	}
@@ -69,13 +66,4 @@ public class Empresa implements Serializable {
 
 		return autorizacion;
 	}
-
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 }

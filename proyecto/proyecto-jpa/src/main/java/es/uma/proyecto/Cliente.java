@@ -3,7 +3,9 @@ package es.uma.proyecto;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -11,24 +13,30 @@ import java.util.List;
  * 
  */
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn (name="ctype", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("cliente")
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
 	private String ciudad;
 
-	private BigDecimal codigopostal;
+	private Integer codigopostal;
 
 	private String direccion;
 
 	@Column(name="FECHA_ALTA")
-	private Object fechaAlta;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaAlta;
 
 	@Column(name="FECHA_BAJA")
-	private Object fechaBaja;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaBaja;
 
 	private String identificacion;
 
@@ -40,14 +48,6 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to CuentaFintech
 	@OneToMany(mappedBy="cliente")
 	private List<CuentaFintech> cuentaFinteches;
-
-	//bi-directional one-to-one association to Empresa
-	@OneToOne(mappedBy="cliente")
-	private Empresa empresa;
-
-	//bi-directional one-to-one association to Individual
-	@OneToOne(mappedBy="cliente")
-	private Individual individual;
 
 	public Cliente() {
 	}
@@ -68,11 +68,11 @@ public class Cliente implements Serializable {
 		this.ciudad = ciudad;
 	}
 
-	public BigDecimal getCodigopostal() {
+	public Integer getCodigopostal() {
 		return this.codigopostal;
 	}
 
-	public void setCodigopostal(BigDecimal codigopostal) {
+	public void setCodigopostal(Integer codigopostal) {
 		this.codigopostal = codigopostal;
 	}
 
@@ -88,7 +88,7 @@ public class Cliente implements Serializable {
 		return this.fechaAlta;
 	}
 
-	public void setFechaAlta(Object fechaAlta) {
+	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
@@ -96,7 +96,7 @@ public class Cliente implements Serializable {
 		return this.fechaBaja;
 	}
 
-	public void setFechaBaja(Object fechaBaja) {
+	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
 
@@ -146,20 +146,20 @@ public class Cliente implements Serializable {
 		return cuentaFintech;
 	}
 
-	public Empresa getEmpresa() {
-		return this.empresa;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
 	}
-
-	public Individual getIndividual() {
-		return this.individual;
-	}
-
-	public void setIndividual(Individual individual) {
-		this.individual = individual;
-	}
-
 }

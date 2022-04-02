@@ -1,6 +1,8 @@
 package es.uma.proyecto;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class PersonaAutorizada implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
 	private String apellidos;
@@ -23,13 +26,36 @@ public class PersonaAutorizada implements Serializable {
 	private String direccion;
 
 	private String estado;
+	
+	private String usuario;
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
+	private String contraseña;
 
 	@Column(name="FECHA_NACIMIENTO")
-	private Object fechaNacimiento;
+	@Temporal(TemporalType.DATE)
+	private Date fechaNacimiento;
 
-	private Object fechafin;
-
-	private Object fechainicio;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechafin;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechainicio;
 
 	private String identificacion;
 
@@ -74,27 +100,27 @@ public class PersonaAutorizada implements Serializable {
 		this.estado = estado;
 	}
 
-	public Object getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return this.fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Object fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Object getFechafin() {
+	public Date getFechafin() {
 		return this.fechafin;
 	}
 
-	public void setFechafin(Object fechafin) {
+	public void setFechafin(Date fechafin) {
 		this.fechafin = fechafin;
 	}
 
-	public Object getFechainicio() {
+	public Date getFechainicio() {
 		return this.fechainicio;
 	}
 
-	public void setFechainicio(Object fechainicio) {
+	public void setFechainicio(Date fechainicio) {
 		this.fechainicio = fechainicio;
 	}
 

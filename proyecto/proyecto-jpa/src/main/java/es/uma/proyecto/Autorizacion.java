@@ -2,7 +2,6 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 //Importacion
@@ -18,7 +17,7 @@ public class Autorizacion implements Serializable {
 	@EmbeddedId
 	private AutorizacionPK id;
 
-	private BigDecimal tipo;
+	private Double tipo;
 
 	//bi-directional many-to-one association to Empresa
 	@ManyToOne
@@ -57,11 +56,11 @@ public class Autorizacion implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getTipo() {
+	public Double getTipo() {
 		return this.tipo;
 	}
 
-	public void setTipo(BigDecimal tipo) {
+	public void setTipo(Double tipo) {
 		this.tipo = tipo;
 	}
 

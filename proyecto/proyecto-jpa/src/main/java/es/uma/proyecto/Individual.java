@@ -1,6 +1,8 @@
 package es.uma.proyecto;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 
@@ -9,28 +11,26 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@DiscriminatorValue("individual")
 @NamedQuery(name="Individual.findAll", query="SELECT i FROM Individual i")
-public class Individual implements Serializable {
+public class Individual extends Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String id;
+	//@Id
+	//private String id;
 
 	private String apellido;
 
 	@Column(name="FECHA_NACIMIENTO")
-	private Object fechaNacimiento;
+	@Temporal(TemporalType.DATE)
+	private Date fechaNacimiento;
 
 	private String nombre;
 
-	//bi-directional one-to-one association to Cliente
-	@OneToOne
-	@JoinColumn(name="ID")
-	private Cliente cliente;
-
 	public Individual() {
 	}
-
+	
+	/*
 	public String getId() {
 		return this.id;
 	}
@@ -38,7 +38,7 @@ public class Individual implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	*/
 	public String getApellido() {
 		return this.apellido;
 	}
@@ -51,7 +51,7 @@ public class Individual implements Serializable {
 		return this.fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Object fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -62,13 +62,4 @@ public class Individual implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public Cliente getCliente() {
-		return this.cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 }
