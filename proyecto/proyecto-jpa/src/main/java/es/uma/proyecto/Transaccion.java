@@ -3,6 +3,7 @@ package es.uma.proyecto;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 /**
@@ -18,13 +19,14 @@ public class Transaccion implements Serializable {
 	@Column(name="ID_UNICO")
 	private long idUnico;
 
-	private BigDecimal cantidad;
+	private Double cantidad;
 
-	private BigDecimal comision;
+	private Double comision;
 
-	private Object fechaejecucion;
-
-	private Object fechainstruccion;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaejecucion;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechainstruccion;
 
 	private String internacional;
 
@@ -61,35 +63,35 @@ public class Transaccion implements Serializable {
 		this.idUnico = idUnico;
 	}
 
-	public BigDecimal getCantidad() {
+	public Double getCantidad() {
 		return this.cantidad;
 	}
 
-	public void setCantidad(BigDecimal cantidad) {
+	public void setCantidad(Double cantidad) {
 		this.cantidad = cantidad;
 	}
 
-	public BigDecimal getComision() {
+	public Double getComision() {
 		return this.comision;
 	}
 
-	public void setComision(BigDecimal comision) {
+	public void setComision(Double comision) {
 		this.comision = comision;
 	}
 
-	public Object getFechaejecucion() {
+	public Date getFechaejecucion() {
 		return this.fechaejecucion;
 	}
 
-	public void setFechaejecucion(Object fechaejecucion) {
+	public void setFechaejecucion(Date fechaejecucion) {
 		this.fechaejecucion = fechaejecucion;
 	}
 
-	public Object getFechainstruccion() {
+	public Date getFechainstruccion() {
 		return this.fechainstruccion;
 	}
 
-	public void setFechainstruccion(Object fechainstruccion) {
+	public void setFechainstruccion(Date fechainstruccion) {
 		this.fechainstruccion = fechainstruccion;
 	}
 

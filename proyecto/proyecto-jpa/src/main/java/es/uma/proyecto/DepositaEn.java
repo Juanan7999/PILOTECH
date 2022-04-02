@@ -18,7 +18,7 @@ public class DepositaEn implements Serializable {
 	@EmbeddedId
 	private DepositaEnPK id;
 
-	private BigDecimal saldo;
+	private Double saldo;
 
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
@@ -41,11 +41,11 @@ public class DepositaEn implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getSaldo() {
+	public Double getSaldo() {
 		return this.saldo;
 	}
 
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 

@@ -12,32 +12,24 @@ import java.util.List;
 @Entity
 @Table(name="POOLED_ACCOUNT")
 @NamedQuery(name="PooledAccount.findAll", query="SELECT p FROM PooledAccount p")
-public class PooledAccount implements Serializable {
+
+@DiscriminatorValue("PooledAccount")
+
+public class PooledAccount extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String iban;
+	
 
 	//bi-directional many-to-one association to DepositaEn
 	@OneToMany(mappedBy="pooledAccount")
 	private List<DepositaEn> depositaEns;
 
-	//bi-directional one-to-one association to CuentaFintech
-	@OneToOne
-	@JoinColumn(name="IBAN")
-	private CuentaFintech cuentaFintech;
+	
 
 	public PooledAccount() {
 	}
 
-	public String getIban() {
-		return this.iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
-
+	
 	public List<DepositaEn> getDepositaEns() {
 		return this.depositaEns;
 	}
@@ -60,12 +52,6 @@ public class PooledAccount implements Serializable {
 		return depositaEn;
 	}
 
-	public CuentaFintech getCuentaFintech() {
-		return this.cuentaFintech;
-	}
-
-	public void setCuentaFintech(CuentaFintech cuentaFintech) {
-		this.cuentaFintech = cuentaFintech;
-	}
+	
 
 }

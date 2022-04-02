@@ -1,7 +1,11 @@
 package es.uma.proyecto;
 
 import java.io.Serializable;
+
+
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -12,50 +16,38 @@ import java.util.List;
 @Entity
 @Table(name="CUENTA_FINTECH")
 @NamedQuery(name="CuentaFintech.findAll", query="SELECT c FROM CuentaFintech c")
-public class CuentaFintech implements Serializable {
+
+
+@DiscriminatorValue("CuentaFintech")
+
+public class CuentaFintech extends Cuenta implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String iban;
+	
 
 	private String clasificacion;
 
 	private String estado;
 
+	
 	@Column(name="FECHA_APERTURA")
-	private Object fechaApertura;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaApertura;
 
 	@Column(name="FECHA_CIERRE")
-	private Object fechaCierre;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaCierre;
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
 	private Cliente cliente;
 
-	//bi-directional one-to-one association to Cuenta
-	@OneToOne
-	@JoinColumn(name="IBAN")
-	private Cuenta cuenta;
-
-	//bi-directional one-to-one association to PooledAccount
-	@OneToOne(mappedBy="cuentaFintech")
-	private PooledAccount pooledAccount;
-
-	//bi-directional one-to-one association to Segregada
-	@OneToOne(mappedBy="cuentaFintech")
-	private Segregada segregada;
-
+	
 
 	public CuentaFintech() {
 	}
 
-	public String getIban() {
-		return this.iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
+	
 
 	public String getClasificacion() {
 		return this.clasificacion;
@@ -73,19 +65,19 @@ public class CuentaFintech implements Serializable {
 		this.estado = estado;
 	}
 
-	public Object getFechaApertura() {
+	public Date getFechaApertura() {
 		return this.fechaApertura;
 	}
 
-	public void setFechaApertura(Object fechaApertura) {
+	public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 
-	public Object getFechaCierre() {
+	public Date getFechaCierre() {
 		return this.fechaCierre;
 	}
 
-	public void setFechaCierre(Object fechaCierre) {
+	public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
 	}
 
@@ -97,29 +89,9 @@ public class CuentaFintech implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Cuenta getCuenta() {
-		return this.cuenta;
-	}
+	
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
-
-	public PooledAccount getPooledAccount() {
-		return this.pooledAccount;
-	}
-
-	public void setPooledAccount(PooledAccount pooledAccount) {
-		this.pooledAccount = pooledAccount;
-	}
-
-	public Segregada getSegregada() {
-		return this.segregada;
-	}
-
-	public void setSegregada(Segregada segregada) {
-		this.segregada = segregada;
-	}
+	
 
 
 

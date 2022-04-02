@@ -10,6 +10,13 @@ import java.util.List;
  * 
  */
 @Entity
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn (name="disc", discriminatorType = DiscriminatorType.STRING)
+
+
+@DiscriminatorValue("Cuenta")
+
 @NamedQuery(name="Cuenta.findAll", query="SELECT c FROM Cuenta c")
 public class Cuenta implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,13 +26,9 @@ public class Cuenta implements Serializable {
 
 	private String swift;
 
-	//bi-directional one-to-one association to CuentaFintech
-	@OneToOne(mappedBy="cuenta")
-	private CuentaFintech cuentaFintech;
+	
 
-	//bi-directional one-to-one association to CuentaReferencia
-	@OneToOne(mappedBy="cuenta")
-	private CuentaReferencia cuentaReferencia;
+	
 
 	//bi-directional many-to-one association to Transaccion
 	@OneToMany(mappedBy="cuenta1")
@@ -54,21 +57,9 @@ public class Cuenta implements Serializable {
 		this.swift = swift;
 	}
 
-	public CuentaFintech getCuentaFintech() {
-		return this.cuentaFintech;
-	}
+	
 
-	public void setCuentaFintech(CuentaFintech cuentaFintech) {
-		this.cuentaFintech = cuentaFintech;
-	}
-
-	public CuentaReferencia getCuentaReferencia() {
-		return this.cuentaReferencia;
-	}
-
-	public void setCuentaReferencia(CuentaReferencia cuentaReferencia) {
-		this.cuentaReferencia = cuentaReferencia;
-	}
+	
 
 	public List<Transaccion> getTransaccions1() {
 		return this.transaccions1;

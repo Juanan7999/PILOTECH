@@ -3,6 +3,7 @@ package es.uma.proyecto;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,29 +14,30 @@ import java.util.List;
 @Entity
 @Table(name="CUENTA_REFERENCIA")
 @NamedQuery(name="CuentaReferencia.findAll", query="SELECT c FROM CuentaReferencia c")
-public class CuentaReferencia implements Serializable {
+
+
+@DiscriminatorValue("CuentaReferencia")
+
+public class CuentaReferencia extends Cuenta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String iban;
+
 
 	private String estado;
 
 	@Column(name="FECHA_APERTURA")
-	private Object fechaApertura;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaApertura;
 
 	private String nombrebanco;
 
 	private String pais;
 
-	private BigDecimal saldo;
+	private Double saldo;
 
 	private String sucursal;
 
-	//bi-directional one-to-one association to Cuenta
-	@OneToOne
-	@JoinColumn(name="IBAN")
-	private Cuenta cuenta;
+	
 
 	//bi-directional many-to-one association to Divisa
 	@ManyToOne
@@ -52,13 +54,7 @@ public class CuentaReferencia implements Serializable {
 	public CuentaReferencia() {
 	}
 
-	public String getIban() {
-		return this.iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
+	
 
 	public String getEstado() {
 		return this.estado;
@@ -68,11 +64,11 @@ public class CuentaReferencia implements Serializable {
 		this.estado = estado;
 	}
 
-	public Object getFechaApertura() {
+	public Date getFechaApertura() {
 		return this.fechaApertura;
 	}
 
-	public void setFechaApertura(Object fechaApertura) {
+	public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 
@@ -92,11 +88,11 @@ public class CuentaReferencia implements Serializable {
 		this.pais = pais;
 	}
 
-	public BigDecimal getSaldo() {
+	public Double getSaldo() {
 		return this.saldo;
 	}
 
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 
@@ -108,13 +104,7 @@ public class CuentaReferencia implements Serializable {
 		this.sucursal = sucursal;
 	}
 
-	public Cuenta getCuenta() {
-		return this.cuenta;
-	}
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
+	
 
 	public Divisa getDivisa() {
 		return this.divisa;

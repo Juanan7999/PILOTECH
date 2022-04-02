@@ -10,18 +10,18 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Segregada.findAll", query="SELECT s FROM Segregada s")
-public class Segregada implements Serializable {
+
+
+@DiscriminatorValue("Segregada")
+
+public class Segregada extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private String iban;
+	
 
 	private String comision;
 
-	//bi-directional one-to-one association to CuentaFintech
-	@OneToOne
-	@JoinColumn(name="IBAN")
-	private CuentaFintech cuentaFintech;
+	
 
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
@@ -31,13 +31,7 @@ public class Segregada implements Serializable {
 	public Segregada() {
 	}
 
-	public String getIban() {
-		return this.iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
+	
 
 	public String getComision() {
 		return this.comision;
@@ -47,13 +41,7 @@ public class Segregada implements Serializable {
 		this.comision = comision;
 	}
 
-	public CuentaFintech getCuentaFintech() {
-		return this.cuentaFintech;
-	}
-
-	public void setCuentaFintech(CuentaFintech cuentaFintech) {
-		this.cuentaFintech = cuentaFintech;
-	}
+	
 
 	public CuentaReferencia getCuentaReferencia() {
 		return this.cuentaReferencia;
