@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -141,6 +142,23 @@ public class Transaccion implements Serializable {
 
 	public void setDivisa2(Divisa divisa2) {
 		this.divisa2 = divisa2;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idUnico);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Transaccion other = (Transaccion) obj;
+		return idUnico == other.idUnico;
 	}
 
 }

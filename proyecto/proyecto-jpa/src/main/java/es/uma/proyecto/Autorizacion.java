@@ -17,7 +17,7 @@ public class Autorizacion implements Serializable {
 	@EmbeddedId
 	private AutorizacionPK id;
 
-	private Double tipo;
+	private Integer tipo;
 
 	//bi-directional many-to-one association to Empresa
 	@ManyToOne
@@ -56,11 +56,11 @@ public class Autorizacion implements Serializable {
 		this.id = id;
 	}
 
-	public Double getTipo() {
+	public Integer getTipo() {
 		return this.tipo;
 	}
 
-	public void setTipo(Double tipo) {
+	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
 

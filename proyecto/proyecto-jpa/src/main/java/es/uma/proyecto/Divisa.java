@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -136,4 +137,21 @@ public class Divisa implements Serializable {
 		return transaccions2;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(abreviatura);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Divisa other = (Divisa) obj;
+		return Objects.equals(abreviatura, other.abreviatura);
+	}
+	
 }

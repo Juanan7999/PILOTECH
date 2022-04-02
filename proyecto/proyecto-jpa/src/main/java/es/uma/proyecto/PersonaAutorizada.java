@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -22,29 +23,13 @@ public class PersonaAutorizada implements Serializable {
 	private String id;
 
 	private String apellidos;
-
+	
 	private String direccion;
 
 	private String estado;
 	
 	private String usuario;
 	
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
-
 	private String contraseña;
 
 	@Column(name="FECHA_NACIMIENTO")
@@ -67,7 +52,23 @@ public class PersonaAutorizada implements Serializable {
 
 	public PersonaAutorizada() {
 	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	
 	public String getId() {
 		return this.id;
 	}
@@ -160,6 +161,23 @@ public class PersonaAutorizada implements Serializable {
 		autorizacion.setPersonaAutorizada(null);
 
 		return autorizacion;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, identificacion);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonaAutorizada other = (PersonaAutorizada) obj;
+		return Objects.equals(id, other.id) && Objects.equals(identificacion, other.identificacion);
 	}
 
 }

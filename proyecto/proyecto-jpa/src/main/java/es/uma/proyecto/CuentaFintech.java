@@ -87,12 +87,5 @@ public class CuentaFintech extends Cuenta implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-	
-
-	
-
-
-
+	}	
 }
