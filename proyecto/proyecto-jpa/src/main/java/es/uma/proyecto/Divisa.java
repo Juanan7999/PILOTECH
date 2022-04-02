@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * The persistent class for the DIVISA database table.
- * 
+ * Hola
  */
 @Entity
 @NamedQuery(name="Divisa.findAll", query="SELECT d FROM Divisa d")
