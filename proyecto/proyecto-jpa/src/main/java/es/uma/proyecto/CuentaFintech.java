@@ -45,10 +45,6 @@ public class CuentaFintech implements Serializable {
 	@OneToOne(mappedBy="cuentaFintech")
 	private Segregada segregada;
 
-	//bi-directional many-to-one association to Tarjeta
-	@OneToMany(mappedBy="cuentaFintech")
-	private List<Tarjeta> tarjetas;
-
 	public CuentaFintech() {
 	}
 
@@ -124,26 +120,5 @@ public class CuentaFintech implements Serializable {
 		this.segregada = segregada;
 	}
 
-	public List<Tarjeta> getTarjetas() {
-		return this.tarjetas;
-	}
-
-	public void setTarjetas(List<Tarjeta> tarjetas) {
-		this.tarjetas = tarjetas;
-	}
-
-	public Tarjeta addTarjeta(Tarjeta tarjeta) {
-		getTarjetas().add(tarjeta);
-		tarjeta.setCuentaFintech(this);
-
-		return tarjeta;
-	}
-
-	public Tarjeta removeTarjeta(Tarjeta tarjeta) {
-		getTarjetas().remove(tarjeta);
-		tarjeta.setCuentaFintech(null);
-
-		return tarjeta;
-	}
 
 }

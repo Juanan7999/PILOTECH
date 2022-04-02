@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * The persistent class for the DIVISA database table.
- * Hola
  */
 @Entity
 @NamedQuery(name="Divisa.findAll", query="SELECT d FROM Divisa d")
@@ -27,10 +26,6 @@ public class Divisa implements Serializable {
 	//bi-directional many-to-one association to CuentaReferencia
 	@OneToMany(mappedBy="divisa")
 	private List<CuentaReferencia> cuentaReferencias;
-
-	//bi-directional many-to-one association to Movimiento
-	@OneToMany(mappedBy="divisa")
-	private List<Movimiento> movimientos;
 
 	//bi-directional many-to-one association to Transaccion
 	@OneToMany(mappedBy="divisa1")
@@ -95,28 +90,6 @@ public class Divisa implements Serializable {
 		cuentaReferencia.setDivisa(null);
 
 		return cuentaReferencia;
-	}
-
-	public List<Movimiento> getMovimientos() {
-		return this.movimientos;
-	}
-
-	public void setMovimientos(List<Movimiento> movimientos) {
-		this.movimientos = movimientos;
-	}
-
-	public Movimiento addMovimiento(Movimiento movimiento) {
-		getMovimientos().add(movimiento);
-		movimiento.setDivisa(this);
-
-		return movimiento;
-	}
-
-	public Movimiento removeMovimiento(Movimiento movimiento) {
-		getMovimientos().remove(movimiento);
-		movimiento.setDivisa(null);
-
-		return movimiento;
 	}
 
 	public List<Transaccion> getTransaccions1() {
