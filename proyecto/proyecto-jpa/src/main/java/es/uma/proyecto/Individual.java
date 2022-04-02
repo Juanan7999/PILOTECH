@@ -16,29 +16,19 @@ import javax.persistence.*;
 public class Individual extends Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	//@Id
-	//private String id;
-
+	@Column(nullable = false)
 	private String apellido;
 
 	@Column(name="FECHA_NACIMIENTO")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 
+	@Column(nullable = false)
 	private String nombre;
 
 	public Individual() {
 	}
 	
-	/*
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	*/
 	public String getApellido() {
 		return this.apellido;
 	}

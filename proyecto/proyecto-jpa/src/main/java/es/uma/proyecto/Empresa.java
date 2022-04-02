@@ -18,7 +18,7 @@ public class Empresa  extends Cliente implements Serializable{
 	//@Id
 	//private String id;
 	
-	@Column(name="RAZON_SOCIAL")
+	@Column(name="RAZON_SOCIAL", nullable = false)
 	private String razonSocial;
 
 	//bi-directional many-to-one association to Autorizacion

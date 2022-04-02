@@ -16,7 +16,8 @@ public class Autorizacion implements Serializable {
 
 	@EmbeddedId
 	private AutorizacionPK id;
-
+	
+	@Column(nullable = false)
 	private Integer tipo;
 
 	//bi-directional many-to-one association to Empresa

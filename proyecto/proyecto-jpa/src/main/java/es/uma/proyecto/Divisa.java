@@ -17,9 +17,11 @@ public class Divisa implements Serializable {
 
 	@Id
 	private String abreviatura;
+	
+	@Column(nullable = false)
+	private Integer cambioeuro;
 
-	private BigDecimal cambioeuro;
-
+	@Column(nullable = false)
 	private String nombre;
 
 	private String simbolo;
@@ -47,11 +49,11 @@ public class Divisa implements Serializable {
 		this.abreviatura = abreviatura;
 	}
 
-	public BigDecimal getCambioeuro() {
+	public Integer getCambioeuro() {
 		return this.cambioeuro;
 	}
 
-	public void setCambioeuro(BigDecimal cambioeuro) {
+	public void setCambioeuro(Integer cambioeuro) {
 		this.cambioeuro = cambioeuro;
 	}
 

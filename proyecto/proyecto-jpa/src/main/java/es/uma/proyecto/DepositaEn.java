@@ -2,7 +2,6 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
@@ -18,6 +17,7 @@ public class DepositaEn implements Serializable {
 	@EmbeddedId
 	private DepositaEnPK id;
 
+	@Column(nullable = false)
 	private Double saldo;
 
 	//bi-directional many-to-one association to CuentaReferencia

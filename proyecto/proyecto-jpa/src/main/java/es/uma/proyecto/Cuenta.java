@@ -27,10 +27,6 @@ public class Cuenta implements Serializable {
 
 	private String swift;
 
-	
-
-	
-
 	//bi-directional many-to-one association to Transaccion
 	@OneToMany(mappedBy="cuenta1")
 	private List<Transaccion> transaccions1;

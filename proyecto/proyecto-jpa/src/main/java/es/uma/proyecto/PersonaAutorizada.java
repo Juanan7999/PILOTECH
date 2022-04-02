@@ -21,9 +21,11 @@ public class PersonaAutorizada implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-
+	
+	@Column(nullable = false)
 	private String apellidos;
 	
+	@Column(nullable = false)
 	private String direccion;
 
 	private String estado;
@@ -41,9 +43,11 @@ public class PersonaAutorizada implements Serializable {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechainicio;
-
+	
+	@Column(nullable = false, unique = true)
 	private String identificacion;
 
+	@Column(nullable = false)
 	private String nombre;
 
 	//bi-directional many-to-one association to Autorizacion

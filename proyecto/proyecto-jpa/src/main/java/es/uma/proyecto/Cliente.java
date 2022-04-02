@@ -23,13 +23,19 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
+	@Column(nullable = false)
+	private String estado;
+	
+	@Column(nullable = false)
 	private String ciudad;
 
+	@Column(nullable = false)
 	private Integer codigopostal;
 
+	@Column(nullable = false)
 	private String direccion;
 
-	@Column(name="FECHA_ALTA")
+	@Column(name="FECHA_ALTA", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaAlta;
 
@@ -37,11 +43,13 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaBaja;
 
+	@Column(nullable = false, unique = true)
 	private String identificacion;
 
+	@Column(nullable = false)
 	private String pais;
 
-	@Column(name="TIPO_CLIENTE")
+	@Column(name="TIPO_CLIENTE", nullable = false)
 	private String tipoCliente;
 
 	//bi-directional many-to-one association to CuentaFintech
@@ -129,6 +137,14 @@ public class Cliente implements Serializable {
 
 	public void setCuentaFinteches(List<CuentaFintech> cuentaFinteches) {
 		this.cuentaFinteches = cuentaFinteches;
+	}
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public CuentaFintech addCuentaFintech(CuentaFintech cuentaFintech) {

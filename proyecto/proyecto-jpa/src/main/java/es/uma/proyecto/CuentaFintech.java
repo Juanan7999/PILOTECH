@@ -6,8 +6,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Date;
-import java.util.List;
-
 
 /**
  * The persistent class for the CUENTA_FINTECH database table.
@@ -27,10 +25,11 @@ public class CuentaFintech extends Cuenta implements Serializable{
 
 	private String clasificacion;
 
+	@Column(nullable = false)
 	private String estado;
 
 	
-	@Column(name="FECHA_APERTURA")
+	@Column(name="FECHA_APERTURA", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaApertura;
 

@@ -2,7 +2,6 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,17 +19,21 @@ public class Transaccion implements Serializable {
 	@Column(name="ID_UNICO")
 	private long idUnico;
 
+	@Column(nullable = false)
 	private Double cantidad;
 
 	private Double comision;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaejecucion;
+	
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechainstruccion;
 
 	private String internacional;
 
+	@Column(nullable = false)
 	private String tipo;
 
 	//bi-directional many-to-one association to Cuenta

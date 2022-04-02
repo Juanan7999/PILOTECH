@@ -2,7 +2,6 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +28,12 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaApertura;
 
+	@Column(nullable = false)
 	private String nombrebanco;
 
 	private String pais;
 
+	@Column(nullable = false)
 	private Double saldo;
 
 	private String sucursal;
