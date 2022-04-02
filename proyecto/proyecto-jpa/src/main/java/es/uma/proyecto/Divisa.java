@@ -27,6 +27,11 @@ public class Divisa implements Serializable {
 	@OneToMany(mappedBy="divisa")
 	private List<CuentaReferencia> cuentaReferencias;
 
+<<<<<<< Updated upstream
+=======
+	
+
+>>>>>>> Stashed changes
 	//bi-directional many-to-one association to Transaccion
 	@OneToMany(mappedBy="divisa1")
 	private List<Transaccion> transaccions1;
@@ -92,6 +97,11 @@ public class Divisa implements Serializable {
 		return cuentaReferencia;
 	}
 
+<<<<<<< Updated upstream
+=======
+	
+
+>>>>>>> Stashed changes
 	public List<Transaccion> getTransaccions1() {
 		return this.transaccions1;
 	}

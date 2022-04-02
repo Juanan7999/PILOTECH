@@ -45,6 +45,11 @@ public class CuentaFintech implements Serializable {
 	@OneToOne(mappedBy="cuentaFintech")
 	private Segregada segregada;
 
+<<<<<<< Updated upstream
+=======
+	
+
+>>>>>>> Stashed changes
 	public CuentaFintech() {
 	}
 
@@ -120,5 +125,9 @@ public class CuentaFintech implements Serializable {
 		this.segregada = segregada;
 	}
 
+<<<<<<< Updated upstream
+=======
+	
+>>>>>>> Stashed changes
 
 }
