@@ -1,6 +1,5 @@
 package es.uma.proyecto;
 
-import java.util.Objects;
 
 import javax.persistence.*;
 

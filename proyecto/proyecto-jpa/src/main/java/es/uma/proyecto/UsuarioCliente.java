@@ -22,6 +22,4 @@ public class UsuarioCliente extends Usuario {
 		return super.toString() + " - UsuarioCliente []";
 	}
 	
-	
-	
 }
