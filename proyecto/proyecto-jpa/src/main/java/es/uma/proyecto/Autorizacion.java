@@ -81,4 +81,9 @@ public class Autorizacion implements Serializable {
 		this.personaAutorizada = personaAutorizada;
 	}
 
+	@Override
+	public String toString() {
+		return "Autorizacion [tipo=" + tipo + "]";
+	}
+
 }

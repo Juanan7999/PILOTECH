@@ -15,9 +15,8 @@ import javax.persistence.*;
 @DiscriminatorValue("Segregada")
 
 public class Segregada extends CuentaFintech implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	
+	private static final long serialVersionUID = 1L;
 
 	private String comision;
 
@@ -50,5 +49,10 @@ public class Segregada extends CuentaFintech implements Serializable {
 	public void setCuentaReferencia(CuentaReferencia cuentaReferencia) {
 		this.cuentaReferencia = cuentaReferencia;
 	}
-
+	
+	@Override
+	public String toString() {
+		return super.toString() + " - Segregada [comision=" + comision + "]";
+	}
+	
 }

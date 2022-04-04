@@ -86,5 +86,13 @@ public class CuentaFintech extends Cuenta implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return super.toString() + " - CuentaFintech [estado=" + estado + ", fechaApertura=" + fechaApertura + "]";
 	}	
+	
 }

@@ -177,4 +177,12 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", identificacion=" + identificacion + "]";
+	}
+	
+	
+	
 }

@@ -14,9 +14,6 @@ import java.util.List;
 @NamedQuery(name="Empresa.findAll", query="SELECT e FROM Empresa e")
 public class Empresa  extends Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
-
-	//@Id
-	//private String id;
 	
 	@Column(name="RAZON_SOCIAL", nullable = false)
 	private String razonSocial;
@@ -28,15 +25,6 @@ public class Empresa  extends Cliente implements Serializable{
 	public Empresa() {
 	}
 
-	/*
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	*/
 	public String getRazonSocial() {
 		return this.razonSocial;
 	}
@@ -66,4 +54,10 @@ public class Empresa  extends Cliente implements Serializable{
 
 		return autorizacion;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " - Empresa [razonSocial=" + razonSocial + "]";
+	}
+	
 }

@@ -184,4 +184,9 @@ public class PersonaAutorizada implements Serializable {
 		return Objects.equals(id, other.id) && Objects.equals(identificacion, other.identificacion);
 	}
 
+	@Override
+	public String toString() {
+		return "PersonaAutorizada [id=" + id + ", identificación=" + identificacion + ", nombre=" + nombre
+				+ ", apellidos=" + apellidos + "]";
+	}
 }

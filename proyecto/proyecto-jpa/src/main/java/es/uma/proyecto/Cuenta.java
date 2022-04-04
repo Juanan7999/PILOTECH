@@ -54,10 +54,6 @@ public class Cuenta implements Serializable {
 		this.swift = swift;
 	}
 
-	
-
-	
-
 	public List<Transaccion> getTransaccions1() {
 		return this.transaccions1;
 	}
@@ -119,5 +115,10 @@ public class Cuenta implements Serializable {
 		return Objects.equals(iban, other.iban);
 	}
 
+	@Override
+	public String toString() {
+		return "Cuenta [iban=" + iban + "]";
+	}
+	
 	
 }
