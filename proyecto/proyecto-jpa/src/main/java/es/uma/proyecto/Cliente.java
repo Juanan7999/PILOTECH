@@ -60,11 +60,11 @@ public class Cliente implements Serializable {
 	@JoinColumn(name = "Usuario", nullable = false)
 	private UsuarioCliente usuario;
 	
-	public UsuarioAutorizada getUsuario() {
+	public UsuarioCliente getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UsuarioAutorizada usuario) {
+	public void setUsuario(UsuarioCliente usuario) {
 		this.usuario = usuario;
 	}
 
