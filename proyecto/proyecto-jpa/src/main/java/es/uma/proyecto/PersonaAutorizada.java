@@ -49,6 +49,8 @@ public class PersonaAutorizada implements Serializable {
 
 	@Column(nullable = false)
 	private String nombre;
+	
+
 
 	//bi-directional many-to-one association to Autorizacion
 	@OneToMany(mappedBy="personaAutorizada")

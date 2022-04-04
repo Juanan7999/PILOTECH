@@ -16,6 +16,10 @@
 		<class>es.uma.proyecto.PooledAccount</class>
 		<class>es.uma.proyecto.Segregada</class>
 		<class>es.uma.proyecto.Transaccion</class>
+		<class>es.uma.proyecto.Usuario</class>
+		<class>es.uma.proyecto.UsuarioAdmin</class>
+		<class>es.uma.proyecto.UsuarioAutorizada</class>
+		<class>es.uma.proyecto.UsuarioCliente</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
 			<property name="javax.persistence.jdbc.user" value=""/>
