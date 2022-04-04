@@ -56,7 +56,7 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="cliente")
 	private List<CuentaFintech> cuentaFinteches;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "cliente")
 	@JoinColumn(name = "Usuario", nullable = false)
 	private UsuarioCliente usuario;
 	
