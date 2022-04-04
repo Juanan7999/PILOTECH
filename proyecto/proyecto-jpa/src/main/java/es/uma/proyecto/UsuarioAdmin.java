@@ -5,4 +5,8 @@ import javax.persistence.*;
 @DiscriminatorValue("administrativo")
 public class UsuarioAdmin extends Usuario{
 
+	@Override
+	public String toString() {
+		return super.toString() + " - UsuarioAdmin []";
+	}
 }
