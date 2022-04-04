@@ -46,7 +46,7 @@ public class PersonaAutorizada implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechafin;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "personaAutorizada")
 	@JoinColumn(name = "Usuario", nullable = false)
 	private UsuarioAutorizada usuario;
 	
