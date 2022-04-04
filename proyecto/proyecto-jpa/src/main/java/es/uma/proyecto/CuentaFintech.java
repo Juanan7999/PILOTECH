@@ -28,7 +28,6 @@ public class CuentaFintech extends Cuenta implements Serializable{
 	@Column(nullable = false)
 	private String estado;
 
-	
 	@Column(name="FECHA_APERTURA", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaApertura;
@@ -87,8 +86,6 @@ public class CuentaFintech extends Cuenta implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-
 
 	@Override
 	public String toString() {

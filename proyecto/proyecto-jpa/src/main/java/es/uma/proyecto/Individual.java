@@ -17,14 +17,14 @@ public class Individual extends Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
+	private String nombre;
+	
+	@Column(nullable = false)
 	private String apellido;
 
 	@Column(name="FECHA_NACIMIENTO")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
-
-	@Column(nullable = false)
-	private String nombre;
 
 	public Individual() {
 	}
@@ -57,6 +57,4 @@ public class Individual extends Cliente implements Serializable {
 	public String toString() {
 		return super.toString() + " - Individual [nombre=" + nombre +  ", apellido=" + apellido + "]";
 	}
-	
-	
 }

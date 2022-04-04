@@ -32,23 +32,6 @@ public class Autorizacion implements Serializable {
 	public Autorizacion() {
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Autorizacion other = (Autorizacion) obj;
-		return Objects.equals(id, other.id);
-	}
-
 	public AutorizacionPK getId() {
 		return this.id;
 	}
@@ -81,6 +64,23 @@ public class Autorizacion implements Serializable {
 		this.personaAutorizada = personaAutorizada;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Autorizacion other = (Autorizacion) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	@Override
 	public String toString() {
 		return "Autorizacion [tipo=" + tipo + "]";

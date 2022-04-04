@@ -20,26 +20,22 @@ import java.util.List;
 public class CuentaReferencia extends Cuenta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
-
-	private String estado;
-
-	@Column(name="FECHA_APERTURA")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaApertura;
-
 	@Column(nullable = false)
 	private String nombrebanco;
 
+	private String sucursal;
+	
 	private String pais;
 
 	@Column(nullable = false)
 	private Double saldo;
 
-	private String sucursal;
-
+	@Column(name="FECHA_APERTURA")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaApertura;
 	
-
+	private String estado;
+	
 	//bi-directional many-to-one association to Divisa
 	@ManyToOne
 	private Divisa divisa;
@@ -54,8 +50,6 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 
 	public CuentaReferencia() {
 	}
-
-	
 
 	public String getEstado() {
 		return this.estado;
@@ -104,8 +98,6 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	public void setSucursal(String sucursal) {
 		this.sucursal = sucursal;
 	}
-
-	
 
 	public Divisa getDivisa() {
 		return this.divisa;
@@ -159,4 +151,8 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 		return segregada;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " - CuentaReferencia [nombrebanco=" + nombrebanco + ", saldo=" + saldo + "]";
+	}	
 }

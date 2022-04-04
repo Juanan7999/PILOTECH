@@ -23,8 +23,25 @@ public class Cliente implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
+	@Column(nullable = false, unique = true)
+	private String identificacion;
+	
+	@Column(name="TIPO_CLIENTE", nullable = false)
+	private String tipoCliente;
+	
 	@Column(nullable = false)
 	private String estado;
+	
+	@Column(name="FECHA_ALTA", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaAlta;
+
+	@Column(name="FECHA_BAJA")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaBaja;
+	
+	@Column(nullable = false)
+	private String direccion;
 	
 	@Column(nullable = false)
 	private String ciudad;
@@ -33,24 +50,7 @@ public class Cliente implements Serializable {
 	private Integer codigopostal;
 
 	@Column(nullable = false)
-	private String direccion;
-
-	@Column(name="FECHA_ALTA", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaAlta;
-
-	@Column(name="FECHA_BAJA")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaBaja;
-
-	@Column(nullable = false, unique = true)
-	private String identificacion;
-
-	@Column(nullable = false)
 	private String pais;
-
-	@Column(name="TIPO_CLIENTE", nullable = false)
-	private String tipoCliente;
 
 	//bi-directional many-to-one association to CuentaFintech
 	@OneToMany(mappedBy="cliente")

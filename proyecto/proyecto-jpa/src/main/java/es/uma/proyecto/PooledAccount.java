@@ -18,18 +18,13 @@ import java.util.List;
 public class PooledAccount extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
-
 	//bi-directional many-to-one association to DepositaEn
 	@OneToMany(mappedBy="pooledAccount")
 	private List<DepositaEn> depositaEns;
 
-	
-
 	public PooledAccount() {
 	}
 
-	
 	public List<DepositaEn> getDepositaEns() {
 		return this.depositaEns;
 	}

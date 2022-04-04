@@ -2,7 +2,6 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,13 +18,13 @@ public class Divisa implements Serializable {
 	private String abreviatura;
 	
 	@Column(nullable = false)
-	private Integer cambioeuro;
-
-	@Column(nullable = false)
 	private String nombre;
-
+	
 	private String simbolo;
 
+	@Column(nullable = false)
+	private Integer cambioeuro;
+	
 	//bi-directional many-to-one association to CuentaReferencia
 	@OneToMany(mappedBy="divisa")
 	private List<CuentaReferencia> cuentaReferencias;
@@ -155,5 +154,12 @@ public class Divisa implements Serializable {
 		Divisa other = (Divisa) obj;
 		return Objects.equals(abreviatura, other.abreviatura);
 	}
+
+	@Override
+	public String toString() {
+		return "Divisa [nombre=" + nombre + ", abreviatura=" + abreviatura + ", cambioeuro=" + cambioeuro + "]";
+	}
+	
+	
 	
 }

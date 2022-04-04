@@ -22,57 +22,37 @@ public class PersonaAutorizada implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	
+	@Column(nullable = false, unique = true)
+	private String identificacion;
+	
+	@Column(nullable = false)
+	private String nombre;
+	
 	@Column(nullable = false)
 	private String apellidos;
 	
 	@Column(nullable = false)
 	private String direccion;
 
-	private String estado;
-	
-	private String usuario;
-	
-	private String contraseña;
-
 	@Column(name="FECHA_NACIMIENTO")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechafin;
+	
+	private String estado;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechainicio;
 	
-	@Column(nullable = false, unique = true)
-	private String identificacion;
-
-	@Column(nullable = false)
-	private String nombre;
-
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechafin;
+	
 	//bi-directional many-to-one association to Autorizacion
 	@OneToMany(mappedBy="personaAutorizada")
 	private List<Autorizacion> autorizacions;
 
 	public PersonaAutorizada() {
 	}
-	
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
-	
+		
 	public String getId() {
 		return this.id;
 	}
@@ -181,6 +161,7 @@ public class PersonaAutorizada implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PersonaAutorizada other = (PersonaAutorizada) obj;
+		
 		return Objects.equals(id, other.id) && Objects.equals(identificacion, other.identificacion);
 	}
 

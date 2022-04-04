@@ -20,21 +20,21 @@ public class Transaccion implements Serializable {
 	private long idUnico;
 
 	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechainstruccion;
+	
+	@Column(nullable = false)
 	private Double cantidad;
-
-	private Double comision;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaejecucion;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechainstruccion;
+	private String tipo;
+	
+	private Double comision;
 
 	private String internacional;
-
-	@Column(nullable = false)
-	private String tipo;
 
 	//bi-directional many-to-one association to Cuenta
 	@ManyToOne
@@ -164,4 +164,9 @@ public class Transaccion implements Serializable {
 		return idUnico == other.idUnico;
 	}
 
+	@Override
+	public String toString() {
+		return "Transaccion [idUnico=" + idUnico + ", cantidad=" + cantidad + ", fechainstruccion=" + fechainstruccion
+				+ ", tipo=" + tipo + "]";
+	}
 }

@@ -20,8 +20,6 @@ public class Segregada extends CuentaFintech implements Serializable {
 
 	private String comision;
 
-	
-
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
 	@JoinColumn(name="CUENTA_REFERENCIA_IBAN")
@@ -30,8 +28,6 @@ public class Segregada extends CuentaFintech implements Serializable {
 	public Segregada() {
 	}
 
-	
-
 	public String getComision() {
 		return this.comision;
 	}
@@ -39,8 +35,6 @@ public class Segregada extends CuentaFintech implements Serializable {
 	public void setComision(String comision) {
 		this.comision = comision;
 	}
-
-	
 
 	public CuentaReferencia getCuentaReferencia() {
 		return this.cuentaReferencia;
