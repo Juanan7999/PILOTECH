@@ -55,7 +55,20 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to CuentaFintech
 	@OneToMany(mappedBy="cliente")
 	private List<CuentaFintech> cuentaFinteches;
+	
+	@OneToOne
+	@JoinColumn(name = "Usuario", nullable = false)
+	private UsuarioCliente usuario;
+	
+	public UsuarioAutorizada getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(UsuarioAutorizada usuario) {
+		this.usuario = usuario;
+	}
+
+	
 	public Cliente() {
 	}
 

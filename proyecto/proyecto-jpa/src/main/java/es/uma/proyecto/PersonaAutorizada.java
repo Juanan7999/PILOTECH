@@ -46,6 +46,18 @@ public class PersonaAutorizada implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechafin;
 	
+	@OneToOne
+	@JoinColumn(name = "Usuario", nullable = false)
+	private UsuarioAutorizada usuario;
+	
+	public UsuarioAutorizada getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioAutorizada usuario) {
+		this.usuario = usuario;
+	}
+
 	//bi-directional many-to-one association to Autorizacion
 	@OneToMany(mappedBy="personaAutorizada")
 	private List<Autorizacion> autorizacions;
