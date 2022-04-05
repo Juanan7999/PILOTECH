@@ -161,7 +161,7 @@ public class PersonaAutorizada implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, identificacion);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class PersonaAutorizada implements Serializable {
 			return false;
 		PersonaAutorizada other = (PersonaAutorizada) obj;
 		
-		return Objects.equals(id, other.id) && Objects.equals(identificacion, other.identificacion);
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
