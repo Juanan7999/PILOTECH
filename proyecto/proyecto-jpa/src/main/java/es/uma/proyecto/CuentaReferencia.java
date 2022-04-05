@@ -38,7 +38,7 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	
 	//bi-directional many-to-one association to Divisa
 	@ManyToOne
-	@JoinColumn(name = "CUENTA_REFERENCIA_DIVISA", nullable = false)
+	@JoinColumn(name = "CUENTA_REFERENCIA_DIVISA")
 	private Divisa divisa;
 
 	//bi-directional many-to-one association to DepositaEn

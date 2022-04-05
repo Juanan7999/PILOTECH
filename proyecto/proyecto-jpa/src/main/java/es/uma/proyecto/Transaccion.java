@@ -38,22 +38,22 @@ public class Transaccion implements Serializable {
 
 	//bi-directional many-to-one association to Cuenta
 	@ManyToOne
-	@JoinColumn(name="CUENTA_IBAN", nullable = false)
+	@JoinColumn(name="CUENTA_IBAN")
 	private Cuenta cuenta1;
 
 	//bi-directional many-to-one association to Cuenta
 	@ManyToOne
-	@JoinColumn(name="CUENTA_IBAN2", nullable = false)
+	@JoinColumn(name="CUENTA_IBAN2")
 	private Cuenta cuenta2;
 
 	//bi-directional many-to-one association to Divisa
 	@ManyToOne
-	@JoinColumn(name="DIVISA_ABREVIATURA", nullable = false)
+	@JoinColumn(name="DIVISA_ABREVIATURA")
 	private Divisa divisa1;
 
 	//bi-directional many-to-one association to Divisa
 	@ManyToOne
-	@JoinColumn(name="DIVISA_ABREVIATURA2", nullable = false)
+	@JoinColumn(name="DIVISA_ABREVIATURA2")
 	private Divisa divisa2;
 
 	public Transaccion() {
