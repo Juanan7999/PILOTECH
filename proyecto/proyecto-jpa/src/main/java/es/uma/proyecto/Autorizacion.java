@@ -22,10 +22,12 @@ public class Autorizacion implements Serializable {
 
 	//bi-directional many-to-one association to Empresa
 	@ManyToOne
+	@JoinColumn(name="EMPRESA_ID")
 	private Empresa empresa;
 
 	//bi-directional many-to-one association to PersonaAutorizada
 	@ManyToOne
+	@JoinColumn(name="PERSONA_AUTORIZADA_ID")
 	private PersonaAutorizada personaAutorizada;
 
 	public Autorizacion() {
