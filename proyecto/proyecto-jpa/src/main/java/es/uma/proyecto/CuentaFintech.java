@@ -89,7 +89,7 @@ public class CuentaFintech extends Cuenta implements Serializable{
 
 	@Override
 	public String toString() {
-		return super.toString() + " - CuentaFintech [estado=" + estado + ", fechaApertura=" + fechaApertura + "]";
+		return "CuentaFintech [estado=" + estado + ", fechaApertura=" + fechaApertura + "] -> " + super.toString();
 	}	
 	
 }

@@ -55,6 +55,6 @@ public class Individual extends Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " - Individual [nombre=" + nombre +  ", apellido=" + apellido + "]";
+		return "Individual [nombre=" + nombre +  ", apellido=" + apellido + "] -> " + super.toString();
 	}
 }

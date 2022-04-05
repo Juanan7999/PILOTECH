@@ -153,6 +153,6 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " - CuentaReferencia [nombrebanco=" + nombrebanco + ", saldo=" + saldo + "]";
+		return "CuentaReferencia [nombrebanco=" + nombrebanco + ", saldo=" + saldo + "] -> " + super.toString();
 	}	
 }

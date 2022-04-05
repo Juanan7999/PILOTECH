@@ -46,7 +46,7 @@ public class Segregada extends CuentaFintech implements Serializable {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " - Segregada [comision=" + comision + "]";
+		return "Segregada [comision=" + comision + "] -> " + super.toString();
 	}
 	
 }

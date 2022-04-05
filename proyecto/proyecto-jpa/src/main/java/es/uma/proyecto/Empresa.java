@@ -57,7 +57,7 @@ public class Empresa  extends Cliente implements Serializable{
 
 	@Override
 	public String toString() {
-		return super.toString() + " - Empresa [razonSocial=" + razonSocial + "]";
+		return "Empresa [razonSocial=" + razonSocial + "] -> " + super.toString();
 	}
 	
 }

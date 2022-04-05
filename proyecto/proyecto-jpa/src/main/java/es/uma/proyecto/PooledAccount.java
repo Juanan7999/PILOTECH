@@ -49,6 +49,6 @@ public class PooledAccount extends CuentaFintech implements Serializable {
 
 	@Override
 	public String toString() {
-		return super.toString() + " - PooledAccount []";
+		return "PooledAccount [] -> " + super.toString();
 	}
 }
