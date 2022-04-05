@@ -47,7 +47,7 @@ public class PersonaAutorizada implements Serializable {
 	private Date fechafin;
 	
 	@OneToOne(mappedBy = "personaAutorizada")
-	@JoinColumn(name = "Usuario")
+	@JoinColumn(name = "Usuario", nullable = false)
 	private Usuario usuario;
 	
 	public Usuario getUsuario() {
