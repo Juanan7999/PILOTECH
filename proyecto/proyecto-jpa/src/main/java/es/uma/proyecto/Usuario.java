@@ -5,9 +5,6 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Tipo de usuario", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("general")
 public class Usuario {
 
 	@Id
@@ -19,6 +16,15 @@ public class Usuario {
 
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(nullable = false)
+	private String tipo;
+	
+	@OneToOne
+	private PersonaAutorizada personaAutorizada;
+	
+	@OneToOne
+	private Cliente cliente;
 
 	public String getId() {
 		return id;
@@ -46,7 +52,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nombreUsuario);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -58,12 +64,37 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nombreUsuario, other.nombreUsuario);
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre de usuario=" + nombreUsuario + "]";
+		return "Usuario [id= " + id + ", nombre de usuario= " + nombreUsuario + ", tipo de usuario= "+tipo+"]";
 	}
 
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public PersonaAutorizada getPersonaAutorizada() {
+		return personaAutorizada;
+	}
+
+	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
+		this.personaAutorizada = personaAutorizada;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 }
