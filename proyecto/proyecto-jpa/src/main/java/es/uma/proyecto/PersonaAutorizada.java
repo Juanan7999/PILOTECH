@@ -48,13 +48,13 @@ public class PersonaAutorizada implements Serializable {
 	
 	@OneToOne(mappedBy = "personaAutorizada")
 	@JoinColumn(name = "Usuario", nullable = false)
-	private UsuarioAutorizada usuario;
+	private Usuario usuario;
 	
-	public UsuarioAutorizada getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UsuarioAutorizada usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 

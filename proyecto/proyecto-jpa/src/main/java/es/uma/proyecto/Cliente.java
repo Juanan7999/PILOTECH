@@ -58,13 +58,13 @@ public class Cliente implements Serializable {
 	
 	@OneToOne(mappedBy = "cliente")
 	@JoinColumn(name = "Usuario", nullable = false)
-	private UsuarioCliente usuario;
+	private Usuario usuario;
 	
-	public UsuarioCliente getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(UsuarioCliente usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
