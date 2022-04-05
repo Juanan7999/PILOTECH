@@ -22,12 +22,10 @@ public class DepositaEn implements Serializable {
 
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
-	@JoinColumn(name="CUENTA_REFERENCIA_IBAN", nullable = false)
 	private CuentaReferencia cuentaReferencia;
 
 	//bi-directional many-to-one association to PooledAccount
 	@ManyToOne
-	@JoinColumn(name="POOLED_ACCOUNT_IBAN", nullable = false)
 	private PooledAccount pooledAccount;
 
 	public DepositaEn() {
