@@ -27,7 +27,6 @@ public class Autorizacion implements Serializable {
 
 	//bi-directional many-to-one association to PersonaAutorizada
 	@ManyToOne
-	@JoinColumn(nullable = false)
 	private PersonaAutorizada personaAutorizada;
 
 	public Autorizacion() {
