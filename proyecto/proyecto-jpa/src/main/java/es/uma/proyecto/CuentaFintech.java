@@ -38,6 +38,7 @@ public class CuentaFintech extends Cuenta implements Serializable{
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
+	@JoinColumn(name = "CUENTA_FINTECH_CLIENTE", nullable = false)
 	private Cliente cliente;
 
 	
