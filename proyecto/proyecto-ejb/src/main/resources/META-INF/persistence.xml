@@ -5,22 +5,22 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <persistence-unit name="proyecto-ejb" transaction-type="JTA">
     <jta-data-source>jdbc/sii</jta-data-source>
-    	<class>es.uma.proyecto.Autorizacion</class>
-		<class>es.uma.proyecto.AutorizacionPK</class>
-		<class>es.uma.proyecto.Cliente</class>
-		<class>es.uma.proyecto.Cuenta</class>
-		<class>es.uma.proyecto.CuentaFintech</class>
-		<class>es.uma.proyecto.CuentaReferencia</class>
-		<class>es.uma.proyecto.DepositaEn</class>
-		<class>es.uma.proyecto.DepositaEnPK</class>
-		<class>es.uma.proyecto.Divisa</class>
-		<class>es.uma.proyecto.Empresa</class>
-		<class>es.uma.proyecto.Individual</class>
-		<class>es.uma.proyecto.PersonaAutorizada</class>
-		<class>es.uma.proyecto.PooledAccount</class>
-		<class>es.uma.proyecto.Segregada</class>
-		<class>es.uma.proyecto.Transaccion</class>
-		<class>es.uma.proyecto.Usuario</class>
+      <class>es.uma.proyecto.Autorizacion</class>
+    <class>es.uma.proyecto.AutorizacionPK</class>
+    <class>es.uma.proyecto.Cliente</class>
+    <class>es.uma.proyecto.Cuenta</class>
+    <class>es.uma.proyecto.CuentaFintech</class>
+    <class>es.uma.proyecto.CuentaReferencia</class>
+    <class>es.uma.proyecto.DepositaEn</class>
+    <class>es.uma.proyecto.DepositaEnPK</class>
+    <class>es.uma.proyecto.Divisa</class>
+    <class>es.uma.proyecto.Empresa</class>
+    <class>es.uma.proyecto.Individual</class>
+    <class>es.uma.proyecto.PersonaAutorizada</class>
+    <class>es.uma.proyecto.PooledAccount</class>
+    <class>es.uma.proyecto.Segregada</class>
+    <class>es.uma.proyecto.Transaccion</class>
+    <class>es.uma.proyecto.Usuario</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
     	<property name="javax.persistence.schema-generation.database.action" value="create"/>
