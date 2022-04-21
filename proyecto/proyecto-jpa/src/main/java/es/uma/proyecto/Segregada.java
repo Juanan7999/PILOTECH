@@ -19,9 +19,10 @@ public class Segregada extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String comision;
-
-	//bi-directional many-to-one association to CuentaReferencia
-	@ManyToOne
+	
+	//Aqui he cambiado el many to one a oneToOne
+	//bi-directional one-to-one association to CuentaReferencia
+	@OneToOne
 	@JoinColumn(name = "SEGREGADA_CUENTA_REFERENCIA", nullable = false)
 	private CuentaReferencia cuentaReferencia;
 

@@ -45,9 +45,9 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	@OneToMany(mappedBy="cuentaReferencia")
 	private List<DepositaEn> depositaEns;
 
-	//bi-directional many-to-one association to Segregada
-	@OneToMany(mappedBy="cuentaReferencia")
-	private List<Segregada> segregadas;
+	//bi-directional one-to-one association to Segregada
+	@OneToOne
+	private Segregada segregadas;
 
 	public CuentaReferencia() {
 	}
@@ -130,14 +130,16 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 		return depositaEn;
 	}
 
-	public List<Segregada> getSegregadas() {
+	public Segregada getSegregadas() {
 		return this.segregadas;
 	}
 
-	public void setSegregadas(List<Segregada> segregadas) {
+	public void setSegregadas(Segregada segregadas) {
 		this.segregadas = segregadas;
 	}
-
+	
+	//Esto hay que borrarlo ya que segregada ya no es una lista
+	/*
 	public Segregada addSegregada(Segregada segregada) {
 		getSegregadas().add(segregada);
 		segregada.setCuentaReferencia(this);
@@ -151,7 +153,8 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 
 		return segregada;
 	}
-
+	*/
+	
 	@Override
 	public String toString() {
 		return "CuentaReferencia [nombrebanco=" + nombrebanco + ", saldo=" + saldo + "] -> " + super.toString();
