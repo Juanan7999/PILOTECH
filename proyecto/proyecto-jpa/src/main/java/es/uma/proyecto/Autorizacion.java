@@ -14,12 +14,13 @@ import java.util.Objects;
 public class Autorizacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@MapsId
 	@EmbeddedId
 	private AutorizacionPK id;
 	
 	@Column(nullable = false)
 	private Integer tipo;
-
+	
 	//bi-directional many-to-one association to Empresa
 	@ManyToOne
 	@JoinColumn(name="EMPRESA_ID", nullable = false)
@@ -29,7 +30,7 @@ public class Autorizacion implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="PERSONA_AUTORIZADA_ID", nullable = false)
 	private PersonaAutorizada personaAutorizada;
-
+	
 	public Autorizacion() {
 	}
 
@@ -48,7 +49,7 @@ public class Autorizacion implements Serializable {
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
-
+	
 	public Empresa getEmpresa() {
 		return this.empresa;
 	}
@@ -64,7 +65,7 @@ public class Autorizacion implements Serializable {
 	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
 		this.personaAutorizada = personaAutorizada;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -14,12 +14,15 @@ import javax.persistence.*;
 public class DepositaEn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@MapsId
 	@EmbeddedId
 	private DepositaEnPK id;
 
 	@Column(nullable = false)
 	private Double saldo;
 
+
+	
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
 	@JoinColumn(name="CUENTA_REFERENCIA_IBAN", nullable = false)
@@ -30,6 +33,7 @@ public class DepositaEn implements Serializable {
 	@JoinColumn(name="POOLED_ACCOUNT_IBAN", nullable = false)
 	private PooledAccount pooledAccount;
 
+	
 	public DepositaEn() {
 	}
 
@@ -48,11 +52,13 @@ public class DepositaEn implements Serializable {
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
-
+	
 	public CuentaReferencia getCuentaReferencia() {
 		return this.cuentaReferencia;
 	}
 
+	//ESTO HABRÍA QUE CAMBIARLO A STRING??
+	
 	public void setCuentaReferencia(CuentaReferencia cuentaReferencia) {
 		this.cuentaReferencia = cuentaReferencia;
 	}
@@ -64,5 +70,6 @@ public class DepositaEn implements Serializable {
 	public void setPooledAccount(PooledAccount pooledAccount) {
 		this.pooledAccount = pooledAccount;
 	}
+	
 
 }
