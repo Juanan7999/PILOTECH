@@ -12,9 +12,7 @@ import java.util.Objects;
  * 
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name="ctype", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("cliente")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -13,7 +13,6 @@ import java.util.List;
 @Table(name="POOLED_ACCOUNT")
 @NamedQuery(name="PooledAccount.findAll", query="SELECT p FROM PooledAccount p")
 
-@DiscriminatorValue("PooledAccount")
 
 public class PooledAccount extends CuentaFintech implements Serializable {
 	private static final long serialVersionUID = 1L;

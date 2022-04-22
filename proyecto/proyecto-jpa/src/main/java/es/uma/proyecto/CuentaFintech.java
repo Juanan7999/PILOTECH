@@ -15,9 +15,6 @@ import java.util.Date;
 @Table(name="CUENTA_FINTECH")
 @NamedQuery(name="CuentaFintech.findAll", query="SELECT c FROM CuentaFintech c")
 
-
-@DiscriminatorValue("CuentaFintech")
-
 public class CuentaFintech extends Cuenta implements Serializable{
 	private static final long serialVersionUID = 1L;
 

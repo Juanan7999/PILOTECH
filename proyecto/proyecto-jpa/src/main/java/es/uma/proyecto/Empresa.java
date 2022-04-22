@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-@DiscriminatorValue("empresa")
+
 @NamedQuery(name="Empresa.findAll", query="SELECT e FROM Empresa e")
 public class Empresa  extends Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;

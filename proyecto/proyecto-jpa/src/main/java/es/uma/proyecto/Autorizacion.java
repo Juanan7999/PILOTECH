@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Autorizacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@MapsId
 	@EmbeddedId
 	private AutorizacionPK id;
 	
@@ -24,11 +23,13 @@ public class Autorizacion implements Serializable {
 	//bi-directional many-to-one association to Empresa
 	@ManyToOne
 	@JoinColumn(name="EMPRESA_ID", nullable = false)
+	@MapsId("empresaId")
 	private Empresa empresa;
 
 	//bi-directional many-to-one association to PersonaAutorizada
 	@ManyToOne
 	@JoinColumn(name="PERSONA_AUTORIZADA_ID", nullable = false)
+	@MapsId("personaAutorizadaId")
 	private PersonaAutorizada personaAutorizada;
 	
 	public Autorizacion() {

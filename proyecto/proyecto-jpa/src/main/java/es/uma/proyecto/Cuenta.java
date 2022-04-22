@@ -12,11 +12,8 @@ import java.util.Objects;
  */
 @Entity
 
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name="disc", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-
-@DiscriminatorValue("Cuenta")
 
 @NamedQuery(name="Cuenta.findAll", query="SELECT c FROM Cuenta c")
 public class Cuenta implements Serializable {

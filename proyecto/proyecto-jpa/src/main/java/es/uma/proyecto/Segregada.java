@@ -11,16 +11,12 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Segregada.findAll", query="SELECT s FROM Segregada s")
 
-
-@DiscriminatorValue("Segregada")
-
 public class Segregada extends CuentaFintech implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String comision;
 	
-	//Aqui he cambiado el many to one a oneToOne
 	//bi-directional one-to-one association to CuentaReferencia
 	@OneToOne
 	@JoinColumn(name = "SEGREGADA_CUENTA_REFERENCIA", nullable = false)

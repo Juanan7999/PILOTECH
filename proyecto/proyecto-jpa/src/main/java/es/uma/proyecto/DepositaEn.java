@@ -26,11 +26,13 @@ public class DepositaEn implements Serializable {
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
 	@JoinColumn(name="CUENTA_REFERENCIA_IBAN", nullable = false)
+	@MapsId("cuentaReferenciaIban")
 	private CuentaReferencia cuentaReferencia;
 
 	//bi-directional many-to-one association to PooledAccount
 	@ManyToOne
 	@JoinColumn(name="POOLED_ACCOUNT_IBAN", nullable = false)
+	@MapsId("pooledAccountIban")
 	private PooledAccount pooledAccount;
 
 	

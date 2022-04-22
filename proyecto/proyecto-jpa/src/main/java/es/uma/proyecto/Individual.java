@@ -11,7 +11,6 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@DiscriminatorValue("individual")
 @NamedQuery(name="Individual.findAll", query="SELECT i FROM Individual i")
 public class Individual extends Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;

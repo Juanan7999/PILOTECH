@@ -15,8 +15,6 @@ import java.util.List;
 @NamedQuery(name="CuentaReferencia.findAll", query="SELECT c FROM CuentaReferencia c")
 
 
-@DiscriminatorValue("CuentaReferencia")
-
 public class CuentaReferencia extends Cuenta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -47,7 +45,7 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 
 	//bi-directional one-to-one association to Segregada
 	@OneToOne
-	private Segregada segregadas;
+	private Segregada segregada;
 
 	public CuentaReferencia() {
 	}
@@ -131,11 +129,11 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	}
 
 	public Segregada getSegregadas() {
-		return this.segregadas;
+		return this.segregada;
 	}
 
 	public void setSegregadas(Segregada segregadas) {
-		this.segregadas = segregadas;
+		this.segregada = segregadas;
 	}
 	
 	//Esto hay que borrarlo ya que segregada ya no es una lista
