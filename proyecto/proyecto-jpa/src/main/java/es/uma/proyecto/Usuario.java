@@ -7,10 +7,13 @@ import javax.persistence.*;
 @Entity
 public class Usuario {
 
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-
+	*/
+	
+	@Id
 	@Column(nullable = false)
 	private String nombreUsuario;
 
@@ -26,6 +29,7 @@ public class Usuario {
 	@OneToOne
 	private Cliente cliente;
 
+	/*
 	public String getId() {
 		return id;
 	}
@@ -33,6 +37,7 @@ public class Usuario {
 	public void setId(String id) {
 		this.id = id;
 	}
+	*/
 
 	public String getNombreUsuario() {
 		return nombreUsuario;
@@ -52,7 +57,7 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(nombreUsuario);
 	}
 
 	@Override
@@ -64,12 +69,12 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(nombreUsuario, other.nombreUsuario);
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id= " + id + ", nombre de usuario= " + nombreUsuario + ", tipo de usuario= "+tipo+"]";
+		return "Usuario [nombre de usuario= " + nombreUsuario + ", tipo de usuario= "+tipo+"]";
 	}
 
 
