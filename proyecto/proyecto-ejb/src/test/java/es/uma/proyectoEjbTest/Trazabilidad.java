@@ -1,4 +1,4 @@
-package es.uma.informatica.sii.ejb.practica;
+package es.uma.proyectoEjbTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import org.junit.Before;
 import org.junit.Test;
 
+/*
 import es.uma.informatica.sii.ejb.practica.ejb.GestionLotes;
 import es.uma.informatica.sii.ejb.practica.ejb.GestionProductos;
 import es.uma.informatica.sii.ejb.practica.ejb.exceptions.IngredientesIncorrectosException;
@@ -25,6 +26,7 @@ import es.uma.informatica.sii.ejb.practica.ejb.exceptions.TrazabilidadException;
 import es.uma.informatica.sii.ejb.practica.entidades.Ingrediente;
 import es.uma.informatica.sii.ejb.practica.entidades.Lote;
 import es.uma.informatica.sii.ejb.practica.entidades.Producto;
+*/
 
 public class Trazabilidad {
 	
@@ -34,6 +36,7 @@ public class Trazabilidad {
 	private static final String LOTES_EJB = "java:global/classes/LotesEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
 	
+	/*
 	private GestionLotes gestionLotes;
 	private GestionProductos gestionProductos;
 	
@@ -402,6 +405,6 @@ public class Trazabilidad {
 		}
 	}
 	
-	
+	*/
 
 }

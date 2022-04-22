@@ -1,4 +1,4 @@
-package es.uma.informatica.sii.ejb.practica;
+package es.uma.proyectoEjbTest;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -10,9 +10,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/*
 import es.uma.informatica.sii.ejb.practica.entidades.Ingrediente;
 import es.uma.informatica.sii.ejb.practica.entidades.Lote;
 import es.uma.informatica.sii.ejb.practica.entidades.Producto;
+*/
 
 public class BaseDatos {
 	public static void inicializaBaseDatos(String nombreUnidadPersistencia) {
@@ -20,7 +22,8 @@ public class BaseDatos {
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
-		
+	
+		/*
 		Ingrediente carne = new Ingrediente ("Carne picada");
 		Ingrediente pimienta = new Ingrediente ("Pimienta");
 		Ingrediente especias = new Ingrediente("Especias de hamburguesa");
@@ -72,5 +75,7 @@ public class BaseDatos {
 		
 		em.close();
 		emf.close();
+		
+		*/
 	}
 }
