@@ -22,7 +22,7 @@ public class UsuarioTest {
 	private static final Logger LOG = Logger.getLogger(UsuarioTest.class.getCanonicalName());
 
 	private static final String USUARIO_EJB = "java:global/classes/UsuarioEJB";
-	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejb";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
 	
 	private GestionUsuario gestionUsuario;
 	
@@ -53,9 +53,11 @@ public class UsuarioTest {
 		
 		try {
 			gestionUsuario.creacionUsuario(nombreUsuario, password, tipo, null, null);
+			fail("Debe lanzar excepcion");
 		} catch(UsuarioExistenteException e) {
 			//OK
+		} catch(ProyectoEjbException e) {
+			fail("Debe lanzar la excepcion de que el usuario ya existia antes");
 		}
-		fail("No se ha lanzado la excepcion de que el usuario ya existia antes");
 	}
 }
