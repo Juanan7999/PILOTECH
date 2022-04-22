@@ -46,8 +46,6 @@ public class UsuarioEJB implements GestionUsuario{
 
 	@Override
 	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException {
-		Usuario usuario = new Usuario();
-		
 		Usuario usuarioEntity = em.find(Usuario.class, nombreUsuario);
 		
 		if(usuarioEntity == null) {

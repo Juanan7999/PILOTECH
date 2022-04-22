@@ -27,7 +27,6 @@ public class Usuario {
 	private PersonaAutorizada personaAutorizada;
 	
 	@OneToOne
-	@JoinColumn(name="USUARIO_CLIENTE", nullable = false)
 	private Cliente cliente;
 
 	/*
