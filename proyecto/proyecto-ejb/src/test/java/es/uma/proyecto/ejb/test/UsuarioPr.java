@@ -2,6 +2,7 @@ package es.uma.proyecto.ejb.test;
 
 import static org.junit.Assert.fail;
 
+
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -13,8 +14,7 @@ import org.junit.Test;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionUsuario;
-import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
-import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
+import es.uma.proyecto.ejb.exceptions.*;
 
 
 public class UsuarioPr {
@@ -59,5 +59,78 @@ public class UsuarioPr {
 		} catch(ProyectoEjbException e) {
 			fail("Debe lanzar la excepcion de que el usuario ya existia antes");
 		}
+	}
+	
+	
+	
+	@Test
+	public void LoginUsuarioExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
+		//No deberia saltar error, porque ese usuario existe
+		
+		final String nombreUsuario = "Juan";
+		final String password = "8234";
+		
+		
+		try {
+		gestionUsuario.Login(nombreUsuario, password);
+		}catch(UsuarioNoEncontradoException e){
+		fail("El usuario sí existe");
+		}
+		
+		
+	}
+	
+	
+	
+	
+	@Test
+	public void LoginUsuarioNoExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
+		//No deberia saltar error, porque ese usuario existe
+		
+		final String nombreUsuario = "JuanFalso";
+		final String password = "8234";
+		
+		
+		try {
+		gestionUsuario.Login(nombreUsuario, password);
+		}catch(UsuarioNoEncontradoException e){
+		//OK
+		}
+		fail("El usuario sí existe");
+		
+	}
+	
+	@Test
+	public void LoginPasswordIncorrecta() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
+		//No deberia saltar error, porque ese usuario existe
+		
+		final String nombreUsuario = "Juan"; //Usuario que existe
+		final String password = "8333"; //Contraseña incorrecta
+		
+		
+		try {
+		gestionUsuario.Login(nombreUsuario, password);
+		}catch(ContraseñaIncorrectaException e){
+		//OK
+		}
+		fail("La contraseña no es correcta, deberia saltar la excepcion");
+		
+	}
+	
+	@Test
+	public void LoginPasswordCorrecta() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
+		//No deberia saltar error, porque ese usuario existe
+		
+		final String nombreUsuario = "Juan"; //Usuario que existe
+		final String password = "8333"; //Contraseña incorrecta
+		
+		
+		try {
+		gestionUsuario.Login(nombreUsuario, password);
+		}catch(ContraseñaIncorrectaException e){
+			fail("La contraseña es correcta, no deberia saltar la excepcion");
+		}
+		//OK
+		
 	}
 }
