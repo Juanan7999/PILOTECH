@@ -94,10 +94,11 @@ public class UsuarioPr {
 		
 		try {
 		gestionUsuario.Login(nombreUsuario, password);
+		fail("El usuario sí existe");
 		}catch(UsuarioNoEncontradoException e){
 		//OK
 		}
-		fail("El usuario sí existe");
+		
 		
 	}
 	
@@ -111,10 +112,13 @@ public class UsuarioPr {
 		
 		try {
 		gestionUsuario.Login(nombreUsuario, password);
+		fail("La contraseña no es correcta, deberia saltar la excepcion");
 		}catch(ContraseñaIncorrectaException e){
 		//OK
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
 		}
-		fail("La contraseña no es correcta, deberia saltar la excepcion");
+		
 		
 	}
 	@Requisitos({"RF1"})
@@ -123,13 +127,15 @@ public class UsuarioPr {
 		//No deberia saltar error, porque ese usuario existe
 		
 		final String nombreUsuario = "Juan"; //Usuario que existe
-		final String password = "8333"; //Contraseña incorrecta
+		final String password = "8234"; //Contraseña incorrecta
 		
 		
 		try {
 		gestionUsuario.Login(nombreUsuario, password);
 		}catch(ContraseñaIncorrectaException e){
 			fail("La contraseña es correcta, no deberia saltar la excepcion");
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
 		}
 		//OK
 		
