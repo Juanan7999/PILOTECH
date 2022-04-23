@@ -58,6 +58,5 @@ public class UsuarioEJB implements GestionUsuario{
 			throw new ContraseñaIncorrectaException();
 			
 		}
-		
 	}
 }
