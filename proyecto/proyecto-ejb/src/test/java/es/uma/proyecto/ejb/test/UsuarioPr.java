@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.uma.informatica.sii.anotaciones.Requisitos;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionUsuario;
@@ -31,7 +32,7 @@ public class UsuarioPr {
 		gestionUsuario = (GestionUsuario) SuiteTest.ctx.lookup(USUARIO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-	
+	@Requisitos({"RF1"})
 	@Test
 	public void testCreacionUsuarioExistente() throws ProyectoEjbException {
 		
@@ -62,7 +63,7 @@ public class UsuarioPr {
 	}
 	
 	
-	
+	@Requisitos({"RF1"})
 	@Test
 	public void LoginUsuarioExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
@@ -82,7 +83,7 @@ public class UsuarioPr {
 	
 	
 	
-	
+	@Requisitos({"RF1"})
 	@Test
 	public void LoginUsuarioNoExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
@@ -116,7 +117,7 @@ public class UsuarioPr {
 		fail("La contraseña no es correcta, deberia saltar la excepcion");
 		
 	}
-	
+	@Requisitos({"RF1"})
 	@Test
 	public void LoginPasswordCorrecta() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
