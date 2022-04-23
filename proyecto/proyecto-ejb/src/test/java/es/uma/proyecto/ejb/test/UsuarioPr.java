@@ -76,6 +76,8 @@ public class UsuarioPr {
 		gestionUsuario.Login(nombreUsuario, password);
 		}catch(UsuarioNoEncontradoException e){
 		fail("El usuario sí existe");
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
 		}
 		
 		
@@ -97,6 +99,8 @@ public class UsuarioPr {
 		fail("El usuario sí existe");
 		}catch(UsuarioNoEncontradoException e){
 		//OK
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
 		}
 		
 		
