@@ -1,4 +1,4 @@
-package es.uma.proyectoEjb.exceptions;
+package es.uma.proyecto.ejb.exceptions;
 
 public class UsuarioNoEncontradoException extends ProyectoEjbException{
 

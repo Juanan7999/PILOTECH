@@ -1,4 +1,4 @@
-package es.uma.proyectoEjbTest;
+package es.uma.proyecto.ejb.test;
 
 import java.math.BigDecimal;
 import java.sql.Date;

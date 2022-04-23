@@ -1,4 +1,4 @@
-package es.uma.proyectoEjbTest;
+package es.uma.proyecto.ejb.test;
 
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({UsuarioTest.class})
+@SuiteClasses({UsuarioPr.class})
 public class SuiteTest {
 	
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";

@@ -1,12 +1,12 @@
-package es.uma.proyectoEjb;
+package es.uma.proyecto.ejb;
 
 import javax.ejb.Local;
 
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
-import es.uma.proyectoEjb.exceptions.UsuarioExistenteException;
-import es.uma.proyectoEjb.exceptions.UsuarioNoEncontradoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 
 
 @Local

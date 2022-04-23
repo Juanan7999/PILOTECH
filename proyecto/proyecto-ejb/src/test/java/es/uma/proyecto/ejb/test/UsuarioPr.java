@@ -1,4 +1,4 @@
-package es.uma.proyectoEjbTest;
+package es.uma.proyecto.ejb.test;
 
 import static org.junit.Assert.fail;
 
@@ -12,14 +12,14 @@ import org.junit.Test;
 
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Usuario;
-import es.uma.proyectoEjb.GestionUsuario;
-import es.uma.proyectoEjb.exceptions.ProyectoEjbException;
-import es.uma.proyectoEjb.exceptions.UsuarioExistenteException;
+import es.uma.proyecto.ejb.GestionUsuario;
+import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
+import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 
 
-public class UsuarioTest {
+public class UsuarioPr {
 
-	private static final Logger LOG = Logger.getLogger(UsuarioTest.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(UsuarioPr.class.getCanonicalName());
 
 	private static final String USUARIO_EJB = "java:global/classes/UsuarioEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
