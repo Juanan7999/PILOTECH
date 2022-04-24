@@ -1,8 +1,11 @@
 package es.uma.proyecto.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
@@ -16,7 +19,15 @@ public class UsuarioEJB implements GestionUsuario{
 
 	@PersistenceContext(name="proyecto-ejb")
 	private EntityManager em;
+	
 
+	@Override
+	public List<Usuario> devolverTodosUsuarios(){
+		TypedQuery<Usuario> query = em.createQuery("SELECT c FROM Usuario c", Usuario.class);
+		List<Usuario> usuarios= query.getResultList();
+		return usuarios;
+	}
+	
 	@Override
 	public void creacionUsuario(String nombre, String password, String tipo, PersonaAutorizada pA, Cliente cliente)
 			throws UsuarioExistenteException {

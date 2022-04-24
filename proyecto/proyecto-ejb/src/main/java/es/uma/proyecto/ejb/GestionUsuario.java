@@ -1,9 +1,12 @@
 package es.uma.proyecto.ejb;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
+import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
@@ -28,5 +31,8 @@ public interface GestionUsuario {
 	 */
 	
 	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException;
+
+
+	public List<Usuario> devolverTodosUsuarios();
 		
 }

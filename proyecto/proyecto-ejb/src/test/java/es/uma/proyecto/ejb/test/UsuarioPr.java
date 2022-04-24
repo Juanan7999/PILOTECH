@@ -1,9 +1,11 @@
 package es.uma.proyecto.ejb.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
@@ -144,4 +146,13 @@ public class UsuarioPr {
 		//OK
 		
 	}
+	
+	
+	@Requisitos({"RF1"})
+	@Test
+	public void devolverTodosUsuarios(){
+		List<Usuario> usuarios = gestionUsuario.devolverTodosUsuarios();
+		assertEquals(1, usuarios.size());
+	}
+	
 }
