@@ -11,14 +11,17 @@ import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Cuenta;
+import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoAbiertaException;
+import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
 
 
 @Stateless
@@ -89,7 +92,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bajaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaNoAbiertaException {
+	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException {
 		
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		
@@ -97,6 +100,14 @@ public class ClienteEJB implements GestionCliente{
 			throw new ClienteNoExistenteException();
 		} else if(clienteEntity.getEstado().equals("baja")) {
 			throw new ClienteYaDeBajaException();
+		} 
+		
+		List<CuentaFintech> cuentas = clienteEntity.getCuentaFinteches();
+		
+		for(CuentaFintech c : cuentas) {
+			if(c.getEstado().equals("activa")) {
+				throw new CuentaAbiertaException();
+			}
 		}
 		
 		clienteEntity.setEstado("baja");
@@ -113,18 +124,25 @@ public class ClienteEJB implements GestionCliente{
 			throw new ClienteYaActivoException();
 		}
 		
-		clienteEntity.setEstado("");
+		clienteEntity.setEstado("activo");
 		
 	}
 
 	@Override
-	public void bloqueaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException {
+	public void bloqueaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException {
 		
 		Cliente clienteEntity = em.find(Cliente.class,cliente);
 		
+		if(clienteEntity == null) {
+			throw new ClienteNoExistenteException();
+		} else if (clienteEntity.getEstado().endsWith("activo")) {
+			throw new ClienteBloqueadoException();
+		}
+		
+		clienteEntity.setEstado("bloqueado");
+		
 		
 	}
-	
 	
 	@Override
 	public List<Cliente> devolverTodosClientes(){
@@ -132,6 +150,8 @@ public class ClienteEJB implements GestionCliente{
 		List<Cliente> clientes= query.getResultList();
 		return clientes;
 	}
+
+	
 	
 	
 }

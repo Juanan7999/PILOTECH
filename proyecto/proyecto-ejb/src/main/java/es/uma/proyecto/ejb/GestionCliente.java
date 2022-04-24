@@ -8,11 +8,13 @@ import javax.ejb.Local;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoAbiertaException;
+import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
 
 
 @Local
@@ -35,14 +37,27 @@ public interface GestionCliente {
 	public void altaClienteEmpresa(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException; 
 	
 	
+	/*
+	 * Se encarga de dar de baja a un cliente
+	 */
 	
-	public void bajaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaNoAbiertaException;
+	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException;
 	
+	/*
+	 * Se encarga de dar de activar de nuevo a un cliente
+	 */
 	
 	public void activaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException;
 	
+	/*
+	 * Se encarga de bloquear a un cliente
+	 */
 	
-	public void bloqueaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException;
+	public void bloqueaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException;
+	
+	/*
+	 * Se encarga de devolver todos los clientes
+	 */
 	
 	public List<Cliente> devolverTodosClientes();
 	
