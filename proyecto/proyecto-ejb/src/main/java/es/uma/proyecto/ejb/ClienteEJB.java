@@ -1,19 +1,24 @@
 package es.uma.proyecto.ejb;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoAbiertaException;
 
 
 @Stateless
@@ -25,8 +30,7 @@ public class ClienteEJB implements GestionCliente{
 	private EntityManager em;
 
 	@Override
-	public void altaClienteIndividual(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja,
-			String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento) throws ClienteExistenteException {
+	public void altaClienteIndividual(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento) throws ClienteExistenteException {
 		Individual clienteIndividualEntity = em.find(Individual.class, identificacion);
 		
 		if(clienteIndividualEntity != null) {
@@ -58,8 +62,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void altaClienteEmpresa(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja,
-			String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException{
+	public void altaClienteEmpresa(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException{
 		Empresa clienteEmpresaEntity = em.find(Empresa.class, identificacion);
 		
 		if(clienteEmpresaEntity != null) {
@@ -86,7 +89,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException {
+	public void bajaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaNoAbiertaException {
 		
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		
@@ -110,6 +113,24 @@ public class ClienteEJB implements GestionCliente{
 			throw new ClienteYaActivoException();
 		}
 		
+		clienteEntity.setEstado("");
+		
+	}
+
+	@Override
+	public void bloqueaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException {
+		
+		Cliente clienteEntity = em.find(Cliente.class,cliente);
+		
+		
+	}
+	
+	
+	@Override
+	public List<Cliente> devolverTodosClientes(){
+		TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c", Cliente.class);
+		List<Cliente> clientes= query.getResultList();
+		return clientes;
 	}
 	
 	

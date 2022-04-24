@@ -1,15 +1,18 @@
 package es.uma.proyecto.ejb;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Local;
 
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoAbiertaException;
 
 
 @Local
@@ -33,9 +36,14 @@ public interface GestionCliente {
 	
 	
 	
-	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException;
+	public void bajaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaNoAbiertaException;
 	
 	
 	public void activaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException;
+	
+	
+	public void bloqueaCliente(Cliente cliente, Cuenta cuenta) throws ClienteNoExistenteException;
+	
+	public List<Cliente> devolverTodosClientes();
 	
 }
