@@ -65,6 +65,38 @@ public class UsuarioPr {
 	}
 	
 	
+	
+	@Requisitos({"RF1"})
+	@Test
+	public void comprobarQueUnUsuarioHaSidoCreado() throws ProyectoEjbException {
+		
+		final String nombreUsuario = "Juan";
+		final String password = "1234";
+		final String tipo = "N";
+		
+		Usuario usuario = new Usuario();
+		usuario.setNombreUsuario("Juan");
+		usuario.setPassword("1234");
+		usuario.setTipo("A");
+		
+		/*Cliente cliente = new Cliente();
+		cliente.setIdentificacion("1111");
+		cliente.setTipoCliente("F");
+		cliente.setPais("España");
+		cliente.setEstado("activo");
+		cliente.setFechaAlta();*/
+		
+		try {
+			List<Usuario> usuarios1 = gestionUsuario.devolverTodosUsuarios();
+			gestionUsuario.creacionUsuario(nombreUsuario, password, tipo, null, null);
+			List<Usuario> usuarios2 = gestionUsuario.devolverTodosUsuarios();
+			assertEquals(usuarios2.size(), usuarios1.size()+1); //El numero de usuarios antes de añadir un usuario, debe ser 1 más
+		} catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
+		}
+	}
+	
+	
 	@Requisitos({"RF1"})
 	@Test
 	public void LoginUsuarioExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
