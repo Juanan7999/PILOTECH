@@ -7,6 +7,9 @@ import javax.ejb.Local;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 
 
 @Local
@@ -29,5 +32,10 @@ public interface GestionCliente {
 	public void altaClienteEmpresa(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException; 
 	
 	
+	
+	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException;
+	
+	
+	public void activaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException;
 	
 }

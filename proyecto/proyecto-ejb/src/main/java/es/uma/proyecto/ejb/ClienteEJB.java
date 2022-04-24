@@ -11,6 +11,9 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 
 
 @Stateless
@@ -81,4 +84,33 @@ public class ClienteEJB implements GestionCliente{
 		nuevo_cliente.setRazonSocial(razon_social);
 		
 	}
+
+	@Override
+	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException {
+		
+		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoExistenteException();
+		} else if(clienteEntity.getEstado().equals("baja")) {
+			throw new ClienteYaDeBajaException();
+		}
+		
+		clienteEntity.setEstado("baja");
+	}
+
+	@Override
+	public void activaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException {
+		
+		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoExistenteException();
+		} else if (clienteEntity.getEstado().endsWith("activo")) {
+			throw new ClienteYaActivoException();
+		}
+		
+	}
+	
+	
 }
