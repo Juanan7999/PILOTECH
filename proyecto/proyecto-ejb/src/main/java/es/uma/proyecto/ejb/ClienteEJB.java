@@ -22,6 +22,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 
 @Stateless
@@ -33,8 +34,13 @@ public class ClienteEJB implements GestionCliente{
 	private EntityManager em;
 
 	@Override
-	public void altaClienteIndividual(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento) throws ClienteExistenteException {
+	public void altaClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento) throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		Individual clienteIndividualEntity = em.find(Individual.class, identificacion);
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
 		
 		if(clienteIndividualEntity != null) {
 			throw new ClienteExistenteException();
@@ -65,8 +71,13 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void altaClienteEmpresa(String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException{
+	public void altaClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException, UsuarioNoEsAdministrativoException{
 		Empresa clienteEmpresaEntity = em.find(Empresa.class, identificacion);
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
 		
 		if(clienteEmpresaEntity != null) {
 			throw new ClienteExistenteException();
@@ -92,9 +103,14 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bajaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException {
+	public void bajaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
+		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
@@ -114,7 +130,13 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void activaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException {
+	public void activaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException {
+		
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
 		
 		Cliente clienteEntity = em.find(Cliente.class, cliente);
 		
@@ -129,7 +151,14 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bloqueaCliente(Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException {
+	public void bloqueaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
+		
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
+		
 		
 		Cliente clienteEntity = em.find(Cliente.class,cliente);
 		
