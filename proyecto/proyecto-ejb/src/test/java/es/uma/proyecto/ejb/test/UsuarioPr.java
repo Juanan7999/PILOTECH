@@ -70,12 +70,12 @@ public class UsuarioPr {
 	@Test
 	public void comprobarQueUnUsuarioHaSidoCreado() throws ProyectoEjbException {
 		
-		final String nombreUsuario = "Juan";
+		final String nombreUsuario = "Pepe";
 		final String password = "1234";
 		final String tipo = "N";
 		
 		Usuario usuario = new Usuario();
-		usuario.setNombreUsuario("Juan");
+		usuario.setNombreUsuario("Pepe");
 		usuario.setPassword("1234");
 		usuario.setTipo("A");
 		
