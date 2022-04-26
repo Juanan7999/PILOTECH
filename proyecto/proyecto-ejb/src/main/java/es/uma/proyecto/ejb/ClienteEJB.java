@@ -104,13 +104,13 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bajaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
+	public void bajaCliente(String idAdmin, String identificacionCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
 		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
 		}
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, identificacionCliente);
 		
 		
 		if(clienteEntity == null) {
@@ -131,7 +131,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void activaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException {
+	public void activaCliente(String idAdmin, String identificacionCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -139,7 +139,7 @@ public class ClienteEJB implements GestionCliente{
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, identificacionCliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
@@ -152,7 +152,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bloqueaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
+	public void bloqueaCliente(String idAdmin, String identificacionCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -161,11 +161,11 @@ public class ClienteEJB implements GestionCliente{
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class,cliente);
+		Cliente clienteEntity = em.find(Cliente.class,identificacionCliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
-		} else if (clienteEntity.getEstado().endsWith("activo")) {
+		} else if (clienteEntity.getEstado().endsWith("bloqueado")) {
 			throw new ClienteBloqueadoException();
 		}
 		
@@ -175,13 +175,123 @@ public class ClienteEJB implements GestionCliente{
 	}
 	
 	@Override
+	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento, String identificacionCliente) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
+		
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
+		
+		Individual clienteEntity = em.find(Individual.class,identificacionCliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		if(identificacion != null) {
+			clienteEntity.setIdentificacion(identificacion);
+		}
+		if(tipo != null) {
+			clienteEntity.setTipoCliente(tipo);
+		}
+		if(estado != null) {
+			clienteEntity.setEstado(estado);
+		}
+		if(fecha_alta != null) {
+			clienteEntity.setFechaAlta(fecha_alta);
+		}
+		if(fecha_baja != null) {
+			clienteEntity.setFechaBaja(fecha_baja);
+		}
+		if(direccion != null) {
+			clienteEntity.setDireccion(direccion);
+		}
+		if(ciudad != null) {
+			clienteEntity.setCiudad(ciudad);
+		}
+		
+		if(codigo_postal != null) {
+			clienteEntity.setCodigopostal(codigo_postal);
+		}
+		
+		if(pais != null) {
+			clienteEntity.setPais(pais);
+		}
+		
+		if(nombre != null) {
+			clienteEntity.setNombre(nombre);
+		}
+		
+		if(apellidos != null) {
+			clienteEntity.setApellido(apellidos);
+		}
+		
+		if(fecha_nacimiento != null) {
+			clienteEntity.setFechaNacimiento(fecha_nacimiento);
+		}
+	}
+	
+	@Override
+	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado,
+			Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais,
+			String razon_social, String identificacionCliente) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
+		
+		Usuario administrador = em.find(Usuario.class, idAdmin);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
+		
+		Empresa clienteEntity = em.find(Empresa.class,identificacionCliente);
+		
+		if(clienteEntity == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		if(identificacion != null) {
+			clienteEntity.setIdentificacion(identificacion);
+		}
+		if(tipo != null) {
+			clienteEntity.setTipoCliente(tipo);
+		}
+		if(estado != null) {
+			clienteEntity.setEstado(estado);
+		}
+		if(fecha_alta != null) {
+			clienteEntity.setFechaAlta(fecha_alta);
+		}
+		if(fecha_baja != null) {
+			clienteEntity.setFechaBaja(fecha_baja);
+		}
+		
+		if(direccion != null) {
+			clienteEntity.setDireccion(direccion);
+		}
+		
+		if(ciudad != null) {
+			clienteEntity.setCiudad(ciudad);
+		}
+		
+		if(codigo_postal != null) {
+			clienteEntity.setCodigopostal(codigo_postal);
+		}
+		
+		if(pais != null) {
+			clienteEntity.setPais(pais);
+		}
+		
+		if(razon_social != null) {
+			clienteEntity.setRazonSocial(razon_social);
+		}
+		
+	}
+
+	@Override
 	public List<Cliente> devolverTodosClientes(){
 		TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c", Cliente.class);
 		List<Cliente> clientes= query.getResultList();
 		return clientes;
 	}
-
-	
-	
 	
 }
