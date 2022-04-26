@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
@@ -57,7 +59,7 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 
 	@Override
-	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException {
+	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException {
 		Usuario usuarioEntity = em.find(Usuario.class, nombreUsuario);
 		
 		if(usuarioEntity == null) {
@@ -68,6 +70,19 @@ public class UsuarioEJB implements GestionUsuario{
 			
 			throw new ContraseñaIncorrectaException();
 			
+		} 
+		
+		Cliente clienteUsuario = usuarioEntity.getCliente();
+		
+		if(clienteUsuario.getEstado().equals("bloqueado")) {
+			
+			throw new ClienteBloqueadoException();
+			
+		} else if(clienteUsuario.getEstado().equals("baja")) {
+			
+			throw new ClienteYaDeBajaException();
+			
 		}
+		
 	}
 }

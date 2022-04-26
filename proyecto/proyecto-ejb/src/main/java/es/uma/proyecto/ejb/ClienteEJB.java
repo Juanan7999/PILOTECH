@@ -100,6 +100,7 @@ public class ClienteEJB implements GestionCliente{
 		
 		nuevo_cliente.setRazonSocial(razon_social);
 		
+		em.persist(nuevo_cliente);
 	}
 
 	@Override

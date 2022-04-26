@@ -7,6 +7,8 @@ import javax.ejb.Local;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
@@ -28,9 +30,11 @@ public interface GestionUsuario {
 	/**
 	 * El siguiente metodo comprueba que el usuario se encuentre en la base de datos. En caso de que no exista se lanza
 	 * una excepción.
+	 * @throws ClienteBloqueadoException 
+	 * @throws ClienteYaDeBajaException 
 	 */
 	
-	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException;
+	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException;
 
 
 	public List<Usuario> devolverTodosUsuarios();
