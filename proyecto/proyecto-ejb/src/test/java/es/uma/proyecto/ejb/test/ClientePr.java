@@ -163,7 +163,20 @@ public class ClientePr {
 			}
 	}
 	
-	
+	@Requisitos({"RF3"})
+	@Test
+	public void testBajaClienteConNoAdmin() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
+		
+		try {
+			
+			gestionCliente.bajaCliente("Juan1", "77670010");
+			fail("El cliente ya estaba de baja");	
+			}catch(UsuarioNoEsAdministrativoException e) {
+			//OK
+			}catch(ProyectoEjbException e) {
+				fail("Excepcion inesperada");	
+			}
+	}
 	
 	
 }
