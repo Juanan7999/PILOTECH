@@ -96,6 +96,30 @@ public class BaseDatos {
 		
 		
 		
+		
+		em.persist(nueva_empresa);
+		
+		
+		Individual nuevo_clientebloqueado = new Individual();
+		nuevo_clientebloqueado.setIdentificacion("77670011");
+		nuevo_clientebloqueado.setTipoCliente("F");
+		nuevo_clientebloqueado.setEstado("bloqueado");
+		nuevo_clientebloqueado.setFechaAlta(new Date("2022-04-23"));
+		
+		
+		nuevo_clientebloqueado.setFechaBaja(null);
+		
+		
+		nuevo_clientebloqueado.setDireccion("Calle Chozuelas");
+		nuevo_clientebloqueado.setCiudad("Alora");
+		nuevo_clientebloqueado.setCodigopostal(29500);
+		nuevo_clientebloqueado.setPais("España");
+		
+		nuevo_clientebloqueado.setNombre("Ernesto");
+		nuevo_clientebloqueado.setApellido("Bloquez");
+		nuevo_clientebloqueado.setFechaNacimiento(null);
+		em.persist(nuevo_clientebloqueado);
+		
 		em.getTransaction().commit();
 		
 		em.close();

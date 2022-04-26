@@ -21,6 +21,7 @@ import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
 import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
@@ -133,7 +134,7 @@ public class ClientePr {
 		
 	}
 	
-	@Requisitos({"RF3"})
+	@Requisitos({"RF4"})
 	@Test
 	public void testBajaClienteNoExistente() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
@@ -148,7 +149,7 @@ public class ClientePr {
 			}
 	}
 	
-	@Requisitos({"RF3"})
+	@Requisitos({"RF4"})
 	@Test
 	public void testBajaClienteYaDeBaja() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
@@ -163,7 +164,7 @@ public class ClientePr {
 			}
 	}
 	
-	@Requisitos({"RF3"})
+	@Requisitos({"RF4"})
 	@Test
 	public void testBajaClienteConNoAdmin() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
@@ -178,5 +179,145 @@ public class ClientePr {
 			}
 	}
 	
+	@Requisitos({"RF3"})
+	@Test
+	public void testModificarDatosClienteIndividualNoExistente() {
+		try {
+			gestionCliente.modificarDatosClienteIndividual("Juan", null, null, null, null, null, null, null, null, null, null, null, null, "77670018");
+			fail("Debería saltar excepcion de cliente no existente");
+		}catch(ClienteNoExistenteException e) {
+			//OK
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF3"})
+	@Test
+	public void testModificarDatosClienteIndividualConNoAdmin() {
+		try {
+			gestionCliente.modificarDatosClienteIndividual("Juan1", null, null, null, null, null, null, null, null, null, null, null, null, "77670018");
+			fail("Debería saltar excepcion de que el usuario no es administrativo");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF3"})
+	@Test
+	public void testModificarDatosClienteEmpresaNoExistente() {
+		try {
+			gestionCliente.modificarDatosClienteEmpresa("Juan", null, null, null, null, null, null, null, null, null, null, "8887");
+			fail("Debería saltar excepcion de cliente no existente");
+		}catch(ClienteNoExistenteException e) {
+			//OK
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF3"})
+	@Test
+	public void testModificarDatosClienteEmpresaConNoAdmin() {
+		try {
+			gestionCliente.modificarDatosClienteEmpresa("Juan1", null, null, null, null, null, null, null, null, null, null, "8887");
+			fail("Debería saltar excepcion de que el usuario no es administrativo");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testActivaClienteNoExistente() {
+		try {
+			gestionCliente.activaCliente("Juan", "123");
+			fail("Debe saltar excepcion de que el cliente no existe");
+		}catch(ClienteNoExistenteException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testActivaClienteConNoAdmin() {
+		try {
+			gestionCliente.activaCliente("Juan1", "77670011");
+			fail("Debe saltar excepcion de que el usuario no es administrador");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testActivaClienteYaActivo() {
+		try {
+			gestionCliente.activaCliente("Juan", "77670011");
+			fail("Debe saltar excepcion de que el cliente ya está bloqueado");
+		}catch(ClienteYaActivoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testBloqueaClienteNoExistente() {
+		try {
+			gestionCliente.activaCliente("Juan", "123");
+			fail("Debe saltar excepcion de que el cliente no existe");
+		}catch(ClienteNoExistenteException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testBloqueaClienteConNoAdmin() {
+		try {
+			gestionCliente.activaCliente("Juan1", "77670018");
+			fail("Debe saltar excepcion de que el usuario no es administrador");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
+	
+	@Requisitos({"RF16"})
+	@Test
+	public void testBloqueaClienteYaActivo() {
+		try {
+			gestionCliente.activaCliente("Juan", "77670018");
+			fail("Debe saltar excepcion de que el cliente ya es activo");
+		}catch(ClienteYaActivoException e) {
+			//Ok
+			
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");	
+		}
+	}
 	
 }
