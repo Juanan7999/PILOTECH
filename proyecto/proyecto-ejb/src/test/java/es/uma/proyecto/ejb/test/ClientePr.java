@@ -5,7 +5,7 @@ import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -46,7 +46,7 @@ public class ClientePr {
 	public void testAltaClienteIndividual() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		List<Cliente> clientes1 = gestionCliente.devolverTodosClientes();
 		try {
-		gestionCliente.altaClienteIndividual("Juan", "77670017", "F", "activo", new Date("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Juanito", "Lopez", null);
+		gestionCliente.altaClienteIndividual("Juan", "77670017", "F", "activo", Date.valueOf("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Juanito", "Lopez", null);
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -61,7 +61,7 @@ public class ClientePr {
 	public void testAltaClienteIndividualExistente() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
 		try {
-		gestionCliente.altaClienteIndividual("Juan", "77670018", "F", "activo", new Date("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Jose", "Garcia", null);
+		gestionCliente.altaClienteIndividual("Juan", "77670018", "F", "activo", Date.valueOf("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Jose", "Garcia", null);
 		fail("Deberia haber saltado la excepcion porque es un cliete existente");
 		}catch(ClienteExistenteException e) {
 		//OK	
@@ -77,7 +77,7 @@ public class ClientePr {
 	public void testAltaClienteIndividualConNoAdmin() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
 		try {
-		gestionCliente.altaClienteIndividual("Juan1", "77670018", "F", "activo", new Date("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Jose", "Garcia", null);
+		gestionCliente.altaClienteIndividual("Juan1", "77670018", "F", "activo", Date.valueOf("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Jose", "Garcia", null);
 		fail("Deberia haber saltado la excepcion porque no es un administrador");
 		}catch(UsuarioNoEsAdministrativoException e) {
 		//OK	
@@ -93,7 +93,7 @@ public class ClientePr {
 	public void testAltaClienteEmpresa() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		List<Cliente> clientes1 = gestionCliente.devolverTodosClientes();
 		try {
-		gestionCliente.altaClienteEmpresa("Juan", "8885", "J", "activo", new Date("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Burger King");
+		gestionCliente.altaClienteEmpresa("Juan", "8885", "J", "activo", Date.valueOf("2022-04-23"), null, "Calle Chozuelas" ,"Alora",  29500, "España", "Burger King");
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -107,7 +107,7 @@ public class ClientePr {
 	public void testAltaClienteEmpresaExistente() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan", "8888", "J", "activo", new Date("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
+			gestionCliente.altaClienteEmpresa("Juan", "8888", "J", "activo", Date.valueOf("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
 		fail("Deberia haber saltado la excepcion porque es un cliete existente");
 		}catch(ClienteExistenteException e) {
 		//OK	
@@ -123,7 +123,7 @@ public class ClientePr {
 	public void testAltaClienteEmpresaConNoAdmin() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan1", "8888", "J", "activo", new Date("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
+			gestionCliente.altaClienteEmpresa("Juan1", "8888", "J", "activo", Date.valueOf("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
 		fail("Deberia haber saltado la excepcion porque el que lo introduce no es un admin");
 		}catch(UsuarioNoEsAdministrativoException e) {
 		//OK	

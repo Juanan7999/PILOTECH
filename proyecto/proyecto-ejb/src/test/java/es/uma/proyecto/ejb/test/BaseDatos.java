@@ -2,7 +2,7 @@ package es.uma.proyecto.ejb.test;
 
 import java.math.BigDecimal;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,7 +39,7 @@ public class BaseDatos {
 		nuevo_clientebaja.setIdentificacion("77670010");
 		nuevo_clientebaja.setTipoCliente("F");
 		nuevo_clientebaja.setEstado("baja");
-		nuevo_clientebaja.setFechaAlta(new Date("2022-04-23"));
+		nuevo_clientebaja.setFechaAlta(Date.valueOf("2022-04-23"));
 		
 		
 		nuevo_clientebaja.setFechaBaja(null);
@@ -59,7 +59,7 @@ public class BaseDatos {
 		nuevo_cliente.setIdentificacion("77670018");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(new Date("2022-04-23"));
+		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
 		
 		
 		nuevo_cliente.setFechaBaja(null);
@@ -80,7 +80,7 @@ public class BaseDatos {
 		nueva_empresa.setIdentificacion("8888");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(new Date("2022-04-23"));
+		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
 		
 		
 			nueva_empresa.setFechaBaja(null);
@@ -104,7 +104,7 @@ public class BaseDatos {
 		nuevo_clientebloqueado.setIdentificacion("77670011");
 		nuevo_clientebloqueado.setTipoCliente("F");
 		nuevo_clientebloqueado.setEstado("bloqueado");
-		nuevo_clientebloqueado.setFechaAlta(new Date("2022-04-23"));
+		nuevo_clientebloqueado.setFechaAlta(Date.valueOf("2022-04-23"));
 		
 		
 		nuevo_clientebloqueado.setFechaBaja(null);
