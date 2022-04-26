@@ -11,6 +11,7 @@ import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Divisa;
 import es.uma.proyecto.PooledAccount;
+import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
@@ -29,7 +30,7 @@ public class DivisaEJB implements GestionDivisa{
 	
 	
 	@Override
-	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException {
+	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -67,8 +68,12 @@ public class DivisaEJB implements GestionDivisa{
 		}
 		
 		
+		Transaccion transEntity = em.find(Transaccion.class, idUnico);
 		
-		
+		 origen = transEntity.getDivisa1();
+		 destino = transEntity.getDivisa2();
+		 
+		 
 		
 		
 		
@@ -76,7 +81,7 @@ public class DivisaEJB implements GestionDivisa{
 	}
 	
 	@Override
-	public void cambioDeDivisaAdmin(String idAdmin,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException {
+	public void cambioDeDivisaAdmin(String idAdmin,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		

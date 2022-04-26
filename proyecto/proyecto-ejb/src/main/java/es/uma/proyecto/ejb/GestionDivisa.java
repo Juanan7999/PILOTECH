@@ -9,6 +9,7 @@ import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Divisa;
 import es.uma.proyecto.PooledAccount;
+import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
@@ -26,7 +27,7 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteYaDeBajaException, ClienteBloqueadoException, CuentasDiferentesException, DivisaNoExistenteException;
+	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteYaDeBajaException, ClienteBloqueadoException, CuentasDiferentesException, DivisaNoExistenteException;
 	
 	
 	//La aplicacion permitira a un cliente/autorizado realizar un cambio de divisas en una cuenta agrupada (pooled)
@@ -35,7 +36,7 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaAdmin(String idAdmin,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException;
+	public void cambioDeDivisaAdmin(String idAdmin,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException;
 	
 	
 }
