@@ -470,7 +470,6 @@ public class ClientePr {
 			fail("Debe saltar excepcion de que el cliente ya esta bloqueado");
 		}catch(ClienteBloqueadoException e) {
 			//Ok
-			
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
