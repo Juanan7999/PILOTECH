@@ -1,6 +1,7 @@
 package es.uma.proyecto.ejb;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -34,7 +35,7 @@ public class ClienteEJB implements GestionCliente{
 	private EntityManager em;
 
 	@Override
-	public void altaClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento) throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
+	public void altaClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento, Usuario usuario) throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		Individual clienteIndividualEntity = em.find(Individual.class, identificacion);
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -63,6 +64,7 @@ public class ClienteEJB implements GestionCliente{
 		
 		nuevo_cliente.setNombre(nombre);
 		nuevo_cliente.setApellido(apellidos);
+		nuevo_cliente.setUsuario(usuario);
 		
 		if(fecha_nacimiento != null) {
 			nuevo_cliente.setFechaNacimiento(fecha_nacimiento);
@@ -71,7 +73,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void altaClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException, UsuarioNoEsAdministrativoException{
+	public void altaClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social, Usuario usuario) throws ClienteExistenteException, UsuarioNoEsAdministrativoException{
 		Empresa clienteEmpresaEntity = em.find(Empresa.class, identificacion);
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
