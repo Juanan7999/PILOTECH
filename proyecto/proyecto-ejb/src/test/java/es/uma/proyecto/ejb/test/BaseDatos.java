@@ -175,14 +175,14 @@ public class BaseDatos {
         segregada.setFechaApertura(Date.valueOf("2022-04-25"));
         segregada.setCuentaReferencia(cuentaref);
 
-        em.persist(segregada);
+       
 
         DepositaEn depositaEn1 = new DepositaEn();
       
         depositaEn1.setSaldo(29.0);
         depositaEn1.setCuentaReferencia(cuentaref);
         depositaEn1.setPooledAccount(pooled);
-        
+        em.persist(segregada);
         em.persist(depositaEn1);
         
         
@@ -194,13 +194,14 @@ public class BaseDatos {
         personaautorizada.setEstado("activo");
         personaautorizada.setUsuario(usuario_personaAutorizada);
         
-        em.persist(personaautorizada);
+        
         
         Autorizacion autorizacion = new Autorizacion();
         autorizacion.setEmpresa(nueva_empresa);
         autorizacion.setPersonaAutorizada(personaautorizada);
         autorizacion.setTipo(1);
         
+        em.persist(personaautorizada);
         em.persist(autorizacion);
         
 		em.getTransaction().commit();
