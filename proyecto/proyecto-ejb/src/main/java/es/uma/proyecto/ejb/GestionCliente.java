@@ -29,7 +29,7 @@ public interface GestionCliente {
 	 * ciudad, código postal, país, además, al tratarse de una persona fisica se pide almacenar en la base de datos tambien obligatoriamente nombre y apellidos, y fecha_nacimiento opcionalmente.
 	 */
 	
-	public void altaClienteIndividual(String idAdm, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento, Usuario usuario) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
+	public void altaClienteIndividual(String idAdmin, Cliente individual) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
 	
 
 	
@@ -38,26 +38,26 @@ public interface GestionCliente {
 	 * ciudad, código postal, país, además, al tratarse de una persona juridica se pide almacenar en la base de datos tambien obligatoriamente razonSocial
 	 */
 	
-	public void altaClienteEmpresa(String idAdm, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
+	public void altaClienteEmpresa(String idAdmin, Cliente empresa) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
 	
 	
 	/*
 	 * Se encarga de dar de baja a un cliente
 	 */
 	
-	public void bajaCliente(String idAdm, String identificacionCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException;
+	public void bajaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de dar de activar de nuevo a un cliente
 	 */
 	
-	public void activaCliente(String idAdm, String identificacionCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException;
+	public void activaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de bloquear a un cliente
 	 */
 	
-	public void bloqueaCliente(String idAdm, String identificacionCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException;
+	public void bloqueaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de devolver todos los clientes
@@ -69,10 +69,10 @@ public interface GestionCliente {
 
 	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta,
 			Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre,
-			String apellidos, Date fecha_nacimiento, String identificacionCliente) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+			String apellidos, Date fecha_nacimiento, Cliente individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
 	
 	
-	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social, String identificacionCliente) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social, Cliente empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
 
 
 
