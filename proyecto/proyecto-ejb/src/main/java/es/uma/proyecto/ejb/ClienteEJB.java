@@ -181,7 +181,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 	
 	@Override
-	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion,  Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
+	public void modificarDatosClienteEmpresa(String idAdmin, String identificacionEmpresa,  Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -189,7 +189,7 @@ public class ClienteEJB implements GestionCliente{
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Empresa clienteEntity = em.find(Empresa.class,empresa);
+		Empresa clienteEntity = em.find(Empresa.class,identificacionEmpresa);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();

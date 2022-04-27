@@ -59,15 +59,17 @@ public class UsuarioEJB implements GestionUsuario{
 		
 		Cliente clienteUsuario = usuarioEntity.getCliente();
 		
-		if(clienteUsuario.getEstado().equals("bloqueado")) {
-			
-			throw new ClienteBloqueadoException();
-			
-		} else if(clienteUsuario.getEstado().equals("baja")) {
-			
-			throw new ClienteYaDeBajaException();
-			
-		}
+		if(clienteUsuario != null) {
 		
+			if(clienteUsuario.getEstado().equals("bloqueado")) {
+				
+				throw new ClienteBloqueadoException();
+				
+			} else if(clienteUsuario.getEstado().equals("baja")) {
+				
+				throw new ClienteYaDeBajaException();
+				
+			}
+		}
 	}
 }
