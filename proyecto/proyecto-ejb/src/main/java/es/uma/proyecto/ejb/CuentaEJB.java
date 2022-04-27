@@ -95,7 +95,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			
 		}
 		
-		e.setAutorizacions(autorizaciones);
+			e.setAutorizacions(autorizaciones);
 		}
 
 	@Override
@@ -107,13 +107,12 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getId());
+		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getIdentificacion());
 		
 		if(p==null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
 		
-		p.setId(pa.getId());
 		p.setIdentificacion(pa.getIdentificacion());
 		p.setNombre(pa.getNombre());
 		p.setApellidos(pa.getApellidos());
@@ -132,7 +131,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getId());
+		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getIdentificacion());
 		
 		if(p==null){
 			
