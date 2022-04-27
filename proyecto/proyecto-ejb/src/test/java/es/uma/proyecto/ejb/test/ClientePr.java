@@ -141,9 +141,10 @@ public class ClientePr {
 		try {
 			
 			
-			gestionCliente.bajaCliente("Juan", "77670018");
+			gestionCliente.bajaCliente("Juan", "77670017");
+			fail("Deberia saltar excepcion de que este cliente no existe");
 			}catch(ClienteNoExistenteException e) {
-			fail("Este cliente no existe");	
+			//OK	
 			}catch(ProyectoEjbException e) {
 				fail("Excepcion inesperada");	
 			}
