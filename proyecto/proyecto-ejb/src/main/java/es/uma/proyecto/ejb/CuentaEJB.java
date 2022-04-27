@@ -36,24 +36,27 @@ public class CuentaEJB implements GestionCuenta {
 	private EntityManager em;
 
 	@Override
-	public void abrirCuentaFintechSegregada(String idAdm, Segregada cf, CuentaReferencia cr)
+	public Segregada abrirCuentaFintechSegregada(Usuario usuario, Segregada cf, Cliente c, CuentaReferencia cr)
 			throws UsuarioNoEsAdministrativoException {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
 		}
 
 		cf.setCuentaReferencia(cr);
+		cf.setCliente(c);
 		em.persist(cf);
+		
+		return cf;
 	}
 
 	@Override
-	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa, Cliente c, List<CuentaReferencia> lcr)
+	public PooledAccount abrirCuentaFintechPooled(Usuario usuario, PooledAccount pa, Cliente c, List<CuentaReferencia> lcr)
 			throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
@@ -74,13 +77,15 @@ public class CuentaEJB implements GestionCuenta {
 			em.persist(dp);
 			
 		}	
+		
+		return pa;
 	}
 
 	@Override
-	public void anadirAutorizados(String idAdm, List<PersonaAutorizada> lpa, CuentaFintech cf)
+	public void anadirAutorizados(Usuario usuario, List<PersonaAutorizada> lpa, CuentaFintech cf)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
@@ -115,10 +120,10 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void modificarAutorizados(String idAdm, PersonaAutorizada pa)
+	public void modificarAutorizados(Usuario usuario, PersonaAutorizada pa)
 			throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
@@ -134,10 +139,10 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void eliminarAutorizados(String idAdm,  PersonaAutorizada pa)
+	public void eliminarAutorizados(Usuario usuario,  PersonaAutorizada pa)
 			throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
@@ -154,10 +159,10 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void cerrarCuentaSegregada(String idAdm, Segregada s)
+	public void cerrarCuentaSegregada(Usuario usuario, Segregada s)
 			throws UsuarioNoEsAdministrativoException, SegregadaNoExistenteException, CuentaSinSaldo0Exception {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
@@ -177,10 +182,10 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void cerrarCuentaPooled(String idAdm, PooledAccount pa)
+	public void cerrarCuentaPooled(Usuario usuario, PooledAccount pa)
 			throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception {
 
-		Usuario administrador = em.find(Usuario.class, idAdm);
+		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
