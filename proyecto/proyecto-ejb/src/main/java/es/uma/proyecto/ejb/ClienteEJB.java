@@ -36,7 +36,7 @@ public class ClienteEJB implements GestionCliente{
 
 	@Override
 	public void altaClienteIndividual(String idAdmin, Cliente individual) throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
-		Individual clienteIndividualEntity = em.find(Individual.class, individual);
+		Individual clienteIndividualEntity = em.find(Individual.class, individual.getIdentificacion());
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
 		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
@@ -53,7 +53,7 @@ public class ClienteEJB implements GestionCliente{
 
 	@Override
 	public void altaClienteEmpresa(String idAdmin, Cliente empresa) throws ClienteExistenteException, UsuarioNoEsAdministrativoException{
-		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa);
+		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa.getIdentificacion());
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
 		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo

@@ -74,7 +74,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new ClienteNoJuridicoException();
 		}
 		
-		Empresa e = em.find(Empresa.class, c.getId());
+		Empresa e = em.find(Empresa.class, c.getIdentificacion());
 		
 		List<Autorizacion> autorizaciones = e.getAutorizacions();
 		
@@ -84,7 +84,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			aut.setTipo(null); //Revisar
 			
 			AutorizacionPK aut_pk = new AutorizacionPK();
-			aut_pk.setEmpresaId(e.getId());
+			aut_pk.setEmpresaId(e.getIdentificacion());
 			aut_pk.setPersonaAutorizadaId(pa.getId());
 			
 			aut.setEmpresa(e);
