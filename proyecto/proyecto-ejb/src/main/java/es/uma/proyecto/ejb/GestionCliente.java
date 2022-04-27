@@ -18,6 +18,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 
@@ -29,7 +30,7 @@ public interface GestionCliente {
 	 * ciudad, código postal, país, además, al tratarse de una persona fisica se pide almacenar en la base de datos tambien obligatoriamente nombre y apellidos, y fecha_nacimiento opcionalmente.
 	 */
 	
-	public void altaClienteIndividual(String idAdmin, Cliente individual) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
+	public void altaClienteIndividual(Usuario admin, Cliente individual) throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException; 
 	
 
 	
@@ -38,26 +39,26 @@ public interface GestionCliente {
 	 * ciudad, código postal, país, además, al tratarse de una persona juridica se pide almacenar en la base de datos tambien obligatoriamente razonSocial
 	 */
 	
-	public void altaClienteEmpresa(String idAdmin, Cliente empresa) throws ClienteExistenteException, UsuarioNoEsAdministrativoException; 
+	public void altaClienteEmpresa(Usuario admin, Cliente empresa) throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException; 
 	
 	
 	/*
 	 * Se encarga de dar de baja a un cliente
 	 */
 	
-	public void bajaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException;
+	public void bajaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 	
 	/*
 	 * Se encarga de dar de activar de nuevo a un cliente
 	 */
 	
-	public void activaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException;
+	public void activaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 	
 	/*
 	 * Se encarga de bloquear a un cliente
 	 */
 	
-	public void bloqueaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException;
+	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 	
 	/*
 	 * Se encarga de devolver todos los clientes
@@ -67,12 +68,12 @@ public interface GestionCliente {
 
 
 
-	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, Individual individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+	public void modificarDatosClienteIndividual(Usuario admin, String identificacion, Individual individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException, UsuarioNoEncontradoException;
 	
 	
-	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+	public void modificarDatosClienteEmpresa(Usuario admin, String identificacion, Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException, UsuarioNoEncontradoException;
 
 
-
+	public Cliente devolver(String identificacion) throws ClienteNoExistenteException;
 	
 }

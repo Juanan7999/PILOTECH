@@ -37,6 +37,12 @@ public class BaseDatos {
 		
 		em.persist(usuario_administrativo);
 		
+		Usuario usuario_normal = new Usuario();
+		usuario_normal.setNombreUsuario("Jose");
+		usuario_normal.setPassword("8234");
+		usuario_normal.setTipo("N");
+		em.persist(usuario_normal);
+		
 		Individual nuevo_clientebaja = new Individual();
 		nuevo_clientebaja.setIdentificacion("77670010");
 		nuevo_clientebaja.setTipoCliente("F");

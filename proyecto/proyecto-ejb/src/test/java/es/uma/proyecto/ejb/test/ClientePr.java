@@ -18,6 +18,7 @@ import es.uma.informatica.sii.anotaciones.Requisitos;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
@@ -25,6 +26,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
+import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
 import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
@@ -33,13 +35,16 @@ public class ClientePr {
 	private static final Logger LOG = Logger.getLogger(ClientePr.class.getCanonicalName());
 
 	private static final String CLIENTE_EJB = "java:global/classes/ClienteEJB";
+	private static final String USUARIO_EJB = "java:global/classes/UsuarioEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
 	
 	private GestionCliente gestionCliente;
+	private GestionUsuario gestionUsuario;
 	
 	@Before
 	public void setup() throws NamingException  {
 		gestionCliente = (GestionCliente) SuiteTest.ctx.lookup(CLIENTE_EJB);
+		gestionUsuario = (GestionUsuario) SuiteTest.ctx.lookup(USUARIO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
@@ -173,9 +178,12 @@ public class ClientePr {
 		
 		
 		try {
-		gestionCliente.altaClienteEmpresa("Juan", nueva_empresa);
+		Usuario admin = gestionUsuario.Login("Juan", "1234");
+		gestionCliente.altaClienteEmpresa(admin, nueva_empresa);
 		}catch(ProyectoEjbException e) {
-		fail("Excepcion inesperada");	
+			fail("Excepcion inesperada");	
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}
 		List<Cliente> clientes2 = gestionCliente.devolverTodosClientes();
 		assertEquals(clientes2.size(), clientes1.size()+1);
@@ -205,10 +213,13 @@ public class ClientePr {
 		
 		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan", nueva_empresa);
-		fail("Deberia haber saltado la excepcion porque es un cliete existente");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.altaClienteEmpresa(admin, nueva_empresa);
+		fail("Deberia haber saltado la excepcion porque es un cliente existente");
 		}catch(ClienteExistenteException e) {
 		//OK	
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es existente");
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -237,13 +248,14 @@ public class ClientePr {
 		
 		nueva_empresa.setRazonSocial("Pilotech");
 		
-		
-		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan1", nueva_empresa);
+			Usuario admin = gestionUsuario.Login("Jose","8234");
+			gestionCliente.altaClienteEmpresa(admin, nueva_empresa);
 		fail("Deberia haber saltado la excepcion porque el que lo introduce no es un admin");
 		}catch(UsuarioNoEsAdministrativoException e) {
 		//OK	
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que no existe usuario");
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -254,18 +266,15 @@ public class ClientePr {
 	@Requisitos({"RF4"})
 	@Test
 	public void testBajaClienteNoExistente() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
-		
-		
-		
-		
-		
+
 		try {
-			
-			
-			gestionCliente.bajaCliente("Juan", "77670032");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.bajaCliente(admin, "77670032");
 			fail("Deberia saltar excepcion de que este cliente no existe");
 			}catch(ClienteNoExistenteException e) {
 			//OK	
+			}catch (ContraseñaIncorrectaException e) {
+				fail("No deberia saltar expcepcion de contraseña incorrecta ya que no existe usuario");
 			}catch(ProyectoEjbException e) {
 				fail("Excepcion inesperada");	
 			}
@@ -276,11 +285,13 @@ public class ClientePr {
 	public void testBajaClienteYaDeBaja() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
 		try {
-			
-			gestionCliente.bajaCliente("Juan", "77670010");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.bajaCliente(admin, "77670010");
 			fail("El cliente ya estaba de baja");	
 			}catch(ClienteYaDeBajaException e) {
 			//OK
+			}catch (ContraseñaIncorrectaException e) {
+				fail("No deberia saltar expcepcion de contraseña incorrecta ya que no existe usuario");
 			}catch(ProyectoEjbException e) {
 				fail("Excepcion inesperada");	
 			}
@@ -291,11 +302,13 @@ public class ClientePr {
 	public void testBajaClienteConNoAdmin() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
 		try {
-			
-			gestionCliente.bajaCliente("Juan1", "77670018");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.bajaCliente(admin, "77670018");
 			fail("El cliente ya estaba de baja");	
 			}catch(UsuarioNoEsAdministrativoException e) {
 			//OK
+			}catch (ContraseñaIncorrectaException e) {
+				fail("No deberia saltar expcepcion de contraseña incorrecta ya que no existe usuario");
 			}catch(ProyectoEjbException e) {
 				fail("Excepcion inesperada");	
 			}
@@ -324,14 +337,17 @@ public class ClientePr {
 		nuevo_cliente.setFechaNacimiento(null);
 		
 		try {
-			gestionCliente.modificarDatosClienteIndividual("Juan", "77670004", nuevo_cliente);
+			Usuario admin = gestionUsuario.Login("Juan1", "123");
+			gestionCliente.modificarDatosClienteIndividual(admin, "77670004", nuevo_cliente);
 			fail("Debería saltar excepcion de cliente no existente");
 		}catch(ClienteNoExistenteException e) {
 			//OK
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que no existe usuario");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
-		}
+		} 
 	}
 	
 	@Requisitos({"RF3"})
@@ -358,11 +374,14 @@ public class ClientePr {
 		
 		
 		try {
-			gestionCliente.modificarDatosClienteIndividual("Juan1", "77670018", nuevo_cliente);
+			Usuario admin = gestionUsuario.Login("Jose","8234");
+			gestionCliente.modificarDatosClienteIndividual(admin, "77670018", nuevo_cliente);
 			fail("Debería saltar excepcion de que el usuario no es administrativo");
 		}catch(UsuarioNoEsAdministrativoException e) {
 			//Ok
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
@@ -391,11 +410,14 @@ public class ClientePr {
 		
 		
 		try {
-			gestionCliente.modificarDatosClienteEmpresa("Juan", "8887", nueva_empresa);
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.modificarDatosClienteEmpresa(admin, "8887", nueva_empresa);
 			fail("Debería saltar excepcion de cliente no existente");
 		}catch(ClienteNoExistenteException e) {
 			//OK
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
@@ -407,15 +429,16 @@ public class ClientePr {
 	@Requisitos({"RF16"})
 	@Test
 	public void testActivaClienteNoExistente() {
-		
-		
-		
+
 		try {
-			gestionCliente.activaCliente("Juan", "123");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.activaCliente(admin, "123");
 			fail("Debe saltar excepcion de que el cliente no existe");
 		}catch(ClienteNoExistenteException e) {
 			//Ok
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
@@ -426,14 +449,16 @@ public class ClientePr {
 	@Requisitos({"RF16"})
 	@Test
 	public void testActivaClienteYaActivo() {
-		
-		
+
 		try {
-			gestionCliente.activaCliente("Juan", "77670018");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.activaCliente(admin, "77670018");
 			fail("Debe saltar excepcion de que el cliente ya está bloqueado");
 		}catch(ClienteYaActivoException e) {
 			//Ok
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
@@ -442,16 +467,16 @@ public class ClientePr {
 	@Requisitos({"RF16"})
 	@Test
 	public void testBloqueaClienteNoExistente() {
-		
-		
-		
-		
+
 		try {
-			gestionCliente.bloqueaCliente("Juan", "123");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.bloqueaCliente(admin, "123");
 			fail("Debe saltar excepcion de que el cliente no existe");
 		}catch(ClienteNoExistenteException e) {
 			//Ok
 			
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}
@@ -462,14 +487,15 @@ public class ClientePr {
 	@Requisitos({"RF16"})
 	@Test
 	public void testBloqueaClienteYaBloqueado() {
-		
-		
-		
+
 		try {
-			gestionCliente.bloqueaCliente("Juan", "77670011");
+			Usuario admin = gestionUsuario.Login("Juan","8234");
+			gestionCliente.bloqueaCliente(admin, "77670011");
 			fail("Debe saltar excepcion de que el cliente ya esta bloqueado");
 		}catch(ClienteBloqueadoException e) {
 			//Ok
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
 		}

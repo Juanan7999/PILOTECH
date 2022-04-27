@@ -102,4 +102,8 @@ public class Usuario {
 		this.cliente = cliente;
 	}
 	
+	public boolean esAdmin() {
+		return this.tipo.equals("A");
+	}
+	
 }
