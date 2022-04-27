@@ -17,11 +17,14 @@ import java.util.Objects;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
-
-	@Column(nullable = false, unique = true)
+	*/
+	
+	@Id
+	/*@Column(nullable = false, unique = true)*/
 	private String identificacion;
 	
 	@Column(name="TIPO_CLIENTE", nullable = false)
@@ -68,6 +71,7 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
+	/*
 	public String getId() {
 		return this.id;
 	}
@@ -75,7 +79,7 @@ public class Cliente implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	 */
 	public String getCiudad() {
 		return this.ciudad;
 	}
@@ -172,7 +176,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(identificacion);
 	}
 
 	@Override
@@ -184,12 +188,12 @@ public class Cliente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(identificacion, other.identificacion);
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", identificacion=" + identificacion + "]";
+		return "Cliente [identificacion=" + identificacion + "]";
 	}
 	
 	

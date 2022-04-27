@@ -32,7 +32,6 @@ public class UsuarioEJB implements GestionUsuario{
 	
 	@Override
 	public void creacionUsuario(Usuario usuario) throws UsuarioExistenteException {
-		Usuario usuario_en_creacion = new Usuario();
 		
 		Usuario usuarioEntity = em.find(Usuario.class, usuario);
 		

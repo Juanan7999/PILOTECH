@@ -466,7 +466,7 @@ public class ClientePr {
 		
 		
 		try {
-			gestionCliente.bloqueaCliente("Juan", "77670018");
+			gestionCliente.bloqueaCliente("Juan", "77670011");
 			fail("Debe saltar excepcion de que el cliente ya esta bloqueado");
 		}catch(ClienteBloqueadoException e) {
 			//Ok

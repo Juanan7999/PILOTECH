@@ -42,6 +42,11 @@ public class UsuarioPr {
 		final String password = "1234";
 		final String tipo = "N";
 		
+		Usuario user = new Usuario();
+		user.setNombreUsuario(nombreUsuario);
+		user.setPassword(password);
+		user.setTipo(tipo);
+		
 		Usuario usuario = new Usuario();
 		usuario.setNombreUsuario("Juan");
 		usuario.setPassword("1234");
@@ -55,7 +60,7 @@ public class UsuarioPr {
 		cliente.setFechaAlta();*/
 		
 		try {
-			gestionUsuario.creacionUsuario(nombreUsuario, password, tipo, null, null);
+			gestionUsuario.creacionUsuario(user);
 			fail("Debe lanzar excepcion");
 		} catch(UsuarioExistenteException e) {
 			//OK
@@ -74,6 +79,11 @@ public class UsuarioPr {
 		final String password = "1234";
 		final String tipo = "N";
 		
+		Usuario user = new Usuario();
+		user.setNombreUsuario(nombreUsuario);
+		user.setPassword(password);
+		user.setTipo(tipo);
+		
 		Usuario usuario = new Usuario();
 		usuario.setNombreUsuario("Pepe");
 		usuario.setPassword("1234");
@@ -88,7 +98,7 @@ public class UsuarioPr {
 		
 		try {
 			List<Usuario> usuarios1 = gestionUsuario.devolverTodosUsuarios();
-			gestionUsuario.creacionUsuario(nombreUsuario, password, tipo, null, null);
+			gestionUsuario.creacionUsuario(user);
 			List<Usuario> usuarios2 = gestionUsuario.devolverTodosUsuarios();
 			assertEquals(usuarios2.size(), usuarios1.size()+1); //El numero de usuarios antes de añadir un usuario, debe ser 1 más
 		} catch(ProyectoEjbException e) {
