@@ -51,7 +51,7 @@ public class CuentaPr {
 	@Test
 	public void testAbrirCuentaFintechPooledConNoAdmin() {
 		try {
-			gestionCuenta.abrirCuentaFintechPooled("Juan1", null , null);
+			gestionCuenta.abrirCuentaFintechPooled("Juan1", null , null, null);
 			fail("Debería haber saltado excepcion de que no es un administrador");
 			}catch(UsuarioNoEsAdministrativoException e) {
 				
