@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import es.uma.proyecto.CuentaReferencia;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.Usuario;
@@ -119,6 +121,24 @@ public class BaseDatos {
 		nuevo_clientebloqueado.setApellido("Bloquez");
 		nuevo_clientebloqueado.setFechaNacimiento(null);
 		em.persist(nuevo_clientebloqueado);
+		
+		Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+		em.persist(euro);
+		
+		CuentaReferencia cuentaref = new CuentaReferencia();
+		cuentaref.setIban("ES1111");
+		cuentaref.setSwift("2345");
+		cuentaref.setNombrebanco("Santander");
+		cuentaref.setSucursal("Plaza mayor");
+		cuentaref.setSaldo(45.0);
+		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(euro);
+		
 		
 		em.getTransaction().commit();
 		

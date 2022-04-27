@@ -22,7 +22,7 @@ public class Divisa implements Serializable {
 	private String simbolo;
 
 	@Column(nullable = false)
-	private Integer cambioeuro;
+	private Double cambioeuro;
 	
 	public Divisa() {
 	}
@@ -35,11 +35,11 @@ public class Divisa implements Serializable {
 		this.abreviatura = abreviatura;
 	}
 
-	public Integer getCambioeuro() {
+	public Double getCambioeuro() {
 		return this.cambioeuro;
 	}
 
-	public void setCambioeuro(Integer cambioeuro) {
+	public void setCambioeuro(Double cambioeuro) {
 		this.cambioeuro = cambioeuro;
 	}
 
