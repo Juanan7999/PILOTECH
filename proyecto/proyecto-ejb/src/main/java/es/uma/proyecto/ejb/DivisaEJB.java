@@ -35,7 +35,7 @@ public class DivisaEJB implements GestionDivisa{
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
-		if(administrador!=null || administrador.getTipo().equals("A")) {
+		if(administrador!=null && administrador.getTipo().equals("A")) {
 			throw new UsuarioEsAdministrativoException();
 		}
 		
@@ -73,8 +73,8 @@ public class DivisaEJB implements GestionDivisa{
 		
 		Transaccion transEntity = em.find(Transaccion.class, idUnico);
 		
-		 origen = transEntity.getDivisa1();
-		 destino = transEntity.getDivisa2();
+		 Divisa origen = transEntity.getDivisa1();
+		 Divisa destino = transEntity.getDivisa2();
 		 
 		 if(origen == null) {
 			 throw new DivisaNoExistenteException();
@@ -114,7 +114,7 @@ public class DivisaEJB implements GestionDivisa{
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
-		if(administrador == null || !administrador.getTipo().equals("A")) {
+		if(administrador != null && administrador.getTipo().equals("A")) {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
