@@ -49,11 +49,7 @@ public class BaseDatos {
 		usuario_normal.setTipo("N");
 		em.persist(usuario_normal);
 		
-		Usuario usuario_personaAutorizada = new Usuario();
-		usuario_normal.setNombreUsuario("Oussama");
-		usuario_normal.setPassword("8234");
-		usuario_normal.setTipo("N");
-		em.persist(usuario_personaAutorizada);
+		
 		
 		Individual nuevo_clientebaja = new Individual();
 		nuevo_clientebaja.setIdentificacion("77670010");
@@ -116,7 +112,7 @@ public class BaseDatos {
 		em.persist(nuevo_cliente2);
 		
 		Individual nuevo_cliente3 = new Individual();
-		nuevo_cliente3.setIdentificacion("77670019");
+		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
 		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
@@ -227,6 +223,13 @@ public class BaseDatos {
         em.persist(segregada);
         em.persist(depositaEn1);
         
+        /*
+        Usuario usuario_personaAutorizada = new Usuario();
+		usuario_normal.setNombreUsuario("Oussama");
+		usuario_normal.setPassword("8234");
+		usuario_normal.setTipo("N");
+		em.persist(usuario_personaAutorizada);
+        */
         
         PersonaAutorizada personaautorizada = new PersonaAutorizada();
         personaautorizada.setIdentificacion("77670001");
