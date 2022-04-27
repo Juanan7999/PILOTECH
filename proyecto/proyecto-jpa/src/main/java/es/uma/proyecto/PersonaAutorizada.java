@@ -18,11 +18,14 @@ import java.util.Objects;
 public class PersonaAutorizada implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
+	*/
 	
-	@Column(nullable = false, unique = true)
+	@Id
+	/*@Column(nullable = false, unique = true)*/
 	private String identificacion;
 	
 	@Column(nullable = false)
@@ -62,6 +65,7 @@ public class PersonaAutorizada implements Serializable {
 	public PersonaAutorizada() {
 	}
 		
+	/*
 	public String getId() {
 		return this.id;
 	}
@@ -69,7 +73,8 @@ public class PersonaAutorizada implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	*/
+	
 	public String getApellidos() {
 		return this.apellidos;
 	}
@@ -158,7 +163,7 @@ public class PersonaAutorizada implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(identificacion);
 	}
 
 	@Override
@@ -171,12 +176,12 @@ public class PersonaAutorizada implements Serializable {
 			return false;
 		PersonaAutorizada other = (PersonaAutorizada) obj;
 		
-		return Objects.equals(id, other.id);
+		return Objects.equals(identificacion, other.identificacion);
 	}
 
 	@Override
 	public String toString() {
-		return "PersonaAutorizada [id=" + id + ", identificación=" + identificacion + ", nombre=" + nombre
+		return "PersonaAutorizada [identificación=" + identificacion + ", nombre=" + nombre
 				+ ", apellidos=" + apellidos + "]";
 	}
 }
