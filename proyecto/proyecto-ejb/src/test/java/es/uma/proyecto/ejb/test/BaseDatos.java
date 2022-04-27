@@ -223,13 +223,7 @@ public class BaseDatos {
         em.persist(segregada);
         em.persist(depositaEn1);
         
-        /*
-        Usuario usuario_personaAutorizada = new Usuario();
-		usuario_normal.setNombreUsuario("Oussama");
-		usuario_normal.setPassword("8234");
-		usuario_normal.setTipo("N");
-		em.persist(usuario_personaAutorizada);
-        */
+        
         
         PersonaAutorizada personaautorizada = new PersonaAutorizada();
         personaautorizada.setIdentificacion("77670001");
@@ -239,6 +233,13 @@ public class BaseDatos {
         personaautorizada.setEstado("activo");
         //personaautorizada.setUsuario(usuario_personaAutorizada);
         
+        
+        Usuario usuario_personaAutorizada = new Usuario();
+		usuario_personaAutorizada.setNombreUsuario("Oussama");
+		usuario_personaAutorizada.setPassword("8234");
+		usuario_personaAutorizada.setTipo("N");
+		usuario_personaAutorizada.setPersonaAutorizada(personaautorizada);;
+		em.persist(usuario_personaAutorizada);
         
         
         Autorizacion autorizacion = new Autorizacion();
