@@ -24,7 +24,7 @@ public interface GestionUsuario {
 	 * tambien de una persona autorizada
 	 */
 	
-	public void creacionUsuario(String nombre, String password, String tipo, PersonaAutorizada pA, Cliente cliente) throws UsuarioExistenteException;
+	public void creacionUsuario(Usuario usuario) throws UsuarioExistenteException;
 	
 	
 	/**

@@ -1,7 +1,7 @@
 package es.uma.proyecto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.*;
 
@@ -22,7 +22,6 @@ public class Individual extends Cliente implements Serializable {
 	private String apellido;
 
 	@Column(name="FECHA_NACIMIENTO")
-	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 
 	public Individual() {

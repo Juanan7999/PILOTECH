@@ -139,7 +139,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 	
 	@Override
-	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre, String apellidos, Date fecha_nacimiento, Cliente individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
+	public void modificarDatosClienteIndividual(String idAdmin, String identificacionCliente, Individual individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -147,59 +147,41 @@ public class ClienteEJB implements GestionCliente{
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Individual clienteEntity = em.find(Individual.class,individual);
+		Individual clienteEntity = em.find(Individual.class,identificacionCliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
 		}
 		
-		if(identificacion != null) {
-			clienteEntity.setIdentificacion(identificacion);
-		}
-		if(tipo != null) {
-			clienteEntity.setTipoCliente(tipo);
-		}
-		if(estado != null) {
-			clienteEntity.setEstado(estado);
-		}
-		if(fecha_alta != null) {
-			clienteEntity.setFechaAlta(fecha_alta);
-		}
-		if(fecha_baja != null) {
-			clienteEntity.setFechaBaja(fecha_baja);
-		}
-		if(direccion != null) {
-			clienteEntity.setDireccion(direccion);
-		}
-		if(ciudad != null) {
-			clienteEntity.setCiudad(ciudad);
-		}
 		
-		if(codigo_postal != null) {
-			clienteEntity.setCodigopostal(codigo_postal);
-		}
+			clienteEntity.setIdentificacion(individual.getIdentificacion());
 		
-		if(pais != null) {
-			clienteEntity.setPais(pais);
-		}
+			clienteEntity.setTipoCliente(individual.getTipoCliente());
+	
+			clienteEntity.setEstado(individual.getEstado());
+	
+			clienteEntity.setFechaAlta(individual.getFechaAlta());
 		
-		if(nombre != null) {
-			clienteEntity.setNombre(nombre);
-		}
+			clienteEntity.setFechaBaja(individual.getFechaBaja());
 		
-		if(apellidos != null) {
-			clienteEntity.setApellido(apellidos);
-		}
+			clienteEntity.setDireccion(individual.getDireccion());
 		
-		if(fecha_nacimiento != null) {
-			clienteEntity.setFechaNacimiento(fecha_nacimiento);
-		}
+			clienteEntity.setCiudad(individual.getCiudad());
+	
+			clienteEntity.setCodigopostal(individual.getCodigopostal());
+		
+			clienteEntity.setPais(individual.getPais());
+	
+			clienteEntity.setNombre(individual.getNombre());
+		
+			clienteEntity.setApellido(individual.getApellido());
+		
+			clienteEntity.setFechaNacimiento(individual.getFechaNacimiento());
+		
 	}
 	
 	@Override
-	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado,
-			Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais,
-			String razon_social, Cliente empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
+	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion,  Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		

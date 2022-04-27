@@ -2,7 +2,7 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,11 +31,9 @@ public class Cliente implements Serializable {
 	private String estado;
 	
 	@Column(name="FECHA_ALTA", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaAlta;
 
 	@Column(name="FECHA_BAJA")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaBaja;
 	
 	@Column(nullable = false)

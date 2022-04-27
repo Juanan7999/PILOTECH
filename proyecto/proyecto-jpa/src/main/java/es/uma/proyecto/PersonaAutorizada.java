@@ -1,7 +1,7 @@
 package es.uma.proyecto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.*;
 import java.util.List;
@@ -35,15 +35,12 @@ public class PersonaAutorizada implements Serializable {
 	private String direccion;
 
 	@Column(name="FECHA_NACIMIENTO")
-	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
 	
 	private String estado;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechainicio;
-	
-	@Temporal(TemporalType.TIMESTAMP)
+
 	private Date fechafin;
 	
 	@OneToOne(mappedBy = "personaAutorizada")

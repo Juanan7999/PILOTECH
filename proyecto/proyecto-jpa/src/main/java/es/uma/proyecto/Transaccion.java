@@ -2,7 +2,7 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 
@@ -20,13 +20,11 @@ public class Transaccion implements Serializable {
 	private long idUnico;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechainstruccion;
 	
 	@Column(nullable = false)
 	private Double cantidad;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaejecucion;
 	
 	@Column(nullable = false)

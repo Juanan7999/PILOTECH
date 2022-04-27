@@ -2,7 +2,7 @@ package es.uma.proyecto;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -29,7 +29,6 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 	private Double saldo;
 
 	@Column(name="FECHA_APERTURA")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaApertura;
 	
 	private String estado;

@@ -31,31 +31,17 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 	
 	@Override
-	public void creacionUsuario(String nombre, String password, String tipo, PersonaAutorizada pA, Cliente cliente)
-			throws UsuarioExistenteException {
+	public void creacionUsuario(Usuario usuario) throws UsuarioExistenteException {
 		Usuario usuario_en_creacion = new Usuario();
 		
-		Usuario usuarioEntity = em.find(Usuario.class, nombre);
+		Usuario usuarioEntity = em.find(Usuario.class, usuario);
 		
 		if(usuarioEntity != null) {
 			throw new UsuarioExistenteException();
 		}
 		
-		usuario_en_creacion.setNombreUsuario(nombre);
-		usuario_en_creacion.setPassword(password);
-		usuario_en_creacion.setTipo(tipo);
 		
-		if(tipo.equals("N")) {
-			
-			cliente.setUsuario(usuario_en_creacion);
-			
-		}else if(tipo.equals("J")) {
-			
-			
-			pA.setUsuario(usuario_en_creacion);
-		}
-		
-		em.persist(usuario_en_creacion);
+		em.persist(usuario);
 	}
 
 	@Override

@@ -67,12 +67,10 @@ public interface GestionCliente {
 
 
 
-	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta,
-			Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String nombre,
-			String apellidos, Date fecha_nacimiento, Cliente individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+	public void modificarDatosClienteIndividual(String idAdmin, String identificacion, Individual individual) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
 	
 	
-	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, String tipo, String estado, Date fecha_alta, Date fecha_baja, String direccion, String ciudad, Integer codigo_postal, String pais, String razon_social, Cliente empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
+	public void modificarDatosClienteEmpresa(String idAdmin, String identificacion, Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException;
 
 
 
