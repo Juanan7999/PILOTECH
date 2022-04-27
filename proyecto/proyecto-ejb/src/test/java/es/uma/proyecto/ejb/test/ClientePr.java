@@ -80,7 +80,7 @@ public class ClientePr {
 	public void testAltaClienteIndividualExistente() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
 		Individual nuevo_cliente = new Individual();
-		nuevo_cliente.setIdentificacion("77670020");
+		nuevo_cliente.setIdentificacion("77670010");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
 		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
@@ -185,8 +185,26 @@ public class ClientePr {
 	@Test
 	public void testAltaClienteEmpresaExistente() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
+		Empresa nueva_empresa = new Empresa();
+		nueva_empresa.setIdentificacion("8888");
+		nueva_empresa.setTipoCliente("J");
+		nueva_empresa.setEstado("activo");
+		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nueva_empresa.setFechaBaja(null);
+		
+		
+		nueva_empresa.setDireccion("Boulevard Pasteur");
+		nueva_empresa.setCiudad("Malaga");
+		nueva_empresa.setCodigopostal(29010);
+		nueva_empresa.setPais("España");
+		
+		nueva_empresa.setRazonSocial("Pilotech");
+		
+		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan", "8888", "J", "activo", Date.valueOf("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
+			gestionCliente.altaClienteEmpresa("Juan", nueva_empresa);
 		fail("Deberia haber saltado la excepcion porque es un cliete existente");
 		}catch(ClienteExistenteException e) {
 		//OK	
@@ -201,8 +219,27 @@ public class ClientePr {
 	@Test
 	public void testAltaClienteEmpresaConNoAdmin() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {
 		
+		Empresa nueva_empresa = new Empresa();
+		nueva_empresa.setIdentificacion("8880");
+		nueva_empresa.setTipoCliente("J");
+		nueva_empresa.setEstado("activo");
+		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nueva_empresa.setFechaBaja(null);
+		
+		
+		nueva_empresa.setDireccion("Boulevard Pasteur");
+		nueva_empresa.setCiudad("Malaga");
+		nueva_empresa.setCodigopostal(29010);
+		nueva_empresa.setPais("España");
+		
+		nueva_empresa.setRazonSocial("Pilotech");
+		
+		
+		
 		try {
-			gestionCliente.altaClienteEmpresa("Juan1", "8888", "J", "activo", Date.valueOf("2022-04-23"), null, "Boulevard Pasteur" ,"Malaga",  29010, "España", "Pilotech");
+			gestionCliente.altaClienteEmpresa("Juan1", nueva_empresa);
 		fail("Deberia haber saltado la excepcion porque el que lo introduce no es un admin");
 		}catch(UsuarioNoEsAdministrativoException e) {
 		//OK	
@@ -217,10 +254,14 @@ public class ClientePr {
 	@Test
 	public void testBajaClienteNoExistente() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
+		
+		
+		
+		
 		try {
 			
 			
-			gestionCliente.bajaCliente("Juan", "77670017");
+			gestionCliente.bajaCliente("Juan", "77670032");
 			fail("Deberia saltar excepcion de que este cliente no existe");
 			}catch(ClienteNoExistenteException e) {
 			//OK	
@@ -250,7 +291,7 @@ public class ClientePr {
 		
 		try {
 			
-			gestionCliente.bajaCliente("Juan1", "77670010");
+			gestionCliente.bajaCliente("Juan1", "77670018");
 			fail("El cliente ya estaba de baja");	
 			}catch(UsuarioNoEsAdministrativoException e) {
 			//OK
@@ -262,8 +303,27 @@ public class ClientePr {
 	@Requisitos({"RF3"})
 	@Test
 	public void testModificarDatosClienteIndividualNoExistente() {
+		Individual nuevo_cliente = new Individual();
+		nuevo_cliente.setIdentificacion("77670020");
+		nuevo_cliente.setTipoCliente("F");
+		nuevo_cliente.setEstado("activo");
+		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente.setFechaBaja(null);
+		
+		
+		nuevo_cliente.setDireccion("Calle Chozuelas");
+		nuevo_cliente.setCiudad("Alora");
+		nuevo_cliente.setCodigopostal(29500);
+		nuevo_cliente.setPais("España");
+		
+		nuevo_cliente.setNombre("Jose");
+		nuevo_cliente.setApellido("Garcia");
+		nuevo_cliente.setFechaNacimiento(null);
+		
 		try {
-			gestionCliente.modificarDatosClienteIndividual("Juan", null, null, null, null, null, null, null, null, null, null, null, null, "77670018");
+			gestionCliente.modificarDatosClienteIndividual("Juan", "77670004", nuevo_cliente);
 			fail("Debería saltar excepcion de cliente no existente");
 		}catch(ClienteNoExistenteException e) {
 			//OK
@@ -276,8 +336,28 @@ public class ClientePr {
 	@Requisitos({"RF3"})
 	@Test
 	public void testModificarDatosClienteIndividualConNoAdmin() {
+		Individual nuevo_cliente = new Individual();
+		nuevo_cliente.setIdentificacion("77670018");
+		nuevo_cliente.setTipoCliente("F");
+		nuevo_cliente.setEstado("activo");
+		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente.setFechaBaja(null);
+		
+		
+		nuevo_cliente.setDireccion("Calle Chozuelas");
+		nuevo_cliente.setCiudad("Alora");
+		nuevo_cliente.setCodigopostal(29500);
+		nuevo_cliente.setPais("España");
+		
+		nuevo_cliente.setNombre("Jose");
+		nuevo_cliente.setApellido("Garcia");
+		nuevo_cliente.setFechaNacimiento(null);
+		
+		
 		try {
-			gestionCliente.modificarDatosClienteIndividual("Juan1", null, null, null, null, null, null, null, null, null, null, null, null, "77670018");
+			gestionCliente.modificarDatosClienteIndividual("Juan1", "77670018", nuevo_cliente);
 			fail("Debería saltar excepcion de que el usuario no es administrativo");
 		}catch(UsuarioNoEsAdministrativoException e) {
 			//Ok
@@ -290,8 +370,27 @@ public class ClientePr {
 	@Requisitos({"RF3"})
 	@Test
 	public void testModificarDatosClienteEmpresaNoExistente() {
+		
+		Empresa nueva_empresa = new Empresa();
+		nueva_empresa.setIdentificacion("8882");
+		nueva_empresa.setTipoCliente("J");
+		nueva_empresa.setEstado("activo");
+		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nueva_empresa.setFechaBaja(null);
+		
+		
+		nueva_empresa.setDireccion("Boulevard Pasteur");
+		nueva_empresa.setCiudad("Malaga");
+		nueva_empresa.setCodigopostal(29010);
+		nueva_empresa.setPais("España");
+		
+		nueva_empresa.setRazonSocial("Pilotech");
+		
+		
 		try {
-			gestionCliente.modificarDatosClienteEmpresa("Juan", null, null, null, null, null, null, null, null, null, null, "8887");
+			gestionCliente.modificarDatosClienteEmpresa("Juan", "8887", nueva_empresa);
 			fail("Debería saltar excepcion de cliente no existente");
 		}catch(ClienteNoExistenteException e) {
 			//OK
@@ -301,24 +400,15 @@ public class ClientePr {
 		}
 	}
 	
-	@Requisitos({"RF3"})
-	@Test
-	public void testModificarDatosClienteEmpresaConNoAdmin() {
-		try {
-			gestionCliente.modificarDatosClienteEmpresa("Juan1", null, null, null, null, null, null, null, null, null, null, "8887");
-			fail("Debería saltar excepcion de que el usuario no es administrativo");
-		}catch(UsuarioNoEsAdministrativoException e) {
-			//Ok
-			
-		}catch(ProyectoEjbException e) {
-			fail("Excepcion inesperada");	
-		}
-	}
+
 	
 	
 	@Requisitos({"RF16"})
 	@Test
 	public void testActivaClienteNoExistente() {
+		
+		
+		
 		try {
 			gestionCliente.activaCliente("Juan", "123");
 			fail("Debe saltar excepcion de que el cliente no existe");
@@ -330,25 +420,15 @@ public class ClientePr {
 		}
 	}
 	
-	@Requisitos({"RF16"})
-	@Test
-	public void testActivaClienteConNoAdmin() {
-		try {
-			gestionCliente.activaCliente("Juan1", "77670011");
-			fail("Debe saltar excepcion de que el usuario no es administrador");
-		}catch(UsuarioNoEsAdministrativoException e) {
-			//Ok
-			
-		}catch(ProyectoEjbException e) {
-			fail("Excepcion inesperada");	
-		}
-	}
+
 	
 	@Requisitos({"RF16"})
 	@Test
 	public void testActivaClienteYaActivo() {
+		
+		
 		try {
-			gestionCliente.activaCliente("Juan", "77670011");
+			gestionCliente.activaCliente("Juan", "77670018");
 			fail("Debe saltar excepcion de que el cliente ya está bloqueado");
 		}catch(ClienteYaActivoException e) {
 			//Ok
@@ -361,8 +441,12 @@ public class ClientePr {
 	@Requisitos({"RF16"})
 	@Test
 	public void testBloqueaClienteNoExistente() {
+		
+		
+		
+		
 		try {
-			gestionCliente.activaCliente("Juan", "123");
+			gestionCliente.bloqueaCliente("Juan", "123");
 			fail("Debe saltar excepcion de que el cliente no existe");
 		}catch(ClienteNoExistenteException e) {
 			//Ok
@@ -372,25 +456,16 @@ public class ClientePr {
 		}
 	}
 	
-	@Requisitos({"RF16"})
-	@Test
-	public void testBloqueaClienteConNoAdmin() {
-		try {
-			gestionCliente.activaCliente("Juan1", "77670018");
-			fail("Debe saltar excepcion de que el usuario no es administrador");
-		}catch(UsuarioNoEsAdministrativoException e) {
-			//Ok
-			
-		}catch(ProyectoEjbException e) {
-			fail("Excepcion inesperada");	
-		}
-	}
+
 	
 	@Requisitos({"RF16"})
 	@Test
 	public void testBloqueaClienteYaActivo() {
+		
+		
+		
 		try {
-			gestionCliente.activaCliente("Juan", "77670018");
+			gestionCliente.bloqueaCliente("Juan", "77670018");
 			fail("Debe saltar excepcion de que el cliente ya es activo");
 		}catch(ClienteYaActivoException e) {
 			//Ok
