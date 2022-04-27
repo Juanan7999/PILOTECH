@@ -20,6 +20,7 @@ import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionUsuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
@@ -460,14 +461,14 @@ public class ClientePr {
 	
 	@Requisitos({"RF16"})
 	@Test
-	public void testBloqueaClienteYaActivo() {
+	public void testBloqueaClienteYaBloqueado() {
 		
 		
 		
 		try {
 			gestionCliente.bloqueaCliente("Juan", "77670018");
-			fail("Debe saltar excepcion de que el cliente ya es activo");
-		}catch(ClienteYaActivoException e) {
+			fail("Debe saltar excepcion de que el cliente ya esta bloqueado");
+		}catch(ClienteBloqueadoException e) {
 			//Ok
 			
 		}catch(ProyectoEjbException e) {
