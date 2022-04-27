@@ -16,6 +16,7 @@ import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoPooledException;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.DivisaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioEsAdministrativoException;
@@ -30,7 +31,7 @@ public class DivisaEJB implements GestionDivisa{
 	
 	
 	@Override
-	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException {
+	public void cambioDeDivisaCliente(String idAdmin,Cliente cliente,PooledAccount cuenta1,PooledAccount cuenta2,Divisa origen,Divisa destino,List<DepositaEn> saldo,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -68,12 +69,40 @@ public class DivisaEJB implements GestionDivisa{
 		}
 		
 		
+		/*
+		
 		Transaccion transEntity = em.find(Transaccion.class, idUnico);
 		
 		 origen = transEntity.getDivisa1();
 		 destino = transEntity.getDivisa2();
 		 
+		 if(origen == null) {
+			 throw new DivisaNoExistenteException();
+		 }
 		 
+		 if(destino == null) {
+			 throw new DivisaNoExistenteException();
+		 }
+		 
+		 Cuenta c1 = new Cuenta();
+		 c1 = transEntity.getCuenta1();
+		 
+		 if(!(c1 instanceof PooledAccount) ) {
+			 throw new CuentaNoPooledException();
+		 }
+		 
+		 Cuenta c2 = new Cuenta();
+		 c2 = transEntity.getCuenta2();
+		 
+		 if(!(c2 instanceof PooledAccount)) {
+			 throw new CuentaNoPooledException();
+		 }
+		 
+		 if(!(c1.getIban().equals(c2.getIban()))) {
+			 throw new CuentasDiferentesException();
+		 }
+		 
+		 */
 		
 		
 		
