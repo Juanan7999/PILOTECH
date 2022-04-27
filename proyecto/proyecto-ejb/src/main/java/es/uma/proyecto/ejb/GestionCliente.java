@@ -45,19 +45,19 @@ public interface GestionCliente {
 	 * Se encarga de dar de baja a un cliente
 	 */
 	
-	public void bajaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException;
+	public void bajaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de dar de activar de nuevo a un cliente
 	 */
 	
-	public void activaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException;
+	public void activaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de bloquear a un cliente
 	 */
 	
-	public void bloqueaCliente(String idAdm, Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException;
+	public void bloqueaCliente(String idAdm, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException;
 	
 	/*
 	 * Se encarga de devolver todos los clientes

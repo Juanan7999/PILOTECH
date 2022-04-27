@@ -68,13 +68,13 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bajaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
+	public void bajaCliente(String idAdmin, String idCliente) throws ClienteNoExistenteException, ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
 		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
 		}
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, idCliente);
 		
 		
 		if(clienteEntity == null) {
@@ -95,7 +95,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void activaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException {
+	public void activaCliente(String idAdmin, String idCliente) throws ClienteNoExistenteException, ClienteYaActivoException, UsuarioNoEsAdministrativoException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -103,7 +103,7 @@ public class ClienteEJB implements GestionCliente{
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Cliente clienteEntity = em.find(Cliente.class, cliente);
+		Cliente clienteEntity = em.find(Cliente.class, idCliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
@@ -116,7 +116,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bloqueaCliente(String idAdmin, Cliente cliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
+	public void bloqueaCliente(String idAdmin, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -125,7 +125,7 @@ public class ClienteEJB implements GestionCliente{
 		}
 		
 		
-		Cliente clienteEntity = em.find(Cliente.class,cliente);
+		Cliente clienteEntity = em.find(Cliente.class,idCliente);
 		
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
@@ -160,9 +160,9 @@ public class ClienteEJB implements GestionCliente{
 	
 			clienteEntity.setEstado(individual.getEstado());
 	
-			clienteEntity.setFechaAlta(individual.getFechaAlta());
+			clienteEntity.setFechaAlta(Date.valueOf(individual.getFechaAlta().toString()));
 		
-			clienteEntity.setFechaBaja(individual.getFechaBaja());
+			clienteEntity.setFechaBaja(Date.valueOf(individual.getFechaBaja().toString()));
 		
 			clienteEntity.setDireccion(individual.getDireccion());
 		
@@ -176,7 +176,7 @@ public class ClienteEJB implements GestionCliente{
 		
 			clienteEntity.setApellido(individual.getApellido());
 		
-			clienteEntity.setFechaNacimiento(individual.getFechaNacimiento());
+			clienteEntity.setFechaNacimiento(Date.valueOf(individual.getFechaNacimiento().toString()));
 		
 	}
 	
@@ -195,41 +195,25 @@ public class ClienteEJB implements GestionCliente{
 			throw new ClienteNoExistenteException();
 		}
 		
-		if(identificacion != null) {
-			clienteEntity.setIdentificacion(identificacion);
-		}
-		if(tipo != null) {
-			clienteEntity.setTipoCliente(tipo);
-		}
-		if(estado != null) {
-			clienteEntity.setEstado(estado);
-		}
-		if(fecha_alta != null) {
-			clienteEntity.setFechaAlta(fecha_alta);
-		}
-		if(fecha_baja != null) {
-			clienteEntity.setFechaBaja(fecha_baja);
-		}
+			clienteEntity.setIdentificacion(empresa.getIdentificacion());
 		
-		if(direccion != null) {
-			clienteEntity.setDireccion(direccion);
-		}
+			clienteEntity.setTipoCliente(empresa.getTipoCliente());
 		
-		if(ciudad != null) {
-			clienteEntity.setCiudad(ciudad);
-		}
+			clienteEntity.setEstado(empresa.getEstado());
+	
+			clienteEntity.setFechaAlta(Date.valueOf(empresa.getFechaAlta().toString()));
 		
-		if(codigo_postal != null) {
-			clienteEntity.setCodigopostal(codigo_postal);
-		}
+			clienteEntity.setFechaBaja(Date.valueOf(empresa.getFechaBaja().toString()));
 		
-		if(pais != null) {
-			clienteEntity.setPais(pais);
-		}
+			clienteEntity.setDireccion(empresa.getDireccion());
 		
-		if(razon_social != null) {
-			clienteEntity.setRazonSocial(razon_social);
-		}
+			clienteEntity.setCiudad(empresa.getCiudad());
+		
+			clienteEntity.setCodigopostal(empresa.getCodigopostal());
+		
+			clienteEntity.setPais(empresa.getPais());
+		
+			clienteEntity.setRazonSocial(empresa.getRazonSocial());
 		
 	}
 
