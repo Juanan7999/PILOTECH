@@ -95,6 +95,46 @@ public class BaseDatos {
 		nuevo_cliente.setFechaNacimiento(null);
 		em.persist(nuevo_cliente);
 		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+		em.persist(nuevo_cliente2);
+		
+		Individual nuevo_cliente3 = new Individual();
+		nuevo_cliente3.setIdentificacion("77670019");
+		nuevo_cliente3.setTipoCliente("F");
+		nuevo_cliente3.setEstado("activo");
+		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente3.setFechaBaja(null);
+		
+		
+		nuevo_cliente3.setDireccion("Calle Chozuelas");
+		nuevo_cliente3.setCiudad("Alora");
+		nuevo_cliente3.setCodigopostal(29500);
+		nuevo_cliente3.setPais("España");
+		
+		nuevo_cliente3.setNombre("Lucas");
+		nuevo_cliente3.setApellido("Garcia");
+		nuevo_cliente3.setFechaNacimiento(null);
+		em.persist(nuevo_cliente3);
+		
 		
 		Empresa nueva_empresa = new Empresa();
 		nueva_empresa.setIdentificacion("8888");
@@ -165,6 +205,7 @@ public class BaseDatos {
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
 
         em.persist(pooled);
 
@@ -174,6 +215,7 @@ public class BaseDatos {
         segregada.setEstado("activa");
         segregada.setFechaApertura(Date.valueOf("2022-04-25"));
         segregada.setCuentaReferencia(cuentaref);
+        segregada.setCliente(nuevo_cliente3);
 
        
 
