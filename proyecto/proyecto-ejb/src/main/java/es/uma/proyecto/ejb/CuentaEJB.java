@@ -50,7 +50,7 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa, List<DepositaEn> ld)
+	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa, Cliente c, List<CuentaReferencia> lcr)
 			throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException {
 
 		Usuario administrador = em.find(Usuario.class, idAdm);
@@ -59,17 +59,25 @@ public class CuentaEJB implements GestionCuenta {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 
-		if (ld.size() < 2) {
-			throw new PooledAccountConSolo1CuentaExternaException();
-		}
-
-		pa.setDepositaEns(ld);
-		em.persist(pa);
-
+		pa.setCliente(c);
+		
+		for(CuentaReferencia cuenta: lcr) {
+			
+			DepositaEn dp = new DepositaEn();
+			
+			dp.setPooledAccount(pa);
+			
+			dp.setSaldo(0.0);
+			
+			dp.setCuentaReferencia(cuenta);
+			
+			em.persist(dp);
+			
+		}	
 	}
 
 	@Override
-	public void anadirAutorizados(String idAdm, List<PersonaAutorizada> lpa, Cliente c)
+	public void anadirAutorizados(String idAdm, List<PersonaAutorizada> lpa, CuentaFintech cf)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException {
 
 		Usuario administrador = em.find(Usuario.class, idAdm);
@@ -78,11 +86,11 @@ public class CuentaEJB implements GestionCuenta {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 
-		if (!c.getEstado().equals("J")) {
+		if (!cf.getCliente().getEstado().equals("J")) {
 			throw new ClienteNoJuridicoException();
 		}
 
-		Empresa e = em.find(Empresa.class, c.getIdentificacion());
+		Empresa e = em.find(Empresa.class, cf.getCliente().getIdentificacion());
 
 		List<Autorizacion> autorizaciones = e.getAutorizacions();
 
@@ -103,7 +111,7 @@ public class CuentaEJB implements GestionCuenta {
 
 		}
 
-		e.setAutorizacions(autorizaciones);
+		em.merge(e);
 	}
 
 	@Override
@@ -121,18 +129,12 @@ public class CuentaEJB implements GestionCuenta {
 		if (p == null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
-
-		p.setIdentificacion(pa.getIdentificacion());
-		p.setNombre(pa.getNombre());
-		p.setApellidos(pa.getApellidos());
-		p.setDireccion(pa.getDireccion());
-		p.setFechaNacimiento(pa.getFechaNacimiento());
-		p.setEstado(pa.getEstado());
-		p.setFechainicio(pa.getFechainicio());
+		
+		em.merge(pa);
 	}
 
 	@Override
-	public void eliminarAutorizados(String idAdm, PersonaAutorizada pa)
+	public void eliminarAutorizados(String idAdm,  PersonaAutorizada pa)
 			throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
 
 		Usuario administrador = em.find(Usuario.class, idAdm);
@@ -192,7 +194,7 @@ public class CuentaEJB implements GestionCuenta {
 
 		for (DepositaEn de : pa.getDepositaEns()) {
 
-			if (de.getCuentaReferencia().getSaldo() != 0) {
+			if (de.getSaldo() != 0) {
 
 				throw new CuentaSinSaldo0Exception();
 			}

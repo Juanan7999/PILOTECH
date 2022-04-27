@@ -35,7 +35,7 @@ public interface GestionCuenta {
 	 * En otro caso genera la cuenta pooled sin problemas. Junto con la informacion de las cuentas que tiene referenciadas.
 	 */
 	
-	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa, List<DepositaEn> ld) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException;
+	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa,Cliente c, List<CuentaReferencia> cr) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException;
 	
 	/* Este metodo se encarga de comprobar en primer lugar que la persona que esta tratando de añadir a una Cuenta cuyo Cliente es una persona juridica 
 	 * sea administrativo. En caso de que no lo sea, salta una excepcion. 
@@ -43,7 +43,7 @@ public interface GestionCuenta {
 	 * En caso de que no haya saltado ninguna excepcion se asocia correctamente todas estas personas autorizadas a la cuenta Empresa de el cliente en cuestion.
 	 */
 
-	public void anadirAutorizados(String idAdm, List<PersonaAutorizada> lpa, Cliente c) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException;
+	public void anadirAutorizados(String idAdm, List<PersonaAutorizada> lpa, CuentaFintech cf) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException;
 	
 	/* Este metodo se encarga de comprobar en primer lugar que la persona que esta tratando de modificar una Cuenta cuyo Cliente es una persona juridica
 	 * sea administrativo. En caso de que no lo sea, salta una excepcion.
@@ -61,16 +61,18 @@ public interface GestionCuenta {
 	
 	public void eliminarAutorizados(String idAdm, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException;
 	
-	/* Para que el personal administrativo pueda cerrar una cuenta segregada comprobamos si se trata de un usuario administrativo el que esta intentando cerrarla
-	 * 
-	 * 
+	/* Para que el personal administrativo pueda cerrar una cuenta segregada comprobamos si se trata de un usuario administrativo el que esta intentando cerrarla, en caso contrario 
+	 * saltaria una excepcion. Luego comprobamos que la cuenta segregada que se esta tratando de eliminar exista, en caso de que no exista, saltaría una excepcion.
+	 * Una vez comprobado lo anterior debemos comprobar que la cuenta externa asociada tenga saldo 0, si no lo tiene, saltaria una excepcion.
+	 * Si ha pasado todas las comprobaciones anteriores, cambiamos el estado de la cuenta a "baja".
 	 */
 	
 	public void cerrarCuentaSegregada(String idAdm, Segregada s) throws UsuarioNoEsAdministrativoException, SegregadaNoExistenteException, CuentaSinSaldo0Exception;
 	
-	/*
-	 * 
-	 * 
+	/* Para que el personal administrativo pueda cerrar una cuenta pooled comprobamos si se trata de un usuario administrativo el que esta intentando cerrarla, en caso contrario 
+	 * saltaria una excepcion. Luego comprobamos que la cuenta pooled que se esta tratando de eliminar exista, en caso de que no exista, saltaría una excepcion.
+	 * Una vez comprobado lo anterior debemos comprobar que las cuentas externas asociadas tengan saldo 0, si no lo tiene, saltaria una excepcion.
+	 * Si ha pasado todas las comprobaciones anteriores, cambiamos el estado de la cuenta a "baja".
 	 */
 	
 	public void cerrarCuentaPooled(String idAdm, PooledAccount pa) throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;
