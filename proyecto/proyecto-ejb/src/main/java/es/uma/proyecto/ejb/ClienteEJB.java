@@ -48,7 +48,7 @@ public class ClienteEJB implements GestionCliente{
 		}
 		
 		em.persist(individual);
-		
+		 
 	}
 
 	@Override
