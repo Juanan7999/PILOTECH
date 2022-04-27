@@ -52,13 +52,6 @@ public class UsuarioPr {
 		usuario.setPassword("1234");
 		usuario.setTipo("A");
 		
-		/*Cliente cliente = new Cliente();
-		cliente.setIdentificacion("1111");
-		cliente.setTipoCliente("F");
-		cliente.setPais("España");
-		cliente.setEstado("activo");
-		cliente.setFechaAlta();*/
-		
 		try {
 			gestionUsuario.creacionUsuario(user);
 			fail("Debe lanzar excepcion");
@@ -88,13 +81,6 @@ public class UsuarioPr {
 		usuario.setNombreUsuario("Pepe");
 		usuario.setPassword("1234");
 		usuario.setTipo("A");
-		
-		/*Cliente cliente = new Cliente();
-		cliente.setIdentificacion("1111");
-		cliente.setTipoCliente("F");
-		cliente.setPais("España");
-		cliente.setEstado("activo");
-		cliente.setFechaAlta();*/
 		
 		try {
 			List<Usuario> usuarios1 = gestionUsuario.devolverTodosUsuarios();
@@ -189,12 +175,12 @@ public class UsuarioPr {
 		
 	}
 	
-	
+	/*
 	@Requisitos({"RF1"})
 	@Test
 	public void devolverTodosUsuarios(){
 		List<Usuario> usuarios = gestionUsuario.devolverTodosUsuarios();
 		assertEquals(1, usuarios.size());
 	}
-	
+	*/
 }

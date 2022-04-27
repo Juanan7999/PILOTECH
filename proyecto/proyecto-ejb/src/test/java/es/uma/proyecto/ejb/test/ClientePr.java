@@ -71,9 +71,12 @@ public class ClientePr {
 		nuevo_cliente.setApellido("Garcia");
 		nuevo_cliente.setFechaNacimiento(null);
 		try {
-		gestionCliente.altaClienteIndividual("Juan", nuevo_cliente);
+			Usuario admin = gestionUsuario.Login("Juan", "8234");
+			gestionCliente.altaClienteIndividual(admin, nuevo_cliente);
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
-		fail("Excepcion inesperada");	
+			fail("Excepcion inesperada");	
 		}
 		List<Cliente> clientes2 = gestionCliente.devolverTodosClientes();
 		assertEquals(clientes2.size(), clientes1.size()+1);
@@ -107,10 +110,13 @@ public class ClientePr {
 		
 		
 		try {
-		gestionCliente.altaClienteIndividual("Juan", nuevo_cliente);
+		Usuario admin = gestionUsuario.Login("Juan", "8234");
+		gestionCliente.altaClienteIndividual(admin, nuevo_cliente);
 		fail("Deberia haber saltado la excepcion porque es un cliete existente");
 		}catch(ClienteExistenteException e) {
 		//OK	
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -143,10 +149,13 @@ public class ClientePr {
 		
 		
 		try {
-		gestionCliente.altaClienteIndividual("Juan1", nuevo_cliente);
+		Usuario admin = gestionUsuario.Login("Jose", "8234");
+		gestionCliente.altaClienteIndividual(admin, nuevo_cliente);
 		fail("Deberia haber saltado la excepcion porque no es un administrador");
 		}catch(UsuarioNoEsAdministrativoException e) {
 		//OK	
+		}catch (ContraseñaIncorrectaException e) {
+			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
@@ -178,7 +187,7 @@ public class ClientePr {
 		
 		
 		try {
-		Usuario admin = gestionUsuario.Login("Juan", "1234");
+		Usuario admin = gestionUsuario.Login("Juan", "8234");
 		gestionCliente.altaClienteEmpresa(admin, nueva_empresa);
 		}catch(ProyectoEjbException e) {
 			fail("Excepcion inesperada");	
@@ -302,7 +311,7 @@ public class ClientePr {
 	public void testBajaClienteConNoAdmin() throws ClienteYaDeBajaException, CuentaAbiertaException, UsuarioNoEsAdministrativoException {
 		
 		try {
-			Usuario admin = gestionUsuario.Login("Juan","8234");
+			Usuario admin = gestionUsuario.Login("Jose","8234");
 			gestionCliente.bajaCliente(admin, "77670018");
 			fail("El cliente ya estaba de baja");	
 			}catch(UsuarioNoEsAdministrativoException e) {
@@ -337,7 +346,7 @@ public class ClientePr {
 		nuevo_cliente.setFechaNacimiento(null);
 		
 		try {
-			Usuario admin = gestionUsuario.Login("Juan1", "123");
+			Usuario admin = gestionUsuario.Login("Juan", "8234");
 			gestionCliente.modificarDatosClienteIndividual(admin, "77670004", nuevo_cliente);
 			fail("Debería saltar excepcion de cliente no existente");
 		}catch(ClienteNoExistenteException e) {

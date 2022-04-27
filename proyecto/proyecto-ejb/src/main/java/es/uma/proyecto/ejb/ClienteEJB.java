@@ -138,7 +138,7 @@ public class ClienteEJB implements GestionCliente{
 	}
 
 	@Override
-	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException {
+	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException, ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
 		
 		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
 		
