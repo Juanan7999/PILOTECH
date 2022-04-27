@@ -34,7 +34,7 @@ public interface GestionUsuario {
 	 * @throws ClienteYaDeBajaException 
 	 */
 	
-	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException;
+	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException;
 
 
 	public List<Usuario> devolverTodosUsuarios();

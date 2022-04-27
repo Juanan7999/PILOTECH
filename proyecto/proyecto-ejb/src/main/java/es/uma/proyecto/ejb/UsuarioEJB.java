@@ -44,7 +44,7 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 
 	@Override
-	public void Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException {
+	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException {
 		Usuario usuarioEntity = em.find(Usuario.class, nombreUsuario);
 		
 		if(usuarioEntity == null) {
@@ -71,5 +71,8 @@ public class UsuarioEJB implements GestionUsuario{
 				
 			}
 		}
+		return usuarioEntity;
 	}
+	
+	
 }
