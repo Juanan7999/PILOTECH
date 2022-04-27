@@ -13,8 +13,11 @@ import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
+import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.SegregadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local
@@ -51,9 +54,25 @@ public interface GestionCuenta {
 	public void modificarAutorizados(String idAdm, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException;
 	
 	/*
-	 * 
-	 *  
+	 * Para eliminar a una persona autorizada asociada a una un cliente jurídico o Empresa, debemos de cambiar su estado y darlo de baja, para poder hacer una correcta auditoría.
+	 * Antes de lo anterior debemos comprobar que esta persona autorizada exista y sobre todo que el usuario que elimine al autorizado se trate de personal administrativo.
+	 *  En caso de que no se cumpla lo anterior, saltaría una excepcion.
 	 */
 	
 	public void eliminarAutorizados(String idAdm, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException;
+	
+	/* Para que el personal administrativo pueda cerrar una cuenta segregada comprobamos si se trata de un usuario administrativo el que esta intentando cerrarla
+	 * 
+	 * 
+	 */
+	
+	public void cerrarCuentaSegregada(String idAdm, Segregada s) throws UsuarioNoEsAdministrativoException, SegregadaNoExistenteException, CuentaSinSaldo0Exception;
+	
+	/*
+	 * 
+	 * 
+	 */
+	
+	public void cerrarCuentaPooled(String idAdm, PooledAccount pa) throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;
+	
 }
