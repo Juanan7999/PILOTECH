@@ -237,7 +237,7 @@ public class BaseDatos {
         personaautorizada.setApellidos("Boutoil");
         personaautorizada.setDireccion("Almargen");
         personaautorizada.setEstado("activo");
-        personaautorizada.setUsuario(usuario_personaAutorizada);
+        //personaautorizada.setUsuario(usuario_personaAutorizada);
         
         
         
