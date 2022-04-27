@@ -85,7 +85,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			
 			AutorizacionPK aut_pk = new AutorizacionPK();
 			aut_pk.setEmpresaId(e.getIdentificacion());
-			aut_pk.setPersonaAutorizadaId(pa.getId());
+			aut_pk.setPersonaAutorizadaId(pa.getIdentificacion());
 			
 			aut.setEmpresa(e);
 			aut.setId(aut_pk);
