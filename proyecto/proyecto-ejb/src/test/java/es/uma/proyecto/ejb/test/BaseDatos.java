@@ -139,7 +139,7 @@ public class BaseDatos {
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 		
-		
+		em.persist(cuentaref);
 		em.getTransaction().commit();
 		
 		em.close();
