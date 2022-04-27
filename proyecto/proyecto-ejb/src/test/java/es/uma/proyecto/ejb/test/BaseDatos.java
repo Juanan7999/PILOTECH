@@ -11,10 +11,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.CuentaReferencia;
+import es.uma.proyecto.DepositaEn;
+import es.uma.proyecto.DepositaEnPK;
 import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
+import es.uma.proyecto.PooledAccount;
+import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 
 /*
@@ -42,6 +48,12 @@ public class BaseDatos {
 		usuario_normal.setPassword("8234");
 		usuario_normal.setTipo("N");
 		em.persist(usuario_normal);
+		
+		Usuario usuario_personaAutorizada = new Usuario();
+		usuario_normal.setNombreUsuario("Oussama");
+		usuario_normal.setPassword("8234");
+		usuario_normal.setTipo("N");
+		em.persist(usuario_personaAutorizada);
 		
 		Individual nuevo_clientebaja = new Individual();
 		nuevo_clientebaja.setIdentificacion("77670010");
@@ -146,6 +158,51 @@ public class BaseDatos {
 		cuentaref.setDivisa(euro);
 		
 		em.persist(cuentaref);
+		
+		
+		PooledAccount pooled = new PooledAccount();
+        pooled.setIban("ES1112");
+        pooled.setSwift("2346");
+        pooled.setEstado("activa");
+        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+
+        em.persist(pooled);
+
+        Segregada segregada = new Segregada();
+        segregada.setIban("ES1113");
+        segregada.setSwift("2347");
+        segregada.setEstado("activa");
+        segregada.setFechaApertura(Date.valueOf("2022-04-25"));
+        segregada.setCuentaReferencia(cuentaref);
+
+        em.persist(segregada);
+
+        DepositaEn depositaEn1 = new DepositaEn();
+      
+        depositaEn1.setSaldo(29.0);
+        depositaEn1.setCuentaReferencia(cuentaref);
+        depositaEn1.setPooledAccount(pooled);
+        
+        em.persist(depositaEn1);
+        
+        
+        PersonaAutorizada personaautorizada = new PersonaAutorizada();
+        personaautorizada.setIdentificacion("77670001");
+        personaautorizada.setNombre("Oussama");
+        personaautorizada.setApellidos("Boutoil");
+        personaautorizada.setDireccion("Almargen");
+        personaautorizada.setEstado("activo");
+        personaautorizada.setUsuario(usuario_personaAutorizada);
+        
+        em.persist(personaautorizada);
+        
+        Autorizacion autorizacion = new Autorizacion();
+        autorizacion.setEmpresa(nueva_empresa);
+        autorizacion.setPersonaAutorizada(personaautorizada);
+        autorizacion.setTipo(1);
+        
+        em.persist(autorizacion);
+        
 		em.getTransaction().commit();
 		
 		em.close();
