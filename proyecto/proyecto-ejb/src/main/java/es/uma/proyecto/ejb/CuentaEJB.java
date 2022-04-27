@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Empresa;
@@ -30,8 +31,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 	private EntityManager em;
 
 	@Override
-	public void abrirCuentaFintechSegregada(String idAdm, String iban, String swift, String estado,
-			Date fecha_apertura, Date fecha_cierre, String clasificacion, String comision, CuentaReferencia cr) throws UsuarioNoEsAdministrativoException {
+	public void abrirCuentaFintechSegregada(String idAdm, Segregada cf, CuentaReferencia cr) throws UsuarioNoEsAdministrativoException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdm);
 		
@@ -39,32 +39,12 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Segregada cuentaSegregada = new Segregada();
-		
-		cuentaSegregada.setIban(iban);
-		cuentaSegregada.setSwift(swift);
-		cuentaSegregada.setEstado(estado);
-		cuentaSegregada.setFechaApertura(fecha_apertura);
-		
-		if(fecha_cierre !=null) {
-			cuentaSegregada.setFechaCierre(fecha_cierre);
-		}
-		
-		if(clasificacion != null) {
-			cuentaSegregada.setClasificacion(clasificacion);
-		}
-		
-		if(comision != null) {
-			cuentaSegregada.setComision(comision);
-		}
-		
-		cuentaSegregada.setCuentaReferencia(cr);
-		em.persist(cuentaSegregada);
+		cf.setCuentaReferencia(cr);
+		em.persist(cf);
 	}
 
 	@Override
-	public void abrirCuentaFintechPooled(String idAdm, String iban, String swift, String estado, Date fecha_apertura,
-			Date fecha_cierre, String clasificacion, List<DepositaEn> lcr) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException {
+	public void abrirCuentaFintechPooled(String idAdm, PooledAccount pa, List<DepositaEn> ld) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdm);
 		
@@ -72,27 +52,12 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		PooledAccount cuentaPooled = new PooledAccount();
-		
-		cuentaPooled.setIban(iban);
-		cuentaPooled.setSwift(swift);
-		cuentaPooled.setEstado(estado);
-		cuentaPooled.setFechaApertura(fecha_apertura);
-		
-		if(fecha_cierre !=null) {
-			cuentaPooled.setFechaCierre(fecha_cierre);
-		}
-		
-		if(clasificacion != null) {
-			cuentaPooled.setClasificacion(clasificacion);
-		}
-		
-		if(lcr.size()<2) {
+		if(ld.size()<2) {
 			throw new PooledAccountConSolo1CuentaExternaException();
 		}
 		
-		cuentaPooled.setDepositaEns(lcr);
-		em.persist(cuentaPooled);
+		pa.setDepositaEns(ld);
+		em.persist(pa);
 		
 	}
 
@@ -134,7 +99,7 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 		}
 
 	@Override
-	public void modificarAutorizados(String idAdm, Cliente c, String id, String identificacion, String nombre, String apellidos, String direccion, Date fecha_nacimiento, String Estado, Date FechaInicio, Date fechaFin) throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException {
+	public void modificarAutorizados(String idAdm, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
 		
 		Usuario administrador = em.find(Usuario.class, idAdm);
 		
@@ -142,39 +107,41 @@ private static final Logger LOG = Logger.getLogger(CuentaEJB.class.getCanonicalN
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		PersonaAutorizada p = em.find(PersonaAutorizada.class, id);
+		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getId());
 		
 		if(p==null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
 		
-		if(!c.getEstado().equals("J")) {
-			throw new ClienteNoJuridicoException();
-		}
-		
-		p.setId(id);
-		p.setIdentificacion(identificacion);
-		p.setNombre(nombre);
-		p.setApellidos(apellidos);
-		p.setDireccion(direccion);
-		
-		if(fecha_nacimiento !=null) {
-			p.setFechaNacimiento(fecha_nacimiento);
-		}
-		
-		p.setFechaNacimiento(fecha_nacimiento);
-		
-		if(Estado != null) {
-			p.setEstado(Estado);
-		}
-		
-		if(FechaInicio != null) {
-			p.setFechainicio(FechaInicio);
-		}
-		
-		if(fechaFin != null) {
-			p.setFechafin(fechaFin);
-		}
-		
+		p.setId(pa.getId());
+		p.setIdentificacion(pa.getIdentificacion());
+		p.setNombre(pa.getNombre());
+		p.setApellidos(pa.getApellidos());
+		p.setDireccion(pa.getDireccion());
+		p.setFechaNacimiento(pa.getFechaNacimiento());
+		p.setEstado(pa.getEstado());
+		p.setFechainicio(pa.getFechainicio());
 	}
+
+	@Override
+	public void eliminarAutorizados(String idAdm, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
+		
+		Usuario administrador = em.find(Usuario.class, idAdm);
+		
+		if(administrador==null || !administrador.getTipo().equals("A")) { //Si no existe o no es administrativo
+			throw new UsuarioNoEsAdministrativoException();
+		}
+		
+		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getId());
+		
+		if(p==null){
+			
+			throw new PersonaAutorizadaNoExistenteException();
+		}
+		
+		p.setEstado("baja");
+	}
+	
+	
+	
 }
