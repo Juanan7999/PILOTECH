@@ -1,5 +1,5 @@
 package es.uma.proyecto.ejb.exceptions;
 
-public class ContraseñaIncorrectaException extends Exception{
+public class ContraseñaIncorrectaException extends ProyectoEjbException{
 
 }

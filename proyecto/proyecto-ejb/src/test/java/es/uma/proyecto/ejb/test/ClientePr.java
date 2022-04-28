@@ -189,10 +189,11 @@ public class ClientePr {
 		try {
 		Usuario admin = gestionUsuario.Login("Juan", "8234");
 		gestionCliente.altaClienteEmpresa(admin, nueva_empresa);
-		}catch(ProyectoEjbException e) {
-			fail("Excepcion inesperada");	
+			
 		}catch (ContraseñaIncorrectaException e) {
 			fail("No deberia saltar expcepcion de contraseña incorrecta ya que es correcta");
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
 		}
 		List<Cliente> clientes2 = gestionCliente.devolverTodosClientes();
 		assertEquals(clientes2.size(), clientes1.size()+1);
