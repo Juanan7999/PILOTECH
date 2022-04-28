@@ -19,6 +19,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoPooledException;
+import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.DivisaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioEsAdministrativoException;
@@ -33,7 +34,7 @@ public class DivisaEJB implements GestionDivisa{
 	
 	
 	@Override
-	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException {
+	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -77,23 +78,40 @@ public class DivisaEJB implements GestionDivisa{
 		 
 		 //Tras estas comprobaciones, las cuentas tendrian que ser iguales y de tipo pooled
 
-		 PooledAccount pooled1Entity = em.find(PooledAccount.class, idUnico);
+		 PooledAccount pooledEntity = em.find(PooledAccount.class, idUnico);
 		 
-		 if(pooled1Entity == null) {
+		 if(pooledEntity == null) {
 			 throw new CuentaNoExistenteException();
 		 }
 		 
 		 
 		 //Ahora tengo q comprobar si el saldo es valido
 		 
+		 List<DepositaEn> saldo = pooledEntity.getDepositaEns();
 		 
-		 //TypedQuery<DepositaEn> query = em.createQuery("SELECT s FROM DepositaEn s",DepositaEn.class);
-		 //List<DepositaEn> saldo = query.getResultList();
+		 for(DepositaEn s: saldo) {
+			 
+			 if(s.getSaldo() < cantidad) {
+				 throw new CuentaSinSaldo0Exception();
+			 }
+			 
+			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
+				 Double saldoAntes = s.getSaldo();
+				 double total = saldoAntes + origen.getCambioeuro();
+				 s.setSaldo(total);
+				 
+				 //Hay que actualizar el origen
+				 
+			 }
+			 
+			 
+			 
+		 }
 		
 	}
 	
 	@Override
-	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException {
+	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception {
 		
 		Usuario administrador = em.find(Usuario.class, idAdmin);
 		
@@ -137,9 +155,9 @@ public class DivisaEJB implements GestionDivisa{
 		 //Tras estas comprobaciones, las cuentas tendrian que ser iguales y de tipo pooled
 		 
 		 
-		 PooledAccount pooled1Entity = em.find(PooledAccount.class, idUnico);
+		 PooledAccount pooledEntity = em.find(PooledAccount.class, idUnico);
 		 
-		 if(pooled1Entity == null) {
+		 if(pooledEntity == null) {
 			 throw new CuentaNoExistenteException();
 		 }
 		 
@@ -147,10 +165,30 @@ public class DivisaEJB implements GestionDivisa{
 		 //Ahora tengo q comprobar si el saldo es valido
 		 
 		 
-		 //TypedQuery<DepositaEn> query = em.createQuery("SELECT s FROM DepositaEn s",DepositaEn.class);
-		 //List<DepositaEn> saldo = query.getResultList();
 		 
-		
+		 
+		 List<DepositaEn> saldo = pooledEntity.getDepositaEns();
+		 
+		 for(DepositaEn s: saldo) {
+			 
+			 if(s.getSaldo() < cantidad) {
+				 throw new CuentaSinSaldo0Exception();
+			 }
+			 
+			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
+				 Double saldoAntes = s.getSaldo();
+				 double total = saldoAntes + origen.getCambioeuro();
+				 s.setSaldo(total);
+				 
+				 //Hay que actualizar el origen
+				 
+			 }
+			 
+			 
+			 
+		 }
+		 
+		 
 		
 	}
 	

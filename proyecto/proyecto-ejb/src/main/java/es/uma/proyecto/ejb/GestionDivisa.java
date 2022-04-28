@@ -29,7 +29,7 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteYaDeBajaException, ClienteBloqueadoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException;
+	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteYaDeBajaException, ClienteBloqueadoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException;
 	
 	
 	//La aplicacion permitira a un cliente/autorizado realizar un cambio de divisas en una cuenta agrupada (pooled)
@@ -38,7 +38,7 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException;
+	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException;
 	
 	
 }
