@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +42,8 @@ public class ClientePr {
 	
 	private GestionCliente gestionCliente;
 	private GestionUsuario gestionUsuario;
-	
+	@PersistenceContext(name="proyecto-ejbTest")
+	private EntityManager em;
 	@Before
 	public void setup() throws NamingException  {
 		gestionCliente = (GestionCliente) SuiteTest.ctx.lookup(CLIENTE_EJB);
@@ -120,7 +123,7 @@ public class ClientePr {
 		}catch(ProyectoEjbException e) {
 		fail("Excepcion inesperada");	
 		}
-		
+	
 		
 	}
 	
