@@ -96,11 +96,16 @@ public class DivisaEJB implements GestionDivisa{
 			 }
 			 
 			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
-				 Double saldoAntes = s.getSaldo();
-				 double total = saldoAntes + origen.getCambioeuro();
+				 
+				 double total = (s.getSaldo()*destino.getCambioeuro())/origen.getCambioeuro();
 				 s.setSaldo(total);
 				 
+				 
 				 //Hay que actualizar el origen
+				 
+				 
+				 
+				 
 				 
 			 }
 			 
@@ -176,8 +181,7 @@ public class DivisaEJB implements GestionDivisa{
 			 }
 			 
 			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
-				 Double saldoAntes = s.getSaldo();
-				 double total = saldoAntes + origen.getCambioeuro();
+				 double total = (s.getSaldo()*destino.getCambioeuro())/origen.getCambioeuro();
 				 s.setSaldo(total);
 				 
 				 //Hay que actualizar el origen
