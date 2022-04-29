@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.Individual;
@@ -27,7 +28,7 @@ import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 public class DivisaPr {
 
-	private static final Logger LOG = Logger.getLogger(ClientePr.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(DivisaPr.class.getCanonicalName());
 
 	private static final String DIVISA_EJB = "java:global/classes/DivisaEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";

@@ -88,15 +88,4 @@ public interface GestionCuenta {
 	 */
 	
 	//public Cuenta devolver(String iban) throws CuentaNoExistenteException ;
-
-	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException;
-	
-	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException;
-	
-	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException;
-
-	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String pais,
-			String direccion) throws ClienteNoExistenteException;
-	
-	
 }

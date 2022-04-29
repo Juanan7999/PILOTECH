@@ -6,13 +6,20 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local
 public interface GestionInforme {
 	
+	public List<Segregada>devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException ;
+	
+	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException;
+	
+	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException;
 	
 	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException;
 	
