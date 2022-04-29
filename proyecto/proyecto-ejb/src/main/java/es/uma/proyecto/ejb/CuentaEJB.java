@@ -255,13 +255,39 @@ public class CuentaEJB implements GestionCuenta {
 		if(listadoCuentas == null) {
 			throw new CuentaNoExistenteException();
 		}
+		/*
+		long mili = System.currentTimeMillis();
+		Date dateNow = new Date(mili);*/
+		
 		
 		return listadoCuentas;
 		
 	}
 	
 	@Override
-	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException{
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String pais, String direccion) throws ClienteNoExistenteException{
+		Query query = em.createQuery("SELECT i FROM Individual i where s.nombre = :nombre AND s.apellido = :apellido AND s.fechaAlta = :fechaalta"
+				+ " AND s.fechaBaja = :fechabaja AND s.pais = :pais AND s.direccion = :direccion");
+		
+		query.setParameter("nombre" , nombre);
+		query.setParameter("apellido" , apellidos);
+		query.setParameter("fechaalta" , fechaAlta);
+		query.setParameter("fechabaja" , fechaBaja);
+		query.setParameter("pais", pais);
+		query.setParameter("direccion" , direccion);
+		
+		
+		
+		List<Individual> listaClientes = query.getResultList();
+		if(listaClientes == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		return listaClientes;
+	}
+	
+	/*@Override
+	public List<PersonaAutorizada> devolverInformeHolandaAutorizados(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String pais, String direccion) throws ClienteNoExistenteException{
 		Query query = em.createQuery("SELECT i FROM Individual i where s.nombre = :nombre AND s.apellido = :apellido AND s.fechaAlta = :fechaalta"
 				+ " AND s.fechaBaja = :fechabaja AND s.direccion = :direccion");
 		
@@ -278,8 +304,6 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		
 		return listaClientes;
-	}
-	
-	
+	}*/
 	
 }

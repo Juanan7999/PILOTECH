@@ -95,7 +95,7 @@ public interface GestionCuenta {
 	
 	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException;
 
-	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja,
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String pais,
 			String direccion) throws ClienteNoExistenteException;
 	
 	
