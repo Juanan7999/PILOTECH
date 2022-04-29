@@ -21,6 +21,7 @@ import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
+import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 
 /*
@@ -183,6 +184,13 @@ public class BaseDatos {
 		euro.setSimbolo("€");
 		em.persist(euro);
 		
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("dolar");
+		dolar.setNombre("dolar");
+		dolar.setCambioeuro(0.95);
+		dolar.setSimbolo("$");
+		em.persist(dolar);
+		
 		CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
 		cuentaref.setSwift("2345");
@@ -192,8 +200,18 @@ public class BaseDatos {
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
-		
 		em.persist(cuentaref);
+		
+		CuentaReferencia cuentaref2 = new CuentaReferencia();
+		cuentaref.setIban("ES1114");
+		cuentaref.setSwift("2345");
+		cuentaref.setNombrebanco("Santander");
+		cuentaref.setSucursal("Plaza mayor");
+		cuentaref.setSaldo(45.0);
+		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(dolar);
+		em.persist(cuentaref2);
 		
 		
 		PooledAccount pooled = new PooledAccount();
@@ -240,7 +258,21 @@ public class BaseDatos {
 		usuario_personaAutorizada.setTipo("N");
 		usuario_personaAutorizada.setPersonaAutorizada(personaautorizada);;
 		em.persist(usuario_personaAutorizada);
-        
+		
+		
+		Transaccion transaccion = new Transaccion();
+		transaccion.setIdUnico(1234);
+        transaccion.setCantidad(30.0);
+        transaccion.setComision(1.0);
+        transaccion.setCuenta1(cuentaref);
+        transaccion.setCuenta2(cuentaref2);
+        transaccion.setDivisa1(euro);
+        transaccion.setDivisa2(dolar);
+        transaccion.setFechaejecucion(null);
+        transaccion.setFechainstruccion(null);
+        transaccion.setInternacional(null);
+        transaccion.setTipo("CD");
+ 
         
         Autorizacion autorizacion = new Autorizacion();
         autorizacion.setEmpresa(nueva_empresa);
