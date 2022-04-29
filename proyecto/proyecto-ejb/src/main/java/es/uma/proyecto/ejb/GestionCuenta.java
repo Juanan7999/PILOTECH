@@ -1,6 +1,7 @@
 package es.uma.proyecto.ejb;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -10,11 +11,12 @@ import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
-
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -86,6 +88,15 @@ public interface GestionCuenta {
 	 */
 	
 	public Cuenta devolver(String iban) throws CuentaNoExistenteException ;
+
+	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException;
+	
+	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException;
+	
+	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException;
+
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja,
+			String direccion) throws ClienteNoExistenteException;
 	
 	
 }

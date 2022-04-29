@@ -1,11 +1,14 @@
 package es.uma.proyecto.ejb;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
@@ -15,10 +18,12 @@ import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Empresa;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -209,5 +214,71 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		return cuentaEntity;
 	}
+	
+	@Override 
+	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException {
+		List<Segregada> listadoCuentas = new ArrayList<>();
+		Segregada seg = em.find(Segregada.class, IBAN);
+		if(seg == null) {
+			throw new CuentaNoExistenteException();
+		}
+		listadoCuentas.add(seg);
+		return listadoCuentas;
+	}
+	
+	@Override 
+	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException {
+		
+		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado");
+		query.setParameter(" estado " , "baja");
 
+		
+		List<Segregada> listadoCuentas = query.getResultList();
+		
+		if(listadoCuentas == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		return listadoCuentas;
+	
+	}
+	
+	@Override 
+	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException {
+		
+		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado");
+		query.setParameter(" estado " , "activa");
+		
+		List<Segregada> listadoCuentas = query.getResultList();
+		
+		if(listadoCuentas == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		return listadoCuentas;
+		
+	}
+	
+	@Override
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException{
+		Query query = em.createQuery("SELECT i FROM Individual i where s.nombre = :nombre AND s.apellido = :apellido AND s.fechaAlta = :fechaalta"
+				+ " AND s.fechaBaja = :fechabaja AND s.direccion = :direccion");
+		
+		query.setParameter("nombre" , nombre);
+		query.setParameter("apellido" , apellidos);
+		query.setParameter("fechaalta" , fechaAlta);
+		query.setParameter("fechabaja" , fechaBaja);
+		query.setParameter("direccion" , direccion);
+		
+		
+		List<Individual> listaClientes = query.getResultList();
+		if(listaClientes == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		return listaClientes;
+	}
+	
+	
+	
 }
