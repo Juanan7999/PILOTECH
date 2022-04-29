@@ -1,6 +1,5 @@
 package es.uma.proyecto.ejb;
 
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
@@ -20,6 +20,7 @@ import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
@@ -53,7 +54,7 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public PooledAccount abrirCuentaFintechPooled(Usuario usuario, PooledAccount pa, Cliente c, List<CuentaReferencia> lcr)
+	public PooledAccount abrirCuentaFintechPooled(Usuario usuario, PooledAccount pa, Cliente c, List<DepositaEn> lcr)
 			throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
@@ -64,19 +65,9 @@ public class CuentaEJB implements GestionCuenta {
 
 		pa.setCliente(c);
 		
-		for(CuentaReferencia cuenta: lcr) {
-			
-			DepositaEn dp = new DepositaEn();
-			
-			dp.setPooledAccount(pa);
-			
-			dp.setSaldo(0.0);
-			
-			dp.setCuentaReferencia(cuenta);
-			
-			em.persist(dp);
-			
-		}	
+		pa.setDepositaEns(lcr);;	
+		
+		em.merge(pa);
 		
 		return pa;
 	}
@@ -179,6 +170,7 @@ public class CuentaEJB implements GestionCuenta {
 		}
 
 		segregada.setEstado("baja");
+		em.merge(segregada);
 	}
 
 	@Override
@@ -206,6 +198,16 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		
 		pooled.setEstado("baja");
+		em.merge(pooled);
+	}
+	
+	@Override
+	public Cuenta devolver(String iban) throws CuentaNoExistenteException {
+		Cuenta cuentaEntity = em.find(Cuenta.class, iban);
+		if(cuentaEntity == null) {
+			throw new CuentaNoExistenteException();
+		}
+		return cuentaEntity;
 	}
 
 }

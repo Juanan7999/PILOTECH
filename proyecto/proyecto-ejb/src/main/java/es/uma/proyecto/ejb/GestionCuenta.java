@@ -1,11 +1,12 @@
 package es.uma.proyecto.ejb;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Local;
 
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
@@ -13,7 +14,9 @@ import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
+
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
@@ -36,7 +39,7 @@ public interface GestionCuenta {
 	 * En otro caso genera la cuenta pooled sin problemas. Junto con la informacion de las cuentas que tiene referenciadas.
 	 */
 	
-	public PooledAccount abrirCuentaFintechPooled(Usuario usuario, PooledAccount pa,Cliente c, List<CuentaReferencia> cr) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException;
+	public PooledAccount abrirCuentaFintechPooled(Usuario usuario, PooledAccount pa,Cliente c, List<DepositaEn> cr) throws UsuarioNoEsAdministrativoException, PooledAccountConSolo1CuentaExternaException;
 	
 	/* Este metodo se encarga de comprobar en primer lugar que la persona que esta tratando de añadir a una Cuenta cuyo Cliente es una persona juridica 
 	 * sea administrativo. En caso de que no lo sea, salta una excepcion. 
@@ -77,5 +80,12 @@ public interface GestionCuenta {
 	 */
 	
 	public void cerrarCuentaPooled(Usuario usuario, PooledAccount pa) throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;
+	
+	/*
+	 * Busca una cuenta y la devuelve en caso de que exista, en caso contrario no devuelve nada y saltaria una excepcion. 
+	 */
+	
+	public Cuenta devolver(String iban) throws CuentaNoExistenteException ;
+	
 	
 }
