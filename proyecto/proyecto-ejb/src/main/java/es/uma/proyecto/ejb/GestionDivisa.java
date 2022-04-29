@@ -7,18 +7,10 @@ import javax.ejb.Local;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Transaccion;
-import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoException;
-import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoPooledException;
-import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
-import es.uma.proyecto.ejb.exceptions.DivisaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
-import es.uma.proyecto.ejb.exceptions.UsuarioEsAdministrativoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local

@@ -53,7 +53,7 @@ public class DivisaEJB implements GestionDivisa {
 			throw new PooledNoExistenteException();
 		}
 
-		if (!origen.getIban().equals(destino.getIban())) {
+		if (!cuentaP.getDepositaEns().contains(origen) || !cuentaP.getDepositaEns().contains(destino)) {
 			throw new CuentasDiferentesException();
 		}
 		
@@ -121,7 +121,30 @@ public class DivisaEJB implements GestionDivisa {
 			throw new PooledNoExistenteException();
 		}
 
-		if (!origen.getIban().equals(destino.getIban())) {
+		
+		boolean esIgual1 = false;
+		boolean esIgual2 = false;
+		
+		for(DepositaEn dp : origen.getDepositaEns()) {
+			
+			
+			if(dp.getPooledAccount().getIban().equals(pooled.getIban())) {
+				
+				esIgual1 = true;
+			}
+		}
+		
+		for(DepositaEn dp : destino.getDepositaEns()) {
+			
+			
+			if(dp.getPooledAccount().getIban().equals(pooled.getIban())) {
+				
+				esIgual2 = true;
+			}
+		}
+		
+		if(!(esIgual1 && esIgual2)) {
+			
 			throw new CuentasDiferentesException();
 		}
 		
