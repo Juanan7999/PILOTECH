@@ -112,11 +112,11 @@ public class DivisaEJB implements GestionDivisa {
 	}
 
 	@Override
-	public void cambioDeDivisaAdmin(String idAdmin, String id, PooledAccount cuentaP, CuentaReferencia origen,
+	public void cambioDeDivisaAdmin(Usuario usuario, String id, PooledAccount cuentaP, CuentaReferencia origen,
 			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
 			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException {
 		
-		Usuario admin = em.find(Usuario.class, idAdmin);
+		Usuario admin = em.find(Usuario.class, usuario);
 		
 		if(admin == null) {
 			
