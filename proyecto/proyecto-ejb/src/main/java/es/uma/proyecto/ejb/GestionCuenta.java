@@ -87,7 +87,7 @@ public interface GestionCuenta {
 	 * Busca una cuenta y la devuelve en caso de que exista, en caso contrario no devuelve nada y saltaria una excepcion. 
 	 */
 	
-	public Cuenta devolver(String iban) throws CuentaNoExistenteException ;
+	//public Cuenta devolver(String iban) throws CuentaNoExistenteException ;
 
 	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException;
 	

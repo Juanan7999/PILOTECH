@@ -34,18 +34,13 @@ public class UsuarioPr {
 		gestionUsuario = (GestionUsuario) SuiteTest.ctx.lookup(USUARIO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
-	@Requisitos({"RF1"})
+	@Requisitos({"RF1", "RF10"})
 	@Test
 	public void testCreacionUsuarioExistente() throws ProyectoEjbException {
 		
-		final String nombreUsuario = "Juan";
-		final String password = "1234";
-		final String tipo = "N";
+	
 		
-		Usuario user = new Usuario();
-		user.setNombreUsuario(nombreUsuario);
-		user.setPassword(password);
-		user.setTipo(tipo);
+		
 		
 		Usuario usuario = new Usuario();
 		usuario.setNombreUsuario("Juan");
@@ -53,7 +48,7 @@ public class UsuarioPr {
 		usuario.setTipo("A");
 		
 		try {
-			gestionUsuario.creacionUsuario(user);
+			gestionUsuario.creacionUsuario(usuario);
 			fail("Debe lanzar excepcion");
 		} catch(UsuarioExistenteException e) {
 			//OK
@@ -64,7 +59,7 @@ public class UsuarioPr {
 	
 	
 	
-	@Requisitos({"RF1"})
+	@Requisitos({"RF10"})
 	@Test
 	public void comprobarQueUnUsuarioHaSidoCreado() throws ProyectoEjbException {
 		
@@ -77,10 +72,7 @@ public class UsuarioPr {
 		user.setPassword(password);
 		user.setTipo(tipo);
 		
-		Usuario usuario = new Usuario();
-		usuario.setNombreUsuario("Pepe");
-		usuario.setPassword("1234");
-		usuario.setTipo("A");
+		
 		
 		try {
 			List<Usuario> usuarios1 = gestionUsuario.devolverTodosUsuarios();
@@ -93,7 +85,7 @@ public class UsuarioPr {
 	}
 	
 	
-	@Requisitos({"RF1"})
+	@Requisitos({"RF10", "RF1"})
 	@Test
 	public void LoginUsuarioExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
@@ -115,7 +107,7 @@ public class UsuarioPr {
 	
 	
 	
-	@Requisitos({"RF1"})
+	@Requisitos({"RF10", "RF1"})
 	@Test
 	public void LoginUsuarioNoExistente() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
@@ -135,7 +127,7 @@ public class UsuarioPr {
 		
 		
 	}
-	
+	@Requisitos({"RF10", "RF1"})
 	@Test
 	public void LoginPasswordIncorrecta() throws UsuarioNoEncontradoException, ContraseñaIncorrectaException{
 		//No deberia saltar error, porque ese usuario existe
@@ -176,9 +168,12 @@ public class UsuarioPr {
 	}
 	
 	/*
-	@Requisitos({"RF1"})
+	@Requisitos({"RF10"})
 	@Test
 	public void devolverTodosUsuarios(){
+		
+		
+	
 		List<Usuario> usuarios = gestionUsuario.devolverTodosUsuarios();
 		assertEquals(1, usuarios.size());
 	}

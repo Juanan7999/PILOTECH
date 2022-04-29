@@ -152,6 +152,7 @@ public class CuentaEJB implements GestionCuenta {
 		}
 
 		p.setEstado("baja");
+		
 	}
 
 	@Override
@@ -206,7 +207,7 @@ public class CuentaEJB implements GestionCuenta {
 		em.merge(pooled);
 	}
 	
-	@Override
+	/*@Override
 	public Cuenta devolver(String iban) throws CuentaNoExistenteException {
 		Cuenta cuentaEntity = em.find(Cuenta.class, iban);
 		if(cuentaEntity == null) {
@@ -214,7 +215,7 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		return cuentaEntity;
 	}
-	
+	*/
 	@Override 
 	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException {
 		List<Segregada> listadoCuentas = new ArrayList<>();
