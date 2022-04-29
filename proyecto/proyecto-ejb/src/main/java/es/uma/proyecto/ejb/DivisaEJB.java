@@ -1,200 +1,160 @@
 package es.uma.proyecto.ejb;
 
-import java.util.List;
+
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
-import es.uma.proyecto.Cuenta;
+
+import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
-import es.uma.proyecto.Divisa;
+
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
-import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoPooledException;
-import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
+
+import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
-import es.uma.proyecto.ejb.exceptions.DivisaNoExistenteException;
-import es.uma.proyecto.ejb.exceptions.UsuarioEsAdministrativoException;
+import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
-public class DivisaEJB implements GestionDivisa{
+public class DivisaEJB implements GestionDivisa {
 
 	private static final Logger LOG = Logger.getLogger(ClienteEJB.class.getCanonicalName());
-	
-	@PersistenceContext(name="proyecto-ejb")
+
+	@PersistenceContext(name = "proyecto-ejb")
 	private EntityManager em;
-	
-	
+
 	@Override
-	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteBloqueadoException, ClienteYaDeBajaException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception {
-		
-		Usuario administrador = em.find(Usuario.class, idAdmin);
-		
-		if(administrador!=null && administrador.getTipo().equals("A")) {
-			throw new UsuarioEsAdministrativoException();
+	public void cambioDeDivisaCliente_Autorizado(String id, PooledAccount cuentaP, CuentaReferencia origen,
+			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
+			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException {
+
+		Cliente c = em.find(Cliente.class, id);
+
+		if (c == null) {
+
+			PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+
+			if (pa == null) {
+
+				throw new ClientePersonaAutorizadaNoEncontradoException();
+			}
+		}
+
+		PooledAccount pooled = em.find(PooledAccount.class, cuentaP.getIban());
+
+		if (pooled == null) {
+
+			throw new PooledNoExistenteException();
+		}
+
+		if (!origen.getIban().equals(destino.getIban())) {
+			throw new CuentasDiferentesException();
 		}
 		
-			
+		if(origen.getSaldo() < cantidadOrigen || destino.getSaldo() == 0) {
 		
-		Transaccion transEntity = em.find(Transaccion.class, idUnico);
+			throw new SaldoInsuficienteException();	
+		}
 		
-		 Divisa origen = transEntity.getDivisa1();
-		 Divisa destino = transEntity.getDivisa2();
-		 
-		 if(origen == null) {
-			 throw new DivisaNoExistenteException();
-		 }
-		 
-		 if(destino == null) {
-			 throw new DivisaNoExistenteException();
-		 }
-		 
-		 Cuenta c1 = new Cuenta();
-		 c1 = transEntity.getCuenta1();
-		 
-		 if(!(c1 instanceof PooledAccount) ) {
-			 throw new CuentaNoPooledException();
-		 }
-		 
-		 Cuenta c2 = new Cuenta();
-		 c2 = transEntity.getCuenta2();
-		 
-		 if(!(c2 instanceof PooledAccount)) {
-			 throw new CuentaNoPooledException();
-		 }
-		 
-		 if(!(c1.getIban().equals(c2.getIban()))) {
-			 throw new CuentasDiferentesException();
-		 }
-		 
-		 
-		 //Tras estas comprobaciones, las cuentas tendrian que ser iguales y de tipo pooled
-
-		 PooledAccount pooledEntity = em.find(PooledAccount.class, idUnico);
-		 
-		 if(pooledEntity == null) {
-			 throw new CuentaNoExistenteException();
-		 }
-		 
-		 
-		 //Ahora tengo q comprobar si el saldo es valido
-		 
-		 List<DepositaEn> saldo = pooledEntity.getDepositaEns();
-		 
-		 for(DepositaEn s: saldo) {
-			 
-			 if(s.getSaldo() < cantidad) {
-				 throw new CuentaSinSaldo0Exception();
-			 }
-			 
-			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
-				 
-				 double total = (s.getSaldo()*destino.getCambioeuro())/origen.getCambioeuro();
-				 s.setSaldo(total);
-				 
-				 
-				 //Hay que actualizar el origen
-				 
-				 
-				 
-				 
-				 
-			 }
-			 
-			 
-			 
-		 }
-		
-	}
+		origen.setSaldo(origen.getSaldo()-cantidadOrigen);
+		Double cantidadEnEuros = cantidadOrigen*origen.getDivisa().getCambioeuro();
+		Double cantidadEnDivisaDestino = cantidadEnEuros/destino.getDivisa().getCambioeuro();
+		destino.setSaldo(destino.getSaldo()+cantidadEnDivisaDestino);
 	
+		for(DepositaEn dp : cuentaP.getDepositaEns()) {
+			
+			if(dp.getCuentaReferencia().equals(origen)) {
+				
+				dp.setSaldo(dp.getSaldo()-cantidadOrigen);
+				
+			}else if(dp.getCuentaReferencia().equals(destino)) {
+				
+				dp.setSaldo(dp.getSaldo()+cantidadEnDivisaDestino);
+			}
+		}
+		
+		t.setCuenta1(origen);
+		t.setCuenta2(destino);
+		t.setCantidad(cantidadOrigen*origen.getDivisa().getCambioeuro());
+		t.setDivisa1(origen.getDivisa());
+		t.setDivisa2(origen.getDivisa());
+		t.setTipo("CD");
+		
+		em.merge(t);
+	}
+
 	@Override
-	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception {
+	public void cambioDeDivisaAdmin(String idAdmin, String id, PooledAccount cuentaP, CuentaReferencia origen,
+			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
+			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException {
 		
-		Usuario administrador = em.find(Usuario.class, idAdmin);
+		Usuario admin = em.find(Usuario.class, idAdmin);
 		
-		if(administrador != null && administrador.getTipo().equals("N")) {
+		if(admin == null) {
+			
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		
-		Transaccion transEntity = em.find(Transaccion.class, idUnico);
 		
-		 Divisa origen = transEntity.getDivisa1();
-		 Divisa destino = transEntity.getDivisa2();
-		 
-		 
-		 if(origen == null) {
-			 throw new DivisaNoExistenteException();
-		 }
-		 
-		 if(destino == null) {
-			 throw new DivisaNoExistenteException();
-		 }
-		 
-		 Cuenta c1 = new Cuenta();
-		 c1 = transEntity.getCuenta1();
-		 
-		 
-		 if(!(c1 instanceof PooledAccount) ) {
-			 throw new CuentaNoPooledException();
-		 }
-		 
-		 Cuenta c2 = new Cuenta();
-		 c2 = transEntity.getCuenta2();
-		 
-		 if(!(c2 instanceof PooledAccount)) {
-			 throw new CuentaNoPooledException();
-		 }
-		 
-		 if(!(c1.getIban().equals(c2.getIban()))) {
-			 throw new CuentasDiferentesException();
-		 }
-		 
-		 //Tras estas comprobaciones, las cuentas tendrian que ser iguales y de tipo pooled
-		 
-		 
-		 PooledAccount pooledEntity = em.find(PooledAccount.class, idUnico);
-		 
-		 if(pooledEntity == null) {
-			 throw new CuentaNoExistenteException();
-		 }
-		 
-		 
-		 //Ahora tengo q comprobar si el saldo es valido
-		 
-		 
-		 
-		 
-		 List<DepositaEn> saldo = pooledEntity.getDepositaEns();
-		 
-		 for(DepositaEn s: saldo) {
-			 
-			 if(s.getSaldo() < cantidad) {
-				 throw new CuentaSinSaldo0Exception();
-			 }
-			 
-			 if(s.getPooledAccount().equals(pooledEntity) && s.getSaldo()>=cantidad) {
-				 double total = (s.getSaldo()*destino.getCambioeuro())/origen.getCambioeuro();
-				 s.setSaldo(total);
-				 
-				 //Hay que actualizar el origen
-				 
-			 }
-			 
-			 
-			 
-		 }
-		 
-		 
+		Cliente c = em.find(Cliente.class, id);
+
+		if (c == null) {
+
+			PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+
+			if (pa == null) {
+
+				throw new ClientePersonaAutorizadaNoEncontradoException();
+			}
+		}
+
+		PooledAccount pooled = em.find(PooledAccount.class, cuentaP.getIban());
+
+		if (pooled == null) {
+
+			throw new PooledNoExistenteException();
+		}
+
+		if (!origen.getIban().equals(destino.getIban())) {
+			throw new CuentasDiferentesException();
+		}
 		
+		if(origen.getSaldo() < cantidadOrigen || destino.getSaldo() != 0) {
+		
+			throw new SaldoInsuficienteException();	
+		}
+		
+		origen.setSaldo(origen.getSaldo()-cantidadOrigen);
+		Double cantidadEnEuros = cantidadOrigen*origen.getDivisa().getCambioeuro();
+		Double cantidadEnDivisaDestino = cantidadEnEuros/destino.getDivisa().getCambioeuro();
+		destino.setSaldo(destino.getSaldo()+cantidadEnDivisaDestino);
+	
+		for(DepositaEn dp : cuentaP.getDepositaEns()) {
+			
+			if(dp.getCuentaReferencia().equals(origen)) {
+				
+				dp.setSaldo(dp.getSaldo()-cantidadOrigen);
+				
+			}else if(dp.getCuentaReferencia().equals(destino)) {
+				
+				dp.setSaldo(dp.getSaldo()+cantidadEnDivisaDestino);
+			}
+		}
+		
+		t.setCuenta1(origen);
+		t.setCuenta2(destino);
+		t.setCantidad(cantidadOrigen*origen.getDivisa().getCambioeuro());
+		t.setDivisa1(origen.getDivisa());
+		t.setDivisa2(origen.getDivisa());
+		t.setTipo("CD");
+		
+		em.merge(t);
 	}
-	
-	
+
 }

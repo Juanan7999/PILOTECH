@@ -1,23 +1,23 @@
 package es.uma.proyecto.ejb;
 
-import java.util.List;
+
 
 import javax.ejb.Local;
 
-import es.uma.proyecto.Cliente;
-import es.uma.proyecto.Cuenta;
-import es.uma.proyecto.DepositaEn;
-import es.uma.proyecto.Divisa;
+import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoPooledException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.DivisaNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioEsAdministrativoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -30,7 +30,8 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaCliente(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioEsAdministrativoException, ClienteNoExistenteException, ClienteYaDeBajaException, ClienteBloqueadoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception;
+	public void cambioDeDivisaCliente_Autorizado(String id,PooledAccount pa, CuentaReferencia origen, CuentaReferencia destino,Double cantidad, Transaccion t) throws 
+	CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException;
 	
 	
 	//La aplicacion permitira a un cliente/autorizado realizar un cambio de divisas en una cuenta agrupada (pooled)
@@ -39,7 +40,9 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaAdmin(String idAdmin,Transaccion idUnico,Double cantidad) throws UsuarioNoEsAdministrativoException, CuentasDiferentesException, DivisaNoExistenteException, CuentaNoPooledException, CuentaNoExistenteException, CuentaSinSaldo0Exception;
+	public void cambioDeDivisaAdmin(String idAdmin, String id, PooledAccount cuentaP, CuentaReferencia origen,
+			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
+			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException;
 	
 	
 }
