@@ -128,7 +128,7 @@ public class InformePr {
 	public void testdevolverInformeHolandaClientesExistentes() {
 		
 		try {
-			List<Individual> lista = gestionInforme.devolverInformeHolandaClientes("Jose", "Garcia", Date.valueOf("2022-04-23"), Date.valueOf("2022-04-26"), "Calle Chozuelas");
+			List<Individual> lista = gestionInforme.devolverInformeHolandaClientes("Alberto", "Garcia", Date.valueOf("2022-04-23"), Date.valueOf("2022-04-26"), "Calle Chozuelas");
 			assertEquals(1,lista.size());
 		}catch(ClienteNoExistenteException e) {
 			fail("El cliente si existe");
