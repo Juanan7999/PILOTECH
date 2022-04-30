@@ -74,6 +74,6 @@ public interface GestionCliente {
 	public void modificarDatosClienteEmpresa(Usuario admin, String identificacion, Empresa empresa) throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException, UsuarioNoEncontradoException;
 
 
-	public Cliente devolver(String identificacion) throws ClienteNoExistenteException;
+	//public Cliente devolver(String identificacion) throws ClienteNoExistenteException;
 	
 }

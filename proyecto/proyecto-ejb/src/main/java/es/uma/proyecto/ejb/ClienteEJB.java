@@ -218,13 +218,13 @@ public class ClienteEJB implements GestionCliente{
 		return clientes;
 	}
 	
-	@Override
+	/*@Override
 	public Cliente devolver(String identificacion) throws ClienteNoExistenteException {
 		Cliente clienteEntity = em.find(Cliente.class, identificacion);
 		if(clienteEntity == null) {
 			throw new ClienteNoExistenteException();
 		}
 		return clienteEntity;
-	}
+	}*/
 	
 }

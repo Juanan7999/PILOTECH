@@ -166,6 +166,18 @@ public class ClientePr {
 		
 	}
 	
+	
+	@Requisitos({"RF2"})
+	@Test
+	public void testDevolverTodosClientes() {
+		int i = gestionCliente.devolverTodosClientes().size();
+		
+		assertEquals(7, i);
+	}
+	
+	
+	
+	
 	@Requisitos({"RF2"})
 	@Test
 	public void testAltaClienteEmpresa() throws ClienteExistenteException, UsuarioNoEsAdministrativoException {

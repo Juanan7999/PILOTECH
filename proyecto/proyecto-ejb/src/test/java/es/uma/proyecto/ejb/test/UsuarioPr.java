@@ -82,6 +82,13 @@ public class UsuarioPr {
 		}
 	}
 	
+	@Requisitos({"RF10", "RF1"})
+	@Test
+	public void testDevolverTodosUsuarios() {
+		int i = gestionUsuario.devolverTodosUsuarios().size();
+		assertEquals(3, i);
+	}
+	
 	
 	@Requisitos({"RF10", "RF1"})
 	@Test
