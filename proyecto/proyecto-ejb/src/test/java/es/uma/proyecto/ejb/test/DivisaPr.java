@@ -42,8 +42,6 @@ public class DivisaPr {
 	private GestionCliente gestionCliente;
 	private GestionUsuario gestionUsuario;
 	
-	@PersistenceContext(name="proyecto-ejbTest")
-	private EntityManager em;
 	@Before
 	public void setup() throws NamingException  {
 		gestionDivisa = (GestionDivisa) SuiteTest.ctx.lookup(DIVISA_EJB);

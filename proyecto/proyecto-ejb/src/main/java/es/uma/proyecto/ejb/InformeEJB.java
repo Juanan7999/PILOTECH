@@ -51,10 +51,10 @@ public class InformeEJB implements GestionInforme{
 	@Override 
 	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException {
 		
-		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado");
+		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
 		query.setParameter(" estado " , "baja");
+		query.setParameter("iban", IBAN);
 
-		
 		List<Segregada> listadoCuentas = query.getResultList();
 		
 		if(listadoCuentas == null) {
@@ -68,18 +68,15 @@ public class InformeEJB implements GestionInforme{
 	@Override 
 	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException {
 		
-		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado");
+		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
 		query.setParameter(" estado " , "activa");
+		query.setParameter("iban", IBAN);
 		
 		List<Segregada> listadoCuentas = query.getResultList();
 		
 		if(listadoCuentas == null) {
 			throw new CuentaNoExistenteException();
 		}
-		/*
-		long mili = System.currentTimeMillis();
-		Date dateNow = new Date(mili);*/
-		
 		
 		return listadoCuentas;
 		
