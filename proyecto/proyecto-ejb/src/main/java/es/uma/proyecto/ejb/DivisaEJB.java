@@ -21,6 +21,7 @@ import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoExcept
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Stateless
@@ -116,15 +117,18 @@ public class DivisaEJB implements GestionDivisa {
 	@Override
 	public void cambioDeDivisaAdmin(Usuario usuario, String id, PooledAccount cuentaP, CuentaReferencia origen,
 			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
-			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException {
+			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException,UsuarioNoEncontradoException, UsuarioNoEsAdministrativoException {
 		
-		Usuario admin = em.find(Usuario.class, usuario);
+		Usuario admin = em.find(Usuario.class, usuario.getNombreUsuario());
 		
 		if(admin == null) {
 			
-			throw new UsuarioNoEsAdministrativoException();
+			throw new UsuarioNoEncontradoException();
 		}
 		
+		if(!admin.esAdmin()) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
 		
 		Cliente c = em.find(Cliente.class, id);
 

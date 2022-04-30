@@ -12,6 +12,7 @@ import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoExcept
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local
@@ -35,7 +36,7 @@ public interface GestionDivisa {
 	
 	public void cambioDeDivisaAdmin(Usuario userAdmin, String id, PooledAccount cuentaP, CuentaReferencia origen,
 			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
-			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException;
+			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 	
 	
 }

@@ -128,7 +128,7 @@ public class InformeEJB implements GestionInforme{
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
 			csvPrinter.print("Ebury_IBAN_" + dtf2.format(LocalDateTime.now()).trim() + "\n");
 			for (CuentaFintech c : customers) {
-
+				
 				Empresa clienteEmpresa = em.find(Empresa.class, c.getCliente().getIdentificacion());
 
 				if (clienteEmpresa == null) {
