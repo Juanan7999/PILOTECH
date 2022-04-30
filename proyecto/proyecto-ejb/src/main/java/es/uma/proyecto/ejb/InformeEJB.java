@@ -195,7 +195,8 @@ public class InformeEJB implements GestionInforme {
 
 		String nombre_archivo_csv;
 
-		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		TypedQuery<Segregada> query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado", Segregada.class);
+		query.setParameter("estado", "activa");
 		List<Segregada> cuentas = query.getResultList();
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -210,7 +211,6 @@ public class InformeEJB implements GestionInforme {
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
 			for (CuentaFintech c : cuentas) {
 
-				if (c.getEstado().equals("activa")) {
 
 					Empresa clienteEmpresa = em.find(Empresa.class, c.getCliente().getIdentificacion());
 
@@ -256,7 +256,6 @@ public class InformeEJB implements GestionInforme {
 							}
 						}
 					}
-				}
 			}
 
 			csvPrinter.flush();
