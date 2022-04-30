@@ -220,8 +220,15 @@ public class BaseDatos {
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
         pooled.setCliente(nuevo_cliente2);
-
         em.persist(pooled);
+        
+        PooledAccount pooled2 = new PooledAccount();
+        pooled2.setIban("ES1115");
+        pooled2.setSwift("2346");
+        pooled2.setEstado("activa");
+        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled2.setCliente(nuevo_cliente2);
+        em.persist(pooled2);
 
         Segregada segregada = new Segregada();
         segregada.setIban("ES1113");

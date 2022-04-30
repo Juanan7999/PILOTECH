@@ -3,6 +3,7 @@ package es.uma.proyecto.ejb.test;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
@@ -14,6 +15,8 @@ import org.junit.Test;
 
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import es.uma.proyecto.CuentaReferencia;
+import es.uma.proyecto.DepositaEn;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
@@ -73,12 +76,31 @@ public class DivisaPr {
 	@Test
 	public void testCambioDivisaClientePersAutorizadaPooledNoExistente() {
 		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+		
 		PooledAccount pooled = new PooledAccount();
         pooled.setIban("ES2112");
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        
+        pooled.setCliente(nuevo_cliente2);
 		
 		
 		try {
@@ -98,11 +120,39 @@ public class DivisaPr {
 	@Test
 	public void testCambioDivisaClientePersAutorizadaCuentasDiferentes() {
 		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+		
 		PooledAccount pooled = new PooledAccount();
         pooled.setIban("ES1112");
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
+        PooledAccount pooled2 = new PooledAccount();
+        pooled.setIban("ES1115");
+        pooled.setSwift("2346");
+        pooled.setEstado("activa");
+        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
         
         CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -114,7 +164,6 @@ public class DivisaPr {
 		cuentaref.setEstado("activa");
 		
 		
-		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
 		cuentaref2.setSwift("2345");
@@ -123,6 +172,24 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		
+		DepositaEn depositaEn1 = new DepositaEn();
+	      
+        depositaEn1.setSaldo(29.0);
+        depositaEn1.setCuentaReferencia(cuentaref);
+        depositaEn1.setPooledAccount(pooled);
+        
+        DepositaEn depositaEn2 = new DepositaEn();
+        
+        depositaEn2.setSaldo(29.0);
+        depositaEn2.setCuentaReferencia(cuentaref2);
+        depositaEn2.setPooledAccount(pooled2);
+        
+        List<DepositaEn> l;
+        l.add(depositaEn1);
+        l.add(depositaEn2);
+        
+        pooled.setDepositaEns(l);
 		
         
 		
@@ -140,13 +207,51 @@ public class DivisaPr {
 	
 	@Requisitos({"RF17"})
 	@Test
-	public void testCambioDivisiaClientePersAturoizadaSaldoInsuf() {
+	public void testCambioDivisaClientePersAutorizadaSaldoInsuf() {
+		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
 		
 		PooledAccount pooled = new PooledAccount();
         pooled.setIban("ES1112");
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        
+        PooledAccount pooled2 = new PooledAccount();
+        pooled.setIban("ES1115");
+        pooled.setSwift("2346");
+        pooled.setEstado("activa");
+        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
+        Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+		
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
         
         CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -156,6 +261,7 @@ public class DivisaPr {
 		cuentaref.setSaldo(45.0);
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(euro);
 		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1111");
@@ -165,6 +271,26 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		cuentaref.setDivisa(dolar);
+		
+		DepositaEn depositaEn1 = new DepositaEn();
+	      
+        depositaEn1.setSaldo(29.0);
+        depositaEn1.setCuentaReferencia(cuentaref);
+        depositaEn1.setPooledAccount(pooled);
+        
+        DepositaEn depositaEn2 = new DepositaEn();
+        
+        depositaEn2.setSaldo(29.0);
+        depositaEn2.setCuentaReferencia(cuentaref2);
+        depositaEn2.setPooledAccount(pooled);
+        
+        
+        List<DepositaEn> l;
+        l.add(depositaEn1);
+        l.add(depositaEn2);
+        
+        pooled.setDepositaEns(l);
 		
 		try {
 			
@@ -244,11 +370,39 @@ public class DivisaPr {
 	@Test
 	public void testCambioDivisaAdminCuentasDiferentes() {
 		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+		
 		PooledAccount pooled = new PooledAccount();
         pooled.setIban("ES1112");
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
+        PooledAccount pooled2 = new PooledAccount();
+        pooled.setIban("ES1115");
+        pooled.setSwift("2346");
+        pooled.setEstado("activa");
+        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
         
         CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -260,7 +414,6 @@ public class DivisaPr {
 		cuentaref.setEstado("activa");
 		
 		
-		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
 		cuentaref2.setSwift("2345");
@@ -269,7 +422,25 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		
+		DepositaEn depositaEn1 = new DepositaEn();
+	      
+        depositaEn1.setSaldo(29.0);
+        depositaEn1.setCuentaReferencia(cuentaref);
+        depositaEn1.setPooledAccount(pooled);
         
+        DepositaEn depositaEn2 = new DepositaEn();
+        
+        depositaEn2.setSaldo(29.0);
+        depositaEn2.setCuentaReferencia(cuentaref2);
+        depositaEn2.setPooledAccount(pooled2);
+        
+        List<DepositaEn> l;
+        l.add(depositaEn1);
+        l.add(depositaEn2);
+        
+        pooled.setDepositaEns(l);
+		
 		
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
@@ -289,11 +460,49 @@ public class DivisaPr {
 	@Test
 	public void testCambioDivisiaAdminSaldoInsuf() {
 		
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		
+		
+		nuevo_cliente2.setFechaBaja(null);
+		
+		
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+		
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+		
 		PooledAccount pooled = new PooledAccount();
         pooled.setIban("ES1112");
         pooled.setSwift("2346");
         pooled.setEstado("activa");
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        
+        PooledAccount pooled2 = new PooledAccount();
+        pooled.setIban("ES1115");
+        pooled.setSwift("2346");
+        pooled.setEstado("activa");
+        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled.setCliente(nuevo_cliente2);
+        
+        Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+		
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
         
         CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -303,6 +512,7 @@ public class DivisaPr {
 		cuentaref.setSaldo(45.0);
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(euro);
 		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1111");
@@ -312,6 +522,26 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		cuentaref.setDivisa(dolar);
+		
+		DepositaEn depositaEn1 = new DepositaEn();
+	      
+        depositaEn1.setSaldo(29.0);
+        depositaEn1.setCuentaReferencia(cuentaref);
+        depositaEn1.setPooledAccount(pooled);
+        
+        DepositaEn depositaEn2 = new DepositaEn();
+        
+        depositaEn2.setSaldo(29.0);
+        depositaEn2.setCuentaReferencia(cuentaref2);
+        depositaEn2.setPooledAccount(pooled);
+        
+        
+        List<DepositaEn> l;
+        l.add(depositaEn1);
+        l.add(depositaEn2);
+        
+        pooled.setDepositaEns(l);
 		
 		
 		try {
