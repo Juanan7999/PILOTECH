@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
-import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;

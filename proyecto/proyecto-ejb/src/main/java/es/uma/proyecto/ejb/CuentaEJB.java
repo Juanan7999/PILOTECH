@@ -1,31 +1,24 @@
 package es.uma.proyecto.ejb;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
 import es.uma.proyecto.Cliente;
-import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Empresa;
-import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
-import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
-import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
@@ -54,7 +47,7 @@ public class CuentaEJB implements GestionCuenta {
 		cf.setCuentaReferencia(cr);
 		cf.setCliente(c);
 		em.persist(cf);
-		
+
 		return cf;
 	}
 
@@ -69,11 +62,12 @@ public class CuentaEJB implements GestionCuenta {
 		}
 
 		pa.setCliente(c);
-		
-		pa.setDepositaEns(lcr);;	
-		
+
+		pa.setDepositaEns(lcr);
+		;
+
 		em.merge(pa);
-		
+
 		return pa;
 	}
 
@@ -130,12 +124,12 @@ public class CuentaEJB implements GestionCuenta {
 		if (p == null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
-		
+
 		em.merge(pa);
 	}
 
 	@Override
-	public void eliminarAutorizados(Usuario usuario,  PersonaAutorizada pa)
+	public void eliminarAutorizados(Usuario usuario, PersonaAutorizada pa)
 			throws UsuarioNoEsAdministrativoException, PersonaAutorizadaNoExistenteException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
@@ -152,7 +146,7 @@ public class CuentaEJB implements GestionCuenta {
 		}
 
 		p.setEstado("baja");
-		
+
 	}
 
 	@Override
@@ -202,18 +196,8 @@ public class CuentaEJB implements GestionCuenta {
 				throw new CuentaSinSaldo0Exception();
 			}
 		}
-		
+
 		pooled.setEstado("baja");
 		em.merge(pooled);
 	}
-	
-	/*@Override
-	public Cuenta devolver(String iban) throws CuentaNoExistenteException {
-		Cuenta cuentaEntity = em.find(Cuenta.class, iban);
-		if(cuentaEntity == null) {
-			throw new CuentaNoExistenteException();
-		}
-		return cuentaEntity;
-	}
-	*/	
 }

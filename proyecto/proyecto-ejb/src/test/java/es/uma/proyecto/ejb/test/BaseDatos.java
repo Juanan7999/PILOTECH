@@ -1,11 +1,6 @@
 package es.uma.proyecto.ejb.test;
 
-import java.math.BigDecimal;
-
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +9,7 @@ import javax.persistence.Persistence;
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
-import es.uma.proyecto.DepositaEnPK;
+
 import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
@@ -24,32 +19,25 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 
-/*
-import es.uma.informatica.sii.ejb.practica.entidades.Ingrediente;
-import es.uma.informatica.sii.ejb.practica.entidades.Lote;
-import es.uma.informatica.sii.ejb.practica.entidades.Producto;
-*/
-
 public class BaseDatos {
 	public static void inicializaBaseDatos(String nombreUnidadPersistencia) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(nombreUnidadPersistencia);
 		EntityManager em = emf.createEntityManager();
-		
+
 		em.getTransaction().begin();
-		
+
 		Usuario usuario_administrativo = new Usuario();
 		usuario_administrativo.setNombreUsuario("Juan");
 		usuario_administrativo.setPassword("8234");
 		usuario_administrativo.setTipo("A");
-		
+
 		em.persist(usuario_administrativo);
-		
+
 		Usuario usuario_normal = new Usuario();
 		usuario_normal.setNombreUsuario("Jose");
 		usuario_normal.setPassword("8234");
 		usuario_normal.setTipo("N");
 		em.persist(usuario_normal);
-		
 
 		Individual nuevo_clientebaja = new Individual();
 		nuevo_clientebaja.setIdentificacion("77670010");
@@ -65,7 +53,7 @@ public class BaseDatos {
 		nuevo_clientebaja.setApellido("Acedo");
 		nuevo_clientebaja.setFechaNacimiento(null);
 		em.persist(nuevo_clientebaja);
-		
+
 		Individual nuevo_cliente = new Individual();
 		nuevo_cliente.setIdentificacion("77670018");
 		nuevo_cliente.setTipoCliente("F");
@@ -80,7 +68,7 @@ public class BaseDatos {
 		nuevo_cliente.setApellido("Garcia");
 		nuevo_cliente.setFechaNacimiento(null);
 		em.persist(nuevo_cliente);
-		
+
 		Individual nuevo_cliente2 = new Individual();
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
@@ -95,7 +83,7 @@ public class BaseDatos {
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
 		em.persist(nuevo_cliente2);
-		
+
 		Individual nuevo_cliente3 = new Individual();
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
@@ -123,7 +111,7 @@ public class BaseDatos {
 		nueva_empresa.setPais("España");
 		nueva_empresa.setRazonSocial("Pilotech");
 		em.persist(nueva_empresa);
-		
+
 		Individual nuevo_clientebloqueado = new Individual();
 		nuevo_clientebloqueado.setIdentificacion("77670011");
 		nuevo_clientebloqueado.setTipoCliente("F");
@@ -138,21 +126,21 @@ public class BaseDatos {
 		nuevo_clientebloqueado.setApellido("Bloquez");
 		nuevo_clientebloqueado.setFechaNacimiento(null);
 		em.persist(nuevo_clientebloqueado);
-		
+
 		Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
 		euro.setNombre("euro");
 		euro.setCambioeuro(1.0);
 		euro.setSimbolo("€");
 		em.persist(euro);
-		
+
 		Divisa dolar = new Divisa();
 		dolar.setAbreviatura("dolar");
 		dolar.setNombre("dolar");
 		dolar.setCambioeuro(0.95);
 		dolar.setSimbolo("$");
 		em.persist(dolar);
-		
+
 		CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
 		cuentaref.setSwift("2345");
@@ -163,7 +151,7 @@ public class BaseDatos {
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 		em.persist(cuentaref);
-		
+
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
 		cuentaref2.setSwift("2345");
@@ -174,93 +162,88 @@ public class BaseDatos {
 		cuentaref2.setEstado("activa");
 		cuentaref2.setDivisa(dolar);
 		em.persist(cuentaref2);
-		
-		
+
 		PooledAccount pooled = new PooledAccount();
-        pooled.setIban("ES1112");
-        pooled.setSwift("2346");
-        pooled.setEstado("activa");
-        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled.setCliente(nuevo_cliente2);
-        em.persist(pooled);
-        
-        PooledAccount pooled2 = new PooledAccount();
-        pooled2.setIban("ES1115");
-        pooled2.setSwift("2346");
-        pooled2.setEstado("activa");
-        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled2.setCliente(nuevo_cliente2);
-        em.persist(pooled2);
+		pooled.setIban("ES1112");
+		pooled.setSwift("2346");
+		pooled.setEstado("activa");
+		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setCliente(nuevo_cliente2);
+		em.persist(pooled);
 
-        Segregada segregada = new Segregada();
-        segregada.setIban("ES1113");
-        segregada.setSwift("2347");
-        segregada.setEstado("activa");
-        segregada.setFechaApertura(Date.valueOf("2022-04-25"));
-        segregada.setCuentaReferencia(cuentaref);
-        segregada.setCliente(nuevo_cliente3);
+		PooledAccount pooled2 = new PooledAccount();
+		pooled2.setIban("ES1115");
+		pooled2.setSwift("2346");
+		pooled2.setEstado("activa");
+		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setCliente(nuevo_cliente2);
+		em.persist(pooled2);
 
-        Segregada segregada1 = new Segregada();
-        segregada1.setIban("ES2022");
-        segregada1.setSwift("6789");
-        segregada1.setEstado("baja");
-        segregada1.setFechaApertura(Date.valueOf("2022-04-28"));
-        segregada1.setCuentaReferencia(cuentaref);
-        segregada1.setCliente(nuevo_cliente3);
-        em.persist(segregada1);
+		Segregada segregada = new Segregada();
+		segregada.setIban("ES1113");
+		segregada.setSwift("2347");
+		segregada.setEstado("activa");
+		segregada.setFechaApertura(Date.valueOf("2022-04-25"));
+		segregada.setCuentaReferencia(cuentaref);
+		segregada.setCliente(nuevo_cliente3);
 
-        DepositaEn depositaEn1 = new DepositaEn();
-      
-        depositaEn1.setSaldo(29.0);
-        depositaEn1.setCuentaReferencia(cuentaref);
-        depositaEn1.setPooledAccount(pooled);
-        em.persist(segregada);
-        em.persist(depositaEn1);
-        
-        
-        
-        PersonaAutorizada personaautorizada = new PersonaAutorizada();
-        personaautorizada.setIdentificacion("77670001");
-        personaautorizada.setNombre("Oussama");
-        personaautorizada.setApellidos("Boutoil");
-        personaautorizada.setDireccion("Almargen");
-        personaautorizada.setEstado("activo");
-        //personaautorizada.setUsuario(usuario_personaAutorizada);
-        
-        
-        Usuario usuario_personaAutorizada = new Usuario();
+		Segregada segregada1 = new Segregada();
+		segregada1.setIban("ES2022");
+		segregada1.setSwift("6789");
+		segregada1.setEstado("baja");
+		segregada1.setFechaApertura(Date.valueOf("2022-04-28"));
+		segregada1.setCuentaReferencia(cuentaref);
+		segregada1.setCliente(nuevo_cliente3);
+		em.persist(segregada1);
+
+		DepositaEn depositaEn1 = new DepositaEn();
+
+		depositaEn1.setSaldo(29.0);
+		depositaEn1.setCuentaReferencia(cuentaref);
+		depositaEn1.setPooledAccount(pooled);
+		em.persist(segregada);
+		em.persist(depositaEn1);
+
+		PersonaAutorizada personaautorizada = new PersonaAutorizada();
+		personaautorizada.setIdentificacion("77670001");
+		personaautorizada.setNombre("Oussama");
+		personaautorizada.setApellidos("Boutoil");
+		personaautorizada.setDireccion("Almargen");
+		personaautorizada.setEstado("activo");
+		// personaautorizada.setUsuario(usuario_personaAutorizada);
+
+		Usuario usuario_personaAutorizada = new Usuario();
 		usuario_personaAutorizada.setNombreUsuario("Oussama");
 		usuario_personaAutorizada.setPassword("8234");
 		usuario_personaAutorizada.setTipo("N");
-		usuario_personaAutorizada.setPersonaAutorizada(personaautorizada);;
+		usuario_personaAutorizada.setPersonaAutorizada(personaautorizada);
+		;
 		em.persist(usuario_personaAutorizada);
-		
-		
+
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
-        transaccion.setCantidad(30.0);
-        transaccion.setComision(1.0);
-        transaccion.setCuenta1(cuentaref);
-        transaccion.setCuenta2(cuentaref2);
-        transaccion.setDivisa1(euro);
-        transaccion.setDivisa2(dolar);
-        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
-        transaccion.setInternacional(null);
-        transaccion.setTipo("CD");
-        em.persist(transaccion);
- 
-        
-        Autorizacion autorizacion = new Autorizacion();
-        autorizacion.setEmpresa(nueva_empresa);
-        autorizacion.setPersonaAutorizada(personaautorizada);
-        autorizacion.setTipo(1);
-        
-        em.persist(personaautorizada);
-        em.persist(autorizacion);
-        
+		transaccion.setCantidad(30.0);
+		transaccion.setComision(1.0);
+		transaccion.setCuenta1(cuentaref);
+		transaccion.setCuenta2(cuentaref2);
+		transaccion.setDivisa1(euro);
+		transaccion.setDivisa2(dolar);
+		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setInternacional(null);
+		transaccion.setTipo("CD");
+		em.persist(transaccion);
+
+		Autorizacion autorizacion = new Autorizacion();
+		autorizacion.setEmpresa(nueva_empresa);
+		autorizacion.setPersonaAutorizada(personaautorizada);
+		autorizacion.setTipo(1);
+
+		em.persist(personaautorizada);
+		em.persist(autorizacion);
+
 		em.getTransaction().commit();
-		
+
 		em.close();
 		emf.close();
 	}
