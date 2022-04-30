@@ -191,12 +191,36 @@ public class DivisaPr {
         l.add(depositaEn2);
         
         pooled.setDepositaEns(l);
+        
+        Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
 		
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
+		
+        Transaccion transaccion = new Transaccion();
+		transaccion.setIdUnico(1234);
+        transaccion.setCantidad(30.0);
+        transaccion.setComision(1.0);
+        transaccion.setCuenta1(cuentaref);
+        transaccion.setCuenta2(cuentaref2);
+        transaccion.setDivisa1(euro);
+        transaccion.setDivisa2(dolar);
+        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+        transaccion.setInternacional(null);
+        transaccion.setTipo("CD");
         
 		
 		try {
 			
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, null, null);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, null, transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		}catch(CuentasDiferentesException e) {
 			//OK
@@ -253,6 +277,8 @@ public class DivisaPr {
 		dolar.setNombre("euro");
 		dolar.setCambioeuro(1.0);
 		dolar.setSimbolo("€");
+		
+		
         
         CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -292,10 +318,23 @@ public class DivisaPr {
         l.add(depositaEn2);
         
         pooled.setDepositaEns(l);
+        
+        Transaccion transaccion = new Transaccion();
+		transaccion.setIdUnico(1234);
+        transaccion.setCantidad(30.0);
+        transaccion.setComision(1.0);
+        transaccion.setCuenta1(cuentaref);
+        transaccion.setCuenta2(cuentaref2);
+        transaccion.setDivisa1(euro);
+        transaccion.setDivisa2(dolar);
+        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+        transaccion.setInternacional(null);
+        transaccion.setTipo("CD");
 		
 		try {
 			
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 50.0, null);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 50.0, transaccion);
 			fail("Debe saltar exception de que el saldo es insuficiente");
 		}catch(SaldoInsuficienteException e) {
 			//OK
@@ -441,11 +480,36 @@ public class DivisaPr {
         l.add(depositaEn2);
         
         pooled.setDepositaEns(l);
+        
+        Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+		
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
+        
+        Transaccion transaccion = new Transaccion();
+		transaccion.setIdUnico(1234);
+        transaccion.setCantidad(30.0);
+        transaccion.setComision(1.0);
+        transaccion.setCuenta1(cuentaref);
+        transaccion.setCuenta2(cuentaref2);
+        transaccion.setDivisa1(euro);
+        transaccion.setDivisa2(dolar);
+        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+        transaccion.setInternacional(null);
+        transaccion.setTipo("CD");
 		
 		
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
-			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, null, null);
+			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 10.0, transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		}catch(CuentasDiferentesException e) {
 			//OK
@@ -543,11 +607,24 @@ public class DivisaPr {
         l.add(depositaEn2);
         
         pooled.setDepositaEns(l);
+        
+        Transaccion transaccion = new Transaccion();
+		transaccion.setIdUnico(1234);
+        transaccion.setCantidad(30.0);
+        transaccion.setComision(1.0);
+        transaccion.setCuenta1(cuentaref);
+        transaccion.setCuenta2(cuentaref2);
+        transaccion.setDivisa1(euro);
+        transaccion.setDivisa2(dolar);
+        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+        transaccion.setInternacional(null);
+        transaccion.setTipo("CD");
 		
 		
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
-			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 50.0,null);
+			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 50.0,transaccion);
 			fail("Debe saltar exception de que el saldo es insuficiente");
 		}catch(SaldoInsuficienteException e) {
 			
