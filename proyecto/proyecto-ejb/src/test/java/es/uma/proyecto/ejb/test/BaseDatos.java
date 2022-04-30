@@ -272,6 +272,7 @@ public class BaseDatos {
         transaccion.setFechainstruccion(null);
         transaccion.setInternacional(null);
         transaccion.setTipo("CD");
+        em.persist(transaccion);
  
         
         Autorizacion autorizacion = new Autorizacion();
