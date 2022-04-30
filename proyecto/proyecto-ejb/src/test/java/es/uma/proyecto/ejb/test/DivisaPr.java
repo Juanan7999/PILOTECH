@@ -3,6 +3,7 @@ package es.uma.proyecto.ejb.test;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -185,7 +186,7 @@ public class DivisaPr {
         depositaEn2.setCuentaReferencia(cuentaref2);
         depositaEn2.setPooledAccount(pooled2);
         
-        List<DepositaEn> l;
+        List<DepositaEn> l = new ArrayList<>();
         l.add(depositaEn1);
         l.add(depositaEn2);
         
@@ -264,7 +265,7 @@ public class DivisaPr {
 		cuentaref.setDivisa(euro);
 		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
-		cuentaref2.setIban("ES1111");
+		cuentaref2.setIban("ES1114");
 		cuentaref2.setSwift("2345");
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
@@ -286,7 +287,7 @@ public class DivisaPr {
         depositaEn2.setPooledAccount(pooled);
         
         
-        List<DepositaEn> l;
+        List<DepositaEn> l = new ArrayList<>();
         l.add(depositaEn1);
         l.add(depositaEn2);
         
@@ -435,7 +436,7 @@ public class DivisaPr {
         depositaEn2.setCuentaReferencia(cuentaref2);
         depositaEn2.setPooledAccount(pooled2);
         
-        List<DepositaEn> l;
+        List<DepositaEn> l = new ArrayList<>();
         l.add(depositaEn1);
         l.add(depositaEn2);
         
@@ -515,7 +516,7 @@ public class DivisaPr {
 		cuentaref.setDivisa(euro);
 		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
-		cuentaref2.setIban("ES1111");
+		cuentaref2.setIban("ES1114");
 		cuentaref2.setSwift("2345");
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
@@ -537,7 +538,7 @@ public class DivisaPr {
         depositaEn2.setPooledAccount(pooled);
         
         
-        List<DepositaEn> l;
+        List<DepositaEn> l = new ArrayList<>();
         l.add(depositaEn1);
         l.add(depositaEn2);
         
