@@ -109,7 +109,7 @@ public class DivisaPr {
 
 	}
 
-	/*
+	
 	
 	@Requisitos({ "RF17" })
 	@Test
@@ -178,6 +178,8 @@ public class DivisaPr {
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
+		
+		
 
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
@@ -206,8 +208,14 @@ public class DivisaPr {
 		l.add(depositaEn2);
 
 		pooled.setDepositaEns(l);
-
 		
+		List<DepositaEn> l2 = new ArrayList<>();
+		l2.add(depositaEn1);
+		cuentaref.setDepositaEns(l2);
+		
+		List<DepositaEn> l3 = new ArrayList<>();
+		l3.add(depositaEn2);
+		cuentaref2.setDepositaEns(l3);
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1235);
@@ -222,7 +230,7 @@ public class DivisaPr {
 
 		try {
 
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 30.0,transaccion);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 20.0,transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		} catch (CuentasDiferentesException e) {
 			// OK
@@ -232,7 +240,7 @@ public class DivisaPr {
 
 	}
 
-	*/
+	
 
 	/*
 	
