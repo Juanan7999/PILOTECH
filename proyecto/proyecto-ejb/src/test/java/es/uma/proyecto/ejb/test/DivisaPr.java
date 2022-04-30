@@ -242,7 +242,7 @@ public class DivisaPr {
 
 	
 
-	/*
+	
 	
 	@Requisitos({ "RF17" })
 	@Test
@@ -339,6 +339,14 @@ public class DivisaPr {
 		l.add(depositaEn2);
 
 		pooled.setDepositaEns(l);
+		
+		List<DepositaEn> l2 = new ArrayList<>();
+		l2.add(depositaEn1);
+		cuentaref.setDepositaEns(l2);
+		
+		List<DepositaEn> l3 = new ArrayList<>();
+		l3.add(depositaEn2);
+		cuentaref2.setDepositaEns(l3);
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
@@ -363,7 +371,7 @@ public class DivisaPr {
 
 	}
 	
-	*/
+	
 
 	@Requisitos({ "RF18" })
 	@Test
@@ -442,7 +450,7 @@ public class DivisaPr {
 
 	}
 
-	/*
+	
 	
 	@Requisitos({ "RF18" })
 	@Test
@@ -541,7 +549,13 @@ public class DivisaPr {
 
 		pooled.setDepositaEns(l);
 
+		List<DepositaEn> l2 = new ArrayList<>();
+		l2.add(depositaEn1);
+		cuentaref.setDepositaEns(l2);
 		
+		List<DepositaEn> l3 = new ArrayList<>();
+		l3.add(depositaEn2);
+		cuentaref2.setDepositaEns(l3);
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1235);
@@ -556,7 +570,7 @@ public class DivisaPr {
 
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
-			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 30.0, transaccion);
+			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 20.0, transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		} catch (CuentasDiferentesException e) {
 			// OK
@@ -568,9 +582,9 @@ public class DivisaPr {
 
 	}
 	
-	*/
+	
 
-	/*
+	
 	
 	@Requisitos({ "RF18" })
 	@Test
@@ -667,6 +681,14 @@ public class DivisaPr {
 		l.add(depositaEn2);
 
 		pooled.setDepositaEns(l);
+		
+		List<DepositaEn> l2 = new ArrayList<>();
+		l2.add(depositaEn1);
+		cuentaref.setDepositaEns(l2);
+		
+		List<DepositaEn> l3 = new ArrayList<>();
+		l3.add(depositaEn2);
+		cuentaref2.setDepositaEns(l3);
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
@@ -693,6 +715,6 @@ public class DivisaPr {
 
 	}
 	
-	*/
+	
 
 }
