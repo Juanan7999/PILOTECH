@@ -203,14 +203,14 @@ public class BaseDatos {
 		em.persist(cuentaref);
 		
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
-		cuentaref.setIban("ES1114");
-		cuentaref.setSwift("2345");
-		cuentaref.setNombrebanco("Santander");
-		cuentaref.setSucursal("Plaza mayor");
-		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
-		cuentaref.setEstado("activa");
-		cuentaref.setDivisa(dolar);
+		cuentaref2.setIban("ES1114");
+		cuentaref2.setSwift("2345");
+		cuentaref2.setNombrebanco("Santander");
+		cuentaref2.setSucursal("Plaza mayor");
+		cuentaref2.setSaldo(45.0);
+		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setEstado("activa");
+		cuentaref2.setDivisa(dolar);
 		em.persist(cuentaref2);
 		
 		

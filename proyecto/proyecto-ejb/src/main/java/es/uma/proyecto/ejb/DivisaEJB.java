@@ -3,6 +3,7 @@ package es.uma.proyecto.ejb;
 
 import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -22,6 +23,7 @@ import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
+@Stateless
 public class DivisaEJB implements GestionDivisa {
 
 	private static final Logger LOG = Logger.getLogger(ClienteEJB.class.getCanonicalName());

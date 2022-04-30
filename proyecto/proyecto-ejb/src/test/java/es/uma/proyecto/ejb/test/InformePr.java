@@ -25,7 +25,7 @@ public class InformePr {
 
 	private static final Logger LOG = Logger.getLogger(ClientePr.class.getCanonicalName());
 
-	private static final String INFORME_EJB = "java:global/classes/ClienteEJB";
+	private static final String INFORME_EJB = "java:global/classes/InformeEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
 	
 	private GestionInforme gestionInforme;
