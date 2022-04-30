@@ -29,7 +29,7 @@ public class InformePr {
 
 	private static final String INFORME_EJB = "java:global/classes/InformeEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
-	private static final String USUARIO_EJB = "java:global/classes/InformeEJB";
+	private static final String USUARIO_EJB = "java:global/classes/UsuarioEJB";
 	
 	private GestionInforme gestionInforme;
 	private GestionUsuario gestionUsuario;
