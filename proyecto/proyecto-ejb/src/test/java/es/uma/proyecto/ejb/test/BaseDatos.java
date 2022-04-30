@@ -222,7 +222,7 @@ public class BaseDatos {
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
-		transaccion.setCantidad(30.0);
+		transaccion.setCantidad(50.0);
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
@@ -233,6 +233,20 @@ public class BaseDatos {
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 		em.persist(transaccion);
+		
+		Transaccion transaccion2 = new Transaccion();
+		transaccion2.setIdUnico(1235);
+		transaccion2.setCantidad(30.0);
+		transaccion2.setComision(1.0);
+		transaccion2.setCuenta1(cuentaref);
+		transaccion2.setCuenta2(cuentaref2);
+		transaccion2.setDivisa1(euro);
+		transaccion2.setDivisa2(dolar);
+		transaccion2.setFechaejecucion(Date.valueOf("2022-04-25"));
+		transaccion2.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion2.setInternacional(null);
+		transaccion2.setTipo("CD");
+		em.persist(transaccion2);
 
 		Autorizacion autorizacion = new Autorizacion();
 		autorizacion.setEmpresa(nueva_empresa);

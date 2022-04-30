@@ -197,7 +197,7 @@ public class DivisaPr {
 		
 
 		Transaccion transaccion = new Transaccion();
-		transaccion.setIdUnico(1234);
+		transaccion.setIdUnico(1235);
 		transaccion.setCantidad(30.0);
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
@@ -209,7 +209,7 @@ public class DivisaPr {
 
 		try {
 
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, null,transaccion);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 30.0,transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		} catch (CuentasDiferentesException e) {
 			// OK
@@ -305,7 +305,7 @@ public class DivisaPr {
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
-		transaccion.setCantidad(30.0);
+		transaccion.setCantidad(50.0);
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
@@ -492,7 +492,7 @@ public class DivisaPr {
 		
 
 		Transaccion transaccion = new Transaccion();
-		transaccion.setIdUnico(1234);
+		transaccion.setIdUnico(1235);
 		transaccion.setCantidad(30.0);
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
@@ -504,7 +504,7 @@ public class DivisaPr {
 
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
-			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 10.0, transaccion);
+			gestionDivisa.cambioDeDivisaAdmin(admin, "77670001", pooled, cuentaref, cuentaref2, 30.0, transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		} catch (CuentasDiferentesException e) {
 			// OK
@@ -602,7 +602,7 @@ public class DivisaPr {
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
-		transaccion.setCantidad(30.0);
+		transaccion.setCantidad(50.0);
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
