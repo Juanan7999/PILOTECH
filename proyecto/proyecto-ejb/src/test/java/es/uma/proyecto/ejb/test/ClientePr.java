@@ -172,7 +172,7 @@ public class ClientePr {
 	public void testDevolverTodosClientes() {
 		int i = gestionCliente.devolverTodosClientes().size();
 		
-		assertEquals(7, i);
+		assertEquals(6, i);
 	}
 	
 	
