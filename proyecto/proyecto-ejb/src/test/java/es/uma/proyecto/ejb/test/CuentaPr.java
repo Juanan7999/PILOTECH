@@ -35,8 +35,6 @@ public class CuentaPr {
 	private GestionCuenta gestionCuenta;
 	private GestionUsuario gestionUsuario;
 	
-	/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("proyecto-ejbTest");
-	EntityManager em = emf.createEntityManager();*/
 	
 	@Before
 	public void setup() throws NamingException  {

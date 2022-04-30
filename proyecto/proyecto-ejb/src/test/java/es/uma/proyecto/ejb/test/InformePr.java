@@ -30,21 +30,19 @@ public class InformePr {
 	
 	private GestionInforme gestionInforme;
 	
-	@PersistenceContext(name="proyecto-ejbTest")
-	private EntityManager em;
 	@Before
 	public void setup() throws NamingException  {
 		gestionInforme = (GestionInforme) SuiteTest.ctx.lookup(INFORME_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
-	@Requisitos({"RF2"})
+	@Requisitos({"RF11"})
 	@Test
 	public void testDevolverProductosTodasHolandaExistente() {
 		
 		try {
 			List<Segregada> lista = gestionInforme.devolverInformeHolandaProductoTodas("ES1113");
-			assertEquals(lista,1);
+			assertEquals(lista.size(),1);
 		}catch(CuentaNoExistenteException e) {
 			fail("La cuenta segregada si existe");
 		}catch(ProyectoEjbException e) {

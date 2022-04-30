@@ -42,8 +42,8 @@ public class ClientePr {
 	
 	private GestionCliente gestionCliente;
 	private GestionUsuario gestionUsuario;
-	@PersistenceContext(name="proyecto-ejbTest")
-	private EntityManager em;
+
+	
 	@Before
 	public void setup() throws NamingException  {
 		gestionCliente = (GestionCliente) SuiteTest.ctx.lookup(CLIENTE_EJB);

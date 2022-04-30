@@ -34,14 +34,12 @@ public class UsuarioPr {
 		gestionUsuario = (GestionUsuario) SuiteTest.ctx.lookup(USUARIO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
+	
+	
 	@Requisitos({"RF1", "RF10"})
 	@Test
 	public void testCreacionUsuarioExistente() throws ProyectoEjbException {
-		
-	
-		
-		
-		
+
 		Usuario usuario = new Usuario();
 		usuario.setNombreUsuario("Juan");
 		usuario.setPassword("1234");
