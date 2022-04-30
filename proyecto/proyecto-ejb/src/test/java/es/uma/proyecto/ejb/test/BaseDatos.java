@@ -268,8 +268,8 @@ public class BaseDatos {
         transaccion.setCuenta2(cuentaref2);
         transaccion.setDivisa1(euro);
         transaccion.setDivisa2(dolar);
-        transaccion.setFechaejecucion(null);
-        transaccion.setFechainstruccion(null);
+        transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
+        transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
         transaccion.setInternacional(null);
         transaccion.setTipo("CD");
         em.persist(transaccion);
