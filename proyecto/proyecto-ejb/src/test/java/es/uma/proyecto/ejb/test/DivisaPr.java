@@ -209,8 +209,7 @@ public class DivisaPr {
 
 		try {
 
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, null,
-					transaccion);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, null,transaccion);
 			fail("Debe saltar exception de que la pooled account no existe");
 		} catch (CuentasDiferentesException e) {
 			// OK
@@ -317,8 +316,7 @@ public class DivisaPr {
 
 		try {
 
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 50.0,
-					transaccion);
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("77670001", pooled, cuentaref, cuentaref2, 50.0,transaccion);
 			fail("Debe saltar exception de que el saldo es insuficiente");
 		} catch (SaldoInsuficienteException e) {
 			// OK
@@ -368,11 +366,29 @@ public class DivisaPr {
 	@Test
 	public void testCambioDivisaAdminPooledNoExistente() {
 
+		Individual nuevo_cliente2 = new Individual();
+		nuevo_cliente2.setIdentificacion("77670019");
+		nuevo_cliente2.setTipoCliente("F");
+		nuevo_cliente2.setEstado("activo");
+		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+
+		nuevo_cliente2.setFechaBaja(null);
+
+		nuevo_cliente2.setDireccion("Calle Chozuelas");
+		nuevo_cliente2.setCiudad("Alora");
+		nuevo_cliente2.setCodigopostal(29500);
+		nuevo_cliente2.setPais("España");
+
+		nuevo_cliente2.setNombre("Alberto");
+		nuevo_cliente2.setApellido("Garcia");
+		nuevo_cliente2.setFechaNacimiento(null);
+
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES2112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
 		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setCliente(nuevo_cliente2);
 
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
