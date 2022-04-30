@@ -130,6 +130,18 @@ public class DivisaPr {
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
 
+		Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
+		
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
@@ -152,6 +164,7 @@ public class DivisaPr {
 		cuentaref.setSaldo(45.0);
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(euro);
 
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
@@ -161,6 +174,7 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		cuentaref2.setDivisa(dolar);
 
 		DepositaEn depositaEn1 = new DepositaEn();
 
@@ -180,17 +194,7 @@ public class DivisaPr {
 
 		pooled.setDepositaEns(l);
 
-		Divisa euro = new Divisa();
-		euro.setAbreviatura("euro");
-		euro.setNombre("euro");
-		euro.setCambioeuro(1.0);
-		euro.setSimbolo("€");
-
-		Divisa dolar = new Divisa();
-		dolar.setAbreviatura("euro");
-		dolar.setNombre("euro");
-		dolar.setCambioeuro(1.0);
-		dolar.setSimbolo("€");
+		
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
@@ -198,8 +202,6 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setDivisa1(euro);
-		transaccion.setDivisa2(dolar);
 		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
 		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
 		transaccion.setInternacional(null);
@@ -308,8 +310,6 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setDivisa1(euro);
-		transaccion.setDivisa2(dolar);
 		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
 		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
 		transaccion.setInternacional(null);
@@ -422,6 +422,18 @@ public class DivisaPr {
 		pooled2.setEstado("activa");
 		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
 		pooled2.setCliente(nuevo_cliente2);
+		
+		Divisa euro = new Divisa();
+		euro.setAbreviatura("euro");
+		euro.setNombre("euro");
+		euro.setCambioeuro(1.0);
+		euro.setSimbolo("€");
+
+		Divisa dolar = new Divisa();
+		dolar.setAbreviatura("euro");
+		dolar.setNombre("euro");
+		dolar.setCambioeuro(1.0);
+		dolar.setSimbolo("€");
 
 		CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -431,6 +443,7 @@ public class DivisaPr {
 		cuentaref.setSaldo(45.0);
 		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref.setEstado("activa");
+		cuentaref.setDivisa(euro);
 
 		CuentaReferencia cuentaref2 = new CuentaReferencia();
 		cuentaref2.setIban("ES1114");
@@ -440,6 +453,7 @@ public class DivisaPr {
 		cuentaref2.setSaldo(45.0);
 		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
 		cuentaref2.setEstado("activa");
+		cuentaref2.setDivisa(dolar);
 
 		DepositaEn depositaEn1 = new DepositaEn();
 
@@ -459,17 +473,7 @@ public class DivisaPr {
 
 		pooled.setDepositaEns(l);
 
-		Divisa euro = new Divisa();
-		euro.setAbreviatura("euro");
-		euro.setNombre("euro");
-		euro.setCambioeuro(1.0);
-		euro.setSimbolo("€");
-
-		Divisa dolar = new Divisa();
-		dolar.setAbreviatura("euro");
-		dolar.setNombre("euro");
-		dolar.setCambioeuro(1.0);
-		dolar.setSimbolo("€");
+		
 
 		Transaccion transaccion = new Transaccion();
 		transaccion.setIdUnico(1234);
@@ -477,8 +481,6 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setDivisa1(euro);
-		transaccion.setDivisa2(dolar);
 		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
 		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
 		transaccion.setInternacional(null);
@@ -588,8 +590,6 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setDivisa1(euro);
-		transaccion.setDivisa2(dolar);
 		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
 		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
 		transaccion.setInternacional(null);
