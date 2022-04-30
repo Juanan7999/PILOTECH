@@ -109,6 +109,8 @@ public class DivisaPr {
 
 	}
 
+	/*
+	
 	@Requisitos({ "RF17" })
 	@Test
 	public void testCambioDivisaClientePersAutorizadaCuentasDiferentes() {
@@ -230,6 +232,10 @@ public class DivisaPr {
 
 	}
 
+	*/
+
+	/*
+	
 	@Requisitos({ "RF17" })
 	@Test
 	public void testCambioDivisaClientePersAutorizadaSaldoInsuf() {
@@ -348,6 +354,8 @@ public class DivisaPr {
 		}
 
 	}
+	
+	*/
 
 	@Requisitos({ "RF18" })
 	@Test
@@ -426,6 +434,8 @@ public class DivisaPr {
 
 	}
 
+	/*
+	
 	@Requisitos({ "RF18" })
 	@Test
 	public void testCambioDivisaAdminCuentasDiferentes() {
@@ -509,6 +519,7 @@ public class DivisaPr {
 		depositaEn1.setSaldo(29.0);
 		depositaEn1.setCuentaReferencia(cuentaref);
 		depositaEn1.setPooledAccount(pooled);
+	
 
 		DepositaEn depositaEn2 = new DepositaEn();
 
@@ -548,7 +559,11 @@ public class DivisaPr {
 		}
 
 	}
+	
+	*/
 
+	/*
+	
 	@Requisitos({ "RF18" })
 	@Test
 	public void testCambioDivisiaAdminSaldoInsuf() {
@@ -669,5 +684,7 @@ public class DivisaPr {
 		}
 
 	}
+	
+	*/
 
 }
