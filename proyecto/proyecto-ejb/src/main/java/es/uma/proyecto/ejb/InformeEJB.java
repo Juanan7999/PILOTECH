@@ -30,79 +30,80 @@ import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Stateless
-public class InformeEJB implements GestionInforme{
+public class InformeEJB implements GestionInforme {
 
 	private static final Logger LOG = Logger.getLogger(InformeEJB.class.getCanonicalName());
 
 	@PersistenceContext(name = "proyecto-ejb")
 	private EntityManager em;
 
-	@Override 
+	@Override
 	public List<Segregada> devolverInformeHolandaProductoTodas(String IBAN) throws CuentaNoExistenteException {
 		List<Segregada> listadoCuentas = new ArrayList<>();
 		Segregada seg = em.find(Segregada.class, IBAN);
-		if(seg == null) {
+		if (seg == null) {
 			throw new CuentaNoExistenteException();
 		}
 		listadoCuentas.add(seg);
 		return listadoCuentas;
 	}
-	
-	@Override 
+
+	@Override
 	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException {
-		
+
 		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
-		query.setParameter("estado" , "baja");
+		query.setParameter("estado", "baja");
 		query.setParameter("iban", IBAN);
 
 		List<Segregada> listadoCuentas = query.getResultList();
-		
-		if(listadoCuentas.size() == 0) {
+
+		if (listadoCuentas.size() == 0) {
 			throw new CuentaNoExistenteException();
 		}
-		
+
 		return listadoCuentas;
-	
+
 	}
-	
-	@Override 
-	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException {
-		
-		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
-		query.setParameter("estado" , "activa");
-		query.setParameter("iban", IBAN);
-		
-		List<Segregada> listadoCuentas = query.getResultList();
-		
-		if(listadoCuentas.size() == 0) {
-			throw new CuentaNoExistenteException();
-		}
-		
-		return listadoCuentas;
-		
-	}
-	
+
 	@Override
-	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException{
-		Query query = em.createQuery("SELECT i FROM Individual i where i.nombre = :nombre AND i.apellido = :apellido AND i.fechaAlta = :fechaalta"
-				+ " AND i.fechaBaja = :fechabaja AND i.direccion = :direccion");
-		
-		query.setParameter("nombre" , nombre);
-		query.setParameter("apellido" , apellidos);
-		query.setParameter("fechaalta" , fechaAlta);
-		query.setParameter("fechabaja" , fechaBaja);
-		query.setParameter("direccion" , direccion);
-		
-		
+	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException {
+
+		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
+		query.setParameter("estado", "activa");
+		query.setParameter("iban", IBAN);
+
+		List<Segregada> listadoCuentas = query.getResultList();
+
+		if (listadoCuentas.size() == 0) {
+			throw new CuentaNoExistenteException();
+		}
+
+		return listadoCuentas;
+
+	}
+
+	@Override
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta,
+			Date fechaBaja, String direccion) throws ClienteNoExistenteException {
+		Query query = em.createQuery(
+				"SELECT i FROM Individual i where i.nombre = :nombre AND i.apellido = :apellido AND i.fechaAlta = :fechaalta"
+						+ " AND i.fechaBaja = :fechabaja AND i.direccion = :direccion");
+
+		query.setParameter("nombre", nombre);
+		query.setParameter("apellido", apellidos);
+		query.setParameter("fechaalta", fechaAlta);
+		query.setParameter("fechabaja", fechaBaja);
+		query.setParameter("direccion", direccion);
+
 		List<Individual> listaClientes = query.getResultList();
-		if(listaClientes.size() == 0) {
+		if (listaClientes.size() == 0) {
 			throw new ClienteNoExistenteException();
 		}
-		
+
 		return listaClientes;
 	}
-	
-	public void generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+
+	public List<Segregada> generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -112,8 +113,8 @@ public class InformeEJB implements GestionInforme{
 
 		String nombre_archivo_csv;
 
-		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CuentaFintech c", CuentaFintech.class);
-		List<CuentaFintech> customers = query.getResultList();
+		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		List<Segregada> cuentas = query.getResultList();
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -127,8 +128,8 @@ public class InformeEJB implements GestionInforme{
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
 			csvPrinter.print("Ebury_IBAN_" + dtf2.format(LocalDateTime.now()).trim() + "\n");
-			for (CuentaFintech c : customers) {
-				
+			for (CuentaFintech c : cuentas) {
+
 				Empresa clienteEmpresa = em.find(Empresa.class, c.getCliente().getIdentificacion());
 
 				if (clienteEmpresa == null) {
@@ -181,9 +182,10 @@ public class InformeEJB implements GestionInforme{
 		} catch (IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
+		return cuentas;
 	}
 
-	public void generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+	public List<Segregada> generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -193,8 +195,8 @@ public class InformeEJB implements GestionInforme{
 
 		String nombre_archivo_csv;
 
-		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CuentaFintech c", CuentaFintech.class);
-		List<CuentaFintech> customers = query.getResultList();
+		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		List<Segregada> cuentas = query.getResultList();
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		String date = dtf.format(LocalDateTime.now());
@@ -206,7 +208,7 @@ public class InformeEJB implements GestionInforme{
 			@SuppressWarnings("deprecation")
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
-			for (CuentaFintech c : customers) {
+			for (CuentaFintech c : cuentas) {
 
 				if (c.getEstado().equals("activa")) {
 
@@ -263,6 +265,9 @@ public class InformeEJB implements GestionInforme{
 		} catch (IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
+
+		return cuentas;
+
 	}
 
 }
