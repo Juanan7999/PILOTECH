@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -28,6 +29,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
+@Stateless
 public class InformeEJB implements GestionInforme{
 
 	private static final Logger LOG = Logger.getLogger(InformeEJB.class.getCanonicalName());
