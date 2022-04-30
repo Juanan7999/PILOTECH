@@ -147,11 +147,11 @@ public class DivisaPr {
         pooled.setCliente(nuevo_cliente2);
         
         PooledAccount pooled2 = new PooledAccount();
-        pooled.setIban("ES1115");
-        pooled.setSwift("2346");
-        pooled.setEstado("activa");
-        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled.setCliente(nuevo_cliente2);
+        pooled2.setIban("ES1115");
+        pooled2.setSwift("2346");
+        pooled2.setEstado("activa");
+        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled2.setCliente(nuevo_cliente2);
         
         
         CuentaReferencia cuentaref = new CuentaReferencia();
@@ -235,11 +235,11 @@ public class DivisaPr {
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
         
         PooledAccount pooled2 = new PooledAccount();
-        pooled.setIban("ES1115");
-        pooled.setSwift("2346");
-        pooled.setEstado("activa");
-        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled.setCliente(nuevo_cliente2);
+        pooled2.setIban("ES1115");
+        pooled2.setSwift("2346");
+        pooled2.setEstado("activa");
+        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled2.setCliente(nuevo_cliente2);
         
         Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
@@ -397,11 +397,11 @@ public class DivisaPr {
         pooled.setCliente(nuevo_cliente2);
         
         PooledAccount pooled2 = new PooledAccount();
-        pooled.setIban("ES1115");
-        pooled.setSwift("2346");
-        pooled.setEstado("activa");
-        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled.setCliente(nuevo_cliente2);
+        pooled2.setIban("ES1115");
+        pooled2.setSwift("2346");
+        pooled2.setEstado("activa");
+        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled2.setCliente(nuevo_cliente2);
         
         
         CuentaReferencia cuentaref = new CuentaReferencia();
@@ -486,11 +486,11 @@ public class DivisaPr {
         pooled.setFechaApertura(Date.valueOf("2022-04-25"));
         
         PooledAccount pooled2 = new PooledAccount();
-        pooled.setIban("ES1115");
-        pooled.setSwift("2346");
-        pooled.setEstado("activa");
-        pooled.setFechaApertura(Date.valueOf("2022-04-25"));
-        pooled.setCliente(nuevo_cliente2);
+        pooled2.setIban("ES1115");
+        pooled2.setSwift("2346");
+        pooled2.setEstado("activa");
+        pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+        pooled2.setCliente(nuevo_cliente2);
         
         Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
