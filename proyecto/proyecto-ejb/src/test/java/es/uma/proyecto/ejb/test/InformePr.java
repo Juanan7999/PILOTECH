@@ -150,5 +150,27 @@ public class InformePr {
 		}
 
 	}
+	
+	@Requisitos({ "RF12" })
+	@Test
+	public void testGenerarReporteInicialAlemaniaNoAdmin() {
+		
+		
+		
+		
+		
+	}
+	
+	@Requisitos({ "RF12" })
+	@Test
+	public void testGenerarReporteSemanalAlemaniaNoAdmin() {
+		
+		
+		
+		
+		
+	}
+	
+	
 
 }

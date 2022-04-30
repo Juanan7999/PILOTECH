@@ -112,7 +112,7 @@ public class InformeEJB implements GestionInforme{
 
 		String nombre_archivo_csv;
 
-		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CLIENTE c", CuentaFintech.class);
+		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CuentaFintech c", CuentaFintech.class);
 		List<CuentaFintech> customers = query.getResultList();
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -193,7 +193,7 @@ public class InformeEJB implements GestionInforme{
 
 		String nombre_archivo_csv;
 
-		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CLIENTE c", CuentaFintech.class);
+		TypedQuery<CuentaFintech> query = em.createQuery("SELECT c FROM CuentaFintech c", CuentaFintech.class);
 		List<CuentaFintech> customers = query.getResultList();
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
