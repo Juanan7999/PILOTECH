@@ -118,17 +118,28 @@ public class DivisaPr {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-
 		nuevo_cliente2.setFechaBaja(null);
-
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
+		
+		Individual nuevo_cliente3 = new Individual();
+		nuevo_cliente3.setIdentificacion("77670002");
+		nuevo_cliente3.setTipoCliente("F");
+		nuevo_cliente3.setEstado("activo");
+		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaBaja(null);
+		nuevo_cliente3.setDireccion("Calle Chozuelas");
+		nuevo_cliente3.setCiudad("Alora");
+		nuevo_cliente3.setCodigopostal(29500);
+		nuevo_cliente3.setPais("España");
+		nuevo_cliente3.setNombre("Lucas");
+		nuevo_cliente3.setApellido("Garcia");
+		nuevo_cliente3.setFechaNacimiento(null);
 
 		Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
@@ -154,7 +165,7 @@ public class DivisaPr {
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
 		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
-		pooled2.setCliente(nuevo_cliente2);
+		pooled2.setCliente(nuevo_cliente3);
 
 		CuentaReferencia cuentaref = new CuentaReferencia();
 		cuentaref.setIban("ES1111");
@@ -228,30 +239,42 @@ public class DivisaPr {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-
 		nuevo_cliente2.setFechaBaja(null);
-
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
+		
+		Individual nuevo_cliente3 = new Individual();
+		nuevo_cliente3.setIdentificacion("77670002");
+		nuevo_cliente3.setTipoCliente("F");
+		nuevo_cliente3.setEstado("activo");
+		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaBaja(null);
+		nuevo_cliente3.setDireccion("Calle Chozuelas");
+		nuevo_cliente3.setCiudad("Alora");
+		nuevo_cliente3.setCodigopostal(29500);
+		nuevo_cliente3.setPais("España");
+		nuevo_cliente3.setNombre("Lucas");
+		nuevo_cliente3.setApellido("Garcia");
+		nuevo_cliente3.setFechaNacimiento(null);
 
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
 		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
 		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
-		pooled2.setCliente(nuevo_cliente2);
+		pooled2.setCliente(nuevo_cliente3);
 
 		Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
@@ -371,17 +394,16 @@ public class DivisaPr {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-
 		nuevo_cliente2.setFechaBaja(null);
-
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
+		
+		
 
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES2112");
@@ -413,17 +435,28 @@ public class DivisaPr {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-
 		nuevo_cliente2.setFechaBaja(null);
-
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
+		
+		Individual nuevo_cliente3 = new Individual();
+		nuevo_cliente3.setIdentificacion("77670002");
+		nuevo_cliente3.setTipoCliente("F");
+		nuevo_cliente3.setEstado("activo");
+		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaBaja(null);
+		nuevo_cliente3.setDireccion("Calle Chozuelas");
+		nuevo_cliente3.setCiudad("Alora");
+		nuevo_cliente3.setCodigopostal(29500);
+		nuevo_cliente3.setPais("España");
+		nuevo_cliente3.setNombre("Lucas");
+		nuevo_cliente3.setApellido("Garcia");
+		nuevo_cliente3.setFechaNacimiento(null);
 
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES1112");
@@ -437,7 +470,7 @@ public class DivisaPr {
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
 		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
-		pooled2.setCliente(nuevo_cliente2);
+		pooled2.setCliente(nuevo_cliente3);
 		
 		Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
@@ -525,30 +558,42 @@ public class DivisaPr {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-
 		nuevo_cliente2.setFechaBaja(null);
-
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
+		
+		Individual nuevo_cliente3 = new Individual();
+		nuevo_cliente3.setIdentificacion("77670002");
+		nuevo_cliente3.setTipoCliente("F");
+		nuevo_cliente3.setEstado("activo");
+		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaBaja(null);
+		nuevo_cliente3.setDireccion("Calle Chozuelas");
+		nuevo_cliente3.setCiudad("Alora");
+		nuevo_cliente3.setCodigopostal(29500);
+		nuevo_cliente3.setPais("España");
+		nuevo_cliente3.setNombre("Lucas");
+		nuevo_cliente3.setApellido("Garcia");
+		nuevo_cliente3.setFechaNacimiento(null);
 
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
 		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
 		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
-		pooled2.setCliente(nuevo_cliente2);
+		pooled2.setCliente(nuevo_cliente3);
 
 		Divisa euro = new Divisa();
 		euro.setAbreviatura("euro");
