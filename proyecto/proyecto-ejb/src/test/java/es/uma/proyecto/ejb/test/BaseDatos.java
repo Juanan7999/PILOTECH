@@ -50,23 +50,17 @@ public class BaseDatos {
 		usuario_normal.setTipo("N");
 		em.persist(usuario_normal);
 		
-		
-		
+
 		Individual nuevo_clientebaja = new Individual();
 		nuevo_clientebaja.setIdentificacion("77670010");
 		nuevo_clientebaja.setTipoCliente("F");
 		nuevo_clientebaja.setEstado("baja");
 		nuevo_clientebaja.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
 		nuevo_clientebaja.setFechaBaja(null);
-		
-		
 		nuevo_clientebaja.setDireccion("Calle Chozuelas");
 		nuevo_clientebaja.setCiudad("Alora");
 		nuevo_clientebaja.setCodigopostal(29500);
 		nuevo_clientebaja.setPais("España");
-		
 		nuevo_clientebaja.setNombre("Pepe");
 		nuevo_clientebaja.setApellido("Acedo");
 		nuevo_clientebaja.setFechaNacimiento(null);
@@ -77,16 +71,11 @@ public class BaseDatos {
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
 		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
 		nuevo_cliente.setFechaBaja(null);
-		
-		
 		nuevo_cliente.setDireccion("Calle Chozuelas");
 		nuevo_cliente.setCiudad("Alora");
 		nuevo_cliente.setCodigopostal(29500);
 		nuevo_cliente.setPais("España");
-		
 		nuevo_cliente.setNombre("Jose");
 		nuevo_cliente.setApellido("Garcia");
 		nuevo_cliente.setFechaNacimiento(null);
@@ -97,16 +86,11 @@ public class BaseDatos {
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
 		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
-		nuevo_cliente2.setFechaBaja(null);
-		
-		
+		nuevo_cliente2.setFechaBaja(Date.valueOf("2022-04-26"));
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
 		nuevo_cliente2.setPais("España");
-		
 		nuevo_cliente2.setNombre("Alberto");
 		nuevo_cliente2.setApellido("Garcia");
 		nuevo_cliente2.setFechaNacimiento(null);
@@ -117,61 +101,39 @@ public class BaseDatos {
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
 		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
 		nuevo_cliente3.setFechaBaja(null);
-		
-		
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
 		nuevo_cliente3.setCodigopostal(29500);
 		nuevo_cliente3.setPais("España");
-		
 		nuevo_cliente3.setNombre("Lucas");
 		nuevo_cliente3.setApellido("Garcia");
 		nuevo_cliente3.setFechaNacimiento(null);
 		em.persist(nuevo_cliente3);
-		
-		
+
 		Empresa nueva_empresa = new Empresa();
 		nueva_empresa.setIdentificacion("8888");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
 		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
-			nueva_empresa.setFechaBaja(null);
-		
-		
+		nueva_empresa.setFechaBaja(null);
 		nueva_empresa.setDireccion("Boulevard Pasteur");
 		nueva_empresa.setCiudad("Malaga");
 		nueva_empresa.setCodigopostal(29010);
 		nueva_empresa.setPais("España");
-		
 		nueva_empresa.setRazonSocial("Pilotech");
-		
-		
-		
-		
-		
 		em.persist(nueva_empresa);
-		
 		
 		Individual nuevo_clientebloqueado = new Individual();
 		nuevo_clientebloqueado.setIdentificacion("77670011");
 		nuevo_clientebloqueado.setTipoCliente("F");
 		nuevo_clientebloqueado.setEstado("bloqueado");
 		nuevo_clientebloqueado.setFechaAlta(Date.valueOf("2022-04-23"));
-		
-		
 		nuevo_clientebloqueado.setFechaBaja(null);
-		
-		
 		nuevo_clientebloqueado.setDireccion("Calle Chozuelas");
 		nuevo_clientebloqueado.setCiudad("Alora");
 		nuevo_clientebloqueado.setCodigopostal(29500);
 		nuevo_clientebloqueado.setPais("España");
-		
 		nuevo_clientebloqueado.setNombre("Ernesto");
 		nuevo_clientebloqueado.setApellido("Bloquez");
 		nuevo_clientebloqueado.setFechaNacimiento(null);
@@ -238,7 +200,14 @@ public class BaseDatos {
         segregada.setCuentaReferencia(cuentaref);
         segregada.setCliente(nuevo_cliente3);
 
-       
+        Segregada segregada1 = new Segregada();
+        segregada1.setIban("ES2022");
+        segregada1.setSwift("6789");
+        segregada1.setEstado("baja");
+        segregada1.setFechaApertura(Date.valueOf("2022-04-28"));
+        segregada1.setCuentaReferencia(cuentaref);
+        segregada1.setCliente(nuevo_cliente3);
+        em.persist(segregada1);
 
         DepositaEn depositaEn1 = new DepositaEn();
       

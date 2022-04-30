@@ -52,12 +52,12 @@ public class InformeEJB implements GestionInforme{
 	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException {
 		
 		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
-		query.setParameter(" estado " , "baja");
+		query.setParameter("estado" , "baja");
 		query.setParameter("iban", IBAN);
 
 		List<Segregada> listadoCuentas = query.getResultList();
 		
-		if(listadoCuentas == null) {
+		if(listadoCuentas.size() == 0) {
 			throw new CuentaNoExistenteException();
 		}
 		
@@ -69,12 +69,12 @@ public class InformeEJB implements GestionInforme{
 	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException {
 		
 		Query query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado AND s.iban = :iban");
-		query.setParameter(" estado " , "activa");
+		query.setParameter("estado" , "activa");
 		query.setParameter("iban", IBAN);
 		
 		List<Segregada> listadoCuentas = query.getResultList();
 		
-		if(listadoCuentas == null) {
+		if(listadoCuentas.size() == 0) {
 			throw new CuentaNoExistenteException();
 		}
 		
@@ -84,8 +84,8 @@ public class InformeEJB implements GestionInforme{
 	
 	@Override
 	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException{
-		Query query = em.createQuery("SELECT i FROM Individual i where s.nombre = :nombre AND s.apellido = :apellido AND s.fechaAlta = :fechaalta"
-				+ " AND s.fechaBaja = :fechabaja AND s.direccion = :direccion");
+		Query query = em.createQuery("SELECT i FROM Individual i where i.nombre = :nombre AND i.apellido = :apellido AND i.fechaAlta = :fechaalta"
+				+ " AND i.fechaBaja = :fechabaja AND i.direccion = :direccion");
 		
 		query.setParameter("nombre" , nombre);
 		query.setParameter("apellido" , apellidos);
@@ -95,7 +95,7 @@ public class InformeEJB implements GestionInforme{
 		
 		
 		List<Individual> listaClientes = query.getResultList();
-		if(listaClientes == null) {
+		if(listaClientes.size() == 0) {
 			throw new ClienteNoExistenteException();
 		}
 		
