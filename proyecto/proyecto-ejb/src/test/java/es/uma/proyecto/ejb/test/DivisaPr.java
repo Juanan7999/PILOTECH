@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import org.junit.Before;
 import org.junit.Test;
 
+import es.uma.informatica.sii.anotaciones.Requisitos;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
@@ -50,7 +51,7 @@ public class DivisaPr {
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
-	
+	@Requisitos({"RF17"})
 	@Test
 	public void testCambioDivisaClientePersAutorizadaNoEncontrada() {
 		
@@ -68,7 +69,7 @@ public class DivisaPr {
 	}
 	
 	
-	
+	@Requisitos({"RF17"})
 	@Test
 	public void testCambioDivisaClientePersAutorizadaPooledNoExistente() {
 		
@@ -93,7 +94,7 @@ public class DivisaPr {
 	}
 	
 	
-	
+	@Requisitos({"RF17"})
 	@Test
 	public void testCambioDivisaClientePersAutorizadaCuentasDiferentes() {
 		
@@ -137,6 +138,7 @@ public class DivisaPr {
 		
 	}
 	
+	@Requisitos({"RF17"})
 	@Test
 	public void testCambioDivisiaClientePersAturoizadaSaldoInsuf() {
 		
@@ -176,6 +178,7 @@ public class DivisaPr {
 		
 	}
 	
+	@Requisitos({"RF18"})
 	@Test
 	public void testCambioDivisaAdminUsuarioNoEsAdmin() {
 		
@@ -194,6 +197,7 @@ public class DivisaPr {
 		
 	}
 	
+	@Requisitos({"RF18"})
 	@Test
 	public void testCambioDivisaAdminPooledNoExistente() {
 		
@@ -218,6 +222,7 @@ public class DivisaPr {
 		
 	}
 	
+	@Requisitos({"RF18"})
 	@Test
 	public void testCambioDivisaAdminCuentasDiferentes() {
 		
@@ -262,6 +267,7 @@ public class DivisaPr {
 		
 	}
 	
+	@Requisitos({"RF18"})
 	@Test
 	public void testCambioDivisiaAdminSaldoInsuf() {
 		
