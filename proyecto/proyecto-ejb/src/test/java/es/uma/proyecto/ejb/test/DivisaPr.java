@@ -199,6 +199,24 @@ public class DivisaPr {
 	
 	@Requisitos({"RF18"})
 	@Test
+	public void testCambioDivisiaAdminClientePersAutNoEncontrado() {
+		
+		try {
+			Usuario admin = gestionUsuario.Login("Juan", "8234");
+			gestionDivisa.cambioDeDivisaCliente_Autorizado("67670001", null, null, null , null, null);
+			fail("Debe saltar exception de que el cliente no existe");
+		}catch(ClientePersonaAutorizadaNoEncontradoException e) {
+			//OK
+		}catch(ContraseñaIncorrectaException e) {
+			fail("No deberia saltar exception de contraseña incorrecta");
+		}catch(ProyectoEjbException e) {
+			fail("Exception inesperada");
+		}
+		
+	}
+	
+	@Requisitos({"RF18"})
+	@Test
 	public void testCambioDivisaAdminPooledNoExistente() {
 		
 		PooledAccount pooled = new PooledAccount();
