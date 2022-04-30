@@ -15,10 +15,13 @@ import org.junit.Test;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.Segregada;
+import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionInforme;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 public class InformePr {
 
@@ -26,12 +29,15 @@ public class InformePr {
 
 	private static final String INFORME_EJB = "java:global/classes/InformeEJB";
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "proyecto-ejbTest";
-
+	private static final String USUARIO_EJB = "java:global/classes/InformeEJB";
+	
 	private GestionInforme gestionInforme;
+	private GestionUsuario gestionUsuario;
 
 	@Before
 	public void setup() throws NamingException {
 		gestionInforme = (GestionInforme) SuiteTest.ctx.lookup(INFORME_EJB);
+		gestionUsuario = (GestionUsuario) SuiteTest.ctx.lookup(USUARIO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 
@@ -155,7 +161,15 @@ public class InformePr {
 	@Test
 	public void testGenerarReporteInicialAlemaniaNoAdmin() {
 		
-		
+		try {
+			Usuario admin = gestionUsuario.Login("Jose", "8234");
+			List<Segregada> lista = gestionInforme.generarReporteInicialAlemania(admin);
+			fail("Debe saltar error de que el Usuario no es administrativo");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//OK
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
+		}
 		
 		
 		
@@ -165,9 +179,51 @@ public class InformePr {
 	@Test
 	public void testGenerarReporteSemanalAlemaniaNoAdmin() {
 		
-		
-		
+		try {
+			Usuario admin = gestionUsuario.Login("Jose", "8234");
+			List<Segregada> lista = gestionInforme.generarReporteSemanalAlemania(admin);
+			fail("Debe saltar error de que el Usuario no es administrativo");
+		}catch(UsuarioNoEsAdministrativoException e) {
+			//OK
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
+		}
 		
 		
 	}
+	
+	@Requisitos({ "RF12" })
+	@Test
+	public void testGenerarReporteInicialAlemaniaConAdmin() {
+		
+		try {
+			Usuario admin = gestionUsuario.Login("Juan", "8234");
+			List<Segregada> lista = gestionInforme.generarReporteInicialAlemania(admin);
+			assertEquals(2, lista.size());
+		}catch(UsuarioNoEsAdministrativoException e) {
+			fail("No salta error porque es Administrativo");
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
+		}
+		
+		
+	}
+	
+	@Requisitos({ "RF12" })
+	@Test
+	public void testGenerarReporteSemanalAlemaniaConAdmin() {
+		
+		try {
+			Usuario admin = gestionUsuario.Login("Juan", "8234");
+			List<Segregada> lista = gestionInforme.generarReporteSemanalAlemania(admin);
+			assertEquals(1, lista.size());
+		}catch(UsuarioNoEsAdministrativoException e) {
+			fail("No salta error porque es Administrativo");
+		}catch(ProyectoEjbException e) {
+			fail("Excepcion inesperada");
+		}
+		
+		
+	}
+	
 }
