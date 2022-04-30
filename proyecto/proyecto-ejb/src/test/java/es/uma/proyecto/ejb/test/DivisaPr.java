@@ -203,7 +203,7 @@ public class DivisaPr {
 		
 		try {
 			Usuario admin = gestionUsuario.Login("Juan", "8234");
-			gestionDivisa.cambioDeDivisaCliente_Autorizado("67670001", null, null, null , null, null);
+			gestionDivisa.cambioDeDivisaAdmin(admin,"67670001", null, null, null , null, null);
 			fail("Debe saltar exception de que el cliente no existe");
 		}catch(ClientePersonaAutorizadaNoEncontradoException e) {
 			//OK
