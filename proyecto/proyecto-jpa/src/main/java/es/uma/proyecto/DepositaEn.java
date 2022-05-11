@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class DepositaEn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@MapsId
+	
 	@EmbeddedId
 	private DepositaEnPK id;
 
