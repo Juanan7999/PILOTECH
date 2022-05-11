@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>es.uma.informatica.sii</groupId>
+		<groupId>es.uma</groupId>
 		<artifactId>proyecto</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>proyecto-war</artifactId>
@@ -18,9 +18,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>es.uma.informatica.sii</groupId>
+			<groupId>es.uma</groupId>
 			<artifactId>proyecto-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
             <scope>provided</scope>
 		</dependency>
 		<dependency>
