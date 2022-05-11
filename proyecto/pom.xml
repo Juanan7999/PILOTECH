@@ -22,5 +22,6 @@
 	<modules>  
 		<module>proyecto-jpa</module>
 		<module>proyecto-ejb</module>
+		<module>proyecto-war</module>
 	</modules>
 </project>
