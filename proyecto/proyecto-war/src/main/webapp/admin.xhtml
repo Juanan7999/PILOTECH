@@ -11,28 +11,23 @@
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="PAGINA DE INICIO"/></h1>
-        <h:form id="login">
+       <h1><h:outputText value="ENTRE COMO ADMINISTRADOR"/></h1>
+        <h:form id="loginAdmin">
 
             
                     <h:panelGrid columns="3">
                         <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{loginNormal.usuario.nombreUsuario}"/>
+                        <h:inputText id="user" required="true" value="#{login.usuario.cuenta}"/>
                         <h:message id="userMessage" for="user"/>
 
                         <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{loginNormal.usuario.password}"/>
+                        <h:inputSecret id="pass" required="true" value="#{login.usuario.contrasenia}"/>
                         <h:message id="passwordMessage" for="pass"/>
 
-                        <h:commandButton id="botonLogin" value="Entrar" action="#{loginNormal.login()}"/>
+                        <h:commandButton id="botonLogin" value="Entrar" action="#{login.entrar()}"/>
 
                     </h:panelGrid>
-					<div>
-                        <p>Entre como administrador en <h:link outcome="admin.xhtml">Login para administradores</h:link></p>
-                    </div>
-                    <div>
-                        <p>Si no tiene cuenta puede crear una en la <h:link outcome="registroUsuario.xhtml">página de registro</h:link></p>
-                    </div>
+					
 					
                
 
