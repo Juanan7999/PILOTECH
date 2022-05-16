@@ -42,11 +42,11 @@ public class LoginNormal {
 				} catch (UsuarioNoEncontradoException e) {
 					// TODO Auto-generated catch block
 					FacesMessage fm = new FacesMessage("La cuenta no existe");
-		            FacesContext.getCurrentInstance().addMessage("loginNormal:user", fm);
+		            FacesContext.getCurrentInstance().addMessage("login:user", fm);
 				} catch (ContraseñaIncorrectaException e) {
 					// TODO Auto-generated catch block
 					FacesMessage fm = new FacesMessage("Contraseña incorrecta");
-		            FacesContext.getCurrentInstance().addMessage("loginNormal:pass", fm);
+		            FacesContext.getCurrentInstance().addMessage("login:pass", fm);
 				} catch (ClienteBloqueadoException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
