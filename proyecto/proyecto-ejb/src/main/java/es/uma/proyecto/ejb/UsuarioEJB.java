@@ -14,6 +14,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Stateless
 public class UsuarioEJB implements GestionUsuario{
@@ -73,5 +74,23 @@ public class UsuarioEJB implements GestionUsuario{
 		return usuarioEntity;
 	}
 	
-	
+	@Override
+	public Usuario LoginAdmin(String nombreAdmin, String password,String tipo) throws UsuarioNoEncontradoException,ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException {
+		
+		
+		Usuario adminEntity = em.find(Usuario.class, nombreAdmin);
+		
+		if(adminEntity == null) {
+			throw new UsuarioNoEncontradoException();
+		}else if(!adminEntity.getPassword().equals(password)) {
+			throw new ContraseñaIncorrectaException();
+		}else if(!adminEntity.getTipo().equals(tipo)) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
+		
+		return adminEntity;
+		
+		
+	}
+
 }
