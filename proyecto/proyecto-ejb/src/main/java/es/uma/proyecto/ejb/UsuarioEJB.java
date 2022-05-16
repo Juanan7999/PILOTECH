@@ -75,7 +75,7 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 	
 	@Override
-	public Usuario LoginAdmin(String nombreAdmin, String password,String tipo) throws UsuarioNoEncontradoException,ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException {
+	public Usuario LoginAdmin(String nombreAdmin, String password) throws UsuarioNoEncontradoException,ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException {
 		
 		
 		Usuario adminEntity = em.find(Usuario.class, nombreAdmin);
@@ -84,7 +84,7 @@ public class UsuarioEJB implements GestionUsuario{
 			throw new UsuarioNoEncontradoException();
 		}else if(!adminEntity.getPassword().equals(password)) {
 			throw new ContraseñaIncorrectaException();
-		}else if(!adminEntity.getTipo().equals(tipo)) {
+		}else if(!adminEntity.esAdmin()) {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 		

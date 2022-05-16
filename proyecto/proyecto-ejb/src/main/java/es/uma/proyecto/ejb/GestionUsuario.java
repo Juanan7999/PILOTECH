@@ -38,7 +38,7 @@ public interface GestionUsuario {
 
 	public List<Usuario> devolverTodosUsuarios();
 	
-	public Usuario LoginAdmin(String nombreAdmin, String password,String tipo) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException, UsuarioNoEsAdministrativoException;
+	public Usuario LoginAdmin(String nombreAdmin, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException, UsuarioNoEsAdministrativoException;
 	
 		
 }
