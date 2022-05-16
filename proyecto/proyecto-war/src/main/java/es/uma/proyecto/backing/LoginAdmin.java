@@ -34,10 +34,10 @@ public class LoginAdmin {
 		this.usuario = usuario;
 	}
 	
-	public String loginAdmin() {
+	public String login() {
 		
 		try {
-			usuarioejb.LoginAdmin(usuario.getNombreUsuario(), usuario.getPassword(), usuario.getTipo());
+			usuarioejb.LoginAdmin(usuario.getNombreUsuario(), usuario.getPassword());
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:user", fm);
@@ -51,6 +51,7 @@ public class LoginAdmin {
 		
 		
 		return "paginaprincipal.xhtml";
+		
 	}
 	
 	

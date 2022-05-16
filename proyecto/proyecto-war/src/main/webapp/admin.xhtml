@@ -17,14 +17,14 @@
             
                     <h:panelGrid columns="3">
                         <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{login.usuario.cuenta}"/>
+                        <h:inputText id="user" required="true" value="#{loginAdmin.usuario.nombreUsuario}"/>
                         <h:message id="userMessage" for="user"/>
 
                         <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{login.usuario.contrasenia}"/>
+                        <h:inputSecret id="pass" required="true" value="#{loginAdmin.usuario.password}"/>
                         <h:message id="passwordMessage" for="pass"/>
 
-                        <h:commandButton id="botonLogin" value="Entrar" action="#{login.entrar()}"/>
+                        <h:commandButton id="botonLogin" value="Entrar" action="#{loginAdmin.login()}"/>
 
                     </h:panelGrid>
 					
