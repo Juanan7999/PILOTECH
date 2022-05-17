@@ -7,8 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"> <h:head>
 	<title>Registro de un Usuario</title>
 </h:head> <h:body>
-	<h1>
-	<h:outputText value="PAGINA DE REGISTRO" /></h1>
+	<h1> <h:outputText value="PAGINA DE REGISTRO" /></h1>
 	<h:form id="registro">
 
 
@@ -26,13 +25,7 @@
 			<h:outputText value="Repita la Contraseña:" />
 			<h:inputSecret id="repass" required="true" value="#{registro.repass}" />
 			<h:message id="passwordMessage2" for="repass" />
-
-			<h:outputText value="Eliga el Tipo de Usuario que será:" />
-			<h:selectOneMenu id="tipo" value="#{registro.usuario.tipo}">
-				<f:selectItem itemLabel="Normal"></f:selectItem>
-				<f:selectItem itemLabel="Administrativo"></f:selectItem>
-			</h:selectOneMenu>
-
+			
 			<h:commandButton id="botonRegistrar" value="Registrar"
 				action="#{registro.registrarUsuario()}" />
 
