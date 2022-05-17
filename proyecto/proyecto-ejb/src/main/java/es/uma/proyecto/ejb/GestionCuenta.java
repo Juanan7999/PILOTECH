@@ -114,5 +114,5 @@ public interface GestionCuenta {
 	 */
 
 	public void cerrarCuentaPooled(Usuario usuario, PooledAccount pa)
-			throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;
+			throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;	
 }

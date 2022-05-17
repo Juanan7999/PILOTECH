@@ -12,6 +12,7 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
@@ -19,6 +20,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -215,5 +217,31 @@ public class ClienteEJB implements GestionCliente {
 		TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c", Cliente.class);
 		List<Cliente> clientes= query.getResultList();
 		return clientes;
+	}
+	
+	@Override
+	public Cliente devolverCliente(String identificacion) throws ClienteNoExistenteException{
+		TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c where c.identificacion = :fiden", Cliente.class);
+		query.setParameter("fiden", identificacion);
+		Cliente cliente= query.getSingleResult();
+		
+		if(cliente == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		return cliente;
+	}
+	
+	@Override
+	public PersonaAutorizada devolverPersonaAut(String identificacion) throws PersonaAutorizadaNoExistenteException{
+		TypedQuery<PersonaAutorizada> query = em.createQuery("SELECT p FROM PersonaAutorizada p where p.identificacion = :fiden", PersonaAutorizada.class);
+		query.setParameter("fiden", identificacion);
+		PersonaAutorizada persona= query.getSingleResult();
+		
+		if(persona == null) {
+			throw new PersonaAutorizadaNoExistenteException();
+		}
+		
+		return persona;
 	}
 }

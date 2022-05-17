@@ -8,6 +8,7 @@ import es.uma.proyecto.Cliente;
 
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 
@@ -16,6 +17,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -67,4 +69,9 @@ public interface GestionCliente {
 			throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException, UsuarioNoEncontradoException;
 	
 	public List<Cliente> devolverTodosClientes();
+	
+	public Cliente devolverCliente(String identificacion) throws ClienteNoExistenteException;
+	
+	public PersonaAutorizada devolverPersonaAut(String identificacion) throws PersonaAutorizadaNoExistenteException;
+	
 }

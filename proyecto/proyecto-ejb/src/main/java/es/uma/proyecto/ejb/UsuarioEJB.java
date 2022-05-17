@@ -91,8 +91,6 @@ public class UsuarioEJB implements GestionUsuario{
 		}
 		
 		return adminEntity;
-		
-		
 	}
 
 }

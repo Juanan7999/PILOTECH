@@ -26,6 +26,17 @@
 			<h:inputSecret id="repass" required="true" value="#{registro.repass}" />
 			<h:message id="passwordMessage2" for="repass" />
 			
+			<h:outputText value="Identificacion:" />
+			<h:inputSecret id="iden" required="true" value="#{registro.identificacion}" />
+			<h:message id="identification" for="iden" />
+			
+			<h:outputText value="¿Se trata de un Cliente o una Persona Autorizada de la entidad?:" />
+			<h:selectOneMenu id="tipo" required="true" value="#{registro.tipo}">
+				<f:selectItem itemLabel="Personal Autorizado"/>
+				<f:selectItem itemLabel="Cliente"/>
+			</h:selectOneMenu>
+			<h:message id="tipo_usuario" for="tipo"></h:message>
+			
 			<h:commandButton id="botonRegistrar" value="Registrar"
 				action="#{registro.registrarUsuario()}" />
 
