@@ -3,6 +3,8 @@ package es.uma.proyecto.ejb;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.enterprise.inject.Model;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,6 +18,7 @@ import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
+@Default
 @Stateless
 public class UsuarioEJB implements GestionUsuario{
 
