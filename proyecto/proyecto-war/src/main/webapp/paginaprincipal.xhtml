@@ -15,9 +15,12 @@
         
 
             
-                    
+                    	
                         <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
                         
+                        <h:outputFormat value = "Bienvenido {0}">
+                        	<f:param value = "#{InfoSesion.usuario}" />
+                        </h:outputFormat>
 					
                
 
