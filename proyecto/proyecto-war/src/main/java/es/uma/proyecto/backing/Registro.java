@@ -18,7 +18,6 @@ public class Registro {
 	private UsuarioEJB usuarioejb;
 
 	private Usuario usuario;
-	private String tipousuario;
 	private String repass;
 
 	public Registro() {
@@ -34,7 +33,7 @@ public class Registro {
 
 		this.usuario = usuario;
 	}
-
+	
 	public String getRepass() {
 		return repass;
 	}
@@ -51,18 +50,7 @@ public class Registro {
 				return null;
 			}
 			
-			if(usuario.getTipo().equals("Normal")) {
-				
-				usuario.setTipo("N");
-			}else if(usuario.getTipo().equals("Admininistrativo")) {
-				
-				usuario.setTipo("A");
-			}else {
-				FacesMessage fm = new FacesMessage("Ha ocurrido algun problema.");
-				FacesContext.getCurrentInstance().addMessage("registro:tipo", fm);
-				return "registroUsuario.xhtml";
-				
-			}
+			usuario.setTipo("N");
 			
 			usuarioejb.creacionUsuario(usuario);
 			
