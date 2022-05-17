@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.UsuarioEJB;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
@@ -18,7 +19,7 @@ public class LoginAdmin {
 
 	
 	@Inject
-	private UsuarioEJB usuarioejb;
+	private GestionUsuario usuarioejb;
 	
 	@Inject
 	private InfoSesion sesion;

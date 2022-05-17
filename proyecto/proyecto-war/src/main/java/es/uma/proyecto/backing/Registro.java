@@ -10,6 +10,8 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.ClienteEJB;
+import es.uma.proyecto.ejb.GestionCliente;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.UsuarioEJB;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
@@ -20,13 +22,13 @@ import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 public class Registro {
 
 	@Inject
-	private UsuarioEJB usuarioejb;
+	private GestionUsuario usuarioejb;
 
 	@Inject
-	private ClienteEJB clienteejb;
+	private GestionCliente clienteejb;
 
 	@Inject
-	private ClienteEJB personaAutejb;
+	private GestionCliente personaAutejb;
 
 	private Usuario usuario;
 	private String repass;

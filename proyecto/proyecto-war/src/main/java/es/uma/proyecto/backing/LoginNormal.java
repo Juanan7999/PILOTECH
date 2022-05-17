@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.UsuarioEJB;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
@@ -20,7 +21,7 @@ import javax.*;
 public class LoginNormal {
        
 	@Inject
-	private UsuarioEJB usuarioejb;
+	private GestionUsuario usuarioejb;
 	
 	@Inject
 	private InfoSesion sesion;
