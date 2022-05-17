@@ -18,6 +18,7 @@ public class Registro {
 	private UsuarioEJB usuarioejb;
 
 	private Usuario usuario;
+	private String tipousuario;
 	private String repass;
 
 	public Registro() {
