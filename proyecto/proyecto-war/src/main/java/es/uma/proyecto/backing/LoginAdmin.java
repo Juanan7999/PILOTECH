@@ -20,7 +20,12 @@ public class LoginAdmin {
 	@Inject
 	private UsuarioEJB usuarioejb;
 	
+	@Inject
+	private InfoSesion sesion;
+	
 	private Usuario usuario;
+	
+	
 	
 	public LoginAdmin() {
 		usuario = new Usuario();
@@ -38,6 +43,8 @@ public class LoginAdmin {
 		
 		try {
 			usuarioejb.LoginAdmin(usuario.getNombreUsuario(), usuario.getPassword());
+			//Aqui para mantener la sesion
+			return "paginaprincipal.xhtml";		
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:user", fm);
@@ -49,8 +56,7 @@ public class LoginAdmin {
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:tipo", fm);
 		}
 		
-		
-		return "paginaprincipal.xhtml";
+		return null;
 		
 	}
 	
