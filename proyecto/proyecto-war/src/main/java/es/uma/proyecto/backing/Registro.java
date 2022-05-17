@@ -49,13 +49,9 @@ public class Registro {
 				FacesContext.getCurrentInstance().addMessage("registro:repass", fm);
 				return null;
 			}
-			
 			usuario.setTipo("N");
-			
 			usuarioejb.creacionUsuario(usuario);
-			
-			return "paginaprincipal.xhtml";
-
+			return "index.xhtml";
 		} catch (UsuarioExistenteException e) {
 			FacesMessage fm = new FacesMessage("Existe un usuario con la misma cuenta");
 			FacesContext.getCurrentInstance().addMessage("registro:user", fm);
