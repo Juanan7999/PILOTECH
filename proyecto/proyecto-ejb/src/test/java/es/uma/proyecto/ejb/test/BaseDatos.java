@@ -19,7 +19,7 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 
-public class BaseDatos {
+public class BaseDatos {d
 	public static void inicializaBaseDatos(String nombreUnidadPersistencia) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(nombreUnidadPersistencia);
 		EntityManager em = emf.createEntityManager();

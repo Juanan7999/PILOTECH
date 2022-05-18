@@ -4,42 +4,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"> <h:head>
-	<title>Registro de un Usuario</title>
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:link rel="stylesheet" href="style.css" />
 </h:head> <h:body>
-	<h1> <h:outputText value="PAGINA DE REGISTRO" /></h1>
 	<h:form id="registro">
 
 
-		<h:panelGrid columns="3">
+		<h:section id="seccion" class="formulario-registro">
 			<h:outputText value="Nombre de usuario:" />
-			<h:inputText id="user" required="true"
+			<h:inputText class="control" id="user" required="true"
 				value="#{registro.usuario.nombreUsuario}" />
 			<h:message id="userMessage" for="user" />
 
 			<h:outputText value="Contraseña:" />
-			<h:inputSecret id="pass" required="true"
+			<h:inputSecret class="control" id="pass" required="true"
 				value="#{registro.usuario.password}" />
 			<h:message id="passwordMessage" for="pass" />
 
 			<h:outputText value="Repita la Contraseña:" />
-			<h:inputSecret id="repass" required="true" value="#{registro.repass}" />
+			<h:inputSecret class="control" id="repass" required="true" value="#{registro.repass}" />
 			<h:message id="passwordMessage2" for="repass" />
-			
+
 			<h:outputText value="Identificacion:" />
-			<h:inputSecret id="iden" required="true" value="#{registro.identificacion}" />
+			<h:inputSecret class="control" id="iden" required="true"
+				value="#{registro.identificacion}" />
 			<h:message id="identification" for="iden" />
-			
-			<h:outputText value="¿Se trata de un Cliente o una Persona Autorizada de la entidad?:" />
-			<h:selectOneMenu id="tipo" required="true" value="#{registro.tipo}">
-				<f:selectItem itemLabel="Personal Autorizado"/>
-				<f:selectItem itemLabel="Cliente"/>
+
+			<h:outputText class="control"
+				value="¿Se trata de un Cliente o una Persona Autorizada de la entidad?:" />
+			<h:selectOneMenu class="control" id="tipo" required="true" value="#{registro.tipo}">
+				<f:selectItem itemLabel="Personal Autorizado" itemValue="Cliente" />
+				<f:selectItem itemLabel="Cliente" itemValue="Persona Autorizada"/>
 			</h:selectOneMenu>
 			<h:message id="tipo_usuario" for="tipo"></h:message>
-			
-			<h:commandButton id="botonRegistrar" value="Registrar"
+
+			<h:commandButton class ="boton" id="botonRegistrar" value="Registrar"
 				action="#{registro.registrarUsuario()}" />
 
-		</h:panelGrid>
+		</h:section>
 	</h:form>
 </h:body> </html>
