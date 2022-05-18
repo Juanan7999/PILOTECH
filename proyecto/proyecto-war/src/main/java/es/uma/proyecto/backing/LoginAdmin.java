@@ -44,7 +44,6 @@ public class LoginAdmin {
 		
 		try {
 			usuarioejb.LoginAdmin(usuario.getNombreUsuario(), usuario.getPassword());
-			//Aqui para mantener la sesion
 			sesion.setUsuario(usuario);
 			return "paginaprincipal.xhtml";		
 		}catch(UsuarioNoEncontradoException e) {
