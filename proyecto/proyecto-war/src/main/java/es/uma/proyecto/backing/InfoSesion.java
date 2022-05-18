@@ -22,6 +22,7 @@ public class InfoSesion implements Serializable{
 	     * Creates a new instance of InfoSesion
 	     */
 	    public InfoSesion() {
+	    	
 	    }
 
 	    public synchronized void setUsuario(Usuario usuario) {
