@@ -8,29 +8,26 @@
 
 <h:head>
        <title>Login de inicio</title>
+       <h:outputStylesheet name="style.css"/>
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="ENTRE COMO ADMINISTRADOR"/></h1>
-        <h:form id="loginAdmin">
+       
+        <h:form id="loginAdmin" class="form-login">
+        	<h5><h:outputText value="LOGIN ADMINISTRATIVO"/></h5>
 
-            
                     <h:panelGrid columns="3">
                         <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{loginAdmin.usuario.nombreUsuario}"/>
+                        <h:inputText id="user" required="true" value="#{loginAdmin.usuario.nombreUsuario}" class="controls"/>
                         <h:message id="userMessage" for="user"/>
 
                         <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{loginAdmin.usuario.password}"/>
+                        <h:inputSecret id="pass" required="true" value="#{loginAdmin.usuario.password}" class="controls"/>
                         <h:message id="passwordMessage" for="pass"/>
 
-                        <h:commandButton id="botonLogin" value="Entrar" action="#{loginAdmin.login()}"/>
+                        <h:commandButton id="botonLogin" value="Entrar" action="#{loginAdmin.login()}" class="buttons"/>
 
                     </h:panelGrid>
-					
-					
-               
-
         </h:form>
 </h:body>
 </html>
