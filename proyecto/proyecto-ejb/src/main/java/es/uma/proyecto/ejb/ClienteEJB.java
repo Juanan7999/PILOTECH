@@ -221,9 +221,9 @@ public class ClienteEJB implements GestionCliente {
 	
 	@Override
 	public Cliente devolverCliente(String identificacion) throws ClienteNoExistenteException{
-		TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c where c.identificacion = :fiden", Cliente.class);
+		TypedQuery<Individual> query = em.createQuery("SELECT c FROM Individual c where c.identificacion = :fiden", Individual.class);
 		query.setParameter("fiden", identificacion);
-		Cliente cliente= query.getSingleResult();
+		Individual cliente= query.getSingleResult();
 		
 		if(cliente == null) {
 			throw new ClienteNoExistenteException();
