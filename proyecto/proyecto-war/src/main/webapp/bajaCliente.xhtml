@@ -13,10 +13,12 @@
 	<h:body>
 		<h1>DAR DE BAJA A UN CLIENTE</h1>
 	
-		<h:form>
+		<h:form id="baja">
 			<h:outputLabel value="Identificación del usuario : "></h:outputLabel>
-			<h:inputText value="#{bajaCliente.idCliente}"></h:inputText>
-			<h:commandButton value="Dar de Baja" action="#{bajaCliente.baja}"></h:commandButton>
+			<h:inputText id="cliente" value="#{bajaCliente.idCliente}"></h:inputText>
+			<h:message id="clienteMessage" for="cliente"/>
+			<br/>
+			<h:commandButton id="boton" value="Dar de Baja" action="#{bajaCliente.baja}"></h:commandButton>		
 		</h:form>
 	</h:body> 
 </html>

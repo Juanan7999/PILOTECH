@@ -32,6 +32,8 @@ public class BajaCliente {
 	private Usuario usuario;
 		
 	private String idCliente;
+	
+	private String mensaje = "";
 
 	public BajaCliente() {
 		usuario = new Usuario();
@@ -53,26 +55,32 @@ public class BajaCliente {
 		this.idCliente = id_cliente;
 	}
 	
+	public String getMensaje() {
+		return mensaje;
+	}
+	
+	
 	public String baja() {
 
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.bajaCliente(usuario, this.getIdCliente());
+			return "paginaprincipalAdmin.xhtml";
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		} catch (ClienteYaDeBajaException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya esta dado de baja");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		} catch (CuentaAbiertaException e) {
 			FacesMessage fm = new FacesMessage("El cliente no tiene ninguna cuenta abierta");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		} catch (UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
+			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		}
 
 		return null;
