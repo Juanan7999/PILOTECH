@@ -20,6 +20,71 @@
                         <br/>
                         
                         
+        <h:form id="altaIndividual" class="form-login">
+        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nombre de usuario:"/>
+                        <h:inputText id="user" required="true" value="#{altaClienteIndividual.usuario.nombreUsuario}" class="controls"/>
+                        <h:message id="userMessage" for="user"/>
+
+                        <h:outputText value="Contraseña:"/>
+                        <h:inputSecret id="pass" required="true" value="#{altaClienteIndividual.usuario.password}" class="controls"/>
+                        <h:message id="passwordMessage" for="pass"/>
+                        
+                        <h:outputText value="Nombre:"/>
+                        <h:inputText id="nombre" required="true" value="#{altaClienteIndividual.individual.nombre}" class="controls"/>
+                        <h:message id="nombreMessage" for="nombre"/>
+                        
+                        <h:outputText value="Apellido:"/>
+                        <h:inputText id="apellido" required="true" value="#{altaClienteIndividual.individual.apellido}" class="controls"/>
+                        <h:message id="apellidoMessage" for="apellido"/>
+
+                        <h:outputText value="Fecha de Nacimiento"/>
+                        <h:inputText id="fechaNacimiento" required="true" value="#{altaClienteIndividual.individual.fechaNacimiento}" class="controls"/>
+                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
+                        
+                        <h:outputText value="Identificacion"/>
+                        <h:inputText id="identificacion" required="true" value="#{altaClienteIndividual.individual.identificacion}" class="controls"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        
+                        <h:outputText value="Tipo de Usuario:"/>
+                        <h:inputText id="typeUsuario" required="true" value="#{altaClienteIndividual.usuario.tipo}" class="controls"/>
+                        <h:message id="typeUserMessage" for="typeUsuario"/>
+                        
+                        <h:outputText value="Tipo de Cliente:"/>
+                        <h:inputText id="typeClient" required="true" value="#{altaClienteIndividual.individual.tipoCliente}" class="controls"/>
+                        <h:message id="typeClientMessage" for="typeClient"/>
+                        
+                        <h:outputText value="Estado:"/>
+                        <h:inputText id="state" required="true" value="#{altaClienteIndividual.individual.estado}" class="controls"/>
+                        <h:message id="stateMessage" for="state"/>
+                        
+                        <h:outputText value="Fecha de alta:"/>
+                        <h:inputText id="fechaAlta" required="true" value="#{altaClienteIndividual.individual.fechaAlta}" class="controls"/>
+                        <h:message id="fechaAltaMessage" for="fechaAlta"/>
+                        
+                        <h:outputText value="Fecha de baja:"/>
+                        <h:inputText id="fechaBaja" required="false" value="#{altaClienteIndividual.individual.fechaBaja}" class="controls"/>
+                        <h:message id="fechaBajaMessage" for="fechaBaja"/>
+                        
+                        <h:outputText value="Direccion:"/>
+                        <h:inputText id="direccion" required="true" value="#{altaClienteIndividual.individual.direccion}" class="controls"/>
+                        <h:message id="direccionMessage" for="direccion"/>
+                        
+                        <h:outputText value="Ciudad:"/>
+                        <h:inputText id="ciudad" required="true" value="#{altaClienteIndividual.individual.ciudad}" class="controls"/>
+                        <h:message id="ciudadMessage" for="ciudad"/>
+                        
+                        <h:outputText value="Codigo Postal:"/>
+                        <h:inputText id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}" class="controls"/>
+                        <h:message id="cpMessage" for="cp"/>
+
+                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{AltaClienteIndividual.altaIndividual()}" class="buttons"/>
+
+                    </h:panelGrid>
+					
+        </h:form>
+                        
 						
                
 

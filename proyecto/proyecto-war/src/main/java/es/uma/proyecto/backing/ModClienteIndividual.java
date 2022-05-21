@@ -1,5 +1,87 @@
 package es.uma.proyecto.backing;
 
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+
+import es.uma.proyecto.Individual;
+import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionCliente;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
+
+@Named(value = "modClienteIndividual")
+@RequestScoped
 public class ModClienteIndividual {
 
+	@Inject
+	private GestionCliente clienteEJB;
+
+	@Inject
+	private InfoSesion sesion;
+
+	private Usuario usuario;
+	
+	private Individual individual;
+	
+	String id_cliente;
+	
+	public ModClienteIndividual() {
+		individual = new Individual();
+		usuario = new Usuario();
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Individual getIndividual() {
+		return individual;
+	}
+	
+	public void setIndividual(Individual individual) {
+		this.individual = individual;
+	}
+	
+	public String getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(String id_cliente) {
+		this.id_cliente = id_cliente;
+	}
+	
+	
+	
+	public String modificarIndividual() {
+		
+		try {
+			usuario = sesion.getUsuario();
+			clienteEJB.modificarDatosClienteIndividual(usuario, this.getId_cliente(), individual);
+			return "paginaprincipalAdmin.xhtml";
+			
+		}catch(UsuarioNoEsAdministrativoException e) {
+			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
+			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+		}catch(ClienteNoExistenteException e) {
+			FacesMessage fm = new FacesMessage("El cliente no existe");
+			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+		}catch(UsuarioNoEncontradoException e) {
+			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
+			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+		}
+		
+		
+		return null;
+		
+	}
+	
 }
