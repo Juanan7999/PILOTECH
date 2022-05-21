@@ -31,7 +31,7 @@ public class BajaCliente {
 
 	private Usuario usuario;
 		
-	private String id_cliente;
+	private String idCliente;
 
 	public BajaCliente() {
 		usuario = new Usuario();
@@ -45,20 +45,19 @@ public class BajaCliente {
 		this.usuario = usuario;
 	}
 
-	public String getId_cliente() {
-		return id_cliente;
+	public String getIdCliente() {
+		return idCliente;
 	}
 
-	public void setId_cliente(String id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setIdCliente(String id_cliente) {
+		this.idCliente = id_cliente;
 	}
 	
 	public String baja() {
 
 		try {
 			usuario = sesion.getUsuario();
-			clienteEJB.bajaCliente(usuario, this.getId_cliente());
-			sesion.setUsuario(usuario);		
+			clienteEJB.bajaCliente(usuario, this.getIdCliente());
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);

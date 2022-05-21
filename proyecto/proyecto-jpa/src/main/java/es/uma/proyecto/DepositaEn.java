@@ -21,8 +21,6 @@ public class DepositaEn implements Serializable {
 	@Column(nullable = false)
 	private Double saldo;
 
-
-	
 	//bi-directional many-to-one association to CuentaReferencia
 	@ManyToOne
 	@JoinColumn(name="CUENTA_REFERENCIA_IBAN", nullable = false)
@@ -34,7 +32,6 @@ public class DepositaEn implements Serializable {
 	@JoinColumn(name="POOLED_ACCOUNT_IBAN", nullable = false)
 	@MapsId("pooledAccountIban")
 	private PooledAccount pooledAccount;
-
 	
 	public DepositaEn() {
 	}
@@ -58,8 +55,6 @@ public class DepositaEn implements Serializable {
 	public CuentaReferencia getCuentaReferencia() {
 		return this.cuentaReferencia;
 	}
-
-	//ESTO HABRÍA QUE CAMBIARLO A STRING??
 	
 	public void setCuentaReferencia(CuentaReferencia cuentaReferencia) {
 		this.cuentaReferencia = cuentaReferencia;
@@ -73,5 +68,4 @@ public class DepositaEn implements Serializable {
 		this.pooledAccount = pooledAccount;
 	}
 	
-
 }

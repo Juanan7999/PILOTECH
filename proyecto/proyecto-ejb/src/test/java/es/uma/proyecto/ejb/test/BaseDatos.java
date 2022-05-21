@@ -43,7 +43,7 @@ public class BaseDatos {
 		nuevo_clientebaja.setIdentificacion("77670010");
 		nuevo_clientebaja.setTipoCliente("F");
 		nuevo_clientebaja.setEstado("baja");
-		nuevo_clientebaja.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_clientebaja.setFechaAlta("2022-04-23");
 		nuevo_clientebaja.setFechaBaja(null);
 		nuevo_clientebaja.setDireccion("Calle Chozuelas");
 		nuevo_clientebaja.setCiudad("Alora");
@@ -58,7 +58,7 @@ public class BaseDatos {
 		nuevo_cliente.setIdentificacion("77670018");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 		nuevo_cliente.setFechaBaja(null);
 		nuevo_cliente.setDireccion("Calle Chozuelas");
 		nuevo_cliente.setCiudad("Alora");
@@ -73,8 +73,8 @@ public class BaseDatos {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
-		nuevo_cliente2.setFechaBaja(Date.valueOf("2022-04-26"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
+		nuevo_cliente2.setFechaBaja("2022-04-26");
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
 		nuevo_cliente2.setCodigopostal(29500);
@@ -88,7 +88,7 @@ public class BaseDatos {
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
-		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaAlta("2022-04-23");
 		nuevo_cliente3.setFechaBaja(null);
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
@@ -103,7 +103,7 @@ public class BaseDatos {
 		nueva_empresa.setIdentificacion("8888");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		nueva_empresa.setFechaAlta("2022-04-23");
 		nueva_empresa.setFechaBaja(null);
 		nueva_empresa.setDireccion("Boulevard Pasteur");
 		nueva_empresa.setCiudad("Malaga");
@@ -116,7 +116,7 @@ public class BaseDatos {
 		nuevo_clientebloqueado.setIdentificacion("77670011");
 		nuevo_clientebloqueado.setTipoCliente("F");
 		nuevo_clientebloqueado.setEstado("bloqueado");
-		nuevo_clientebloqueado.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_clientebloqueado.setFechaAlta("2022-04-23");
 		nuevo_clientebloqueado.setFechaBaja(null);
 		nuevo_clientebloqueado.setDireccion("Calle Chozuelas");
 		nuevo_clientebloqueado.setCiudad("Alora");
@@ -147,7 +147,7 @@ public class BaseDatos {
 		cuentaref.setNombrebanco("Santander");
 		cuentaref.setSucursal("Plaza mayor");
 		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setFechaApertura("2022-04-25");
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 		em.persist(cuentaref);
@@ -158,7 +158,7 @@ public class BaseDatos {
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
 		cuentaref2.setSaldo(45.0);
-		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setFechaApertura("2022-04-25");
 		cuentaref2.setEstado("activa");
 		cuentaref2.setDivisa(dolar);
 		em.persist(cuentaref2);
@@ -167,7 +167,7 @@ public class BaseDatos {
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 		em.persist(pooled);
 
@@ -175,7 +175,7 @@ public class BaseDatos {
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
-		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setFechaApertura("2022-04-25");
 		pooled2.setCliente(nuevo_cliente2);
 		em.persist(pooled2);
 
@@ -183,7 +183,7 @@ public class BaseDatos {
 		segregada.setIban("ES1113");
 		segregada.setSwift("2347");
 		segregada.setEstado("activa");
-		segregada.setFechaApertura(Date.valueOf("2022-04-25"));
+		segregada.setFechaApertura("2022-04-25");
 		segregada.setCuentaReferencia(cuentaref);
 		segregada.setCliente(nuevo_cliente3);
 
@@ -191,7 +191,7 @@ public class BaseDatos {
 		segregada1.setIban("ES2022");
 		segregada1.setSwift("6789");
 		segregada1.setEstado("baja");
-		segregada1.setFechaApertura(Date.valueOf("2022-04-28"));
+		segregada1.setFechaApertura("2022-04-28");
 		segregada1.setCuentaReferencia(cuentaref);
 		segregada1.setCliente(nuevo_cliente3);
 		em.persist(segregada1);
@@ -228,8 +228,8 @@ public class BaseDatos {
 		transaccion.setCuenta2(cuentaref2);
 		transaccion.setDivisa1(euro);
 		transaccion.setDivisa2(dolar);
-		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setFechaejecucion("2022-04-25");
+		transaccion.setFechainstruccion("2022-04-25");
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 		em.persist(transaccion);
@@ -242,8 +242,8 @@ public class BaseDatos {
 		transaccion2.setCuenta2(cuentaref2);
 		transaccion2.setDivisa1(euro);
 		transaccion2.setDivisa2(dolar);
-		transaccion2.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion2.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion2.setFechaejecucion("2022-04-25");
+		transaccion2.setFechainstruccion("2022-04-25");
 		transaccion2.setInternacional(null);
 		transaccion2.setTipo("CD");
 		em.persist(transaccion2);

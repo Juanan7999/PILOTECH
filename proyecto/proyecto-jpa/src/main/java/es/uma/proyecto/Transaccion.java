@@ -85,16 +85,16 @@ public class Transaccion implements Serializable {
 		return this.fechaejecucion;
 	}
 
-	public void setFechaejecucion(Date fechaejecucion) {
-		this.fechaejecucion = fechaejecucion;
+	public void setFechaejecucion(String fechaejecucion) {
+		this.fechaejecucion = Date.valueOf(fechaejecucion);
 	}
 
 	public Date getFechainstruccion() {
 		return this.fechainstruccion;
 	}
 
-	public void setFechainstruccion(Date fechainstruccion) {
-		this.fechainstruccion = fechainstruccion;
+	public void setFechainstruccion(String fechainstruccion) {
+		this.fechainstruccion = Date.valueOf(fechainstruccion);
 	}
 
 	public String getInternacional() {

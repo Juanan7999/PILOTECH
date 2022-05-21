@@ -108,16 +108,24 @@ public class Cliente implements Serializable {
 		return this.fechaAlta;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
+	/*public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
+	}*/
+	
+	public void setFechaAlta(String fecha) {
+		this.fechaAlta = Date.valueOf(fecha);
 	}
 
 	public Object getFechaBaja() {
 		return this.fechaBaja;
 	}
 
-	public void setFechaBaja(Date fechaBaja) {
+	/*public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
+	}*/
+	
+	public void setFechaBaja(String fecha) {
+		this.fechaBaja = Date.valueOf(fecha);
 	}
 
 	public String getIdentificacion() {

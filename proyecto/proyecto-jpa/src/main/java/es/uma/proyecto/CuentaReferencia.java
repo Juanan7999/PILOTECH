@@ -61,8 +61,8 @@ public class CuentaReferencia extends Cuenta implements Serializable {
 		return this.fechaApertura;
 	}
 
-	public void setFechaApertura(Date fechaApertura) {
-		this.fechaApertura = fechaApertura;
+	public void setFechaApertura(String fechaApertura) {
+		this.fechaApertura = Date.valueOf(fechaApertura);
 	}
 
 	public String getNombrebanco() {

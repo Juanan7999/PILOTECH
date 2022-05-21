@@ -63,16 +63,24 @@ public class CuentaFintech extends Cuenta implements Serializable{
 		return this.fechaApertura;
 	}
 
-	public void setFechaApertura(Date fechaApertura) {
+	/*public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
+	}*/
+	
+	public void setFechaApertura(String fechaApertura) {
+		this.fechaApertura = Date.valueOf(fechaApertura);
 	}
 
 	public Date getFechaCierre() {
 		return this.fechaCierre;
 	}
 
-	public void setFechaCierre(Date fechaCierre) {
+	/*public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
+	}*/
+	
+	public void setFechaCierre(String fechaCierre) {
+		this.fechaCierre = Date.valueOf(fechaCierre);
 	}
 
 	public Cliente getCliente() {

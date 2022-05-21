@@ -103,24 +103,36 @@ public class PersonaAutorizada implements Serializable {
 		return this.fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	/*public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}*/
+	
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = Date.valueOf(fechaNacimiento);
 	}
 
 	public Date getFechafin() {
 		return this.fechafin;
 	}
 
-	public void setFechafin(Date fechafin) {
+	/*public void setFechafin(Date fechafin) {
 		this.fechafin = fechafin;
+	}*/
+	
+	public void setFechafin(String fechafin) {
+		this.fechafin = Date.valueOf(fechafin);
 	}
 
 	public Date getFechainicio() {
 		return this.fechainicio;
 	}
 
-	public void setFechainicio(Date fechainicio) {
+	/*public void setFechainicio(Date fechainicio) {
 		this.fechainicio = fechainicio;
+	}*/
+	
+	public void setFechaInicio(String fechainicio) {
+		this.fechainicio = Date.valueOf(fechainicio);
 	}
 
 	public String getIdentificacion() {
