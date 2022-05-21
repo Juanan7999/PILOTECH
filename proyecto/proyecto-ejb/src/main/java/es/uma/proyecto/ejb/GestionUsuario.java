@@ -11,6 +11,7 @@ import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsNormalException;
 
 
 @Local
@@ -33,7 +34,7 @@ public interface GestionUsuario {
 	 * @throws ClienteYaDeBajaException 
 	 */
 	
-	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException;
+	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException, UsuarioNoEsNormalException;
 
 
 	public List<Usuario> devolverTodosUsuarios();

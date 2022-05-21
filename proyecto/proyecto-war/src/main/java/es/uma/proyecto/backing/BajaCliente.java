@@ -5,14 +5,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import es.uma.proyecto.Cliente;
-import es.uma.proyecto.Empresa;
-import es.uma.proyecto.Individual;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
-import es.uma.proyecto.ejb.GestionUsuario;
-import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;

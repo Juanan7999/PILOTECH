@@ -17,6 +17,7 @@ import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsNormalException;
 
 @Default
 @Stateless
@@ -46,7 +47,7 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 
 	@Override
-	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException {
+	public Usuario Login(String nombreUsuario, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, ClienteBloqueadoException, ClienteYaDeBajaException, UsuarioNoEsNormalException {
 		Usuario usuarioEntity = em.find(Usuario.class, nombreUsuario);
 		
 		if(usuarioEntity == null) {
@@ -57,7 +58,10 @@ public class UsuarioEJB implements GestionUsuario{
 			
 			throw new ContraseñaIncorrectaException();
 			
-		} 
+		}else if(!usuarioEntity.getTipo().equals("N")) {
+			
+			throw new UsuarioNoEsNormalException();
+		}
 		
 		Cliente clienteUsuario = usuarioEntity.getCliente();
 		
@@ -70,7 +74,6 @@ public class UsuarioEJB implements GestionUsuario{
 			} else if(clienteUsuario.getEstado().equals("baja")) {
 				
 				throw new ClienteYaDeBajaException();
-				
 			}
 		}
 		return usuarioEntity;

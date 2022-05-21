@@ -13,6 +13,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEsNormalException;
 
 import javax.*;
 
@@ -42,8 +43,8 @@ public class LoginNormal {
 	
     public String login() {
     	 try {		
+    		sesion.setUsuario(usuario);
 			usuarioejb.Login(usuario.getNombreUsuario(), usuario.getPassword());
-			//Aqui para mantener la sesion
 			return "paginaprincipalUsuario.xhtml";	
 		} catch (UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
@@ -57,6 +58,9 @@ public class LoginNormal {
 		} catch (ClienteYaDeBajaException e) {
 			FacesMessage fm = new FacesMessage("El cliente no está activo");
 		    FacesContext.getCurrentInstance().addMessage("login:user", fm);		
+		} catch (UsuarioNoEsNormalException e) {
+			FacesMessage fm = new FacesMessage("El usuario es admin");
+		    FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);	
 		}   		
     	return null;
     }

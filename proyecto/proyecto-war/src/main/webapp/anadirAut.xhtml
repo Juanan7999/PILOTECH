@@ -7,21 +7,16 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Login de inicio</title>
+       <title>Adición de Autorizados</title>
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="PAGINA PRINCIPAL"/></h1>
+       <h1><h:outputText value="Añadir Autorizados"/></h1>
                         <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
                         <br/>
                         
                         <h:outputFormat value = "Bienvenido {0}">
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>
-                        
-                        <br>
-							<h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas" value="Cambio de Divisas" class="buttons"/>
-						</br>
-                        
+                        </h:outputFormat>  
 </h:body>
 </html>

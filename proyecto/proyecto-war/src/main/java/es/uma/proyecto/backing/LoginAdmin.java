@@ -52,7 +52,7 @@ public class LoginAdmin {
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:pass", fm);
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("loginAdmin:tipo", fm);
+			FacesContext.getCurrentInstance().addMessage("loginAdmin:botonLogin", fm);
 		}
 		
 		return null;
