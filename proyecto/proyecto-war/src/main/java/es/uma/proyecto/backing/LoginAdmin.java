@@ -45,7 +45,7 @@ public class LoginAdmin {
 		try {
 			usuarioejb.LoginAdmin(usuario.getNombreUsuario(), usuario.getPassword());
 			sesion.setUsuario(usuario);
-			return "paginaprincipal.xhtml";		
+			return "paginaprincipalAdmin.xhtml";		
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:user", fm);
@@ -60,7 +60,5 @@ public class LoginAdmin {
 		return null;
 		
 	}
-	
-	
 	
 }

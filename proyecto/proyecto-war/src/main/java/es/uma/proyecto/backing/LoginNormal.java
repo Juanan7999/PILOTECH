@@ -44,7 +44,7 @@ public class LoginNormal {
     	 try {		
 			usuarioejb.Login(usuario.getNombreUsuario(), usuario.getPassword());
 			//Aqui para mantener la sesion
-			return "paginaprincipal.xhtml";	
+			return "paginaprincipalUsuario.xhtml";	
 		} catch (UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
 			FacesContext.getCurrentInstance().addMessage("login:user", fm);
