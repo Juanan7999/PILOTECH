@@ -52,27 +52,7 @@ public class AccionesAdmin {
 	
 	
 	public String altaClienteIndividual() {
-		
-		try {
-			clienteEJB.altaClienteIndividual(usuario, cliente);
 			return "altaCliente.xhtml";
-				
-		} catch (ClienteExistenteException e) {
-			FacesMessage fm = new FacesMessage("El cliente ya existe");
-			FacesContext.getCurrentInstance().addMessage("botonAltaIndividual", fm);
-		}catch(UsuarioNoEsAdministrativoException e) {
-			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("botonAltaIndividual", fm);
-		}catch (UsuarioNoEncontradoException e) {
-			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("botonAltaIndividual", fm);
-		}
-		return null;
-			
-		
-		
-		
-		
 	}
 	
 	public String altaClienteEmpresa() {
