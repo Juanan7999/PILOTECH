@@ -55,6 +55,7 @@ public class AccionesAdmin {
 		
 		try {
 			clienteEJB.altaClienteIndividual(usuario, cliente);
+			return "altaCliente.xhtml";
 				
 		} catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");
@@ -66,9 +67,10 @@ public class AccionesAdmin {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("botonAltaIndividual", fm);
 		}
+		return null;
 			
 		
-		return "altaCliente.xhtml";
+		
 		
 		
 	}
@@ -77,6 +79,7 @@ public class AccionesAdmin {
 		
 		try {
 			clienteEJB.altaClienteEmpresa(usuario, cliente);
+			return "altaCliente.xhtml";
 		} catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");
 			FacesContext.getCurrentInstance().addMessage("botonAltaEmpresa", fm);
@@ -87,8 +90,9 @@ public class AccionesAdmin {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("botonAltaEmpresa", fm);
 		}
+		return null;
 		
-		return "altaCliente.xhtml";
+		
 		
 	}
 	
@@ -96,7 +100,7 @@ public class AccionesAdmin {
 		
 		try {
 			clienteEJB.modificarDatosClienteIndividual(usuario, individual.getIdentificacion(), individual);
-			
+			return "modificacionCliente.xhtml";
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es admin");
 			FacesContext.getCurrentInstance().addMessage("modificacionClienteIndividual", fm);
@@ -107,8 +111,9 @@ public class AccionesAdmin {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
 			FacesContext.getCurrentInstance().addMessage("modificacionClienteIndividual", fm);
 		}
+		return null;
 		
-		return "modificacionCliente.xhtml";
+		
 		
 	}
 	
@@ -116,6 +121,7 @@ public String modificarClienteEmpresa() {
 		
 		try {
 			clienteEJB.modificarDatosClienteEmpresa(usuario, empresa.getIdentificacion(), empresa);
+			return "modificacionCliente.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
@@ -127,8 +133,9 @@ public String modificarClienteEmpresa() {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
 			FacesContext.getCurrentInstance().addMessage("modificacionClienteEmpresa", fm);
 		}
+		return null;
 		
-		return "modificacionCliente.xhtml";
+		
 		
 	}
 
@@ -137,6 +144,7 @@ public String bajaCliente() {
 	
 	try {
 		clienteEJB.bajaCliente(usuario, cliente.getIdentificacion());
+		return "bajaCliente.xhtml";
 		
 	}catch(ClienteNoExistenteException e) {
 		FacesMessage fm = new FacesMessage("El cliente no existe");
@@ -155,7 +163,7 @@ public String bajaCliente() {
 		FacesContext.getCurrentInstance().addMessage("bajaCliente", fm);
 	}
 	
-	return "bajaCliente.xhtml";
+	return null;
 	
 	
 }
