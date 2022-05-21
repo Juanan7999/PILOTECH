@@ -26,8 +26,6 @@ public class LoginAdmin {
 	
 	private Usuario usuario;
 	
-	
-	
 	public LoginAdmin() {
 		usuario = new Usuario();
 	}
@@ -58,7 +56,5 @@ public class LoginAdmin {
 		}
 		
 		return null;
-		
 	}
-	
 }

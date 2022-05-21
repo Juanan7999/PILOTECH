@@ -104,10 +104,7 @@ public class AccionesAdmin {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
 			FacesContext.getCurrentInstance().addMessage("modificacionClienteIndividual", fm);
 		}
-		return null;
-		
-		
-		
+		return null;	
 	}
 	
 public String modificarClienteEmpresa() {
@@ -127,9 +124,6 @@ public String modificarClienteEmpresa() {
 			FacesContext.getCurrentInstance().addMessage("modificacionClienteEmpresa", fm);
 		}
 		return null;
-		
-		
-		
 	}
 
 
