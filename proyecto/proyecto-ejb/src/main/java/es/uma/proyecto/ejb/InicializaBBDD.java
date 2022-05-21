@@ -26,32 +26,32 @@ public class InicializaBBDD {
 	@PostConstruct
 	public void inicializar() {
 		
-		PersonaAutorizada comprobacion = em.find(PersonaAutorizada.class, "Y4001267V");
+		/*PersonaAutorizada comprobacion = em.find(PersonaAutorizada.class, "Y4001267V");
 		
 		if(comprobacion != null) {
 			return;
-		}
+		}*/
 		
 		Usuario juan = new Usuario();
 		juan.setNombreUsuario("juan");
 		juan.setPassword("juan");
 		juan.setTipo("N");
 
-		em.persist(juan);
+		em.merge(juan);
 		
 		Usuario ana = new Usuario();
 		ana.setNombreUsuario("ana");
 		ana.setPassword("ana");
 		ana.setTipo("N");
 		
-		em.persist(ana);
+		em.merge(ana);
 		
 		Usuario ponciano = new Usuario();
 		ponciano.setNombreUsuario("ponciano");
 		ponciano.setPassword("ponciano");
 		ponciano.setTipo("A");
 
-		em.persist(ponciano);
+		em.merge(ponciano);
 		
 		Empresa empresa = new Empresa();
 		empresa.setIdentificacion("P3310693A");
@@ -64,7 +64,7 @@ public class InicializaBBDD {
 		empresa.setCodigopostal(29300);
 		empresa.setPais("España");
 		
-		em.persist(empresa);
+		em.merge(empresa);
 		
 		Individual individual = new Individual();
 		individual.setIdentificacion("63937528N");
@@ -79,7 +79,7 @@ public class InicializaBBDD {
 		individual.setApellido("Lopez Campos");
 		individual.setFechaNacimiento("1990-05-17");
 		
-		em.persist(individual);
+		em.merge(individual);
 		
 		PersonaAutorizada pa = new PersonaAutorizada();
 		pa.setIdentificacion("Y4001267V");
@@ -90,7 +90,7 @@ public class InicializaBBDD {
 		pa.setFechaInicio("2021-07-27");
 		pa.setEstado("activo");
 		
-		em.persist(pa);
+		em.merge(pa);
 		
 		
 		Autorizacion aut = new Autorizacion();
@@ -102,7 +102,7 @@ public class InicializaBBDD {
 		aut.setPersonaAutorizada(pa);
 		aut.setTipo(1);
 		
-		em.persist(aut);
+		em.merge(aut);
 		
 	}
 }
