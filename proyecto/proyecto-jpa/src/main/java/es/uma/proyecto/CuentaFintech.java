@@ -80,7 +80,9 @@ public class CuentaFintech extends Cuenta implements Serializable{
 	}*/
 	
 	public void setFechaCierre(String fechaCierre) {
-		this.fechaCierre = Date.valueOf(fechaCierre);
+		if(fechaCierre != null) {
+			this.fechaCierre = Date.valueOf(fechaCierre);
+		}
 	}
 
 	public Cliente getCliente() {

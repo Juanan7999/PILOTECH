@@ -108,7 +108,9 @@ public class PersonaAutorizada implements Serializable {
 	}*/
 	
 	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = Date.valueOf(fechaNacimiento);
+		if(fechaNacimiento != null) {
+			this.fechaNacimiento = Date.valueOf(fechaNacimiento);
+		}
 	}
 
 	public Date getFechafin() {
@@ -120,7 +122,9 @@ public class PersonaAutorizada implements Serializable {
 	}*/
 	
 	public void setFechafin(String fechafin) {
-		this.fechafin = Date.valueOf(fechafin);
+		if(fechafin != null) {
+			this.fechafin = Date.valueOf(fechafin);
+		}
 	}
 
 	public Date getFechainicio() {
@@ -132,7 +136,9 @@ public class PersonaAutorizada implements Serializable {
 	}*/
 	
 	public void setFechaInicio(String fechainicio) {
-		this.fechainicio = Date.valueOf(fechainicio);
+		if(fechainicio != null) {
+			this.fechainicio = Date.valueOf(fechainicio);
+		}
 	}
 
 	public String getIdentificacion() {

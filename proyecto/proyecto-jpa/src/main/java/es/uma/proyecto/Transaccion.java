@@ -86,7 +86,10 @@ public class Transaccion implements Serializable {
 	}
 
 	public void setFechaejecucion(String fechaejecucion) {
-		this.fechaejecucion = Date.valueOf(fechaejecucion);
+		if(fechaejecucion != null) {
+			this.fechaejecucion = Date.valueOf(fechaejecucion);
+		}
+		
 	}
 
 	public Date getFechainstruccion() {

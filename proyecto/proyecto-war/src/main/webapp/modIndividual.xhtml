@@ -22,6 +22,11 @@
         <h:form id="modificarIndividual" class="form-login">
         <h5><h:outputText value="PAGINA DE INICIO"/></h5>
                     <h:panelGrid columns="3">
+                    
+                    	<h:outputText value="Identificacion del cliente a modificar:"/>
+                        <h:inputText id="identificacion" required="true" value="#{modClienteIndividual.individual.identificacion}" class="controls"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        
                         <h:outputText value="Nombre:"/>
                         <h:inputText id="nombre" required="true" value="#{modClienteIndividual.individual.nombre}" class="controls"/>
                         <h:message id="nombreMessage" for="nombre"/>
@@ -33,15 +38,6 @@
                         <h:outputText value="Fecha de Nacimiento"/>
                         <h:inputText id="fechaNacimiento" required="true" value="#{modClienteIndividual.individual.fechaNacimiento}" class="controls"/>
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
-                        
-                        
-                        <h:outputText value="Identificacion"/>
-                        <h:inputText id="identificacion" required="true" value="#{modClienteIndividual.individual.identificacion}" class="controls"/>
-                        <h:message id="identificacionMessage" for="identificacion"/>
-                        
-                        <h:outputText value="Tipo de Usuario:"/>
-                        <h:inputText id="typeUsuario" required="true" value="#{modClienteIndividual.individual.tipoCliente}" class="controls"/>
-                        <h:message id="typeUserMessage" for="typeUsuario"/>
                         
                         <h:outputText value="Tipo de Cliente:"/>
                         <h:inputText id="typeClient" required="true" value="#{modClienteIndividual.individual.tipoCliente}" class="controls"/>
@@ -70,8 +66,12 @@
                         <h:outputText value="Codigo Postal:"/>
                         <h:inputText id="cp" required="true" value="#{modClienteIndividual.individual.codigopostal}" class="controls"/>
                         <h:message id="cpMessage" for="cp"/>
+                        
+                        <h:outputText value="Pais:"/>
+                        <h:inputText id="pais" required="true" value="#{modClienteIndividual.individual.pais}" class="controls"/>
+                        <h:message id="paisMessage" for="pais"/>
 
-                        <h:commandButton id="botonModificarIndividual" value="Modificar" action="#{ModClienteIndividual.modificarIndividual()}" class="buttons"/>
+                        <h:commandButton id="botonModificarIndividual" value="Modificar" action="#{modClienteIndividual.modificarIndividual()}" class="buttons"/>
 
                     </h:panelGrid>
 					

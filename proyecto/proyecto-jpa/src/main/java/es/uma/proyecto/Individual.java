@@ -44,7 +44,9 @@ public class Individual extends Cliente implements Serializable {
 	}*/
 	
 	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = Date.valueOf(fechaNacimiento);
+		if(fechaNacimiento != null) {
+			this.fechaNacimiento = Date.valueOf(fechaNacimiento);
+		}
 	}
 
 	public String getNombre() {

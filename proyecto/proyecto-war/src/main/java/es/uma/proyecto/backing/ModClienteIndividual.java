@@ -28,7 +28,6 @@ public class ModClienteIndividual {
 	
 	private Individual individual;
 	
-	String id_cliente;
 	
 	public ModClienteIndividual() {
 		individual = new Individual();
@@ -51,21 +50,11 @@ public class ModClienteIndividual {
 		this.individual = individual;
 	}
 	
-	public String getId_cliente() {
-		return id_cliente;
-	}
-
-	public void setId_cliente(String id_cliente) {
-		this.id_cliente = id_cliente;
-	}
-	
-	
-	
 	public String modificarIndividual() {
 		
 		try {
 			usuario = sesion.getUsuario();
-			clienteEJB.modificarDatosClienteIndividual(usuario, this.getId_cliente(), individual);
+			clienteEJB.modificarDatosClienteIndividual(usuario, individual.getIdentificacion(), individual);
 			return "paginaprincipalAdmin.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
