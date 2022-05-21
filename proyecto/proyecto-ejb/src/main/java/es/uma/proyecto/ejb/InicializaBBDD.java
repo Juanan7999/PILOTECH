@@ -26,11 +26,7 @@ public class InicializaBBDD {
 	@PostConstruct
 	public void inicializar() {
 		
-		AutorizacionPK comp = new AutorizacionPK();
-		comp.setPersonaAutorizadaId("Y4001267V");
-		comp.setEmpresaId("P3310693A");
-		
-		Autorizacion comprobacion = em.find(Autorizacion.class, comp);
+		PersonaAutorizada comprobacion = em.find(PersonaAutorizada.class, "Y4001267V");
 		
 		if(comprobacion != null) {
 			return;
