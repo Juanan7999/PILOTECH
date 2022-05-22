@@ -7,16 +7,22 @@
        xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Eliminacion de un Autorizado</title>
-</h:head>
-
-<h:body>
-       <h1><h:outputText value="ELIMINAR AUTORIZADO"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
+		<title>Eliminacion de un autorizado</title>
+	</h:head> 
+	
+	<h:body>
+		<h1>ELIMINAR A UNA PERSONA AUTORIZADA</h1>
+	
+		<h:form id="eliminarAutorizado">
+			<h:outputLabel value="Identificación de la Persona Autorizada : "></h:outputLabel>
+			<h:inputText id="personaAutorizada" value="#{eliminarAutorizados.personaAutorizada.identificacion}"></h:inputText>
+			<h:message id="personaAutorizadaMessage" for="personaAutorizada"/>
+			<br/>
+			<h:commandButton id="boton" value="Dar de Baja" action="#{EliminarAutorizados.eliminarAutorizado()}"></h:commandButton>		
+			<h:message id = "info" for="boton"></h:message>
+		</h:form>
+	</h:body> 
+</html>          
                         
-                        <h:outputFormat value = "Bienvenido {0}">
-                        	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>  
-</h:body>
-</html>
+                        
+                        

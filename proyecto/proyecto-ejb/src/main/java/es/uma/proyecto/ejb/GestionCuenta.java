@@ -74,7 +74,7 @@ public interface GestionCuenta {
 	 */
 
 	public void modificarAutorizados(Usuario usuario, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException,
-			ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException;
+			 PersonaAutorizadaNoExistenteException;
 
 	/*
 	 * Para eliminar a una persona autorizada asociada a una un cliente jurídico o
@@ -86,7 +86,7 @@ public interface GestionCuenta {
 	 */
 
 	public void eliminarAutorizados(Usuario usuario, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException,
-			ClienteNoJuridicoException, PersonaAutorizadaNoExistenteException;
+			 PersonaAutorizadaNoExistenteException;
 
 	/*
 	 * Para que el personal administrativo pueda cerrar una cuenta segregada

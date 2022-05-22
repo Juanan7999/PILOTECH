@@ -18,5 +18,34 @@
                         <h:outputFormat value = "Bienvenido {0}">
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
                         </h:outputFormat>  
+                        
+                        <h:form id="modAutorizado" class="form-login">
+        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
+                    <h:panelGrid columns="3">
+                       
+                       
+                        
+                        <h:outputText value="Identificacion: "/>
+                        <h:inputText id="identificacion" required="true" value="#{modificarAutorizados.personaAutorizada.identificacion}" class="controls"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                        
+                        <h:outputText value="Nombre: "/>
+                        <h:inputText id="nombre" required="true" value="#{modificarAutorizados.personaAutorizada.nombre}" class="controls"/>
+                        <h:message id="nombreMessage" for="nombre"/>
+                        
+                        <h:outputText value="Apellidos: "/>
+                        <h:inputText id="apellido" required="true" value="#{modificarAutorizados.personaAutorizada.apellidos}" class="controls"/>
+                        <h:message id="apellidoMessage" for="apellido"/>
+                        
+                        <h:outputText value="Direccion: "/>
+                        <h:inputText id="direccion" required="true" value="#{modificarAutorizados.personaAutorizada.direccion}" class="controls"/>
+                        <h:message id="direccionMessage" for="direccion"/>
+                        
+
+                        <h:commandButton id="botonModificarAutorizados" value="Modificar" action="#{ModificarAutorizados.modificarAutorizado()}" class="buttons"/>
+
+                    </h:panelGrid>
+					
+        </h:form>
 </h:body>
 </html>

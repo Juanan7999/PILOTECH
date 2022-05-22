@@ -70,13 +70,13 @@ public class ModClienteEmpresa {
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modClienteEmpresa", fm);
 		}catch(ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modClienteEmpresa", fm);
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modClienteEmpresa", fm);
 		}
 		
 		
