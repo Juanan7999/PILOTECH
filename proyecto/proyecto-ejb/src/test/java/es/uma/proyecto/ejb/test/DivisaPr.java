@@ -77,7 +77,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 
 		nuevo_cliente2.setFechaBaja(null);
 
@@ -94,7 +94,7 @@ public class DivisaPr {
 		pooled.setIban("ES2112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		try {
@@ -119,7 +119,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 		nuevo_cliente2.setFechaBaja(null);
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
@@ -133,7 +133,7 @@ public class DivisaPr {
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
-		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaAlta("2022-04-23");
 		nuevo_cliente3.setFechaBaja(null);
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
@@ -159,14 +159,14 @@ public class DivisaPr {
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
-		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setFechaApertura("2022-04-25");
 		pooled2.setCliente(nuevo_cliente3);
 
 		CuentaReferencia cuentaref = new CuentaReferencia();
@@ -175,7 +175,7 @@ public class DivisaPr {
 		cuentaref.setNombrebanco("Santander");
 		cuentaref.setSucursal("Plaza mayor");
 		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setFechaApertura("2022-04-25");
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 		
@@ -187,7 +187,7 @@ public class DivisaPr {
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
 		cuentaref2.setSaldo(45.0);
-		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setFechaApertura("2022-04-25");
 		cuentaref2.setEstado("activa");
 		cuentaref2.setDivisa(dolar);
 
@@ -223,8 +223,8 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setFechaejecucion("2022-04-25");
+		transaccion.setFechainstruccion("2022-04-25");
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 
@@ -252,7 +252,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 		nuevo_cliente2.setFechaBaja(null);
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
@@ -266,7 +266,7 @@ public class DivisaPr {
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
-		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaAlta("2022-04-23");
 		nuevo_cliente3.setFechaBaja(null);
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
@@ -280,14 +280,14 @@ public class DivisaPr {
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
-		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setFechaApertura("2022-04-25");
 		pooled2.setCliente(nuevo_cliente3);
 
 		Divisa euro = new Divisa();
@@ -308,7 +308,7 @@ public class DivisaPr {
 		cuentaref.setNombrebanco("Santander");
 		cuentaref.setSucursal("Plaza mayor");
 		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setFechaApertura("2022-04-25");
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 
@@ -318,7 +318,7 @@ public class DivisaPr {
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
 		cuentaref2.setSaldo(45.0);
-		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setFechaApertura("2022-04-25");
 		cuentaref2.setEstado("activa");
 		cuentaref.setDivisa(dolar);
 
@@ -354,8 +354,8 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setFechaejecucion("2022-04-25");
+		transaccion.setFechainstruccion("2022-04-25");
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 
@@ -417,7 +417,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 		nuevo_cliente2.setFechaBaja(null);
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
@@ -433,7 +433,7 @@ public class DivisaPr {
 		pooled.setIban("ES2112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		try {
@@ -460,7 +460,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 		nuevo_cliente2.setFechaBaja(null);
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
@@ -474,7 +474,7 @@ public class DivisaPr {
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
-		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaAlta("2022-04-23");
 		nuevo_cliente3.setFechaBaja(null);
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
@@ -488,14 +488,14 @@ public class DivisaPr {
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
-		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setFechaApertura("2022-04-25");
 		pooled2.setCliente(nuevo_cliente3);
 		
 		Divisa euro = new Divisa();
@@ -516,7 +516,7 @@ public class DivisaPr {
 		cuentaref.setNombrebanco("Santander");
 		cuentaref.setSucursal("Plaza mayor");
 		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setFechaApertura("2022-04-25");
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 
@@ -526,7 +526,7 @@ public class DivisaPr {
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
 		cuentaref2.setSaldo(45.0);
-		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setFechaApertura("2022-04-25");
 		cuentaref2.setEstado("activa");
 		cuentaref2.setDivisa(dolar);
 
@@ -563,8 +563,8 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setFechaejecucion("2022-04-25");
+		transaccion.setFechainstruccion("2022-04-25");
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 
@@ -594,7 +594,7 @@ public class DivisaPr {
 		nuevo_cliente2.setIdentificacion("77670019");
 		nuevo_cliente2.setTipoCliente("F");
 		nuevo_cliente2.setEstado("activo");
-		nuevo_cliente2.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente2.setFechaAlta("2022-04-23");
 		nuevo_cliente2.setFechaBaja(null);
 		nuevo_cliente2.setDireccion("Calle Chozuelas");
 		nuevo_cliente2.setCiudad("Alora");
@@ -608,7 +608,7 @@ public class DivisaPr {
 		nuevo_cliente3.setIdentificacion("77670002");
 		nuevo_cliente3.setTipoCliente("F");
 		nuevo_cliente3.setEstado("activo");
-		nuevo_cliente3.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente3.setFechaAlta("2022-04-23");
 		nuevo_cliente3.setFechaBaja(null);
 		nuevo_cliente3.setDireccion("Calle Chozuelas");
 		nuevo_cliente3.setCiudad("Alora");
@@ -622,14 +622,14 @@ public class DivisaPr {
 		pooled.setIban("ES1112");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
-		pooled.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled.setFechaApertura("2022-04-25");
 		pooled.setCliente(nuevo_cliente2);
 
 		PooledAccount pooled2 = new PooledAccount();
 		pooled2.setIban("ES1115");
 		pooled2.setSwift("2346");
 		pooled2.setEstado("activa");
-		pooled2.setFechaApertura(Date.valueOf("2022-04-25"));
+		pooled2.setFechaApertura("2022-04-25");
 		pooled2.setCliente(nuevo_cliente3);
 
 		Divisa euro = new Divisa();
@@ -650,7 +650,7 @@ public class DivisaPr {
 		cuentaref.setNombrebanco("Santander");
 		cuentaref.setSucursal("Plaza mayor");
 		cuentaref.setSaldo(45.0);
-		cuentaref.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref.setFechaApertura("2022-04-25");
 		cuentaref.setEstado("activa");
 		cuentaref.setDivisa(euro);
 
@@ -660,7 +660,7 @@ public class DivisaPr {
 		cuentaref2.setNombrebanco("Santander");
 		cuentaref2.setSucursal("Plaza mayor");
 		cuentaref2.setSaldo(45.0);
-		cuentaref2.setFechaApertura(Date.valueOf("2022-04-25"));
+		cuentaref2.setFechaApertura("2022-04-25");
 		cuentaref2.setEstado("activa");
 		cuentaref.setDivisa(dolar);
 
@@ -696,8 +696,8 @@ public class DivisaPr {
 		transaccion.setComision(1.0);
 		transaccion.setCuenta1(cuentaref);
 		transaccion.setCuenta2(cuentaref2);
-		transaccion.setFechaejecucion(Date.valueOf("2022-04-25"));
-		transaccion.setFechainstruccion(Date.valueOf("2022-04-25"));
+		transaccion.setFechaejecucion("2022-04-25");
+		transaccion.setFechainstruccion("2022-04-25");
 		transaccion.setInternacional(null);
 		transaccion.setTipo("CD");
 

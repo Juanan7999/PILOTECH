@@ -54,7 +54,7 @@ public class ClientePr {
 		nuevo_cliente.setIdentificacion("77670020");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 
 		nuevo_cliente.setFechaBaja(null);
 
@@ -88,7 +88,7 @@ public class ClientePr {
 		nuevo_cliente.setIdentificacion("77670010");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 
 		nuevo_cliente.setFechaBaja(null);
 
@@ -124,7 +124,7 @@ public class ClientePr {
 		nuevo_cliente.setIdentificacion("77670020");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 
 		nuevo_cliente.setFechaBaja(null);
 
@@ -168,7 +168,7 @@ public class ClientePr {
 		nueva_empresa.setIdentificacion("8880");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		nueva_empresa.setFechaAlta("2022-04-23");
 
 		nueva_empresa.setFechaBaja(null);
 
@@ -201,7 +201,7 @@ public class ClientePr {
 		nueva_empresa.setIdentificacion("8888");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		nueva_empresa.setFechaAlta("2022-04-23");
 
 		nueva_empresa.setFechaBaja(null);
 
@@ -235,7 +235,7 @@ public class ClientePr {
 		nueva_empresa.setIdentificacion("8880");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		nueva_empresa.setFechaAlta("2022-04-23");
 
 		nueva_empresa.setFechaBaja(null);
 
@@ -321,7 +321,7 @@ public class ClientePr {
 		nuevo_cliente.setIdentificacion("77670020");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 
 		nuevo_cliente.setFechaBaja(null);
 
@@ -355,7 +355,7 @@ public class ClientePr {
 		nuevo_cliente.setIdentificacion("77670018");
 		nuevo_cliente.setTipoCliente("F");
 		nuevo_cliente.setEstado("activo");
-		nuevo_cliente.setFechaAlta(Date.valueOf("2022-04-23"));
+		nuevo_cliente.setFechaAlta("2022-04-23");
 
 		nuevo_cliente.setFechaBaja(null);
 
@@ -390,7 +390,7 @@ public class ClientePr {
 		nueva_empresa.setIdentificacion("8882");
 		nueva_empresa.setTipoCliente("J");
 		nueva_empresa.setEstado("activo");
-		nueva_empresa.setFechaAlta(Date.valueOf("2022-04-23"));
+		nueva_empresa.setFechaAlta("2022-04-23");
 
 		nueva_empresa.setFechaBaja(null);
 
