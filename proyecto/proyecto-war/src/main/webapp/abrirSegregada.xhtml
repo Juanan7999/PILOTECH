@@ -2,21 +2,35 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<h:head>
-       <title>Apertura de Cuenta Fintech Segregada</title>
-</h:head>
-
-<h:body>
-       <h1><h:outputText value="ABRIR CUENTA SEGREGADA"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-                        <h:outputFormat value = "Bienvenido {0}">
-                        	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>  
-</h:body>
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> <h:head>
+	<title>Apertura de Cuenta Fintech Segregada</title>
+</h:head> 
+	<h:body>
+		<h1>
+		<h:outputText value="ABRIR CUENTA SEGREGADA" />
+		</h1>
+		<h:form id="abrirSegregada">
+			<h:outputLabel value="Identificación del cliente : "></h:outputLabel>
+			<h:inputText id="cliente" value="#{abrirCuentaSegregada.identificacion}"></h:inputText>
+			<h:message id="clienteMessage" for="cliente"/>
+			<br/>
+			<h:outputLabel value="Iban: "></h:outputLabel>
+			<h:inputText id="iban" value="#{abrirCuentaSegregada.iban}"></h:inputText>
+			<br/> 
+			<h:outputLabel value="Swift: "></h:outputLabel>
+			<h:inputText id="swift" value="#{abrirCuentaSegregada.swift}"></h:inputText>
+			<br/>
+			<h:outputLabel value="Comision: "></h:outputLabel>
+			<h:inputText id="comision" value="#{abrirCuentaSegregada.comision}"></h:inputText>
+			<br/>
+			<h:outputLabel value="Iban Cuenta Referenciada: "></h:outputLabel>
+			<h:inputText id="ibanReferencia" value="#{abrirCuentaSegregada.iban_referencia}"></h:inputText>
+			<h:message id="cuenta" for="ibanReferencia"/>
+			<br/>
+			<h:commandButton id="boton" value="Abrir Cuenta" action="#{abrirCuentaSegregada.abrirSegregada}"></h:commandButton>
+			<h:message id = "usuario" for="boton"></h:message>		
+		</h:form>
+	</h:body> 
 </html>

@@ -53,13 +53,19 @@ public class BajaCliente {
 		return mensaje;
 	}
 	
-	
-	public String baja() {
+	public void exitoBaja() {
+		
+		FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_INFO,"Baja con exito", "Baja con exito");
+		FacesContext.getCurrentInstance().addMessage("baja:boton", fm);
+		
+	}
+
+	public String baja() throws InterruptedException {
 
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.bajaCliente(usuario, this.getIdCliente());
-			return "paginaprincipalAdmin.xhtml";
+			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
@@ -76,7 +82,11 @@ public class BajaCliente {
 			FacesMessage fm = new FacesMessage("El usuario no existe");
 			FacesContext.getCurrentInstance().addMessage("baja:cliente", fm);
 		}
-
-		return null;
+		
+		exitoBaja();
+		
+		Thread.sleep(5*1000);
+		
+		return "paginaprincipalAdmin.xhtml";
 	}
 }

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
@@ -14,11 +15,13 @@ import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.Empresa;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
@@ -200,4 +203,44 @@ public class CuentaEJB implements GestionCuenta {
 		pooled.setEstado("baja");
 		em.merge(pooled);
 	}
+	
+	public Segregada devolverSegregada(String iban) throws SegregadaNoExistenteException {
+		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c where c.iban = :fiban", Segregada.class);
+		query.setParameter("fiban", iban);
+		Segregada segregada= query.getSingleResult();
+		
+		if(segregada == null) {
+			
+			throw new SegregadaNoExistenteException();
+		}
+		
+		return segregada;
+	}
+	
+	public PooledAccount devolverPooled(String iban) throws PooledNoExistenteException {
+		TypedQuery<PooledAccount> query = em.createQuery("SELECT c FROM PooledAccount c where c.iban = :fiban", PooledAccount.class);
+		query.setParameter("fiban", iban);
+		PooledAccount pooled = query.getSingleResult();
+		
+		if(pooled == null) {
+			
+			throw new PooledNoExistenteException();
+		}
+		
+		return pooled;
+	}
+	
+	public CuentaReferencia devolverCuentaReferencia(String iban) throws CuentaReferenciaNoExistenteException {
+		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :fiban", CuentaReferencia.class);
+		query.setParameter("fiban", iban);
+		CuentaReferencia cuenta = query.getSingleResult();
+		
+		if(cuenta == null) {
+			
+			throw new CuentaReferenciaNoExistenteException();
+		}
+		
+		return cuenta;
+	}
+	
 }

@@ -16,7 +16,7 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
-
+import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
@@ -114,5 +114,11 @@ public interface GestionCuenta {
 	 */
 
 	public void cerrarCuentaPooled(Usuario usuario, PooledAccount pa)
-			throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;	
+			throws UsuarioNoEsAdministrativoException, PooledNoExistenteException, CuentaSinSaldo0Exception;
+	
+	public Segregada devolverSegregada(String iban) throws SegregadaNoExistenteException;
+	
+	public PooledAccount devolverPooled(String iban) throws PooledNoExistenteException;
+	
+	public CuentaReferencia devolverCuentaReferencia(String iban) throws CuentaReferenciaNoExistenteException;
 }
