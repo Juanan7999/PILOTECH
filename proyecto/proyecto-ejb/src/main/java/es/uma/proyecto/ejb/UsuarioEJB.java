@@ -9,7 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Empresa;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
@@ -90,6 +92,20 @@ public class UsuarioEJB implements GestionUsuario{
 				
 				throw new ClienteYaDeBajaException();
 			}
+			
+			List<Autorizacion> autorizaciones = pa.getAutorizacions();
+			boolean ok = false;
+			for(Autorizacion a : autorizaciones) {
+				Empresa e = a.getEmpresa();
+				if(e.getEstado().equals("activo")) {
+					ok =true;
+				}
+			}
+			
+			if(!ok) {
+				throw new ClienteBloqueadoException();
+			}
+			
 		}
 		return usuarioEntity;
 	}
