@@ -6,7 +6,7 @@
 
 body {
   font-family: arial;
-  background-image: url('../bg.png');
+  background-image: url('bg.png');
 }
 
 .form-login {
@@ -35,7 +35,7 @@ body {
   border: 1px solid #017bab;
   margin-bottom: 15px;
   padding: 11px 10px;
-  background: #252323;
+  background: white;
   font-size: 14px;
   font-weight: bold;
 }
