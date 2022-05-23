@@ -18,8 +18,10 @@
 			<h:inputText id="cliente" value="#{bajaCliente.idCliente}"></h:inputText>
 			<h:message id="clienteMessage" for="cliente"/>
 			<br/>
-			<h:commandButton id="boton" value="Dar de Baja" action="#{bajaCliente.baja}"></h:commandButton>		
-			<h:message id = "info" for="boton"></h:message>
+			<h:commandButton id="boton" value="Dar de Baja" action="#{bajaCliente.baja()}"></h:commandButton>	
+			<h:message id="botonclienteMessage" for="boton"/>	
 		</h:form>
+		<br/>
+		<h:button id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"></h:button>
 	</h:body> 
 </html>
