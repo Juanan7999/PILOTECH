@@ -17,6 +17,54 @@
                         
                         <h:outputFormat value = "Bienvenido {0}">
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>  
+                        </h:outputFormat> 
+                        
+                        
+        <h:form id="anadirAutorizado" class="form-login">
+        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
+        
+        			
+        
+                    <h:panelGrid columns="3">
+                    
+                    	<h:outputText value="Identificacion"/>
+                        <h:inputText id="identificacion" required="true" value="#{añadirAutorizados.personaAutorizada.identificacion}" class="controls"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>
+                    
+                    
+                        <h:outputText value="Nombre:"/>
+                        <h:inputText id="user" required="true" value="#{añadirAutorizados.personaAutorizada.nombre}" class="controls"/>
+                        <h:message id="userMessage" for="user"/>
+
+                        
+                        <h:outputText value="Apellido:"/>
+                        <h:inputText id="apellido" required="true" value="#{añadirAutorizados.personaAutorizada.apellidos}" class="controls"/>
+                        <h:message id="apellidoMessage" for="apellido"/>
+
+                        
+                        <h:outputText value="Fecha de Nacimiento:"/>
+                        <h:inputText id="fechaNacimiento" required="false" value="#{añadirAutorizados.personaAutorizada.fechaNacimiento}" class="controls"/>
+                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
+                        
+                        <h:outputText value="Estado:"/>
+                        <h:inputText id="estado" required="false" value="#{añadirAutorizados.personaAutorizada.estado}" class="controls"/>
+                        <h:message id="estadoMessage" for="estado"/>
+                        
+                        <h:outputText value="Fecha inicio:"/>
+                        <h:inputText id="fechaInicio" required="false" value="#{añadirAutorizados.personaAutorizada.fechainicio}" class="controls"/>
+                        <h:message id="fechaInicioMessage" for="fechaInicio"/>
+                        
+                        <h:outputText value="Fecha fin:"/>
+                        <h:inputText id="fechaFin" required="false" value="#{añadirAutorizados.personaAutorizada.fechafin}" class="controls"/>
+                        <h:message id="fechaFinMessage" for="fechaFin"/>
+                        
+                        
+                        <h:commandButton id="botonAnadirAutorizado" value="Añadir" action="#{AñadirAutorizados.anadirAutorizados()}" class="buttons"/>
+
+                    </h:panelGrid>
+					
+        </h:form>
+                        
+                         
 </h:body>
 </html>
