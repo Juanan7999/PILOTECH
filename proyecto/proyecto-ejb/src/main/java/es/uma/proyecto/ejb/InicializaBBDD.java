@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
+import es.uma.proyecto.CuentaReferencia;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
@@ -103,6 +105,25 @@ public class InicializaBBDD {
 		aut.setTipo(1);
 		
 		em.merge(aut);
+		
+		CuentaReferencia cf = new CuentaReferencia();
+		Divisa d = new Divisa();
+		
+		d.setAbreviatura("EUR");
+		d.setNombre("EURO");
+		d.setCambioeuro(1.0);
+		
+		cf.setIban("ES89 1234 1234 1234 1234");
+		cf.setFechaApertura("2021-05-24");
+		cf.setEstado("activa");
+		cf.setNombrebanco("Sabadell");
+		cf.setPais("España");
+		cf.setSaldo(100.0);
+		cf.setSwift("RGWF5785");
+		cf.setDivisa(d);
+		cf.setSucursal("12345");
+		
+		em.merge(cf);
 		
 	}
 }

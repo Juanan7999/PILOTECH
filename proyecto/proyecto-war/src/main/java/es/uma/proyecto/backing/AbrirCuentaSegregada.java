@@ -1,6 +1,6 @@
 package es.uma.proyecto.backing;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -114,12 +114,12 @@ public class AbrirCuentaSegregada {
 			cuenta.setIban(this.getIban());
 			cuenta.setSwift(this.getSwift());
 			cuenta.setEstado("activa");
-			cuenta.setFechaApertura(LocalDateTime.now().toString());
+			cuenta.setFechaApertura(LocalDate.now().toString());
 			cuenta.setFechaCierre(null);
 			cuenta.setClasificacion("S");
 			cuenta.setComision(this.getComision());
 			
-			CuentaReferencia c  = cuentaejb.devolverCuentaReferencia(iban);
+			CuentaReferencia c  = cuentaejb.devolverCuentaReferencia(this.getIban_referencia());
 			
 			cuentaejb.abrirCuentaFintechSegregada(usuario, cuenta, cliente, c);
 			
