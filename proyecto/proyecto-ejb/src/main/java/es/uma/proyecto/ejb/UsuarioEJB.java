@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
@@ -72,6 +73,20 @@ public class UsuarioEJB implements GestionUsuario{
 				throw new ClienteBloqueadoException();
 				
 			} else if(clienteUsuario.getEstado().equals("baja")) {
+				
+				throw new ClienteYaDeBajaException();
+			}
+		}
+		
+		
+		PersonaAutorizada pa = usuarioEntity.getPersonaAutorizada();
+		if(pa != null) {
+			
+			if(pa.getEstado().equals("bloqueado")) {
+				
+				throw new ClienteBloqueadoException();
+				
+			} else if(pa.getEstado().equals("baja")) {
 				
 				throw new ClienteYaDeBajaException();
 			}
