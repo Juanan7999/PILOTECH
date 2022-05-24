@@ -31,6 +31,10 @@
                         <h:inputSecret id="pass" required="true" value="#{altaClienteIndividual.usuario.password}" class="controls"/>
                         <h:message id="passwordMessage" for="pass"/>
                         
+                        <h:outputText value="Tipo de Usuario:"/>
+                        <h:inputText id="typeUsuario" required="true" value="#{altaClienteIndividual.usuario.tipo}" class="controls"/>
+                        <h:message id="typeUserMessage" for="typeUsuario"/>
+                        
                         <h:outputText value="Nombre:"/>
                         <h:inputText id="nombre" required="true" value="#{altaClienteIndividual.individual.nombre}" class="controls"/>
                         <h:message id="nombreMessage" for="nombre"/>
@@ -45,27 +49,7 @@
                         
                         <h:outputText value="Identificacion"/>
                         <h:inputText id="identificacion" required="true" value="#{altaClienteIndividual.individual.identificacion}" class="controls"/>
-                        <h:message id="identificacionMessage" for="identificacion"/>
-                        
-                        <h:outputText value="Tipo de Usuario:"/>
-                        <h:inputText id="typeUsuario" required="true" value="#{altaClienteIndividual.usuario.tipo}" class="controls"/>
-                        <h:message id="typeUserMessage" for="typeUsuario"/>
-                        
-                        <h:outputText value="Tipo de Cliente:"/>
-                        <h:inputText id="typeClient" required="true" value="#{altaClienteIndividual.individual.tipoCliente}" class="controls"/>
-                        <h:message id="typeClientMessage" for="typeClient"/>
-                        
-                        <h:outputText value="Estado:"/>
-                        <h:inputText id="state" required="true" value="#{altaClienteIndividual.individual.estado}" class="controls"/>
-                        <h:message id="stateMessage" for="state"/>
-                        
-                        <h:outputText value="Fecha de alta:"/>
-                        <h:inputText id="fechaAlta" required="true" value="#{altaClienteIndividual.individual.fechaAlta}" class="controls"/>
-                        <h:message id="fechaAltaMessage" for="fechaAlta"/>
-                        
-                        <h:outputText value="Fecha de baja:"/>
-                        <h:inputText id="fechaBaja" required="false" value="#{altaClienteIndividual.individual.fechaBaja}" class="controls"/>
-                        <h:message id="fechaBajaMessage" for="fechaBaja"/>
+                        <h:message id="identificacionMessage" for="identificacion"/>              
                         
                         <h:outputText value="Direccion:"/>
                         <h:inputText id="direccion" required="true" value="#{altaClienteIndividual.individual.direccion}" class="controls"/>
@@ -78,13 +62,18 @@
                         <h:outputText value="Codigo Postal:"/>
                         <h:inputText id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}" class="controls"/>
                         <h:message id="cpMessage" for="cp"/>
+                        
+                        <h:outputText value="Pais:"/>
+                        <h:inputText id="pais" required="true" value="#{altaClienteIndividual.individual.pais}" class="controls"/>
+                        <h:message id="paisMessage" for="pais"/>
 
-                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{AltaClienteIndividual.altaIndividual()}" class="buttons"/>
-
+                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{altaClienteIndividual.altaIndividual()}" class="buttons"/>
+						<h:message id="botonAltaMessage" for="botonAltaIndividual"/>
+						
                     </h:panelGrid>
 					
         </h:form>
-                        
+        <h:button id="aceptar" outcome="clientesIndividuales.xhtml" value="Aceptar"></h:button>               
 						
                
 

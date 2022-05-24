@@ -56,16 +56,21 @@ public class AltaClienteIndividual {
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.altaClienteIndividual(usuario, individual);
-			return "paginaprincipalAdmin.xhtml";
+			
+			FacesMessage fm = new FacesMessage("El cliente ha sido dado de alta con éxito");
+			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
+			
+			return null;
+			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");
-			FacesContext.getCurrentInstance().addMessage("altaClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("altaClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
-			FacesContext.getCurrentInstance().addMessage("altaClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}
 		
 		return null;

@@ -33,7 +33,7 @@ public interface GestionCliente {
 	 * y apellidos, y fecha_nacimiento opcionalmente.
 	 */
 
-	public void altaClienteIndividual(Usuario admin, Cliente individual)
+	public void altaClienteIndividual(Usuario admin, Individual individual)
 			throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 
 	/*
@@ -45,7 +45,7 @@ public interface GestionCliente {
 	 * razonSocial
 	 */
 
-	public void altaClienteEmpresa(Usuario admin, Cliente empresa)
+	public void altaClienteEmpresa(Usuario admin, Empresa empresa)
 			throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 
 	/*
@@ -57,7 +57,7 @@ public interface GestionCliente {
 			UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 
 	public void activaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException,
-			ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+			ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException;
 
 	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException,
 			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;

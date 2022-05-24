@@ -34,7 +34,7 @@ public class ClienteEJB implements GestionCliente {
 	private EntityManager em;
 
 	@Override
-	public void altaClienteIndividual(Usuario admin, Cliente individual)
+	public void altaClienteIndividual(Usuario admin, Individual individual)
 			throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
 
 		Individual clienteIndividualEntity = em.find(Individual.class, individual.getIdentificacion());
@@ -52,13 +52,16 @@ public class ClienteEJB implements GestionCliente {
 		if (clienteIndividualEntity != null) {
 			throw new ClienteExistenteException();
 		}
-
+		
+		individual.setFechaAlta(LocalDate.now().toString());
+		individual.setEstado("activo");
+		individual.setTipoCliente("F");
 		em.persist(individual);
 
 	}
 
 	@Override
-	public void altaClienteEmpresa(Usuario admin, Cliente empresa)
+	public void altaClienteEmpresa(Usuario admin, Empresa empresa)
 			throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
 
 		Empresa clienteEmpresaEntity = em.find(Empresa.class, empresa.getIdentificacion());
@@ -116,7 +119,7 @@ public class ClienteEJB implements GestionCliente {
 
 	@Override
 	public void activaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException,
-			ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+			ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException {
 
 		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
 
@@ -134,11 +137,11 @@ public class ClienteEJB implements GestionCliente {
 			throw new ClienteNoExistenteException();
 		} else if (clienteEntity.getEstado().endsWith("activo")) {
 			throw new ClienteYaActivoException();
+		} else if (clienteEntity.getEstado().endsWith("baja")) {
+			throw new ClienteYaDeBajaException();
 		}
 
 		clienteEntity.setEstado("activo");
-		clienteEntity.setFechaBaja(null);
-
 	}
 
 	@Override

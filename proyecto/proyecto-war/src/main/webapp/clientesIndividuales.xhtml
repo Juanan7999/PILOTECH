@@ -90,12 +90,16 @@
                             <h:message id="botonDesbloqMessage" for="botonDesbloq"/>
                         </h:column>
                         <h:column>
-                            <h:commandButton id="botonMod" value="Modificar" action="#{accionesIndividuales.baja(c.identificacion)}"/>
+                            <h:commandButton id="botonMod" value="Modificar" action="#{accionesIndividuales.modificar(c.identificacion)}"/>
                             <h:message id="botonModMessage" for="botonMod"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>
-                    <h:button id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"></h:button>
-		
+                <br/>
+				<h:button outcome="altaIndividual.xhtml" id="botonAltaIndividual" value="Alta de un cliente Individual" class="buttons"/>
+                <br/>
+                <br/>
+                <h:button id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"></h:button>
+				<br/>
 	</h:body> 
 </html>

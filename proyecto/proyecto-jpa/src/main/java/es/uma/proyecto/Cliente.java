@@ -125,10 +125,10 @@ public class Cliente implements Serializable {
 	}*/
 	
 	public void setFechaBaja(String fecha) {
-		if(!fecha.equals("")) {
+		if(!fecha.equals(null)) {
 			this.fechaBaja = Date.valueOf(fecha);
 		} else {
-			this.fechaBaja = null;
+			this.fechaBaja = Date.valueOf("0000-00-00");;
 		}
 	}
 

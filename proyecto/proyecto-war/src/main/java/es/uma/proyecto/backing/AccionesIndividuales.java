@@ -37,10 +37,13 @@ public class AccionesIndividuales implements Serializable{
 	private String mensaje = "";
 	
 	private List<Individual> listaCliente;
+	
+	private Individual individual;
 
 	public AccionesIndividuales() {
 		usuario = new Usuario();
 		listaCliente = new ArrayList<>();
+		individual = new Individual();
 	}
 
 	public Usuario getUsuario() {
@@ -55,16 +58,20 @@ public class AccionesIndividuales implements Serializable{
 		return mensaje;
 	}
 	
-	//Metodo de prueba
-	
 	public List<Individual> getListaCliente(){
 		return clienteEJB.devolverTodosIndividuales();
 	}
 	
-	//Metodo de prueba
-	
 	public void setListaCliente(List<Individual> lista){
 		this.listaCliente = lista;
+	}
+	
+	public Individual getIndividual() {
+		return this.individual;
+	}
+	
+	public void setIndividual(Individual i) {
+		this.individual = i;
 	}
 
 	public String baja(String iden) throws InterruptedException {
@@ -145,7 +152,20 @@ public class AccionesIndividuales implements Serializable{
 		} catch (UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage(" El usuario no existe");
 			FacesContext.getCurrentInstance().addMessage("formulario:botonDesbloq", fm);
+		} catch (ClienteYaDeBajaException e) {
+			FacesMessage fm = new FacesMessage(" El cliente está dado de baja");
+			FacesContext.getCurrentInstance().addMessage("formulario:botonDesbloq", fm);
 		}
 		return null;
+	}
+	
+	public String modificar(String i) {
+		try {
+			this.individual = (Individual) clienteEJB.devolverCliente(i);
+			System.out.println(individual.getNombre());
+		} catch (ClienteNoExistenteException e) {
+			
+		}
+		return "modIndividual.xhtml";
 	}
 }
