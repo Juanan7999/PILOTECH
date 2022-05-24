@@ -19,41 +19,35 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import es.uma.informatica.sii.agendaee.entidades.Contacto;
-import es.uma.informatica.sii.agendaee.entidades.Usuario;
-import es.uma.informatica.sii.agendaee.negocio.AgendaException;
-import es.uma.informatica.sii.agendaee.negocio.ContactoInexistenteException;
-import es.uma.informatica.sii.agendaee.negocio.Negocio;
+import es.uma.proyecto.ejb.GestionCliente;
+import es.uma.proyecto.ejb.GestionInforme;
 
-@Path("/agenda")
+
+
+@Path("")
 public class ServicioREST {
 	@EJB
-	private Negocio negocio;
+	private GestionInforme negocio;
+	
+	@EJB
+	private GestionCliente cliente;
+	
 	@Context
 	private UriInfo uriInfo;
 	
 	@HeaderParam("User-auth")
 	private String autorizacion;
 	
-	@Path("/contactos")
+	@Path("/healthcheck")
 	@GET
-	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response getContactos() {
-		Usuario usuario = getUsuario();
-		if (usuario == null) {
-			return Response.status(Status.BAD_REQUEST).build();
-		}
+	public Response getHealthcheck() {
 		
-		try {	
-			usuario = negocio.refrescarUsuario(usuario);
-			return Response.ok(usuario).build();
-		} catch (AgendaException e) {
-			return Response.status(Status.UNAUTHORIZED).build();
-		}
+			return Response.ok().build();
+		
 	}
 	
 	
-	@Path("/contactos")
+	@Path("/clients")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response aniadirContacto(Contacto contacto) {

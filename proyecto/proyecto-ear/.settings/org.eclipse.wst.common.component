@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                            
+                                
+    
     
     
     
     
     
     <wb-module deploy-name="proyecto-ear-1.0.0-SNAPSHOT">
-                                                        
+                                                                
+        
         
         
         
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
-                                                        
+                                                                
+        
         
         
         
@@ -29,20 +32,19 @@
         <dependent-module archiveName="proyecto-jpa-1.0.0-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/proyecto-jpa/proyecto-jpa">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="anotaciones-1.0.0.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/es/uma/informatica/sii/anotaciones/1.0.0/anotaciones-1.0.0.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="commons-csv-1.9.0.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                                                    
+                                                            
+    
     
     
     
     
     
     </wb-module>
-                        
+                            
+
 
 
 
