@@ -1,6 +1,6 @@
 package es.uma.proyecto.backing;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,6 @@ import javax.inject.Named;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.PooledAccount;
-import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.DepositaEnPK;
@@ -36,9 +35,7 @@ public class AbrirCuentaPooled {
 	
 	@Inject
 	GestionCliente clienteejb;
-	
-	private PooledAccount pa;
-	
+		
 	private Usuario usuario;
 	
 	private String identificacion;
@@ -113,11 +110,11 @@ public class AbrirCuentaPooled {
 			pa.setIban(this.getIban());
 			pa.setSwift(this.getSwift());
 			pa.setEstado("activa");
-			pa.setFechaApertura(LocalDateTime.now().toString());
+			pa.setFechaApertura(LocalDate.now().toString());
 			pa.setFechaCierre(null);
 			pa.setClasificacion("P");
 			
-			CuentaReferencia c  = cuentaejb.devolverCuentaReferencia(iban);
+			CuentaReferencia c  = cuentaejb.devolverCuentaReferencia(this.getIban_referencia());
 			
 			lista_deposito = new ArrayList<>();
 			
@@ -130,9 +127,15 @@ public class AbrirCuentaPooled {
 			
 			deposito.setId(deposito_pk);
 			
+			deposito.setCuentaReferencia(c);
+			
+			deposito.setPooledAccount(pa);
+			
 			deposito.setSaldo(this.getSaldo());
 			
 			lista_deposito.add(deposito);
+			
+			c.setDepositaEns(lista_deposito);
 			
 			try {
 				cuentaejb.abrirCuentaFintechPooled(usuario, pa, cliente, lista_deposito);

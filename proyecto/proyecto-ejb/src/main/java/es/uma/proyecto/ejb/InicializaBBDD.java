@@ -106,24 +106,7 @@ public class InicializaBBDD {
 		
 		em.merge(aut);
 		
-		CuentaReferencia cf = new CuentaReferencia();
-		Divisa d = new Divisa();
 		
-		d.setAbreviatura("EUR");
-		d.setNombre("EURO");
-		d.setCambioeuro(1.0);
-		
-		cf.setIban("ES89 1234 1234 1234 1234");
-		cf.setFechaApertura("2021-05-24");
-		cf.setEstado("activa");
-		cf.setNombrebanco("Sabadell");
-		cf.setPais("España");
-		cf.setSaldo(100.0);
-		cf.setSwift("RGWF5785");
-		cf.setDivisa(d);
-		cf.setSucursal("12345");
-		
-		em.merge(cf);
 		
 	}
 }

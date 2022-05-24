@@ -11,12 +11,16 @@
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="CERRAR CUENTA POOLED"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-                        <h:outputFormat value = "Bienvenido {0}">
-                        	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>  
+       <h1>
+		<h:outputText value="CERRAR CUENTA POOLED" />
+		</h1>
+		<h:form id="cerrarCuentaPooled">
+			<h:outputLabel value="Iban: "></h:outputLabel>
+			<h:inputText id="iban" value="#{cerrarCuentaPooled.iban}"></h:inputText>
+			<h:message id="ibanExist" for="iban"/>
+			<br/>
+			<h:commandButton id="boton" value="Cerrar Cuenta" action="#{cerrarCuentaPooled.cerrarPooled}"></h:commandButton>
+			<h:message id = "usuario" for="boton"></h:message>	
+		</h:form>
 </h:body>
 </html>
