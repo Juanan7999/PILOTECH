@@ -73,5 +73,7 @@ public interface GestionCliente {
 	public Cliente devolverCliente(String identificacion) throws ClienteNoExistenteException;
 	
 	public PersonaAutorizada devolverPersonaAut(String identificacion) throws PersonaAutorizadaNoExistenteException;
+
+	List<Individual> devolverTodosIndividuales();
 	
 }

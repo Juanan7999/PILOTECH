@@ -242,4 +242,11 @@ public class ClienteEJB implements GestionCliente {
 		
 		return persona;
 	}
+	
+	@Override
+	public List<Individual> devolverTodosIndividuales(){
+		TypedQuery<Individual> query = em.createQuery("SELECT c FROM Individual c", Individual.class);
+		List<Individual> clientes= query.getResultList();
+		return clientes;
+	}
 }
