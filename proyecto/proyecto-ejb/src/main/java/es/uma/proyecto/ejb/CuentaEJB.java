@@ -234,9 +234,7 @@ public class CuentaEJB implements GestionCuenta {
 	}
 	
 	public CuentaReferencia devolverCuentaReferencia(String iban) throws CuentaReferenciaNoExistenteException {
-		TypedQuery<CuentaReferencia> query = em.createQuery("SELECT c FROM CuentaReferencia c where c.iban = :fiban", CuentaReferencia.class);
-		query.setParameter("fiban", iban);
-		CuentaReferencia cuenta = query.getSingleResult();
+		CuentaReferencia cuenta = em.find(CuentaReferencia.class, iban);
 		
 		if(cuenta == null) {
 			
