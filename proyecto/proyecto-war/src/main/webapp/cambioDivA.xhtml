@@ -18,5 +18,30 @@
                         <h:outputFormat value = "Bienvenido {0}">
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
                         </h:outputFormat>  
+                        
+        <h:form id="cambiarDivisaAdmin" class="form-login">
+        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
+                    <h:panelGrid columns="3">
+            
+			<h:outputLabel value="IBAN de la cuenta origen : "></h:outputLabel>
+			<h:inputText id="ibanOrigen" value="#{cambioDivisasA.origen.iban}"></h:inputText>
+			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<br/>
+			
+			<h:outputLabel value="IBAN de la cuenta destino : "></h:outputLabel>
+			<h:inputText id="ibanOrigen" value="#{cambioDivisasA.destino.iban}"></h:inputText>
+			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<br/>
+			
+			<h:outputLabel value="Cantidad : "></h:outputLabel>
+			<h:inputText id="ibanOrigen" value="#{cambioDivisasA.cantidadOrigen}"></h:inputText>
+			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<br/>
+			
+			<h:commandButton id="botonCambioDivisaAdmin" value="Cambiar Divisa" action="#{cambioDivisasA.cambioDivisaAdmin()}"></h:commandButton>
+				
+		  </h:panelGrid>
+					
+        </h:form>
 </h:body>
 </html>
