@@ -29,13 +29,13 @@
 			<br/>
 			
 			<h:outputLabel value="IBAN de la cuenta destino : "></h:outputLabel>
-			<h:inputText id="ibanOrigen" value="#{cambioDivisasA.destino.iban}"></h:inputText>
-			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<h:inputText id="ibanDestino" value="#{cambioDivisasA.destino.iban}"></h:inputText>
+			<h:message id="ibanDestinoMessage" for="ibanDestino"/>
 			<br/>
 			
 			<h:outputLabel value="Cantidad : "></h:outputLabel>
-			<h:inputText id="ibanOrigen" value="#{cambioDivisasA.cantidadOrigen}"></h:inputText>
-			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<h:inputText id="cantidad" value="#{cambioDivisasA.cantidadOrigen}"></h:inputText>
+			<h:message id="cantidadMessage" for="cantidad"/>
 			<br/>
 			
 			<h:commandButton id="botonCambioDivisaAdmin" value="Cambiar Divisa" action="#{cambioDivisasA.cambioDivisaAdmin()}"></h:commandButton>
