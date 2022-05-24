@@ -20,6 +20,8 @@ import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -27,6 +29,7 @@ import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SegregadaNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Stateless
@@ -95,7 +98,7 @@ public class CuentaEJB implements GestionCuenta {
 		for (PersonaAutorizada pa : lpa) {
 
 			Autorizacion aut = new Autorizacion();
-			aut.setTipo(null); // Revisar
+			aut.setTipo(1); // Revisar
 
 			AutorizacionPK aut_pk = new AutorizacionPK();
 			aut_pk.setEmpresaId(e.getIdentificacion());
@@ -241,6 +244,32 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		
 		return cuenta;
+	}
+	
+	@Override
+	public void bloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
+			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+
+		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
+
+		if (administrador == null) { // Si no existe o no es administrativo
+			throw new UsuarioNoEncontradoException();
+		}
+
+		if (!administrador.esAdmin()) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
+
+		PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+
+		if (pa == null) {
+			throw new PersonaAutorizadaNoExistenteException();
+		} else if (pa.getEstado().endsWith("bloqueado")) {
+			throw new ClienteBloqueadoException();
+		}
+
+		pa.setEstado("bloqueado");
+
 	}
 	
 }

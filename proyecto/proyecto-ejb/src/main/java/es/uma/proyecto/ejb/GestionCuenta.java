@@ -14,7 +14,7 @@ import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
-
+import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -22,6 +22,7 @@ import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.SegregadaNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local
@@ -121,4 +122,7 @@ public interface GestionCuenta {
 	public PooledAccount devolverPooled(String iban) throws PooledNoExistenteException;
 	
 	public CuentaReferencia devolverCuentaReferencia(String iban) throws CuentaReferenciaNoExistenteException;
+
+	void bloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
+			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 }
