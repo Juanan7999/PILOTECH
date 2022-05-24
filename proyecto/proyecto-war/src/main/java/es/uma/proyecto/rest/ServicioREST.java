@@ -46,7 +46,7 @@ public class ServicioREST {
 		
 	}
 	
-	
+	/*
 	@Path("/clients")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -141,5 +141,5 @@ public class ServicioREST {
 		
 		return usuario;
 	}
-
+	*/
 }

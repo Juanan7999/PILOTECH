@@ -18,7 +18,7 @@
 					<h:dataTable value="#{accionesIndividuales.listaCliente}" var="c">
 					
 						<h:column>
-                            <f:facet id="cabeceraNombre" name="header">Identificacion</f:facet>
+                            <f:facet id="cabeceraId" name="header">Identificacion</f:facet>
                             <h:outputText id="textoIdentificacion" value="#{c.identificacion}"/>
                         </h:column>
                         
@@ -28,13 +28,53 @@
                         </h:column>
                         
                         <h:column>
-                            <f:facet id="cabeceraTelefono" name="header">Apellido</f:facet>
-                            <h:outputText id="textoTelefono" value="#{c.apellido}"/>
+                            <f:facet id="cabeceraAp" name="header">Apellido</f:facet>
+                            <h:outputText id="textoApellido" value="#{c.apellido}"/>
+                        </h:column>
+                        
+                         <h:column>
+                            <f:facet id="cabeceraNac" name="header">Fecha de nacimiento</f:facet>
+                            <h:outputText id="textoNac" value="#{c.fechaNacimiento}"/>
                         </h:column>
                         
                         <h:column>
-                            <f:facet id="cabeceraEmail" name="header">Estado</f:facet>
-                            <h:outputText id="textoEmail" value="#{c.estado}"/>
+                            <f:facet id="cabeceraTipo" name="header">Tipo de cliente</f:facet>
+                            <h:outputText id="textoTipo" value="#{c.tipoCliente}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+                            <h:outputText id="textoEstado" value="#{c.estado}"/>
+                        </h:column>
+                        
+                         <h:column>
+                            <f:facet id="cabeceraAlta" name="header">Fecha de alta</f:facet>
+                            <h:outputText id="textoAlta" value="#{c.fechaAlta}"/>
+                        </h:column>
+                        
+                         <h:column>
+                            <f:facet id="cabeceraBaja" name="header">Fecha de baja</f:facet>
+                            <h:outputText id="textoBaja" value="#{c.fechaBaja}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet id="cabeceraDireccion" name="header">Direccion</f:facet>
+                            <h:outputText id="textoDireccion" value="#{c.direccion}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet id="cabeceraCiudad" name="header">Ciudad</f:facet>
+                            <h:outputText id="textoCiudad" value="#{c.ciudad}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet id="cabeceraCP" name="header">Codigo Postal</f:facet>
+                            <h:outputText id="textoCP" value="#{c.codigopostal}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet id="cabeceraPais" name="header">Pais</f:facet>
+                            <h:outputText id="textoPais" value="#{c.pais}"/>
                         </h:column>
                         
                         <h:column>

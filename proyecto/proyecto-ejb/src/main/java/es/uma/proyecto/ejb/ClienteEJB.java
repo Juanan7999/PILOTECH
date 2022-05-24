@@ -1,5 +1,6 @@
 package es.uma.proyecto.ejb;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -110,6 +111,7 @@ public class ClienteEJB implements GestionCliente {
 		}
 
 		clienteEntity.setEstado("baja");
+		clienteEntity.setFechaBaja(LocalDate.now().toString());
 	}
 
 	@Override
@@ -135,6 +137,7 @@ public class ClienteEJB implements GestionCliente {
 		}
 
 		clienteEntity.setEstado("activo");
+		clienteEntity.setFechaBaja(null);
 
 	}
 
