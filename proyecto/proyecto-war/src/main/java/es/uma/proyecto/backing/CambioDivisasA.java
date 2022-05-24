@@ -67,11 +67,11 @@ public class CambioDivisasA {
 		this.id = id;
 	}
 	
-	public PooledAccount getPooledAccount() {
+	public PooledAccount getCuentaP() {
 		return cuentaP;
 	}
 	
-	public void setPooledAccount(PooledAccount cuentaP) {
+	public void setCuentaP(PooledAccount cuentaP) {
 		this.cuentaP = cuentaP;
 	}
 	
