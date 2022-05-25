@@ -241,6 +241,17 @@ public class ClienteEJB implements GestionCliente {
 	}
 	
 	@Override
+	public Cliente devolverClienteEmpresa(String identificacion) throws ClienteNoExistenteException{
+		Empresa cliente = em.find(Empresa.class, identificacion);
+		
+		if(cliente == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		return cliente;
+	}
+	
+	@Override
 	public PersonaAutorizada devolverPersonaAut(String identificacion) throws PersonaAutorizadaNoExistenteException{
 		TypedQuery<PersonaAutorizada> query = em.createQuery("SELECT p FROM PersonaAutorizada p where p.identificacion = :fiden", PersonaAutorizada.class);
 		query.setParameter("fiden", identificacion);
