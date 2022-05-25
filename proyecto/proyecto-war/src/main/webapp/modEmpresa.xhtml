@@ -38,15 +38,15 @@
                         <h:message id="typeClientMessage" for="typeClient"/>
                         
                         <h:outputText value="Estado:"/>
-                        <h:inputText id="state" required="true" value="#{modClienteEmpresa.empresa.estado}" class="controls"/>
+                        <h:inputText id="state" required="true" value="#{modClienteEmpresa.empresa.estado}" disabled="true" class="controls"/>
                         <h:message id="stateMessage" for="state"/>
                         
                         <h:outputText value="Fecha de alta:"/>
-                        <h:inputText id="fechaAlta" required="true" value="#{modClienteEmpresa.empresa.fechaAlta}" class="controls"/>
+                        <h:inputText id="fechaAlta" required="true" value="#{modClienteEmpresa.empresa.fechaAlta}" disabled="true" class="controls"/>
                         <h:message id="fechaAltaMessage" for="fechaAlta"/>
                         
                         <h:outputText value="Fecha de baja:"/>
-                        <h:inputText id="fechaBaja" required="false" value="#{modClienteEmpresa.empresa.fechaBaja}" class="controls"/>
+                        <h:inputText id="fechaBaja" required="false" value="#{modClienteEmpresa.empresa.fechaBaja}" disabled="true" class="controls"/>
                         <h:message id="fechaBajaMessage" for="fechaBaja"/>
                         
                         <h:outputText value="Direccion:"/>

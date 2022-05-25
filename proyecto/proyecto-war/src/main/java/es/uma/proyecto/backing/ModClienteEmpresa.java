@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.proyecto.Empresa;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
@@ -29,8 +30,6 @@ public class ModClienteEmpresa {
 	
 	private Empresa empresa;
 	
-	String id_cliente;
-	
 	public ModClienteEmpresa() {
 		empresa = new Empresa();
 		usuario = new Usuario();
@@ -52,21 +51,12 @@ public class ModClienteEmpresa {
 		this.empresa = empresa;
 	}
 	
-	public String getId_cliente() {
-		return id_cliente;
-	}
-
-	public void setId_cliente(String id_cliente) {
-		this.id_cliente = id_cliente;
-	}
-	
-	
 	public String modificarEmpresa() {
 		
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.modificarDatosClienteEmpresa(usuario, this.getId_cliente(), empresa);
-			return "paginaprincipalAdmin.xhtml";
+			return "clientesEmpresas.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
@@ -82,6 +72,17 @@ public class ModClienteEmpresa {
 		
 		return null;
 		
+	}
+	
+	public String accion(String c) {
+		try {
+			this.empresa = (Empresa) clienteEJB.devolverCliente(c);
+			System.out.println(empresa.getIdentificacion());
+		} catch (ClienteNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "modEmpresa.xhtml";
 	}
 	
 }

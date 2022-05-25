@@ -276,4 +276,11 @@ public class ClienteEJB implements GestionCliente {
 		List<Individual> clientes= query.getResultList();
 		return clientes;
 	}
+	
+	@Override
+	public List<Empresa> devolverTodosEmpresa(){
+		TypedQuery<Empresa> query = em.createQuery("SELECT c FROM Empresa c", Empresa.class);
+		List<Empresa> clientes= query.getResultList();
+		return clientes;
+	}
 }

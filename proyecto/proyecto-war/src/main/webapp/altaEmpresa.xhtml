@@ -23,10 +23,6 @@
         <h:form id="altaEmpresa" class="form-login">
         <h5><h:outputText value="PAGINA DE INICIO"/></h5>
                     <h:panelGrid columns="3">
-                    
-                    	<h:outputText value="Razon social:"/>
-                        <h:inputSecret id="razonSocial" required="true" value="#{altaClienteEmpresa.empresa.razonSocial}" class="controls"/>
-                        <h:message id="razonSocialMessage" for="razonSocial"/>
                         
                         <h:outputText value="Identificacion"/>
                         <h:inputSecret id="identificacion" required="true" value="#{altaClienteEmpresa.empresa.identificacion}" class="controls"/>
@@ -60,6 +56,10 @@
                         <h:outputText value="Codigo Postal:"/>
                         <h:inputText id="cp" required="true" value="#{altaClienteEmpresa.empresa.codigopostal}" class="controls"/>
                         <h:message id="cpMessage" for="cp"/>
+                        
+                        <h:outputText value="Razon social:"/>
+                        <h:inputSecret id="razonSocial" required="true" value="#{altaClienteEmpresa.empresa.razonSocial}" class="controls"/>
+                        <h:message id="razonSocialMessage" for="razonSocial"/>
 
                         <h:commandButton id="botonAltaEmpresa" value="Alta" action="#{altaClienteEmpresa.altaEmpresa()}" class="buttons"/>
 

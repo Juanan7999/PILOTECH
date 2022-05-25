@@ -81,5 +81,7 @@ public interface GestionCliente {
 	List<Individual> devolverTodosIndividuales();
 
 	Cliente devolverClienteEmpresa(String identificacion) throws ClienteNoExistenteException;
+
+	List<Empresa> devolverTodosEmpresa();
 	
 }
