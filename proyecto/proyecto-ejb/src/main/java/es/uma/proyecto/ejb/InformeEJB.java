@@ -131,15 +131,15 @@ public class InformeEJB implements GestionInforme {
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		String date = dtf.format(LocalDateTime.now());
 		
 		Random rnd = new Random();
 	    int numero = rnd.nextInt(9999);
 		
 		nombre_archivo_csv = new String("FINTECH_IBAN_1_" + numero + ".csv");
+		String ruta = new String("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\" + nombre_archivo_csv);
 		
 		try {
-			BufferedWriter writer = Files.newBufferedWriter(Paths.get(nombre_archivo_csv));
+			BufferedWriter writer = Files.newBufferedWriter(Paths.get(ruta));
 			@SuppressWarnings("deprecation")
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
@@ -222,9 +222,11 @@ public class InformeEJB implements GestionInforme {
 	    int numero = rnd.nextInt(9999);
 		
 		nombre_archivo_csv = "FINTECH_IBAN_2_"+ numero + ".csv";
-
+		String ruta = new String("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\" + nombre_archivo_csv);
+		
+		
 		try {
-			BufferedWriter writer = Files.newBufferedWriter(Paths.get(nombre_archivo_csv));
+			BufferedWriter writer = Files.newBufferedWriter(Paths.get(ruta));
 			@SuppressWarnings("deprecation")
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
