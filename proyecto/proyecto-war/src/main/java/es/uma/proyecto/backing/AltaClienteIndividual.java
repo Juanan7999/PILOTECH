@@ -60,7 +60,7 @@ public class AltaClienteIndividual {
 			FacesMessage fm = new FacesMessage("El cliente ha sido dado de alta con éxito");
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 			
-			return null;
+			return "clientesIndividuales.xhtml";
 			
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");

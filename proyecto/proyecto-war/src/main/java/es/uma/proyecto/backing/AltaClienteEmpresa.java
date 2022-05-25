@@ -58,7 +58,7 @@ public class AltaClienteEmpresa {
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.altaClienteEmpresa(usuario, empresa);
-			return "paginaprincipalAdmin.xhtml";
+			return "clientesEmpresas.xhtml";
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");
 			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa", fm);

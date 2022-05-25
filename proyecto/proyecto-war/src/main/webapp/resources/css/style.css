@@ -6,7 +6,7 @@
 
 body {
   font-family: arial;
-  background: url('resources/bg.png') #000;
+  background-image: url(../images/bg.png);
   height : 100%;
 }
 
@@ -48,6 +48,20 @@ body {
   border: none;
   color: white;
   margin-bottom: 16px;
+  align-self: center;
+}
+
+.boton {
+  width: 200px;
+  height: 40px;
+  background: #017bab;
+  border: none;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.boton:hover {
+  background: #6DC7FB;
 }
 
 .form-login p{
@@ -64,4 +78,5 @@ body {
 
 .form-login link:hover {
   text-decoration: underline;
+  color: #DCF2FF;;
 }

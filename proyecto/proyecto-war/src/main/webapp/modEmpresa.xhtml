@@ -2,73 +2,83 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Login de inicio</title>
+	<title>Modificar empresa</title>
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="MODIFICACION DE UNA EMPRESA"/></h1>
-        
+	<h1>
+		<h:outputText value="MODIFICACION DE UNA EMPRESA" />
+	</h1>
+	<h:outputFormat value="Usuario administrativo: {0}">
+		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+	</h:outputFormat>
+	<br />
+	<h:outputFormat value="Modificar al usuario {0}">
+		<f:param value="#{modClienteEmpresa.empresa.identificacion}" />
+	</h:outputFormat>
+	<h:form id="modificarEmpresa" class="form-login">
+		<h:panelGrid columns="3">
+			<h:outputText value="Identificacion" />
+			<h:inputText id="identificacion" required="true"
+				value="#{modClienteEmpresa.empresa.identificacion}" class="controls" />
+			<h:message id="identificacionMessage" for="identificacion" />
 
-            
-                    	
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-        <h:form id="modificarEmpresa" class="form-login">
-        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
-                    <h:panelGrid columns="3">
-                       
-                       	<h:outputText value="Razon social:"/>
-                        <h:inputSecret id="razonSocial" required="true" value="#{modClienteEmpresa.empresa.razonSocial}" class="controls"/>
-                        <h:message id="razonSocialMessage" for="razonSocial"/>
-                       
-                        
-                        <h:outputText value="Identificacion"/>
-                        <h:inputText id="identificacion" required="true" value="#{modClienteEmpresa.empresa.identificacion}" class="controls"/>
-                        <h:message id="identificacionMessage" for="identificacion"/>
-                        
-                        
-                        <h:outputText value="Tipo de Cliente:"/>
-                        <h:inputText id="typeClient" required="true" value="#{modClienteEmpresa.empresa.tipoCliente}" class="controls"/>
-                        <h:message id="typeClientMessage" for="typeClient"/>
-                        
-                        <h:outputText value="Estado:"/>
-                        <h:inputText id="state" required="true" value="#{modClienteEmpresa.empresa.estado}" disabled="true" class="controls"/>
-                        <h:message id="stateMessage" for="state"/>
-                        
-                        <h:outputText value="Fecha de alta:"/>
-                        <h:inputText id="fechaAlta" required="true" value="#{modClienteEmpresa.empresa.fechaAlta}" disabled="true" class="controls"/>
-                        <h:message id="fechaAltaMessage" for="fechaAlta"/>
-                        
-                        <h:outputText value="Fecha de baja:"/>
-                        <h:inputText id="fechaBaja" required="false" value="#{modClienteEmpresa.empresa.fechaBaja}" disabled="true" class="controls"/>
-                        <h:message id="fechaBajaMessage" for="fechaBaja"/>
-                        
-                        <h:outputText value="Direccion:"/>
-                        <h:inputText id="direccion" required="true" value="#{modClienteEmpresa.empresa.direccion}" class="controls"/>
-                        <h:message id="direccionMessage" for="direccion"/>
-                        
-                        <h:outputText value="Ciudad:"/>
-                        <h:inputText id="ciudad" required="true" value="#{modClienteEmpresa.empresa.ciudad}" class="controls"/>
-                        <h:message id="ciudadMessage" for="ciudad"/>
-                        
-                        <h:outputText value="Codigo Postal:"/>
-                        <h:inputText id="cp" required="true" value="#{modClienteEmpresa.empresa.codigopostal}" class="controls"/>
-                        <h:message id="cpMessage" for="cp"/>
+			<h:outputText value="Razon social:" />
+			<h:inputSecret id="razonSocial" required="true"
+				value="#{modClienteEmpresa.empresa.razonSocial}" class="controls" />
+			<h:message id="razonSocialMessage" for="razonSocial" />
 
-                        <h:commandButton id="botonModificarEmpresa" value="Modificar" action="#{ModClienteEmpresa.modificarEmpresa()}" class="buttons"/>
+			<h:outputText value="Tipo de Cliente:" />
+			<h:inputText id="typeClient" required="true"
+				value="#{modClienteEmpresa.empresa.tipoCliente}" class="controls" />
+			<h:message id="typeClientMessage" for="typeClient" />
 
-                    </h:panelGrid>
-					
-        </h:form>
-						
-               
+			<h:outputText value="Estado:" />
+			<h:inputText id="state" required="true"
+				value="#{modClienteEmpresa.empresa.estado}" disabled="true"
+				class="controls" />
+			<h:message id="stateMessage" for="state" />
 
-        
+			<h:outputText value="Fecha de alta:" />
+			<h:inputText id="fechaAlta" required="true"
+				value="#{modClienteEmpresa.empresa.fechaAlta}" disabled="true"
+				class="controls" />
+			<h:message id="fechaAltaMessage" for="fechaAlta" />
+
+			<h:outputText value="Fecha de baja:" />
+			<h:inputText id="fechaBaja" required="false"
+				value="#{modClienteEmpresa.empresa.fechaBaja}" disabled="true"
+				class="controls" />
+			<h:message id="fechaBajaMessage" for="fechaBaja" />
+
+			<h:outputText value="Direccion:" />
+			<h:inputText id="direccion" required="true"
+				value="#{modClienteEmpresa.empresa.direccion}" class="controls" />
+			<h:message id="direccionMessage" for="direccion" />
+
+			<h:outputText value="Ciudad:" />
+			<h:inputText id="ciudad" required="true"
+				value="#{modClienteEmpresa.empresa.ciudad}" class="controls" />
+			<h:message id="ciudadMessage" for="ciudad" />
+
+			<h:outputText value="Codigo Postal:" />
+			<h:inputText id="cp" required="true"
+				value="#{modClienteEmpresa.empresa.codigopostal}" class="controls" />
+			<h:message id="cpMessage" for="cp" />
+
+			<h:commandButton id="botonModificarEmpresa" value="Modificar"
+				action="#{ModClienteEmpresa.modificarEmpresa()}" class="boton"  />
+
+		</h:panelGrid>
+		<br />
+		<br />
+		<h:button id="atras" value="Volver" outcome="clientesEmpresas.xhtml" class="boton"  />
+	</h:form>
+
 </h:body>
 </html>

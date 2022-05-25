@@ -4,92 +4,104 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
-	
-	<h:head>
-		<title>Datos clientes individuales</title>
-	</h:head> 
-	
-	<h:body>
-		<h1>CLIENTES INDIVIDUALES</h1>
-	
-		<br/>
-				<h:form id="formulario">
-					<h:dataTable value="#{accionesEmpresas.listaCliente}" var="c">
-					
-						<h:column>
-                            <f:facet id="cabeceraId" name="header">Identificacion</f:facet>
-                            <h:outputText id="textoIdentificacion" value="#{c.identificacion}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraRazon" name="header">Razon social</f:facet>
-                            <h:outputText id="textoRazon" value="#{c.razonSocial}"/>
-                        </h:column>
-                         
-                        <h:column>
-                            <f:facet id="cabeceraTipo" name="header">Tipo de cliente</f:facet>
-                            <h:outputText id="textoTipo" value="#{c.tipoCliente}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-                            <h:outputText id="textoEstado" value="#{c.estado}"/>
-                        </h:column>
-                        
-                         <h:column>
-                            <f:facet id="cabeceraAlta" name="header">Fecha de alta</f:facet>
-                            <h:outputText id="textoAlta" value="#{c.fechaAlta}"/>
-                        </h:column>
-                        
-                         <h:column>
-                            <f:facet id="cabeceraBaja" name="header">Fecha de baja</f:facet>
-                            <h:outputText id="textoBaja" value="#{c.fechaBaja}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraDireccion" name="header">Direccion</f:facet>
-                            <h:outputText id="textoDireccion" value="#{c.direccion}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraCiudad" name="header">Ciudad</f:facet>
-                            <h:outputText id="textoCiudad" value="#{c.ciudad}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraCP" name="header">Codigo Postal</f:facet>
-                            <h:outputText id="textoCP" value="#{c.codigopostal}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet id="cabeceraPais" name="header">Pais</f:facet>
-                            <h:outputText id="textoPais" value="#{c.pais}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <h:commandButton id="botonBaja" value="Dar de baja" action="#{accionesEmpresas.baja(c.identificacion)}"/>
-                            <h:message id="botonBajaMessage" for="botonBaja"/>
-                        </h:column>
-                        <h:column>
-                            <h:commandButton id="botonBloq" value="Bloquear" action="#{accionesEmpresas.bloquea(c.identificacion)}"/>
-                            <h:message id="botonBloqMessage" for="botonBloq"/>
-                        </h:column>
-                        <h:column>
-                            <h:commandButton id="botonDesbloq" value="Desbloquear" action="#{accionesEmpresas.desbloquea(c.identificacion)}"/>
-                            <h:message id="botonDesbloqMessage" for="botonDesbloq"/>
-                        </h:column>
-                        <h:column>
-                            <h:commandButton id="botonMod" value="Modificar" action="#{modClienteEmpresa.accion(c.identificacion)}"/>
-                            <h:message id="botonModMessage" for="botonMod"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-                <br/>
-				<h:button outcome="altaIndividual.xhtml" id="botonAltaIndividual" value="Alta de un cliente Individual" class="buttons"/>
-                <br/>
-                <br/>
-                <h:button id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"></h:button>
-				<br/>
-	</h:body> 
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Datos clientes individuales</title>
+</h:head>
+
+<h:body>
+	<h1>CLIENTES INDIVIDUALES</h1>
+	<h:outputFormat value="Usuario administrativo: {0}">
+		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+	</h:outputFormat>
+	<br />
+	<h:form id="formulario">
+		<h:dataTable value="#{accionesEmpresas.listaCliente}" var="c">
+
+			<h:column>
+				<f:facet id="cabeceraId" name="header">Identificacion</f:facet>
+				<h:outputText id="textoIdentificacion" value="#{c.identificacion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraRazon" name="header">Razon social</f:facet>
+				<h:outputText id="textoRazon" value="#{c.razonSocial}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraTipo" name="header">Tipo de cliente</f:facet>
+				<h:outputText id="textoTipo" value="#{c.tipoCliente}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+				<h:outputText id="textoEstado" value="#{c.estado}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraAlta" name="header">Fecha de alta</f:facet>
+				<h:outputText id="textoAlta" value="#{c.fechaAlta}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraBaja" name="header">Fecha de baja</f:facet>
+				<h:outputText id="textoBaja" value="#{c.fechaBaja}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraDireccion" name="header">Direccion</f:facet>
+				<h:outputText id="textoDireccion" value="#{c.direccion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraCiudad" name="header">Ciudad</f:facet>
+				<h:outputText id="textoCiudad" value="#{c.ciudad}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraCP" name="header">Codigo Postal</f:facet>
+				<h:outputText id="textoCP" value="#{c.codigopostal}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraPais" name="header">Pais</f:facet>
+				<h:outputText id="textoPais" value="#{c.pais}" />
+			</h:column>
+
+			<h:column>
+				<h:commandButton id="botonBaja" value="Dar de baja"
+					action="#{accionesEmpresas.baja(c.identificacion)}" />
+				<h:message id="botonBajaMessage" for="botonBaja" />
+				<br />
+			</h:column>
+			<h:column>
+				<h:commandButton id="botonBloq" value="Bloquear"
+					action="#{accionesEmpresas.bloquea(c.identificacion)}" />
+				<h:message id="botonBloqMessage" for="botonBloq" />
+				<br />
+			</h:column>
+			<h:column>
+				<h:commandButton id="botonDesbloq" value="Desbloquear"
+					action="#{accionesEmpresas.desbloquea(c.identificacion)}" />
+				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
+				<br />
+			</h:column>
+			<h:column>
+				<h:commandButton id="botonMod" value="Modificar"
+					action="#{modClienteEmpresa.accion(c.identificacion)}" />
+				<h:message id="botonModMessage" for="botonMod" />
+				<br />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	<br />
+	<h:button outcome="altaEmpresa.xhtml" id="botonAltaEmpresa"
+		value="Alta de un cliente Empresa" class="buttons" />
+	<br />
+	<br />
+	<h:button id="inicio" outcome="paginaprincipalAdmin.xhtml"
+		value="Volver al inicio"></h:button>
+	<br />
+</h:body>
 </html>

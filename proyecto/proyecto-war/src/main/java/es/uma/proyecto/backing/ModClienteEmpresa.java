@@ -47,7 +47,7 @@ public class ModClienteEmpresa {
 		return empresa;
 	}
 	
-	public void setIndividual(Empresa empresa) {
+	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 	
@@ -55,7 +55,7 @@ public class ModClienteEmpresa {
 		
 		try {
 			usuario = sesion.getUsuario();
-			clienteEJB.modificarDatosClienteEmpresa(usuario, this.getId_cliente(), empresa);
+			clienteEJB.modificarDatosClienteEmpresa(usuario, empresa.getIdentificacion(), empresa);
 			return "clientesEmpresas.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
@@ -76,7 +76,7 @@ public class ModClienteEmpresa {
 	
 	public String accion(String c) {
 		try {
-			this.empresa = (Empresa) clienteEJB.devolverCliente(c);
+			this.empresa = (Empresa) clienteEJB.devolverClienteEmpresa(c);
 			System.out.println(empresa.getIdentificacion());
 		} catch (ClienteNoExistenteException e) {
 			// TODO Auto-generated catch block

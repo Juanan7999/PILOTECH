@@ -58,7 +58,6 @@ public class ClienteEJB implements GestionCliente {
 		individual.setEstado("activo");
 		individual.setTipoCliente("F");
 		em.persist(individual);
-		
 
 	}
 	
@@ -83,7 +82,10 @@ public class ClienteEJB implements GestionCliente {
 		if (clienteEmpresaEntity != null) {
 			throw new ClienteExistenteException();
 		}
-
+		
+		empresa.setFechaAlta(LocalDate.now().toString());
+		empresa.setEstado("activo");
+		empresa.setTipoCliente("J");
 		em.persist(empresa);
 	}
 

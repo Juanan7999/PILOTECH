@@ -2,35 +2,43 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:f="http://xmlns.jcp.org/jsf/core"
-       xmlns:a="http://xmlns.jcp.org/jsf/passthorugh">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthorugh">
 
 <h:head>
-       <title>Login de inicio</title>
-       <h:outputStylesheet name="style.css"/>
+	<title>Login de inicio</title>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
-       
-        <h:form id="login" class="form-login">
-        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
-                    <h:panelGrid columns="3">
-                        <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{loginNormal.usuario.nombreUsuario}" class="controls"/>
-                        <h:message id="userMessage" for="user"/>
 
-                        <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{loginNormal.usuario.password}" class="controls"/>
-                        <h:message id="passwordMessage" for="pass"/>
+	<h:form id="login" class="form-login">
+		<h5>
+			<h:outputText value="PAGINA DE INICIO" />
+		</h5>
+		<h:panelGrid columns="3">
+			<h:outputText value="Nombre de usuario:" />
+			<h:inputText id="user" required="true"
+				value="#{loginNormal.usuario.nombreUsuario}" class="controls" />
+			<h:message id="userMessage" for="user" />
 
-                        <h:commandButton id="botonLogin" value="Entrar" action="#{loginNormal.login()}" class="buttons"/>
-						<h:message id="loginException" for="botonLogin"/>
-                    </h:panelGrid>
-					<div>
-                        <p>Si eres administrador <h:link outcome="admin.xhtml">pulse aqui</h:link></p>
-                    </div>
-        </h:form>
+			<h:outputText value="Contraseña:" />
+			<h:inputSecret id="pass" required="true"
+				value="#{loginNormal.usuario.password}" class="controls" />
+			<h:message id="passwordMessage" for="pass" />
+
+			<h:commandButton id="botonLogin" value="Entrar"
+				action="#{loginNormal.login()}" class="buttons" />
+			<h:message id="loginException" for="botonLogin" />
+		</h:panelGrid>
+		<div>
+			<p>
+				Si eres administrador
+				<h:link outcome="admin.xhtml">pulse aqui</h:link>
+			</p>
+		</div>
+	</h:form>
 </h:body>
 </html>

@@ -2,81 +2,100 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-       <title>Login de inicio</title>
+	<title>Alta individual</title>
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="ALTA DE UN INDIVIDUAL"/></h1>
-        
+	<h1>
+		<h:outputText value="ALTA DE UN INDIVIDUAL" />
+	</h1>
+	<h:outputFormat value="Usuario administrativo: {0}">
+		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+	</h:outputFormat>
+	<br />
+	<h:form id="altaIndividual" class="form-login">
+		<h5>
+			<h:outputText value="PAGINA DE INICIO" />
+		</h5>
+		<h:panelGrid columns="3">
+			<h:outputText value="Nombre de usuario:" />
+			<h:inputText id="user" required="true"
+				value="#{altaClienteIndividual.usuario.nombreUsuario}"
+				class="controls" />
+			<h:message id="userMessage" for="user" />
 
-            
-                    	
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-                        
-        <h:form id="altaIndividual" class="form-login">
-        <h5><h:outputText value="PAGINA DE INICIO"/></h5>
-                    <h:panelGrid columns="3">
-                        <h:outputText value="Nombre de usuario:"/>
-                        <h:inputText id="user" required="true" value="#{altaClienteIndividual.usuario.nombreUsuario}" class="controls"/>
-                        <h:message id="userMessage" for="user"/>
+			<h:outputText value="Contraseña:" />
+			<h:inputSecret id="pass" required="true"
+				value="#{altaClienteIndividual.usuario.password}" class="controls" />
+			<h:message id="passwordMessage" for="pass" />
 
-                        <h:outputText value="Contraseña:"/>
-                        <h:inputSecret id="pass" required="true" value="#{altaClienteIndividual.usuario.password}" class="controls"/>
-                        <h:message id="passwordMessage" for="pass"/>
-                        
-                        <h:outputText value="Tipo de Usuario:"/>
-                        <h:inputText id="typeUsuario" required="true" value="#{altaClienteIndividual.usuario.tipo}" class="controls"/>
-                        <h:message id="typeUserMessage" for="typeUsuario"/>
-                        
-                        <h:outputText value="Nombre:"/>
-                        <h:inputText id="nombre" required="true" value="#{altaClienteIndividual.individual.nombre}" class="controls"/>
-                        <h:message id="nombreMessage" for="nombre"/>
-                        
-                        <h:outputText value="Apellido:"/>
-                        <h:inputText id="apellido" required="true" value="#{altaClienteIndividual.individual.apellido}" class="controls"/>
-                        <h:message id="apellidoMessage" for="apellido"/>
+			<h:outputText value="Tipo de Usuario:" />
+			<h:inputText id="typeUsuario" required="true"
+				value="#{altaClienteIndividual.usuario.tipo}" class="controls" />
+			<h:message id="typeUserMessage" for="typeUsuario" />
 
-                        <h:outputText value="Fecha de Nacimiento"/>
-                        <h:inputText id="fechaNacimiento" required="true" value="#{altaClienteIndividual.individual.fechaNacimiento}" class="controls"/>
-                        <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
-                        
-                        <h:outputText value="Identificacion"/>
-                        <h:inputText id="identificacion" required="true" value="#{altaClienteIndividual.individual.identificacion}" class="controls"/>
-                        <h:message id="identificacionMessage" for="identificacion"/>              
-                        
-                        <h:outputText value="Direccion:"/>
-                        <h:inputText id="direccion" required="true" value="#{altaClienteIndividual.individual.direccion}" class="controls"/>
-                        <h:message id="direccionMessage" for="direccion"/>
-                        
-                        <h:outputText value="Ciudad:"/>
-                        <h:inputText id="ciudad" required="true" value="#{altaClienteIndividual.individual.ciudad}" class="controls"/>
-                        <h:message id="ciudadMessage" for="ciudad"/>
-                        
-                        <h:outputText value="Codigo Postal:"/>
-                        <h:inputText id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}" class="controls"/>
-                        <h:message id="cpMessage" for="cp"/>
-                        
-                        <h:outputText value="Pais:"/>
-                        <h:inputText id="pais" required="true" value="#{altaClienteIndividual.individual.pais}" class="controls"/>
-                        <h:message id="paisMessage" for="pais"/>
+			<h:outputText value="Nombre:" />
+			<h:inputText id="nombre" required="true"
+				value="#{altaClienteIndividual.individual.nombre}" class="controls" />
+			<h:message id="nombreMessage" for="nombre" />
 
-                        <h:commandButton id="botonAltaIndividual" value="Alta" action="#{altaClienteIndividual.altaIndividual()}" class="buttons"/>
-						<h:message id="botonAltaMessage" for="botonAltaIndividual"/>
-						
-                    </h:panelGrid>
-					
-        </h:form>
-        <h:button id="aceptar" outcome="clientesIndividuales.xhtml" value="Aceptar"></h:button>               
-						
-               
+			<h:outputText value="Apellido:" />
+			<h:inputText id="apellido" required="true"
+				value="#{altaClienteIndividual.individual.apellido}"
+				class="controls" />
+			<h:message id="apellidoMessage" for="apellido" />
 
-        
+			<h:outputText value="Fecha de Nacimiento" />
+			<h:inputText id="fechaNacimiento" required="true"
+				value="#{altaClienteIndividual.individual.fechaNacimiento}"
+				class="controls" />
+			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
+
+			<h:outputText value="Identificacion" />
+			<h:inputText id="identificacion" required="true"
+				value="#{altaClienteIndividual.individual.identificacion}"
+				class="controls" />
+			<h:message id="identificacionMessage" for="identificacion" />
+
+			<h:outputText value="Direccion:" />
+			<h:inputText id="direccion" required="true"
+				value="#{altaClienteIndividual.individual.direccion}"
+				class="controls" />
+			<h:message id="direccionMessage" for="direccion" />
+
+			<h:outputText value="Ciudad:" />
+			<h:inputText id="ciudad" required="true"
+				value="#{altaClienteIndividual.individual.ciudad}" class="controls" />
+			<h:message id="ciudadMessage" for="ciudad" />
+
+			<h:outputText value="Codigo Postal:" />
+			<h:inputText id="cp" required="true"
+				value="#{altaClienteIndividual.individual.codigopostal}"
+				class="controls" />
+			<h:message id="cpMessage" for="cp" />
+
+			<h:outputText value="Pais:" />
+			<h:inputText id="pais" required="true"
+				value="#{altaClienteIndividual.individual.pais}" class="controls" />
+			<h:message id="paisMessage" for="pais" />
+
+			<h:commandButton id="botonAltaIndividual" value="Alta"
+				action="#{altaClienteIndividual.altaIndividual()}" class="boton" />
+			<h:message id="botonAltaMessage" for="botonAltaIndividual" />
+
+		</h:panelGrid>
+
+	</h:form>
+	<h:button id="aceptar" outcome="clientesIndividuales.xhtml"
+		value="Volver" class="boton" ></h:button>
+
+
+
+
 </h:body>
 </html>
