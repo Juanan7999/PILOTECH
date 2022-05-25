@@ -1,25 +1,25 @@
 package es.uma.proyecto.backing;
 
-import java.util.List;
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import es.uma.proyecto.CuentaFintech;
-import es.uma.proyecto.Empresa;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
-import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
-@Named(value = "añadirAutorizados")
+@Named(value = "altaPersonaAutorizada")
 @RequestScoped
-public class AñadirAutorizados {
+public class AltaPersonaAutorizada {
 
+	
 	@Inject
 	private GestionCuenta cuentaEJB;
 
@@ -30,13 +30,12 @@ public class AñadirAutorizados {
 	
 	private PersonaAutorizada personaAutorizada;
 	
-	private Empresa empresa;
 	
-	
-	public AñadirAutorizados() {
-		personaAutorizada = new PersonaAutorizada();
+	public AltaPersonaAutorizada() {
 		usuario = new Usuario();
+		personaAutorizada = new PersonaAutorizada();
 	}
+	
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -51,34 +50,37 @@ public class AñadirAutorizados {
 	}
 	
 	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
-		this.personaAutorizada=personaAutorizada;
+		this.personaAutorizada = personaAutorizada;
 	}
 	
-	public String anadirAutorizados() {
+	public String altaPersonaAutorizada() {
 		
 		try {
-			
 			usuario = sesion.getUsuario();
-			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa);
-			return "paginaprincipalAdmin.xhtml";
+			cuentaEJB.altaPersonaAutorizada(usuario, personaAutorizada);
+			return null;
+			
+		}catch(PersonaAutorizadaExistenteException e){
+			
+			FacesMessage fm = new FacesMessage("La persona autorizada no existe");
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("añadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
 			
-		}catch(ClienteNoJuridicoException e) {
-			
-			FacesMessage fm = new FacesMessage("El cliente no es juridico");
-			FacesContext.getCurrentInstance().addMessage("añadirAutorizados", fm);
+		}catch(UsuarioNoEncontradoException e) {
+		
+			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
 			
 		}
 		
+		
 		return null;
 		
+		
 	}
-	
-	
-	
 	
 }

@@ -18,6 +18,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
@@ -61,7 +62,7 @@ public interface GestionCuenta {
 	 * cliente en cuestion.
 	 */
 
-	public void anadirAutorizados(Usuario usuario, List<PersonaAutorizada> lpa, CuentaFintech cf)
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException;
 
 	/*
@@ -73,6 +74,8 @@ public interface GestionCuenta {
 	 * haya saltado ninguna excepcion se modifican los datos de la persona
 	 * autorizada en cuestion.
 	 */
+	
+	
 
 	public void modificarAutorizados(Usuario usuario, PersonaAutorizada pa) throws UsuarioNoEsAdministrativoException,
 			 PersonaAutorizadaNoExistenteException;
@@ -125,4 +128,8 @@ public interface GestionCuenta {
 
 	void bloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
 			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+	
+	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada) 
+			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+	
 }

@@ -21,6 +21,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
@@ -57,8 +58,11 @@ public class ClienteEJB implements GestionCliente {
 		individual.setEstado("activo");
 		individual.setTipoCliente("F");
 		em.persist(individual);
+		
 
 	}
+	
+	
 
 	@Override
 	public void altaClienteEmpresa(Usuario admin, Empresa empresa)

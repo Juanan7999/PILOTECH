@@ -1,5 +1,6 @@
 package es.uma.proyecto.ejb;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
@@ -78,7 +80,7 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void anadirAutorizados(Usuario usuario, List<PersonaAutorizada> lpa, CuentaFintech cf)
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
@@ -87,15 +89,15 @@ public class CuentaEJB implements GestionCuenta {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 
-		if (!cf.getCliente().getEstado().equals("J")) {
+		if (!cl.getEstado().equals("J")) {
 			throw new ClienteNoJuridicoException();
 		}
 
-		Empresa e = em.find(Empresa.class, cf.getCliente().getIdentificacion());
+		Empresa e = em.find(Empresa.class, cl.getIdentificacion());
 
 		List<Autorizacion> autorizaciones = e.getAutorizacions();
 
-		for (PersonaAutorizada pa : lpa) {
+	
 
 			Autorizacion aut = new Autorizacion();
 			aut.setTipo(1); // Revisar
@@ -110,9 +112,36 @@ public class CuentaEJB implements GestionCuenta {
 			em.persist(aut);
 			autorizaciones.add(aut);
 
-		}
+		
 
 		em.merge(e);
+	}
+	
+	@Override
+	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada)
+			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+
+		PersonaAutorizada personaAutorizadaEntity = em.find(PersonaAutorizada.class, personaAutorizada.getIdentificacion());
+
+		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
+
+		if (administrador == null) { // Si no existe o no es administrativo
+			throw new UsuarioNoEncontradoException();
+		}
+
+		if (!administrador.esAdmin()) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
+
+		if (personaAutorizadaEntity != null) {
+			throw new PersonaAutorizadaExistenteException();
+		}
+		
+		personaAutorizada.setEstado("activo");
+		personaAutorizada.setFechaInicio(LocalDate.now().toString());
+		em.persist(personaAutorizada);
+		
+
 	}
 
 	@Override

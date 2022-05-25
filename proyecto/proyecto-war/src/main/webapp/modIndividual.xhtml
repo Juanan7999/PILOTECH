@@ -20,7 +20,7 @@
                         <br/>
                         
                         <h:outputFormat value = "Modificar al usuario {0}">
-                        	<f:param value = "#{accionesIndividuales.individual.identificacion}" />
+                        	<f:param value = "#{modClienteIndividual.individual.identificacion}" />
                         </h:outputFormat>
                         
         <h:form id="modificarIndividual" class="form-login">
@@ -28,39 +28,39 @@
                     <h:panelGrid columns="3">
                     
                     	<h:outputText value="Identificacion del cliente a modificar:"/>
-                        <h:inputText id="identificacion" required="true" value="#{accionesIndividuales.individual.identificacion}" class="controls"/>
+                        <h:inputText id="identificacion" required="true" value="#{modClienteIndividual.individual.identificacion}" class="controls"/>
                         <h:message id="identificacionMessage" for="identificacion"/>
                         
                         <h:outputText value="Nombre:"/>
-                        <h:inputText id="nombre" required="false" value="#{accionesIndividuales.individual.nombre}" class="controls"/>
+                        <h:inputText id="nombre" required="false" value="#{modClienteIndividual.individual.nombre}" class="controls"/>
                         <h:message id="nombreMessage" for="nombre"/>
                         
                         <h:outputText value="Apellido:"/>
-                        <h:inputText id="apellido" required="false" value="#{accionesIndividuales.individual.apellido}" class="controls"/>
+                        <h:inputText id="apellido" required="false" value="#{modClienteIndividual.individual.apellido}" class="controls"/>
                         <h:message id="apellidoMessage" for="apellido"/>
 
                         <h:outputText value="Fecha de Nacimiento"/>
-                        <h:inputText id="fechaNacimiento" required="false" value="#{accionesIndividuales.individual.fechaNacimiento}" class="controls"/>
+                        <h:inputText id="fechaNacimiento" required="false" value="#{modClienteIndividual.individual.fechaNacimiento}" class="controls"/>
                         <h:message id="fechaNacimientoMessage" for="fechaNacimiento"/>
                         
                         <h:outputText value="Tipo de Cliente:"/>
-                        <h:inputText id="typeClient" required="false" value="#{accionesIndividuales.individual.tipoCliente}" class="controls"/>
+                        <h:inputText id="typeClient" required="false" value="#{modClienteIndividual.individual.tipoCliente}" class="controls"/>
                         <h:message id="typeClientMessage" for="typeClient"/>
                         
                         <h:outputText value="Direccion:"/>
-                        <h:inputText id="direccion" required="false" value="#{accionesIndividuales.individual.direccion}" class="controls"/>
+                        <h:inputText id="direccion" required="false" value="#{modClienteIndividual.individual.direccion}" class="controls"/>
                         <h:message id="direccionMessage" for="direccion"/>
                         
                         <h:outputText value="Ciudad:"/>
-                        <h:inputText id="ciudad" required="false" value="#{accionesIndividuales.individual.ciudad}" class="controls"/>
+                        <h:inputText id="ciudad" required="false" value="#{modClienteIndividual.individual.ciudad}" class="controls"/>
                         <h:message id="ciudadMessage" for="ciudad"/>
                         
                         <h:outputText value="Codigo Postal:"/>
-                        <h:inputText id="cp" required="true" value="#{accionesIndividuales.individual.codigopostal}" class="controls"/>
+                        <h:inputText id="cp" required="true" value="#{modClienteIndividual.individual.codigopostal}" class="controls"/>
                         <h:message id="cpMessage" for="cp"/>
                         
                         <h:outputText value="Pais:"/>
-                        <h:inputText id="pais" required="false" value="#{accionesIndividuales.individual.pais}" class="controls"/>
+                        <h:inputText id="pais" required="false" value="#{modClienteIndividual.individual.pais}" class="controls"/>
                         <h:message id="paisMessage" for="pais"/>
 
                         <h:commandButton id="botonModificarIndividual" value="Modificar" action="#{modClienteIndividual.modificarIndividual()}" class="buttons"/>

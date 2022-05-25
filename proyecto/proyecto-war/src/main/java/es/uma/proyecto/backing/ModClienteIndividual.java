@@ -73,4 +73,15 @@ public class ModClienteIndividual {
 		
 	}
 	
+	public String accion(String c) {
+		try {
+			this.individual = (Individual) clienteEJB.devolverCliente(c);
+			System.out.println(individual.getIdentificacion());
+		} catch (ClienteNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "modIndividual.xhtml";
+	}
+	
 }
