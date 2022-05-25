@@ -17,6 +17,10 @@
 	</h:outputFormat>
 	<br />
 	<h:form id="formulario">
+		
+		<p:growl id="growl" showDetail="true" />
+        <p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+	
 		<h:dataTable value="#{accionesIndividuales.listaCliente}" var="c">
 
 			<h:column>

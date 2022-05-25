@@ -225,7 +225,13 @@ public class ClienteEJB implements GestionCliente {
 		if (clienteEntity == null) {
 			throw new ClienteNoExistenteException();
 		}
-
+		
+		empresa.setEstado(clienteEntity.getEstado());
+		empresa.setFechaAlta(clienteEntity.getFechaAlta().toString());
+		if(clienteEntity.getFechaBaja() != null) {
+			empresa.setFechaBaja(clienteEntity.getFechaBaja().toString());
+		}
+		
 		em.merge(empresa);
 
 	}
