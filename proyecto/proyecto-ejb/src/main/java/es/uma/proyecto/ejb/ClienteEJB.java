@@ -62,32 +62,7 @@ public class ClienteEJB implements GestionCliente {
 
 	}
 	
-	@Override
-	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada)
-			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
-
-		PersonaAutorizada personaAutorizadaEntity = em.find(PersonaAutorizada.class, personaAutorizada.getIdentificacion());
-
-		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
-
-		if (administrador == null) { // Si no existe o no es administrativo
-			throw new UsuarioNoEncontradoException();
-		}
-
-		if (!administrador.esAdmin()) {
-			throw new UsuarioNoEsAdministrativoException();
-		}
-
-		if (personaAutorizadaEntity != null) {
-			throw new PersonaAutorizadaExistenteException();
-		}
-		
-		personaAutorizada.setEstado("activo");
-		personaAutorizada.setFechaInicio(LocalDate.now().toString());
-		em.persist(personaAutorizada);
-		
-
-	}
+	
 
 	@Override
 	public void altaClienteEmpresa(Usuario admin, Empresa empresa)

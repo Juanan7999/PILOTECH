@@ -46,8 +46,7 @@ public interface GestionCliente {
 	 * razonSocial
 	 */
 	
-	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada) 
-			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+	
 
 
 	public void altaClienteEmpresa(Usuario admin, Empresa empresa)
