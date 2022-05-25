@@ -17,6 +17,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaActivoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaAbiertaException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
@@ -44,6 +45,10 @@ public interface GestionCliente {
 	 * juridica se pide almacenar en la base de datos tambien obligatoriamente
 	 * razonSocial
 	 */
+	
+	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada) 
+			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+
 
 	public void altaClienteEmpresa(Usuario admin, Empresa empresa)
 			throws ClienteExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
