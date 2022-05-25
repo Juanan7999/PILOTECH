@@ -21,6 +21,7 @@ import javax.ws.rs.core.UriInfo;
 
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionInforme;
+import es.uma.proyecto.modelsrest.PeticionClientes;
 
 
 
@@ -50,7 +51,8 @@ public class ServicioREST {
 	@Path("/clients")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response aniadirContacto(Contacto contacto) {
+	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Response aniadirContacto(PeticionClientes pc) {
 		
 		Usuario usuario  = getUsuario();
 		if(usuario == null) {
