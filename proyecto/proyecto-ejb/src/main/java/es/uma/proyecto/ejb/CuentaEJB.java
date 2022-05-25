@@ -1,5 +1,6 @@
 package es.uma.proyecto.ejb;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PooledAccountConSolo1CuentaExternaException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
@@ -113,6 +115,33 @@ public class CuentaEJB implements GestionCuenta {
 		
 
 		em.merge(e);
+	}
+	
+	@Override
+	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada)
+			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+
+		PersonaAutorizada personaAutorizadaEntity = em.find(PersonaAutorizada.class, personaAutorizada.getIdentificacion());
+
+		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
+
+		if (administrador == null) { // Si no existe o no es administrativo
+			throw new UsuarioNoEncontradoException();
+		}
+
+		if (!administrador.esAdmin()) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
+
+		if (personaAutorizadaEntity != null) {
+			throw new PersonaAutorizadaExistenteException();
+		}
+		
+		personaAutorizada.setEstado("activo");
+		personaAutorizada.setFechaInicio(LocalDate.now().toString());
+		em.persist(personaAutorizada);
+		
+
 	}
 
 	@Override
