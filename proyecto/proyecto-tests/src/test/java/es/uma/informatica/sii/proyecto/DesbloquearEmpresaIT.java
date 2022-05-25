@@ -27,29 +27,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class DesbloquearEmpresaIITT {
+public class DesbloquearEmpresaIT {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
-  
-  private String baseURL;
-  private static Map<String, String> propiedadesExtra = new HashMap<>();
-  
-  @BeforeClass
-  public void setupClass() {
-	  String server = "localhost";
-	  try(InputStream is = BloquearIndividualIT.class.getClassLoader().getResourceAsStream("pom.properties")){
-		  Properties pomProperties = new Properties();
-		  pomProperties.load(is);
-		  server=pomProperties.getProperty("server.host");
-		  String databaseURL = "jdbc:mysql://"+server+":3306/sii";
-		  propiedadesExtra.put("javax.persistence.jdbc.url", databaseURL);
-	  }catch(IOException e) {
-		  e.printStackTrace();
-	  }
-	  baseURL = "http://"+server+":8080/trazabilidad-war/";
-  }
-  
   @Before
   public void setUp() {
     driver = new ChromeDriver();
@@ -62,7 +43,7 @@ public class DesbloquearEmpresaIITT {
   }
   @Test
   public void desbloquearEmpresa() {
-    driver.get(baseURL);
+    driver.get("http://localhost:8080/proyecto-war/");
     driver.manage().window().setSize(new Dimension(976, 1040));
     driver.findElement(By.linkText("pulse aqui")).click();
     driver.findElement(By.id("loginAdmin:user")).click();
