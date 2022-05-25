@@ -24,10 +24,12 @@ import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Stateless
@@ -97,25 +99,42 @@ public class InformeEJB implements GestionInforme {
 
 	@Override
 	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta,
-			Date fechaBaja, String direccion) throws ClienteNoExistenteException {
+			Date fechaBaja)  {
 		Query query = em.createQuery(
 				"SELECT i FROM Individual i where i.nombre = :nombre AND i.apellido = :apellido AND i.fechaAlta = :fechaalta"
-						+ " AND i.fechaBaja = :fechabaja AND i.direccion = :direccion");
+						+ " AND i.fechaBaja = :fechabaja");
 
 		query.setParameter("nombre", nombre);
 		query.setParameter("apellido", apellidos);
 		query.setParameter("fechaalta", fechaAlta);
 		query.setParameter("fechabaja", fechaBaja);
-		query.setParameter("direccion", direccion);
+		
 
 		List<Individual> listaClientes = query.getResultList();
-		if (listaClientes.size() == 0) {
-			throw new ClienteNoExistenteException();
-		}
+		
 
 		return listaClientes;
 	}
 
+	
+	@Override
+	public List<PersonaAutorizada> devolverInformeHolandaAutorizados(String nombre, String apellidos, Date fechaAlta,
+			Date fechaBaja)  {
+		Query query = em.createQuery(
+				"SELECT i FROM PersonaAutorizada i where i.nombre = :nombre AND i.apellidos = :apellido AND i.fechainicio = :fechaalta"
+						+ " AND i.fechafin = :fechabaja");
+
+		query.setParameter("nombre", nombre);
+		query.setParameter("apellido", apellidos);
+		query.setParameter("fechaalta", fechaAlta);
+		query.setParameter("fechabaja", fechaBaja);
+		
+
+		List<PersonaAutorizada> listaAutorizados = query.getResultList();
+		
+
+		return listaAutorizados;
+	}
 	public String generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());

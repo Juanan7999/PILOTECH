@@ -1,6 +1,7 @@
 package es.uma.proyecto.rest;
 
 import java.net.URI;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,18 +23,26 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.ejb.GestionCliente;
+import es.uma.proyecto.ejb.GestionCuenta;
 import es.uma.proyecto.ejb.GestionInforme;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
 import es.uma.proyecto.modelsrest.AccountHolder;
 import es.uma.proyecto.modelsrest.DireccionCliente;
+import es.uma.proyecto.modelsrest.Individuales;
 import es.uma.proyecto.modelsrest.NombreCliente;
 import es.uma.proyecto.modelsrest.PeticionClientes;
 import es.uma.proyecto.modelsrest.PeticionProductos;
 import es.uma.proyecto.modelsrest.Producto;
+import es.uma.proyecto.modelsrest.ProductoCliente;
+import es.uma.proyecto.modelsrest.RespuestaIndividual;
 import es.uma.proyecto.modelsrest.RespuestaProductos;
 
 
@@ -45,6 +54,9 @@ public class ServicioREST {
 	
 	@EJB
 	private GestionCliente cliente;
+	
+	@EJB
+	private GestionCuenta cuenta;
 	
 	@Context
 	private UriInfo uriInfo;
@@ -60,31 +72,109 @@ public class ServicioREST {
 		
 	}
 	
-/*
+
 	@Path("/clients")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response peticionClientes(PeticionClientes pc) {
 		
-		Usuario usuario  = getUsuario();
-		if(usuario == null) {
-			return Response.status(Status.BAD_REQUEST).build();
-		}
 		
 		try {
-			informe.
-			contacto.setUsuario(usuario);
-			negocio.insertar(contacto);
-			URI uriContacto = uriInfo.getBaseUriBuilder().path("api").path("agenda").path("contacto").path(contacto.getId().toString()).build();
-			return Response.created(uriContacto).status(Status.CREATED).build();
+		String fechainicio = pc.getStartPeriod();
+		String fechafin = pc.getEndPeriod();
+		String nombre = pc.getName().getFirstName();
+		String apellidos = pc.getName().getLastName();
+		
+		
+			List<Individual> listaIndividuales = informe.devolverInformeHolandaClientes(nombre, apellidos, Date.valueOf(fechainicio), Date.valueOf(fechafin));
 			
-		}catch(AgendaException e) {
+			RespuestaIndividual rc = new RespuestaIndividual();
+			List<Individuales> personas = new ArrayList<>();
+			
+			
+			if(listaIndividuales.size() != 0) {
+				
+				for(Individual i : listaIndividuales) {
+					Individuales individuales = new Individuales();
+					List<Segregada> cuentas = cuenta.devolverSegregadasDeIndividual(i.getIdentificacion());
+					List<ProductoCliente> productos = new ArrayList<>();
+					for(Segregada cf : cuentas) {
+						ProductoCliente prodCl = new ProductoCliente();
+						prodCl.setProductNumber(cf.getIban());
+						prodCl.setStatus(cf.getEstado());
+						prodCl.setStatus("propietaria");
+						productos.add(prodCl);
+						
+						
+					}
+					
+					individuales.setProducts(productos);
+					individuales.setActiveCostumer(i.getEstado().equals("activa"));
+					individuales.setDateOfBirth(i.getFechaNacimiento().toString());
+					NombreCliente name = new NombreCliente();
+					name.setFirstName(i.getNombre());
+					name.setLastName(i.getApellido());
+					individuales.setName(name);
+					DireccionCliente direccion = new DireccionCliente();
+					direccion.setCity(i.getCiudad());
+					direccion.setCountry(i.getPais());
+					direccion.setPostalCode(i.getCodigopostal().toString());
+					direccion.setStreetNumber(i.getDireccion());
+					individuales.setAddress(direccion);
+					personas.add(individuales);
+				}
+			}
+			
+			List<PersonaAutorizada> listaAutorizados = informe.devolverInformeHolandaAutorizados(nombre, apellidos, Date.valueOf(fechainicio), Date.valueOf(fechafin));
+			if(listaAutorizados.size()!=0) {
+				for(PersonaAutorizada i : listaAutorizados) {
+					Individuales individuales = new Individuales();
+					List<Segregada> cuentas = cuenta.devolverSegregadasDeAutorizado(i.getIdentificacion());
+					List<ProductoCliente> productos = new ArrayList<>();
+					for(Segregada cf : cuentas) {
+						ProductoCliente prodCl = new ProductoCliente();
+						prodCl.setProductNumber(cf.getIban());
+						prodCl.setStatus(cf.getEstado());
+						prodCl.setStatus("autorizada");
+						productos.add(prodCl);
+						
+					}
+					individuales.setProducts(productos);
+					individuales.setActiveCostumer(i.getEstado().equals("activa"));
+					individuales.setDateOfBirth(i.getFechaNacimiento().toString());
+					NombreCliente name = new NombreCliente();
+					name.setFirstName(i.getNombre());
+					name.setLastName(i.getApellidos());
+					individuales.setName(name);
+					DireccionCliente direccion = new DireccionCliente();
+					//Estos campos no existen en person autorizada
+					direccion.setCity("non-existent");
+					direccion.setCountry("non-existent");
+					direccion.setPostalCode("non-existent");
+					direccion.setStreetNumber(i.getDireccion());
+					individuales.setAddress(direccion);
+					personas.add(individuales);
+				}
+			}
+			
+			
+		rc.setIndividual(personas);
+		
+		
+		
+		return Response.ok(rc).build();
+		
+		
+		
+		
+		
+		}catch(ProyectoEjbException e) {
 			return Response.status(Status.UNAUTHORIZED).build();
 		}
 		
 	}
-	*/
+	
 	@Path("/products")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -169,78 +259,5 @@ public class ServicioREST {
 		
 	}
 	
-	/*
-	@Path("/contacto/{id}")
-	@GET
-	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response devuelveContacto(@PathParam("id") Long id) {
-		Usuario usuario  = getUsuario();
-		if(usuario == null) {
-			return Response.status(Status.BAD_REQUEST).build();
-		}
-		
-		try {
-			Contacto contacto = negocio.obtenerContacto(usuario, id);
-			return Response.ok(contacto).build();
-			
-		}catch(AgendaException e) {
-			return Response.status(Status.UNAUTHORIZED).build();
-		}
-		
-	}
 	
-	@Path("/contacto/{id}")
-	@DELETE
-	public Response eliminarContacto(@PathParam("id") Long id) {
-		Usuario usuario  = getUsuario();
-		if(usuario == null) {
-			return Response.status(Status.BAD_REQUEST).build();
-		}
-		
-		try {
-			Contacto contacto = negocio.obtenerContacto(usuario, id);
-			negocio.eliminarContacto(contacto);
-			return Response.ok().build();
-			
-		}catch(AgendaException e) {
-			return Response.status(Status.UNAUTHORIZED).build();
-		}
-	}
-	
-	@Path("/contacto/{id}")
-	@PUT
-	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response modificarContacto(@PathParam("id") Long id, Contacto c) {
-		Usuario usuario = getUsuario();
-		if(usuario == null) {
-			return Response.status(Status.BAD_REQUEST).build();
-		}
-		
-		try {
-			c.setId(id);
-			c.setUsuario(usuario);
-			negocio.modificar(c);
-			return Response.ok().build();
-		} catch(AgendaException e) {
-			return Response.status(Status.UNAUTHORIZED).build();
-		}
-	}
-	
-	private Usuario getUsuario() {
-		if (autorizacion == null) {
-			return null;
-		}
-		
-		String [] partesAutorizacion = autorizacion.split(":");
-		if (partesAutorizacion.length != 2) {
-			return null;
-		}
-		
-		Usuario usuario = new Usuario();
-		usuario.setCuenta(partesAutorizacion[0]);
-		usuario.setContrasenia(partesAutorizacion[1]);
-		
-		return usuario;
-	}
-	*/
 }

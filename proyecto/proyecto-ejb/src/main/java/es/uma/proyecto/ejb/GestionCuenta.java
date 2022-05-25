@@ -15,6 +15,7 @@ import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -131,5 +132,8 @@ public interface GestionCuenta {
 	
 	public void altaPersonaAutorizada(Usuario admin, PersonaAutorizada personaAutorizada) 
 			throws PersonaAutorizadaExistenteException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
-	
+	public List<CuentaFintech> devolverCuentasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
+	public List<CuentaFintech> devolverCuentasDeIndividual(String id) throws ClienteNoExistenteException;
+	public List<Segregada> devolverSegregadasDeIndividual(String id) throws ClienteNoExistenteException;
+	public List<Segregada> devolverSegregadasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
 }

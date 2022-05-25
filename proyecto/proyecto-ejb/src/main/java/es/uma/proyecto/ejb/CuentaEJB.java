@@ -1,12 +1,14 @@
 package es.uma.proyecto.ejb;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import es.uma.proyecto.Autorizacion;
@@ -299,4 +301,128 @@ public class CuentaEJB implements GestionCuenta {
 
 	}
 	
+	public List<CuentaFintech> devolverCuentasDeIndividual(String id) throws ClienteNoExistenteException{
+		Individual cliente = em.find(Individual.class, id);
+		
+			if(cliente == null) {
+				throw new ClienteNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM CuentaFintech c");
+		List<CuentaFintech> listaCuentas = query.getResultList();
+		List<CuentaFintech> listaRes = new ArrayList<>();
+		for(CuentaFintech c : listaCuentas) {
+			if(c.getCliente().getIdentificacion().equals(id)) {
+				listaRes.add(c);
+			}
+		}
+		
+		return listaRes;
+	}
+	
+	public List<CuentaFintech> devolverCuentasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException{
+		PersonaAutorizada cliente = em.find(PersonaAutorizada.class, id);
+		
+			if(cliente == null) {
+				throw new PersonaAutorizadaNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM CuentaFintech c");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		query2.setParameter("id", id);
+		List<Autorizacion> autorizaciones = query2.getResultList();
+		List<CuentaFintech> listaCuentas = query.getResultList();
+		List<CuentaFintech> listaRes = new ArrayList<>();
+		
+		for(CuentaFintech c : listaCuentas) {
+			
+			
+			Cliente cl = c.getCliente();
+			
+			if(cl.getTipoCliente().equals("J")) {
+				Empresa empresa = em.find(Empresa.class,cl.getIdentificacion());
+				
+				boolean esta = false;
+				for(Autorizacion aut : autorizaciones) {
+					if(aut.getEmpresa().getIdentificacion().equals(empresa.getIdentificacion())) {
+						esta = true;
+					}
+					
+				}
+				
+				if(esta) {
+					listaRes.add(c);
+				}
+			}
+			
+			
+		}
+		
+		return listaRes;
+	}
+	
+	public List<Segregada> devolverSegregadasDeIndividual(String id) throws ClienteNoExistenteException{
+		Individual cliente = em.find(Individual.class, id);
+		
+			if(cliente == null) {
+				throw new ClienteNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM Segregada c");
+		List<Segregada> listaCuentas = query.getResultList();
+		List<Segregada> listaRes = new ArrayList<>();
+		for(Segregada c : listaCuentas) {
+			if(c.getCliente().getIdentificacion().equals(id)) {
+				listaRes.add(c);
+			}
+		}
+		
+		return listaRes;
+	}
+	
+	
+	public List<Segregada> devolverSegregadasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException{
+		PersonaAutorizada cliente = em.find(PersonaAutorizada.class, id);
+		
+			if(cliente == null) {
+				throw new PersonaAutorizadaNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM Segregada c");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		query2.setParameter("id", id);
+		List<Autorizacion> autorizaciones = query2.getResultList();
+		List<Segregada> listaCuentas = query.getResultList();
+		List<Segregada> listaRes = new ArrayList<>();
+		
+		for(Segregada c : listaCuentas) {
+			
+			
+			Cliente cl = c.getCliente();
+			
+			if(cl.getTipoCliente().equals("J")) {
+				Empresa empresa = em.find(Empresa.class,cl.getIdentificacion());
+				
+				boolean esta = false;
+				for(Autorizacion aut : autorizaciones) {
+					if(aut.getEmpresa().getIdentificacion().equals(empresa.getIdentificacion())) {
+						esta = true;
+					}
+					
+				}
+				
+				if(esta) {
+					listaRes.add(c);
+				}
+			}
+			
+			
+		}
+		
+		return listaRes;
+	}
 }

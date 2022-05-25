@@ -6,10 +6,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Local
@@ -21,7 +23,7 @@ public interface GestionInforme {
 	
 	public List<Segregada> devolverInformeHolandaProductoActivas(String IBAN) throws CuentaNoExistenteException;
 	
-	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja, String direccion) throws ClienteNoExistenteException;
+	public List<Individual> devolverInformeHolandaClientes(String nombre, String apellidos, Date fechaAlta, Date fechaBaja) ;
 	
 	/*
 	 * Este método se encarga de generar el reporte regulatorio de Alemania que se realiza inicialmente 
@@ -44,5 +46,8 @@ public interface GestionInforme {
 	
 
 	List<Segregada> devolverInformeHolandaProductoTodasSinIBAN() throws CuentaNoExistenteException;
+
+	List<PersonaAutorizada> devolverInformeHolandaAutorizados(String nombre, String apellidos, Date fechaAlta,
+			Date fechaBaja);
 
 }
