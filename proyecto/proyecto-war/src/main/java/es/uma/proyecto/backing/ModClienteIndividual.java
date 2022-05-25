@@ -55,7 +55,7 @@ public class ModClienteIndividual {
 		try {
 			usuario = sesion.getUsuario();
 			clienteEJB.modificarDatosClienteIndividual(usuario, individual.getIdentificacion(), individual);
-			return "paginaprincipalAdmin.xhtml";
+			return "clientesIndividuales.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");

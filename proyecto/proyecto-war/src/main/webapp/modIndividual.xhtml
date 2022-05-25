@@ -16,12 +16,11 @@
 
             
                     	
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-                        <h:outputFormat value = "Modificar al usuario {0}">
-                        	<f:param value = "#{modClienteIndividual.individual.identificacion}" />
-                        </h:outputFormat>
+       <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
+      	<br/>
+      	<h:outputFormat value = "Modificar al usuario {0}">
+          <f:param value = "#{modClienteIndividual.individual.identificacion}" />
+        </h:outputFormat>
                         
         <h:form id="modificarIndividual" class="form-login">
         <h5><h:outputText value="PAGINA DE INICIO"/></h5>
@@ -63,6 +62,18 @@
                         <h:inputText id="pais" required="false" value="#{modClienteIndividual.individual.pais}" class="controls"/>
                         <h:message id="paisMessage" for="pais"/>
 
+						<h:outputText value="Estado:"/>
+                        <h:inputText id="estado" required="true" value="#{modClienteIndividual.individual.estado}" disabled="true" class="controls"/>
+                        <h:message id="estadoMessage" for="estado"/>
+                        
+                        <h:outputText value="Fecha alta"/>
+                        <h:inputText id="alta" required="true" value="#{modClienteIndividual.individual.fechaAlta}" disabled="true" class="controls"/>
+                        <h:message id="altaMessage" for="alta"/>
+                        
+                        <h:outputText value="Fecha baja"/>
+                        <h:inputText id="baja" required="true" value="#{modClienteIndividual.individual.fechaBaja}" disabled ="true" class="controls"/>
+                        <h:message id="bajaMessage" for="baja"/> 
+                        
                         <h:commandButton id="botonModificarIndividual" value="Modificar" action="#{modClienteIndividual.modificarIndividual()}" class="buttons"/>
 
                     </h:panelGrid>
