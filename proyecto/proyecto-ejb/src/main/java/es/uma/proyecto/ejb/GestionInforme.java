@@ -38,5 +38,11 @@ public interface GestionInforme {
 	 */
 	
 	
+
 	public String generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException;
+
+	
+
+	List<Segregada> devolverInformeHolandaProductoTodasSinIBAN() throws CuentaNoExistenteException;
+
 }

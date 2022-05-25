@@ -28,7 +28,7 @@ import es.uma.proyecto.modelsrest.PeticionClientes;
 @Path("")
 public class ServicioREST {
 	@EJB
-	private GestionInforme negocio;
+	private GestionInforme informe;
 	
 	@EJB
 	private GestionCliente cliente;

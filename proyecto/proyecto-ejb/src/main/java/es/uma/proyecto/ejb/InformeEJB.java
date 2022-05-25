@@ -48,6 +48,18 @@ public class InformeEJB implements GestionInforme {
 		listadoCuentas.add(seg);
 		return listadoCuentas;
 	}
+	
+	@Override
+	public List<Segregada> devolverInformeHolandaProductoTodasSinIBAN() throws CuentaNoExistenteException {
+		List<Segregada> listadoCuentas = new ArrayList<>();
+		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		listadoCuentas= query.getResultList();
+		if (listadoCuentas.size() == 0) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		return listadoCuentas;
+	}
 
 	@Override
 	public List<Segregada> devolverInformeHolandaProductoInactivas(String IBAN) throws CuentaNoExistenteException {
