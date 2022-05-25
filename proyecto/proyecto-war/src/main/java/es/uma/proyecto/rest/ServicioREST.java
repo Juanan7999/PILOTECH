@@ -1,6 +1,7 @@
 package es.uma.proyecto.rest;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -26,6 +27,7 @@ import es.uma.proyecto.Individual;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionInforme;
+import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
 import es.uma.proyecto.modelsrest.AccountHolder;
 import es.uma.proyecto.modelsrest.DireccionCliente;
 import es.uma.proyecto.modelsrest.NombreCliente;
@@ -58,7 +60,7 @@ public class ServicioREST {
 		
 	}
 	
-
+/*
 	@Path("/clients")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -82,12 +84,14 @@ public class ServicioREST {
 		}
 		
 	}
-	
+	*/
 	@Path("/products")
 	@POST
 	@Consumes ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response peticionProductos(PeticionProductos pp) {
+		
+		try {
 		List<Segregada> cuentas;
 		if(pp.getProductNumber() != null) {
 		
@@ -105,6 +109,7 @@ public class ServicioREST {
 		
 		
 		RespuestaProductos rp = new RespuestaProductos();
+		List<Producto> listaProductos = new ArrayList<>();
 		
 		for(Segregada s : cuentas) {
 			Producto p = new Producto();
@@ -144,24 +149,27 @@ public class ServicioREST {
 				direccion.setCountry(cl.getPais());
 				direccion.setStreetNumber(cl.getDireccion());
 				direccion.setPostalCode(cl.getCodigopostal().toString());
-			
-			
+			ah.setAddress(direccion);
+			p.setAccountHolder(ah);
+			listaProductos.add(p);
 		}
 		
 		
-		try {
+			rp.setProducts(listaProductos);
+		
+		
 			
 			
-			URI uriContacto = uriInfo.getBaseUriBuilder().path("api").path("agenda").path("contacto").path(contacto.getId().toString()).build();
-			return Response.created(uriContacto).status(Status.CREATED).build();
 			
-		}catch(AgendaException e) {
+			return Response.ok(rp).build();
+			
+		}catch(ProyectoEjbException e) {
 			return Response.status(Status.UNAUTHORIZED).build();
 		}
 		
 	}
 	
-	
+	/*
 	@Path("/contacto/{id}")
 	@GET
 	@Produces ({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -234,5 +242,5 @@ public class ServicioREST {
 		
 		return usuario;
 	}
-	
+	*/
 }
