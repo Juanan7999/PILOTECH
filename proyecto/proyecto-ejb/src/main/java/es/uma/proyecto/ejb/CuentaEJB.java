@@ -78,7 +78,7 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void anadirAutorizados(Usuario usuario, List<PersonaAutorizada> lpa, CuentaFintech cf)
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
@@ -87,15 +87,15 @@ public class CuentaEJB implements GestionCuenta {
 			throw new UsuarioNoEsAdministrativoException();
 		}
 
-		if (!cf.getCliente().getEstado().equals("J")) {
+		if (!cl.getEstado().equals("J")) {
 			throw new ClienteNoJuridicoException();
 		}
 
-		Empresa e = em.find(Empresa.class, cf.getCliente().getIdentificacion());
+		Empresa e = em.find(Empresa.class, cl.getIdentificacion());
 
 		List<Autorizacion> autorizaciones = e.getAutorizacions();
 
-		for (PersonaAutorizada pa : lpa) {
+	
 
 			Autorizacion aut = new Autorizacion();
 			aut.setTipo(1); // Revisar
@@ -110,7 +110,7 @@ public class CuentaEJB implements GestionCuenta {
 			em.persist(aut);
 			autorizaciones.add(aut);
 
-		}
+		
 
 		em.merge(e);
 	}
