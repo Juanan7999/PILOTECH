@@ -29,7 +29,7 @@ public interface GestionInforme {
 	 * 
 	 */
 	
-	public List<Segregada> generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException ;
+	public String generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException ;
 	
 	/*
 	 * Este método se encarga de generar el reporte regulatorio de Alemania que se realiza semanalmente 
@@ -38,5 +38,5 @@ public interface GestionInforme {
 	 */
 	
 	
-	public List<Segregada> generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException;
+	public String generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException;
 }

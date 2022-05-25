@@ -16,11 +16,11 @@
 		</h1>
 		<h:form id="generarInforme">
 			<h:outputLabel value="Generar Informe Inicial: "></h:outputLabel>
-			<h:commandButton id="boton1" value="Generar" action="#{generarInformeAlemania.generarInicial}"></h:commandButton>
+			<h:commandButton id="boton1" value="Generar" action="#{generarInformeAlemania.downloadInicial}"></h:commandButton>
 			<h:message id = "usuario1" for="boton1"></h:message>	
 			<br/>
 			<h:outputLabel value="Generar Informe Semanal: "></h:outputLabel>
-			<h:commandButton id="boton2" value="Generar" action="#{generarInformeAlemania.generarSemanal}"></h:commandButton>
+			<h:commandButton id="boton2" value="Generar" action="#{generarInformeAlemania.downloadSemanal}"></h:commandButton>
 			<h:message id = "usuario2" for="boton2"></h:message>
 		</h:form>
 </h:body>

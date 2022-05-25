@@ -2,6 +2,7 @@ package es.uma.proyecto.ejb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -103,7 +104,7 @@ public class InformeEJB implements GestionInforme {
 		return listaClientes;
 	}
 
-	public List<Segregada> generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+	public String generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -119,9 +120,12 @@ public class InformeEJB implements GestionInforme {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		String date = dtf.format(LocalDateTime.now());
-		nombre_archivo_csv = new String("./FINTECH_IBAN_");
-		nombre_archivo_csv = nombre_archivo_csv + date + ".csv";
-
+		
+		Random rnd = new Random();
+	    int numero = rnd.nextInt(9999);
+		
+		nombre_archivo_csv = new String("FINTECH_IBAN_1_" + numero + ".csv");
+		
 		try {
 			BufferedWriter writer = Files.newBufferedWriter(Paths.get(nombre_archivo_csv));
 			@SuppressWarnings("deprecation")
@@ -182,10 +186,10 @@ public class InformeEJB implements GestionInforme {
 		} catch (IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
-		return cuentas;
+		return nombre_archivo_csv;
 	}
 
-	public List<Segregada> generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+	public String generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -201,8 +205,11 @@ public class InformeEJB implements GestionInforme {
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		String date = dtf.format(LocalDateTime.now());
-		nombre_archivo_csv = new String("./FINTECH_IBAN_");
-		nombre_archivo_csv = nombre_archivo_csv + date + ".csv";
+		
+		Random rnd = new Random();
+	    int numero = rnd.nextInt(9999);
+		
+		nombre_archivo_csv = "FINTECH_IBAN_2_"+ numero + ".csv";
 
 		try {
 			BufferedWriter writer = Files.newBufferedWriter(Paths.get(nombre_archivo_csv));
@@ -265,7 +272,7 @@ public class InformeEJB implements GestionInforme {
 			System.err.println("ERROR: " + e.getMessage());
 		}
 
-		return cuentas;
+		return nombre_archivo_csv;
 
 	}
 

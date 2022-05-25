@@ -1,0 +1,59 @@
+{
+  "id": "a4993437-613f-4231-b70e-04e31bd9a768",
+  "version": "2.0",
+  "name": "PILOTECH",
+  "url": "http://localhost:8080/proyecto-war",
+  "tests": [{
+    "id": "b8856161-3561-45b6-aeef-03824ab1b3a0",
+    "name": "inicio",
+    "commands": [{
+      "id": "90976619-f512-4894-8d6e-a4e73fba267a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/proyecto-war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc084f00-4095-4b0d-9555-639a2ac25348",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1094x576",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "430594de-c806-45fa-875b-9d3917a85044",
+      "comment": "",
+      "command": "click",
+      "target": "css=h5",
+      "targets": [
+        ["css=h5", "css:finder"],
+        ["xpath=//form[@id='login']/h5", "xpath:idRelative"],
+        ["xpath=//h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'PAGINA DE INICIO')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed6a3889-6c4a-471c-847f-3043407e1870",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h5",
+      "targets": [
+        ["css=h5", "css:finder"],
+        ["xpath=//form[@id='login']/h5", "xpath:idRelative"],
+        ["xpath=//h5", "xpath:position"],
+        ["xpath=//h5[contains(.,'PAGINA DE INICIO')]", "xpath:innerText"]
+      ],
+      "value": "PAGINA DE INICIO"
+    }]
+  }],
+  "suites": [{
+    "id": "764aa5e0-6bc3-40b1-98e5-7f05a2f884f6",
+    "name": "PilotechIT",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["b8856161-3561-45b6-aeef-03824ab1b3a0"]
+  }],
+  "urls": ["http://localhost:8080/proyecto-war"],
+  "plugins": []
+}
