@@ -63,10 +63,13 @@ public class GenerarInformeAlemania {
 				
 		    	String nombre_fichero = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
 				
-				ec.responseReset(); // Some JSF component library or some Filter might have set some headers in the buffer beforehand. We want to get rid of them, else it may collide.
-			    ec.setResponseContentType("application/CSV"); // Check http://www.iana.org/assignments/media-types for all types. Use if necessary ExternalContext#getMimeType() for auto-detection based on filename.
-			    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_fichero +"\""); // The Save As popup magic is done here. You can give it any file name you want, this only won't work in MSIE, it will use current request URL as file name instead.
-				
+				ec.responseReset(); 
+			    ec.setResponseContentType("application/CSV"); 
+			    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_fichero +"\"");
+			    File file = new File("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\prueba.csv");
+				ec.setResponse(file); 
+			    fc.responseComplete();
+			    
 			} catch (UsuarioNoEsAdministrativoException e) {
 				FacesMessage fm = new FacesMessage("El usuario no es administrativo");
 				FacesContext.getCurrentInstance().addMessage("generarInforme:boton1", fm);
