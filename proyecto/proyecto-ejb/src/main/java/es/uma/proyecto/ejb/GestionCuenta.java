@@ -61,7 +61,7 @@ public interface GestionCuenta {
 	 * cliente en cuestion.
 	 */
 
-	public void anadirAutorizados(Usuario usuario, List<PersonaAutorizada> lpa, CuentaFintech cf)
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
 			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException;
 
 	/*
