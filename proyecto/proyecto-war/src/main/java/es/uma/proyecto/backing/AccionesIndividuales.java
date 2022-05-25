@@ -81,9 +81,6 @@ public class AccionesIndividuales implements Serializable{
 			usuario = sesion.getUsuario();
 			clienteEJB.bajaCliente(usuario, iden);
 			
-			FacesMessage fm = new FacesMessage(" Baja con exito");
-			FacesContext.getCurrentInstance().addMessage("formulario:botonBaja", fm);
-			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage(" El cliente no existe");
 			FacesContext.getCurrentInstance().addMessage("formulario:botonBaja", fm);
@@ -111,9 +108,6 @@ public class AccionesIndividuales implements Serializable{
 				usuario = sesion.getUsuario();
 				clienteEJB.bloqueaCliente(usuario, iden);
 				
-				FacesMessage fm = new FacesMessage(" Bloqueo con exito");
-				FacesContext.getCurrentInstance().addMessage("formulario:botonBloq", fm);
-				
 			} catch (ClienteNoExistenteException e) {
 				FacesMessage fm = new FacesMessage(" El cliente no existe");
 				FacesContext.getCurrentInstance().addMessage("formulario:botonBloq", fm);
@@ -134,11 +128,9 @@ public class AccionesIndividuales implements Serializable{
 	public String desbloquea(String iden) throws InterruptedException {
 
 		try {
+			
 			usuario = sesion.getUsuario();
 			clienteEJB.activaCliente(usuario, iden);
-				
-			FacesMessage fm = new FacesMessage(" Desbloqueo con exito");
-			FacesContext.getCurrentInstance().addMessage("formulario:botonDesbloq", fm);
 				
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage(" Cliente no existente");
@@ -159,13 +151,4 @@ public class AccionesIndividuales implements Serializable{
 		return null;
 	}
 	
-	public String modificar(String i) {
-		try {
-			this.individual = (Individual) clienteEJB.devolverCliente(i);
-			System.out.println(individual.getNombre());
-		} catch (ClienteNoExistenteException e) {
-			
-		}
-		return "modIndividual.xhtml";
-	}
 }

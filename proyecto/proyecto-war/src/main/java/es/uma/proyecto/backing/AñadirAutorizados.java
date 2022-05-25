@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.proyecto.CuentaFintech;
+import es.uma.proyecto.Empresa;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCuenta;
@@ -29,9 +30,7 @@ public class AñadirAutorizados {
 	
 	private PersonaAutorizada personaAutorizada;
 	
-	private CuentaFintech cuentaFintech;
-	
-	private List<PersonaAutorizada> lpa;
+	private Empresa empresa;
 	
 	
 	public AñadirAutorizados() {
@@ -55,28 +54,12 @@ public class AñadirAutorizados {
 		this.personaAutorizada=personaAutorizada;
 	}
 	
-	public CuentaFintech getCuentaFintech() {
-		return cuentaFintech;
-	}
-	
-	public void setCuentaFintech(CuentaFintech cuentaFintech) {
-		this.cuentaFintech = cuentaFintech;
-	}
-	
-	public List<PersonaAutorizada> getLPA(){
-		return lpa;
-	}
-	
-	public void setLPA(List<PersonaAutorizada> lpa) {
-		this.lpa = lpa;
-	}
-	
 	public String anadirAutorizados() {
 		
 		try {
 			
 			usuario = sesion.getUsuario();
-			cuentaEJB.anadirAutorizados(usuario, lpa, cuentaFintech);
+			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa);
 			return "paginaprincipalAdmin.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
