@@ -41,6 +41,6 @@ public class InfoSesion implements Serializable{
 	            usuario = null;
 	            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	        }
-	        return "login.xhtml";
+	        return "index.xhtml";
 	    }
 }

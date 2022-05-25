@@ -18,7 +18,11 @@
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
 	<br />
-
+	<h:commandButton id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" class="boton"/>
+	<br />
+	
+	<h:panelGrid columns="4">
+	
 	<br> <h:button outcome="clientesIndividuales.xhtml"
 			id="clientesIndividuales" value="CLIENTES INDIVIDUALES"
 			class="boton"  /> </br>
@@ -57,5 +61,6 @@
 	<br> <h:button outcome="generarInformeAlemania.xhtml"
 			id="generarAlemania" value="Generar Informes Alemania"
 			class="boton" /> </br>
+	</h:panelGrid>
 </h:body>
 </html>

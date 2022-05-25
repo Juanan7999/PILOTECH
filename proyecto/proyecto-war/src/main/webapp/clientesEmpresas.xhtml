@@ -7,15 +7,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Datos clientes individuales</title>
+	<title>Datos clientes jurídicos</title>
 </h:head>
 
 <h:body>
-	<h1>CLIENTES INDIVIDUALES</h1>
+	<h1>CLIENTES JURÍDICOS</h1>
 	<h:outputFormat value="Usuario administrativo: {0}">
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
 	<br />
+	
 	<h:form id="formulario">
 		<h:dataTable value="#{accionesEmpresas.listaCliente}" var="c">
 
