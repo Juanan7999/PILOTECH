@@ -23,18 +23,18 @@
 		<h:panelGrid columns="3">
 			<h:outputText value="Nombre de usuario:" />
 			<h:inputText id="user" required="true"
-				value="#{altaClienteIndividual.usuario.nombreUsuario}"
+				value="#{altaClienteIndividual.newusuario.nombreUsuario}"
 				class="controls" />
 			<h:message id="userMessage" for="user" />
 
 			<h:outputText value="Contraseña:" />
 			<h:inputSecret id="pass" required="true"
-				value="#{altaClienteIndividual.usuario.password}" class="controls" />
+				value="#{altaClienteIndividual.newusuario.password}" class="controls" />
 			<h:message id="passwordMessage" for="pass" />
 
 			<h:outputText value="Tipo de Usuario:" />
 			<h:inputText id="typeUsuario" required="true"
-				value="#{altaClienteIndividual.usuario.tipo}" class="controls" />
+				value="#{altaClienteIndividual.newusuario.tipo}" class="controls" />
 			<h:message id="typeUserMessage" for="typeUsuario" />
 
 			<h:outputText value="Nombre:" />

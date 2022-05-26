@@ -13,10 +13,13 @@ import javax.inject.Named;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
+import es.uma.proyecto.Individual;
+import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 
 @Named(value = "accionesCliente")
 @ViewScoped
@@ -34,13 +37,13 @@ public class AccionesCliente implements Serializable{
 	
 	//private Cuenta cuenta;
 	
-	private List<CuentaFintech> cuentas;
+	private List<Segregada> cuentas;
 	
 	//private Cliente cliente;
 
 
 	public AccionesCliente() {
-		usuario = sesion.getUsuario();
+		usuario = new Usuario();
 		//cuenta = new Cuenta();
 		cuentas = new ArrayList<>();
 		//cliente = new Cliente();
@@ -55,11 +58,11 @@ public class AccionesCliente implements Serializable{
 		this.usuario = usuario;
 	}
 	
-	public String getID() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setID(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -71,15 +74,17 @@ public class AccionesCliente implements Serializable{
 		this.cuenta = cuenta;
 	}
 	*/
-	public List<CuentaFintech> getCuentas() throws ClienteNoExistenteException{
-		return cuentaEJB.devolverCuentasDeIndividual(usuario.getCliente().getIdentificacion());
+	public List<Segregada> getCuentas() throws PersonaAutorizadaNoExistenteException{
+		System.out.println(sesion.getUsuario().getPersonaAutorizada().getIdentificacion());
+		return cuentaEJB.devolverSegregadasDeAutorizado(sesion.getUsuario().getPersonaAutorizada().getIdentificacion());
+		
 	}
 	
-	public void setCuentas(List<CuentaFintech> lista) {
+	public void setCuentas(List<Segregada> lista) {
 		this.cuentas = lista;
 	}
 	
-	public Cliente getCliente() {
+	/*public Cliente getCliente() {
 		return usuario.getCliente();
 	}
 
@@ -90,7 +95,7 @@ public class AccionesCliente implements Serializable{
 	
 	
 	
-	public String devolverCuentas() {
+	/public String devolverCuentas() {
 		
 		try {
 			usuario = sesion.getUsuario();

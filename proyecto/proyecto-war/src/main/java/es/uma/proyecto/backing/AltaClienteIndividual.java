@@ -9,7 +9,9 @@ import javax.inject.Named;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.exceptions.ClienteExistenteException;
+import es.uma.proyecto.ejb.exceptions.UsuarioExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -21,10 +23,25 @@ public class AltaClienteIndividual {
 	private GestionCliente clienteEJB;
 
 	@Inject
+	private GestionUsuario usuarioEJB;
+	
+	@Inject
 	private InfoSesion sesion;
 
 	private Usuario usuario;
 	
+	private Usuario newusuario;
+	
+	public Usuario getNewusuario() {
+		return newusuario;
+	}
+
+	public void setNewusuario(Usuario neusuario) {
+		this.newusuario = newusuario;
+	}
+
+
+
 	private Individual individual;
 	
 	
@@ -55,7 +72,10 @@ public class AltaClienteIndividual {
 	public String altaIndividual() {
 		try {
 			usuario = sesion.getUsuario();
+			
 			clienteEJB.altaClienteIndividual(usuario, individual);
+			newusuario.setCliente(individual);
+			usuarioEJB.creacionUsuario(newusuario);
 			
 			FacesMessage fm = new FacesMessage("El cliente ha sido dado de alta con éxito");
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
@@ -70,6 +90,10 @@ public class AltaClienteIndividual {
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
+			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
+		} catch (UsuarioExistenteException e) {
+			// TODO Auto-generated catch block
+			FacesMessage fm = new FacesMessage("Este usuario ya existe");
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}
 		

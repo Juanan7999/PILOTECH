@@ -49,6 +49,14 @@ public class InicializaBBDD {
 		individual.setApellido("Lopez Campos");
 		individual.setFechaNacimiento("1990-05-17");
 		
+		Usuario juan = new Usuario();
+		juan.setNombreUsuario("juan");
+		juan.setPassword("juan");
+		juan.setTipo("N");
+		juan.setCliente(individual);
+		individual.setUsuario(juan);
+
+		em.merge(juan);
 		em.merge(individual);
 		
 		Empresa empresa = new Empresa();
@@ -77,13 +85,7 @@ public class InicializaBBDD {
 		
 		em.merge(pa);
 		
-		Usuario juan = new Usuario();
-		juan.setNombreUsuario("juan");
-		juan.setPassword("juan");
-		juan.setTipo("N");
-		juan.setCliente(individual);
-
-		em.merge(juan);
+		
 		
 		Usuario ana = new Usuario();
 		ana.setNombreUsuario("ana");
