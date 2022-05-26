@@ -1,5 +1,6 @@
 package es.uma.proyecto.backing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 
 @Named(value = "accionesCliente")
 @ViewScoped
-public class AccionesCliente {
+public class AccionesCliente implements Serializable{
 	
 	@Inject
 	private GestionCuenta cuentaEJB;
@@ -36,7 +37,8 @@ public class AccionesCliente {
 	private List<CuentaFintech> cuentas;
 	
 	private Cliente cliente;
-	
+
+
 	public AccionesCliente() {
 		usuario = new Usuario();
 		cuenta = new Cuenta();
@@ -77,13 +79,22 @@ public class AccionesCliente {
 		this.cuentas = lista;
 	}
 	
+	public Cliente getCliente() {
+		return usuario.getCliente();
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	
 	
+	/*
 	public String devolverCuentas() {
 		
 		try {
 			usuario = sesion.getUsuario();
-			cuentaEJB.devolverCuentasDeIndividual(cliente.getIdentificacion());
+			
 			return null;
 		}catch(ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
@@ -92,7 +103,7 @@ public class AccionesCliente {
 		
 		return null;
 		
-	}
+	}*/
 	
 	
 	
