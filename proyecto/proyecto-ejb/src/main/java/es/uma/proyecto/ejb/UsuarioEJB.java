@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Empresa;
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
@@ -126,5 +127,16 @@ public class UsuarioEJB implements GestionUsuario{
 		
 		return adminEntity;
 	}
-
+	
+	@Override
+	public Individual devolverCliente(Usuario u) {
+		Usuario userEntity = em.find(Usuario.class, u.getNombreUsuario());
+		return (Individual) userEntity.getCliente();
+	}
+	
+	@Override
+	public PersonaAutorizada delvolverPersonaAut(Usuario u) {
+		Usuario userEntity = em.find(Usuario.class, u.getNombreUsuario());
+		return userEntity.getPersonaAutorizada();
+	}
 }

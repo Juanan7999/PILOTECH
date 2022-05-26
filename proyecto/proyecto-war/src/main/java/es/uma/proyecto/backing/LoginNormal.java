@@ -14,7 +14,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.ContraseñaIncorrectaException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsNormalException;
-
+import es.uma.proyecto.Individual;
 import javax.*;
 
 @Named(value = "loginNormal")

@@ -18,6 +18,7 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
+import es.uma.proyecto.ejb.GestionUsuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 
@@ -27,6 +28,9 @@ public class AccionesCliente implements Serializable{
 	
 	@Inject
 	private GestionCuenta cuentaEJB;
+	
+	@Inject
+	private GestionUsuario usuarioEJB;
 	
 	@Inject
 	private InfoSesion sesion;
@@ -75,8 +79,9 @@ public class AccionesCliente implements Serializable{
 	}
 	*/
 	public List<Segregada> getCuentas() throws PersonaAutorizadaNoExistenteException{
-		System.out.println(sesion.getUsuario().getPersonaAutorizada().getIdentificacion());
-		return cuentaEJB.devolverSegregadasDeAutorizado(sesion.getUsuario().getPersonaAutorizada().getIdentificacion());
+		Individual cliente = usuarioEJB.devolverCliente(usuario);
+		
+		return cuentaEJB.devolverSegregadasDeAutorizado(cliente.getIdentificacion());
 		
 	}
 	

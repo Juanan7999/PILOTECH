@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
@@ -40,6 +42,12 @@ public interface GestionUsuario {
 	public List<Usuario> devolverTodosUsuarios();
 	
 	public Usuario LoginAdmin(String nombreAdmin, String password) throws UsuarioNoEncontradoException, ContraseñaIncorrectaException, UsuarioNoEsAdministrativoException, UsuarioNoEsAdministrativoException;
+
+
+	Individual devolverCliente(Usuario u);
+
+
+	PersonaAutorizada delvolverPersonaAut(Usuario u);
 	
 		
 }
