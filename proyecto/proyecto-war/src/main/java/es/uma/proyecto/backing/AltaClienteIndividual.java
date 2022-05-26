@@ -31,16 +31,6 @@ public class AltaClienteIndividual {
 	private Usuario usuario;
 	
 	private Usuario newusuario;
-	
-	public Usuario getNewusuario() {
-		return newusuario;
-	}
-
-	public void setNewusuario(Usuario neusuario) {
-		this.newusuario = newusuario;
-	}
-
-
 
 	private Individual individual;
 	
@@ -49,6 +39,7 @@ public class AltaClienteIndividual {
 	public AltaClienteIndividual() {
 		individual = new Individual();
 		usuario = new Usuario();
+		newusuario = new Usuario();
 	}
 	
 	public Usuario getUsuario() {
@@ -67,8 +58,14 @@ public class AltaClienteIndividual {
 		this.individual = individual;
 	}
 	
-	
-	
+	public Usuario getNewusuario() {
+		return newusuario;
+	}
+
+	public void setNewusuario(Usuario user) {
+		this.newusuario = user;
+	}
+
 	public String altaIndividual() {
 		try {
 			usuario = sesion.getUsuario();
