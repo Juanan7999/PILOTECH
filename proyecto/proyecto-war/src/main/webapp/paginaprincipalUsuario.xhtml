@@ -19,6 +19,51 @@
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
                         </h:outputFormat>
                         
+                        
+       	<h:form id="formulario">
+	
+		<h:dataTable value="#{accionesCliente.cuentas}" var="c">
+
+			<h:column>
+				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
+				<h:outputText id="textoIBAN" value="#{c.iban}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraSwift" name="header">SWIFT</f:facet>
+				<h:outputText id="textoSwift" value="#{c.swift}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="clasificacionAp" name="header">Clasificacion</f:facet>
+				<h:outputText id="textoClasificacion" value="#{c.clasificacion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+				<h:outputText id="textoEstado" value="#{c.estado}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaApertura" name="header">Fecha Apertura</f:facet>
+				<h:outputText id="textoFechaApertura" value="#{c.fechaApertura}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
+				<h:outputText id="textoFechaCierre" value="#{c.fechaCierre}" />
+			</h:column>
+
+
+			
+			<h:column>
+				<h:messages/>
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+                        
+                        
                         <br>
 							<h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas" value="Cambio de Divisas" class="buttons"/>
 						</br>
