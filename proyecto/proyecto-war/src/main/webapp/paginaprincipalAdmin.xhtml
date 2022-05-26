@@ -18,7 +18,9 @@
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
 	<br />
+	<h:form>
 	<h:commandButton id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" class="boton"/>
+	</h:form>
 	<br />
 	
 	<h:panelGrid columns="4">
