@@ -35,6 +35,8 @@ import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ProyectoEjbException;
 import es.uma.proyecto.modelsrest.AccountHolder;
+import es.uma.proyecto.modelsrest.AccountHolderEmpresa;
+import es.uma.proyecto.modelsrest.AccountHolderIndividual;
 import es.uma.proyecto.modelsrest.DireccionCliente;
 import es.uma.proyecto.modelsrest.Individuales;
 import es.uma.proyecto.modelsrest.NombreCliente;
@@ -212,26 +214,30 @@ public class ServicioREST {
 			}
 			
 			
-			AccountHolder ah = new AccountHolder();
+			AccountHolder ah;
+		
 			Cliente cl = s.getCliente();
 			if(cl.getTipoCliente().equals("N")) {
+				ah = new AccountHolderIndividual();
 				ah.setAccounttype("Fisica");
 				ah.setActiveCostumer(s.getEstado().equals("activa"));
 				Individual ind = (Individual) cliente.devolverCliente(cl.getIdentificacion());
 				NombreCliente nc = new NombreCliente();
 				nc.setFirstName(ind.getNombre());
 				nc.setLastName(ind.getApellido());
-				ah.setName(nc);
+				((AccountHolderIndividual) ah).setName(nc);
+				 
 				
 			}else {
+				ah = new AccountHolderEmpresa();
 				ah.setAccounttype("Empresa");
 				ah.setActiveCostumer(s.getEstado().equals("activa"));
 				Empresa emp = (Empresa) cliente.devolverClienteEmpresa(cl.getIdentificacion());
-				NombreCliente nc = new NombreCliente();
-				nc.setFirstName(emp.getRazonSocial());  //REVISAR!!!!!!!!!!!!
 				
 				
-				ah.setName(nc);
+				
+				((AccountHolderEmpresa) ah).setName(emp.getRazonSocial());
+				
 			}
 			
 				DireccionCliente direccion = new DireccionCliente();

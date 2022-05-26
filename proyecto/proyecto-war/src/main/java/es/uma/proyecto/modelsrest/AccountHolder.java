@@ -3,7 +3,7 @@ package es.uma.proyecto.modelsrest;
 public class AccountHolder {
 public boolean activeCostumer;
 public String accounttype;
-public NombreCliente name;
+//public NombreCliente name;
 public DireccionCliente address;
 
 public boolean isActiveCostumer() {
@@ -18,12 +18,12 @@ public String getAccounttype() {
 public void setAccounttype(String accounttype) {
 	this.accounttype = accounttype;
 }
-public NombreCliente getName() {
+/*public NombreCliente getName() {
 	return name;
 }
 public void setName(NombreCliente name) {
 	this.name = name;
-}
+}*/
 public DireccionCliente getAddress() {
 	return address;
 }
