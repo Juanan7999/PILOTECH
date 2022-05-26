@@ -136,4 +136,6 @@ public interface GestionCuenta {
 	public List<CuentaFintech> devolverCuentasDeIndividual(String id) throws ClienteNoExistenteException;
 	public List<Segregada> devolverSegregadasDeIndividual(String id) throws ClienteNoExistenteException;
 	public List<Segregada> devolverSegregadasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
+	public List<PooledAccount> devolverTodasPooled();
+	public List<Segregada> devolverTodasSegregadas();
 }

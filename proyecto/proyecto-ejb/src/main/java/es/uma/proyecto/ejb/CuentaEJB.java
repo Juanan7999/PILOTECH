@@ -425,4 +425,22 @@ public class CuentaEJB implements GestionCuenta {
 		
 		return listaRes;
 	}
+	
+	
+	public List<Segregada> devolverTodasSegregadas(){
+		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		List<Segregada> segregadas = query.getResultList();
+		return segregadas;
+		
+		
+	}
+	
+	
+	public List<PooledAccount> devolverTodasPooled(){
+		TypedQuery<PooledAccount> query = em.createQuery("SELECT c FROM PooledAccount c", PooledAccount.class);
+		List<PooledAccount> cuentasPooled = query.getResultList();
+		return cuentasPooled;
+		
+		
+	}
 }
