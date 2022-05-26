@@ -32,23 +32,23 @@ public class AccionesCliente implements Serializable{
 	
 	private String id;
 	
-	private Cuenta cuenta;
+	//private Cuenta cuenta;
 	
 	private List<CuentaFintech> cuentas;
 	
-	private Cliente cliente;
+	//private Cliente cliente;
 
 
 	public AccionesCliente() {
-		usuario = new Usuario();
-		cuenta = new Cuenta();
+		usuario = sesion.getUsuario();
+		//cuenta = new Cuenta();
 		cuentas = new ArrayList<>();
-		cliente = new Cliente();
+		//cliente = new Cliente();
 	}
 	
 	
 	public Usuario getUsuario() {
-		return usuario;
+		return sesion.getUsuario();
 	}
 	
 	public void setUsuario(Usuario usuario) {
@@ -63,16 +63,16 @@ public class AccionesCliente implements Serializable{
 		this.id = id;
 	}
 	
-	public Cuenta getCuenta() {
+	/*public Cuenta getCuenta() {
 		return cuenta;
 	}
 	
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
-	
+	*/
 	public List<CuentaFintech> getCuentas() throws ClienteNoExistenteException{
-		return cuentaEJB.devolverCuentasDeIndividual(cliente.getIdentificacion());
+		return cuentaEJB.devolverCuentasDeIndividual(usuario.getCliente().getIdentificacion());
 	}
 	
 	public void setCuentas(List<CuentaFintech> lista) {
@@ -84,12 +84,12 @@ public class AccionesCliente implements Serializable{
 	}
 
 
-	public void setCliente(Cliente cliente) {
+	/*public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
 	
-	/*
+	
 	public String devolverCuentas() {
 		
 		try {
