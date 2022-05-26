@@ -36,11 +36,52 @@ public class InicializaBBDD {
 		if(comprobacion != null) {
 			return;
 		}*/
+		Individual individual = new Individual();
+		individual.setIdentificacion("63937528N");
+		individual.setTipoCliente("F");
+		individual.setEstado("activo");
+		individual.setFechaAlta("2019-04-23");
+		individual.setDireccion("Av. Andalucia");
+		individual.setCiudad("Cordoba");
+		individual.setCodigopostal(29300);
+		individual.setPais("España");
+		individual.setNombre("Francisco");
+		individual.setApellido("Lopez Campos");
+		individual.setFechaNacimiento("1990-05-17");
+		
+		em.merge(individual);
+		
+		Empresa empresa = new Empresa();
+		empresa.setIdentificacion("P3310693A");
+		empresa.setRazonSocial("Hermanos Lopez");
+		empresa.setTipoCliente("J");
+		empresa.setEstado("activo");
+		empresa.setFechaAlta("2022-04-23");
+		empresa.setDireccion("Av. Luis Pastor");
+		empresa.setCiudad("Malaga");
+		empresa.setCodigopostal(29300);
+		empresa.setPais("España");
+		
+		em.merge(empresa);
+		
+		
+		
+		PersonaAutorizada pa = new PersonaAutorizada();
+		pa.setIdentificacion("Y4001267V");
+		pa.setNombre("Antonio");
+		pa.setApellidos("Perez");
+		pa.setDireccion("Calle Sevilla");
+		pa.setFechaNacimiento("1989-11-07");
+		pa.setFechaInicio("2021-07-27");
+		pa.setEstado("activo");
+		
+		em.merge(pa);
 		
 		Usuario juan = new Usuario();
 		juan.setNombreUsuario("juan");
 		juan.setPassword("juan");
 		juan.setTipo("N");
+		juan.setCliente(individual);
 
 		em.merge(juan);
 		
@@ -48,6 +89,7 @@ public class InicializaBBDD {
 		ana.setNombreUsuario("ana");
 		ana.setPassword("ana");
 		ana.setTipo("N");
+		ana.setPersonaAutorizada(pa);
 		
 		em.merge(ana);
 		
@@ -79,44 +121,7 @@ public class InicializaBBDD {
 		libra.setSimbolo("£");
 		em.merge(libra);
 		
-		Empresa empresa = new Empresa();
-		empresa.setIdentificacion("P3310693A");
-		empresa.setRazonSocial("Hermanos Lopez");
-		empresa.setTipoCliente("J");
-		empresa.setEstado("activo");
-		empresa.setFechaAlta("2022-04-23");
-		empresa.setDireccion("Av. Luis Pastor");
-		empresa.setCiudad("Malaga");
-		empresa.setCodigopostal(29300);
-		empresa.setPais("España");
 		
-		em.merge(empresa);
-		
-		Individual individual = new Individual();
-		individual.setIdentificacion("63937528N");
-		individual.setTipoCliente("F");
-		individual.setEstado("activo");
-		individual.setFechaAlta("2019-04-23");
-		individual.setDireccion("Av. Andalucia");
-		individual.setCiudad("Cordoba");
-		individual.setCodigopostal(29300);
-		individual.setPais("España");
-		individual.setNombre("Francisco");
-		individual.setApellido("Lopez Campos");
-		individual.setFechaNacimiento("1990-05-17");
-		
-		em.merge(individual);
-		
-		PersonaAutorizada pa = new PersonaAutorizada();
-		pa.setIdentificacion("Y4001267V");
-		pa.setNombre("Antonio");
-		pa.setApellidos("Perez");
-		pa.setDireccion("Calle Sevilla");
-		pa.setFechaNacimiento("1989-11-07");
-		pa.setFechaInicio("2021-07-27");
-		pa.setEstado("activo");
-		
-		em.merge(pa);
 		
 		
 		Autorizacion aut = new Autorizacion();
