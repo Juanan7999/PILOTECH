@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -17,6 +20,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -135,7 +139,7 @@ public class InformeEJB implements GestionInforme {
 
 		return listaAutorizados;
 	}
-	public String generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+	public Path generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -148,21 +152,19 @@ public class InformeEJB implements GestionInforme {
 		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
 		List<Segregada> cuentas = query.getResultList();
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		
-		Random rnd = new Random();
-	    int numero = rnd.nextInt(9999);
-		
-		nombre_archivo_csv = new String("FINTECH_IBAN_1_" + numero + ".csv");
-		String ruta = new String("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\" + nombre_archivo_csv);
-		
+	    nombre_archivo_csv = new String("FINTECH_IBAN_1");
+
+	    Path fichero_temp = null;
+	    
 		try {
-			BufferedWriter writer = Files.newBufferedWriter(Paths.get(ruta));
+			fichero_temp = Files.createTempFile(nombre_archivo_csv, ".csv");
+			BufferedWriter writer = Files.newBufferedWriter(fichero_temp);
 			@SuppressWarnings("deprecation")
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
-			csvPrinter.print("Ebury_IBAN_" + dtf2.format(LocalDateTime.now()).trim() + "\n");
+			
 			for (CuentaFintech c : cuentas) {
 
 				Empresa clienteEmpresa = em.find(Empresa.class, c.getCliente().getIdentificacion());
@@ -180,12 +182,11 @@ public class InformeEJB implements GestionInforme {
 
 						fecha_nacimiento = clienteIndividual.getFechaNacimiento().toString();
 					}
-
+					
 					csvPrinter.printRecord(c.getIban(), clienteIndividual.getApellido(), clienteIndividual.getNombre(),
 							clienteIndividual.getDireccion(), clienteIndividual.getCiudad(),
 							clienteIndividual.getCodigopostal(), clienteIndividual.getPais(),
 							clienteIndividual.getIdentificacion(), fecha_nacimiento);
-
 				} else {
 
 					for (Autorizacion a : clienteEmpresa.getAutorizacions()) {
@@ -211,16 +212,17 @@ public class InformeEJB implements GestionInforme {
 				}
 			}
 
-			csvPrinter.flush();
+			csvPrinter.print("\n" + "Ebury_IBAN_" + dtf2.format(LocalDateTime.now()).trim() + "\n");
+			
+			writer.close();
 			csvPrinter.close();
-
 		} catch (IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
-		return nombre_archivo_csv;
+		return fichero_temp;
 	}
 
-	public String generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
+	public Path generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
@@ -234,23 +236,19 @@ public class InformeEJB implements GestionInforme {
 		query.setParameter("estado", "activa");
 		List<Segregada> cuentas = query.getResultList();
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		String date = dtf.format(LocalDateTime.now());
-		
-		Random rnd = new Random();
-	    int numero = rnd.nextInt(9999);
-		
-		nombre_archivo_csv = "FINTECH_IBAN_2_"+ numero + ".csv";
-		String ruta = new String("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\" + nombre_archivo_csv);
-		
-		
+		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+				
+	    nombre_archivo_csv = new String("FINTECH_IBAN_2");
+	    
+	    Path fichero_temp = null;
+	    
 		try {
-			BufferedWriter writer = Files.newBufferedWriter(Paths.get(ruta));
+			fichero_temp = Files.createTempFile(nombre_archivo_csv, ".csv");
+			BufferedWriter writer = Files.newBufferedWriter(fichero_temp);
 			@SuppressWarnings("deprecation")
 			CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("IBAN", "Last_Name",
 					"Firs_Name", "Street", "City", "Post_Code", "Country", "Identification_Number", "Date_Of_Birth"));
 			for (CuentaFintech c : cuentas) {
-
 
 					Empresa clienteEmpresa = em.find(Empresa.class, c.getCliente().getIdentificacion());
 
@@ -298,15 +296,15 @@ public class InformeEJB implements GestionInforme {
 					}
 			}
 
-			csvPrinter.flush();
+			csvPrinter.print("\n" + "Ebury_IBAN_" + dtf2.format(LocalDateTime.now()).trim() + "\n");
+			
+			writer.close();
 			csvPrinter.close();
 
 		} catch (IOException e) {
 			System.err.println("ERROR: " + e.getMessage());
 		}
 
-		return nombre_archivo_csv;
-
+		return fichero_temp;
 	}
-
 }

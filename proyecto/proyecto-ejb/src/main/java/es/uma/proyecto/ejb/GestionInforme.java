@@ -1,5 +1,6 @@
 package es.uma.proyecto.ejb;
 
+import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
 
@@ -31,19 +32,14 @@ public interface GestionInforme {
 	 * 
 	 */
 	
-	public String generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException ;
+	public Path generarReporteInicialAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException ;
 	
 	/*
 	 * Este método se encarga de generar el reporte regulatorio de Alemania que se realiza semanalmente 
 	 * con todas las cuentas que se han proporcionado excepto aquellas que no están activas.
 	 * 
 	 */
-	
-	
-
-	public String generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException;
-
-	
+	public Path generarReporteSemanalAlemania(Usuario usuario) throws UsuarioNoEsAdministrativoException;
 
 	List<Segregada> devolverInformeHolandaProductoTodasSinIBAN() throws CuentaNoExistenteException;
 

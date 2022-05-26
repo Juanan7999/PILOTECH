@@ -1,10 +1,11 @@
 package es.uma.proyecto.backing;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
 import java.util.Random;
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -12,7 +13,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import es.uma.proyecto.Usuario;
+
+import org.primefaces.shaded.commons.io.IOUtils;
 import es.uma.proyecto.ejb.GestionInforme;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -31,17 +33,29 @@ public class GenerarInformeAlemania {
 	    ExternalContext ec = fc.getExternalContext();
 
 	    Random rnd = new Random();
-	    rnd.nextInt(9999);
+	    int numero = rnd.nextInt(9999);
+	   
+	    String  nombre_archivo_descargado = new String("FINTECH_IBAN_1_" + numero + ".csv");
 	    
 	    try {
 			
-	    	String nombre_fichero = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
-			
+	    	Path ruta = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
 			ec.responseReset(); 
 		    ec.setResponseContentType("application/CSV"); 
-		    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_fichero + "\""); 
-		    File file = new File("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\prueba.csv");
-			ec.setResponse(file);  
+		    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_archivo_descargado + "\""); 
+		    
+		    try(FileInputStream f = new FileInputStream(ruta.toString())){
+		    	try(OutputStream output = ec.getResponseOutputStream()){
+		    	
+		    		IOUtils.copy(f, output);
+		    	}
+		    	
+		    }catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		    
 		    fc.responseComplete();
 		    
 		} catch (UsuarioNoEsAdministrativoException e) {
@@ -57,17 +71,27 @@ public class GenerarInformeAlemania {
 		    ExternalContext ec = fc.getExternalContext();
 
 		    Random rnd = new Random();
-		    rnd.nextInt(9999);
+		    int numero = rnd.nextInt(9999);
+		    
+		    String  nombre_archivo_descargado = new String("FINTECH_IBAN_2_" + numero + ".csv");
 		    
 		    try {
 				
-		    	String nombre_fichero = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
-				
+		    	Path ruta = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
 				ec.responseReset(); 
 			    ec.setResponseContentType("application/CSV"); 
-			    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_fichero +"\"");
-			    File file = new File("C:\\Users\\PC\\Documents\\GitHub\\PILOTECH\\proyecto\\proyecto-war\\target\\generated-sources\\prueba.csv");
-				ec.setResponse(file); 
+			    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_archivo_descargado + "\""); 
+			    
+			    try(FileInputStream f = new FileInputStream(ruta.toString())){
+			    	try(OutputStream output = ec.getResponseOutputStream()){
+			    	
+			    		IOUtils.copy(f, output);
+			    	}
+			    } catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			    fc.responseComplete();
 			    
 			} catch (UsuarioNoEsAdministrativoException e) {
@@ -75,5 +99,4 @@ public class GenerarInformeAlemania {
 				FacesContext.getCurrentInstance().addMessage("generarInforme:boton1", fm);
 			}
 	}
-	
 }
