@@ -13,10 +13,12 @@ import es.uma.proyecto.DepositaEn;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
+import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
@@ -141,4 +143,6 @@ public interface GestionCuenta {
 	public List<PooledAccount> devolverPooledDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
 	
 	public List<PooledAccount> devolverPooledDeIndividual(String id) throws ClienteNoExistenteException;
+	public List<Transaccion> getTransaccionesSonOrigen(String iban) throws CuentaNoExistenteException;
+	public List<Transaccion> getTransaccionesSonDestino(String iban) throws CuentaNoExistenteException;
 }

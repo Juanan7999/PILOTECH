@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import es.uma.proyecto.Autorizacion;
 import es.uma.proyecto.AutorizacionPK;
 import es.uma.proyecto.Cliente;
+import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
@@ -22,10 +23,12 @@ import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
+import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaExistenteException;
@@ -425,7 +428,33 @@ public class CuentaEJB implements GestionCuenta {
 		
 		return listaRes;
 	}
+	//Devuelve las transacciones de una cuenta en las que la cuenta es la origen 
+	public List<Transaccion> getTransaccionesSonOrigen(String iban) throws CuentaNoExistenteException{
+		CuentaFintech cuenta = em.find(CuentaFintech.class, iban);
+		
+		if(cuenta == null) {
+			throw new CuentaNoExistenteException();
+		}
+		Query query = em.createQuery("SELECT c FROM Transaccion c where c.cuenta1.iban = :iban");
+		query.setParameter("iban", cuenta.getIban());
+		List<Transaccion> transacciones = query.getResultList();
+		return transacciones;
+		
+	}
 	
+	//Devuelve las transacciones de una cuenta en las que la cuenta es la destino 
+		public List<Transaccion> getTransaccionesSonDestino(String iban) throws CuentaNoExistenteException{
+			CuentaFintech cuenta = em.find(CuentaFintech.class, iban);
+			
+			if(cuenta == null) {
+				throw new CuentaNoExistenteException();
+			}
+			Query query = em.createQuery("SELECT c FROM Transaccion c where c.cuenta2.iban = :iban");
+			query.setParameter("iban", cuenta.getIban());
+			List<Transaccion> transacciones = query.getResultList();
+			return transacciones;
+			
+		}
 	
 	public List<Segregada> devolverTodasSegregadas(){
 		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
