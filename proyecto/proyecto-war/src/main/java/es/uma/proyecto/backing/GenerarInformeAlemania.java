@@ -48,6 +48,7 @@ public class GenerarInformeAlemania {
 		    	try(OutputStream output = ec.getResponseOutputStream()){
 		    	
 		    		IOUtils.copy(f, output);
+		    		fc.responseComplete();
 		    	}
 		    	
 		    }catch (FileNotFoundException e) {
@@ -55,8 +56,6 @@ public class GenerarInformeAlemania {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		    
-		    fc.responseComplete();
 		    
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
@@ -77,7 +76,7 @@ public class GenerarInformeAlemania {
 		    
 		    try {
 				
-		    	Path ruta = informeejb.generarReporteInicialAlemania(sesion.getUsuario());
+		    	Path ruta = informeejb.generarReporteSemanalAlemania(sesion.getUsuario());
 				ec.responseReset(); 
 			    ec.setResponseContentType("application/CSV"); 
 			    ec.setResponseHeader("Content-Disposition", "attachment; filename=\"" + nombre_archivo_descargado + "\""); 

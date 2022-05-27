@@ -29,6 +29,7 @@ import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
+import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
@@ -149,9 +150,9 @@ public class InformeEJB implements GestionInforme {
 
 		String nombre_archivo_csv;
 
-		TypedQuery<Segregada> query = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
-		List<Segregada> cuentas = query.getResultList();
-
+		TypedQuery<Segregada> query1 = em.createQuery("SELECT c FROM Segregada c", Segregada.class);
+		List<Segregada> cuentas = query1.getResultList();
+		
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		
 	    nombre_archivo_csv = new String("FINTECH_IBAN_1");
@@ -232,10 +233,10 @@ public class InformeEJB implements GestionInforme {
 
 		String nombre_archivo_csv;
 
-		TypedQuery<Segregada> query = em.createQuery("SELECT s FROM Segregada s where s.estado = :estado", Segregada.class);
-		query.setParameter("estado", "activa");
-		List<Segregada> cuentas = query.getResultList();
-
+		TypedQuery<Segregada> query1 = em.createQuery("SELECT s FROM Segregada s where s.estado = :festado", Segregada.class);
+		query1.setParameter("festado", "activa");
+		List<Segregada> cuentas = query1.getResultList();
+		
 		DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 				
 	    nombre_archivo_csv = new String("FINTECH_IBAN_2");
@@ -305,6 +306,8 @@ public class InformeEJB implements GestionInforme {
 			System.err.println("ERROR: " + e.getMessage());
 		}
 
+		
+		
 		return fichero_temp;
 	}
 }
