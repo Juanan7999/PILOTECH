@@ -536,5 +536,15 @@ public class CuentaEJB implements GestionCuenta {
 		return listaRes;
 	}
 	
+	@Override
+	public CuentaFintech devolverCuenta(String iban) throws CuentaNoExistenteException{
+		CuentaFintech cuenta = em.find(CuentaFintech.class, iban);
+		
+		if(cuenta == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		return cuenta;
+	}
 	
 }

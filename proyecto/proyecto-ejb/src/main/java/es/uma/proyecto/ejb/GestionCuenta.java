@@ -145,4 +145,6 @@ public interface GestionCuenta {
 	public List<PooledAccount> devolverPooledDeIndividual(String id) throws ClienteNoExistenteException;
 	public List<Transaccion> getTransaccionesSonOrigen(String iban) throws CuentaNoExistenteException;
 	public List<Transaccion> getTransaccionesSonDestino(String iban) throws CuentaNoExistenteException;
+
+	CuentaFintech devolverCuenta(String iban) throws CuentaNoExistenteException;
 }
