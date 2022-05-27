@@ -119,12 +119,16 @@ public class DivisaEJB implements GestionDivisa {
 			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
 			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException,UsuarioNoEncontradoException, UsuarioNoEsAdministrativoException {
 		
+		System.out.println("hola");
+		
 		Usuario admin = em.find(Usuario.class, usuario.getNombreUsuario());
 		
 		if(admin == null) {
 			
 			throw new UsuarioNoEncontradoException();
 		}
+		
+		
 		
 		if(!admin.esAdmin()) {
 			throw new UsuarioNoEsAdministrativoException();
@@ -141,7 +145,9 @@ public class DivisaEJB implements GestionDivisa {
 				throw new ClientePersonaAutorizadaNoEncontradoException();
 			}
 		}
-
+		
+		
+		
 		PooledAccount pooled = em.find(PooledAccount.class, cuentaP.getIban());
 
 		if (pooled == null) {
@@ -149,6 +155,7 @@ public class DivisaEJB implements GestionDivisa {
 			throw new PooledNoExistenteException();
 		}
 
+		
 		
 		boolean esIgual1 = false;
 		boolean esIgual2 = false;
@@ -176,25 +183,32 @@ public class DivisaEJB implements GestionDivisa {
 			throw new CuentasDiferentesException();
 		}
 		
-		if(origen.getSaldo() < cantidadOrigen || destino.getSaldo() != 0) {
+		
+		
+		if(origen.getSaldo() < cantidadOrigen) {
 		
 			throw new SaldoInsuficienteException();	
 		}
+		
+		System.out.println("adios");
 		
 		origen.setSaldo(origen.getSaldo()-cantidadOrigen);
 		Double cantidadEnEuros = cantidadOrigen*origen.getDivisa().getCambioeuro();
 		Double cantidadEnDivisaDestino = cantidadEnEuros/destino.getDivisa().getCambioeuro();
 		destino.setSaldo(destino.getSaldo()+cantidadEnDivisaDestino);
-	
+		
+		
+		
 		for(DepositaEn dp : cuentaP.getDepositaEns()) {
 			
 			if(dp.getCuentaReferencia().equals(origen)) {
 				
 				dp.setSaldo(dp.getSaldo()-cantidadOrigen);
-				
+				em.merge(dp);
 			}else if(dp.getCuentaReferencia().equals(destino)) {
 				
 				dp.setSaldo(dp.getSaldo()+cantidadEnDivisaDestino);
+				em.merge(dp);
 			}
 		}
 		
@@ -206,6 +220,9 @@ public class DivisaEJB implements GestionDivisa {
 		t.setTipo("CD");
 		
 		em.merge(t);
+		em.merge(origen);
+		em.merge(destino);
+		
 	}
 
 }
