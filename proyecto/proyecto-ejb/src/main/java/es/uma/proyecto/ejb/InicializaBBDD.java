@@ -221,6 +221,7 @@ public class InicializaBBDD {
 		
 		Segregada segregada = new Segregada();
 		segregada.setIban("NL63ABNA6548268733");
+		segregada.setClasificacion("S");
 		segregada.setSwift("2347");
 		segregada.setEstado("activa");
 		segregada.setFechaApertura("2022-04-25");
@@ -231,6 +232,7 @@ public class InicializaBBDD {
 		
 		Segregada segregada2 = new Segregada();
 		segregada2.setIban("FR5514508000502273293129K55");
+		segregada2.setClasificacion("S");
 		segregada2.setSwift("2347");
 		segregada2.setEstado("activa");
 		segregada2.setFechaApertura("2022-04-25");
@@ -242,6 +244,7 @@ public class InicializaBBDD {
 		
 		Segregada segregada3 = new Segregada();
 		segregada3.setIban("DE31500105179261215675");
+		segregada3.setClasificacion("S");
 		segregada3.setSwift("2347");
 		segregada3.setEstado("baja");
 		segregada3.setFechaApertura("2020-04-25");
@@ -253,6 +256,7 @@ public class InicializaBBDD {
 		
 		PooledAccount pooled = new PooledAccount();
 		pooled.setIban("ES8400817251647192321264");
+		pooled.setClasificacion("P");
 		pooled.setSwift("2346");
 		pooled.setEstado("activa");
 		pooled.setFechaApertura("2022-04-25");

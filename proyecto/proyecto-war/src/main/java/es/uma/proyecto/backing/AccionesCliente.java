@@ -41,7 +41,7 @@ public class AccionesCliente implements Serializable{
 	
 	//private Cuenta cuenta;
 	
-	private List<Segregada> cuentas;
+	private List<CuentaFintech> cuentas;
 	
 	//private Cliente cliente;
 
@@ -78,14 +78,14 @@ public class AccionesCliente implements Serializable{
 		this.cuenta = cuenta;
 	}
 	*/
-	public List<Segregada> getCuentas() throws PersonaAutorizadaNoExistenteException{
-		Individual cliente = usuarioEJB.devolverCliente(usuario);
+	public List<CuentaFintech> getCuentas() throws PersonaAutorizadaNoExistenteException, ClienteNoExistenteException{
+		Individual cliente = usuarioEJB.devolverCliente(sesion.getUsuario());
 		
-		return cuentaEJB.devolverSegregadasDeAutorizado(cliente.getIdentificacion());
+		return cuentaEJB.devolverCuentasDeIndividual(cliente.getIdentificacion());
 		
 	}
 	
-	public void setCuentas(List<Segregada> lista) {
+	public void setCuentas(List<CuentaFintech> lista) {
 		this.cuentas = lista;
 	}
 	
