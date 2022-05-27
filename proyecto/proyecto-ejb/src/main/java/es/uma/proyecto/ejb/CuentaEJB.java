@@ -452,7 +452,7 @@ public class CuentaEJB implements GestionCuenta {
 			}
 			
 			
-		Query query = em.createQuery("SELECT c FROM Pooled c");
+		Query query = em.createQuery("SELECT c FROM PooledAccount c");
 		List<PooledAccount> listaCuentas = query.getResultList();
 		List<PooledAccount> listaRes = new ArrayList<>();
 		for(PooledAccount c : listaCuentas) {
