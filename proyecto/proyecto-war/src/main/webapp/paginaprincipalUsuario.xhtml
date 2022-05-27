@@ -19,10 +19,11 @@
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
                         </h:outputFormat>
                         
-                        
+        <h1>CUENTAS SEGREGADAS</h1>  
+        <br> </br>              
        	<h:form id="formulario">
 	
-		<h:dataTable value="#{accionesCliente.cuentas}" var="c">
+		<h:dataTable value="#{accionesCliente.segregadas}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -34,10 +35,6 @@
 				<h:outputText id="textoSwift" value="#{c.swift}" />
 			</h:column>
 
-			<h:column>
-				<f:facet id="clasificacionAp" name="header">Clasificacion</f:facet>
-				<h:outputText id="textoClasificacion" value="#{c.clasificacion}" />
-			</h:column>
 
 			<h:column>
 				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
@@ -53,6 +50,52 @@
 				<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
 				<h:outputText id="textoFechaCierre" value="#{c.fechaCierre}" />
 			</h:column>
+			<h:column>
+				<f:facet id="cabeceraComision" name="header">Comision</f:facet>
+				<h:outputText id="textoComision" value="#{c.comision}" />
+			</h:column>
+			<h:column>
+				<f:facet id="cabeceraReferencia" name="header">Cuenta de referencia</f:facet>
+				<h:outputText id="textoReferencia" value="#{c.cuentaReferencia.iban}" />
+			</h:column>
+			
+			
+		</h:dataTable>
+	</h:form>
+	
+	
+	<h1>CUENTAS POOLED</h1>  
+        <br> </br>              
+       	<h:form id="formulario2">
+	
+		<h:dataTable value="#{accionesCliente.pooleds}" var="p">
+
+			<h:column>
+				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
+				<h:outputText id="textoIBAN" value="#{p.iban}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraSwift" name="header">SWIFT</f:facet>
+				<h:outputText id="textoSwift" value="#{p.swift}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+				<h:outputText id="textoEstado" value="#{p.estado}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaApertura" name="header">Fecha Apertura</f:facet>
+				<h:outputText id="textoFechaApertura" value="#{p.fechaApertura}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
+				<h:outputText id="textoFechaCierre" value="#{p.fechaCierre}" />
+			</h:column>
+			
+			
 			
 		</h:dataTable>
 	</h:form>

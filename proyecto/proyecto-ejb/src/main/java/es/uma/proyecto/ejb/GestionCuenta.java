@@ -138,4 +138,7 @@ public interface GestionCuenta {
 	public List<Segregada> devolverSegregadasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
 	public List<PooledAccount> devolverTodasPooled();
 	public List<Segregada> devolverTodasSegregadas();
+	public List<PooledAccount> devolverPooledDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
+	
+	public List<PooledAccount> devolverPooledDeIndividual(String id) throws ClienteNoExistenteException;
 }

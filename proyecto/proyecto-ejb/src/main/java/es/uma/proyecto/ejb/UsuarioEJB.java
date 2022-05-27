@@ -135,7 +135,7 @@ public class UsuarioEJB implements GestionUsuario{
 	}
 	
 	@Override
-	public PersonaAutorizada delvolverPersonaAut(Usuario u) {
+	public PersonaAutorizada devolverPersonaAut(Usuario u) {
 		Usuario userEntity = em.find(Usuario.class, u.getNombreUsuario());
 		return userEntity.getPersonaAutorizada();
 	}

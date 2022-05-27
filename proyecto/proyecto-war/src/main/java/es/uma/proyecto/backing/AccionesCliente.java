@@ -14,6 +14,8 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Individual;
+import es.uma.proyecto.PersonaAutorizada;
+import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.GestionCliente;
@@ -41,15 +43,57 @@ public class AccionesCliente implements Serializable{
 	
 	//private Cuenta cuenta;
 	
-	private List<CuentaFintech> cuentas;
+	private List<Segregada> segregadas;
 	
-	//private Cliente cliente;
+	private List<PooledAccount> pooleds;
+	
+	
+	public List<Segregada> getSegregadas() throws ClienteNoExistenteException, PersonaAutorizadaNoExistenteException {
+		Individual cliente = usuarioEJB.devolverCliente(sesion.getUsuario());
+		if(cliente!=null) {
+			
+				return cuentaEJB.devolverSegregadasDeIndividual(cliente.getIdentificacion());
+			
+		}else {
+			PersonaAutorizada pa = usuarioEJB.devolverPersonaAut(sesion.getUsuario());
+			return cuentaEJB.devolverSegregadasDeAutorizado(pa.getIdentificacion());
+		}
+		
+	}
+
+
+	public void setSegregadas(List<Segregada> segregadas) {
+		this.segregadas = segregadas;
+	}
+
+
+	public List<PooledAccount> getPooleds() throws PersonaAutorizadaNoExistenteException, ClienteNoExistenteException {
+		
+		Individual cliente = usuarioEJB.devolverCliente(sesion.getUsuario());
+		if(cliente!=null) {
+			
+				return cuentaEJB.devolverPooledDeIndividual(cliente.getIdentificacion());
+			
+		}else {
+			PersonaAutorizada pa = usuarioEJB.devolverPersonaAut(sesion.getUsuario());
+			return cuentaEJB.devolverPooledDeAutorizado(pa.getIdentificacion());
+		}
+	}
+
+
+	public void setPooleds(List<PooledAccount> pooleds) {
+		this.pooleds = pooleds;
+	}
+
+	
+	
 
 
 	public AccionesCliente() {
 		usuario = new Usuario();
 		//cuenta = new Cuenta();
-		cuentas = new ArrayList<>();
+		segregadas = new ArrayList<>();
+		pooleds = new ArrayList<>();
 		//cliente = new Cliente();
 	}
 	
@@ -85,7 +129,7 @@ public class AccionesCliente implements Serializable{
 		
 	}
 	
-	public void setCuentas(List<CuentaFintech> lista) {
+	/*public void setCuentas(List<CuentaFintech> lista) {
 		this.cuentas = lista;
 	}
 	

@@ -443,4 +443,69 @@ public class CuentaEJB implements GestionCuenta {
 		
 		
 	}
+	
+	public List<PooledAccount> devolverPooledDeIndividual(String id) throws ClienteNoExistenteException{
+		Individual cliente = em.find(Individual.class, id);
+		
+			if(cliente == null) {
+				throw new ClienteNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM Pooled c");
+		List<PooledAccount> listaCuentas = query.getResultList();
+		List<PooledAccount> listaRes = new ArrayList<>();
+		for(PooledAccount c : listaCuentas) {
+			if(c.getCliente().getIdentificacion().equals(id)) {
+				listaRes.add(c);
+			}
+		}
+		
+		return listaRes;
+	}
+	
+	
+	public List<PooledAccount> devolverPooledDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException{
+		PersonaAutorizada cliente = em.find(PersonaAutorizada.class, id);
+		
+			if(cliente == null) {
+				throw new PersonaAutorizadaNoExistenteException();
+			}
+			
+			
+		Query query = em.createQuery("SELECT c FROM PooledAccount c");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		query2.setParameter("id", id);
+		List<Autorizacion> autorizaciones = query2.getResultList();
+		List<PooledAccount> listaCuentas = query.getResultList();
+		List<PooledAccount> listaRes = new ArrayList<>();
+		
+		for(PooledAccount c : listaCuentas) {
+			
+			
+			Cliente cl = c.getCliente();
+			
+			if(cl.getTipoCliente().equals("J")) {
+				Empresa empresa = em.find(Empresa.class,cl.getIdentificacion());
+				
+				boolean esta = false;
+				for(Autorizacion aut : autorizaciones) {
+					if(aut.getEmpresa().getIdentificacion().equals(empresa.getIdentificacion())) {
+						esta = true;
+					}
+					
+				}
+				
+				if(esta) {
+					listaRes.add(c);
+				}
+			}
+			
+			
+		}
+		
+		return listaRes;
+	}
+	
+	
 }
