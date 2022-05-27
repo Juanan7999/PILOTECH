@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Principal</title>
+</h:head>
+
+<h:body>
+	<h1>
+		<h:outputText value="TRANSACCIONES" />
+	</h1>
+	<h:outputFormat value="Usuario administrativo: {0}">
+		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+	</h:outputFormat>
+	
+	
+	<h:form id="formulario">
+	
+		<h:dataTable value="#{mostrarTransacciones.transaccionesOrigen}" var="transOrigen">
+
+			<h:column>
+				<f:facet id="cabeceraID" name="header">Id Unico</f:facet>
+				<h:outputText id="cabeceraID" value="#{transOrigen.idUnico}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaInstruccion" name="header">Fecha Instruccion</f:facet>
+				<h:outputText id="cabeceraFechaInstruccion" value="#{transOrigen.fechainstruccion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cantidad" name="header">Cantidad</f:facet>
+				<h:outputText id="textoCantidad" value="#{transOrigen.cantidad}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
+				<h:outputText id="textoFechaEjecucion" value="#{transOrigen.fechaejecucion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraTipo" name="header">Tipo</f:facet>
+				<h:outputText id="textoTipo" value="#{transOrigen.tipo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraComision" name="header">Comision</f:facet>
+				<h:outputText id="textoComision" value="#{transOrigen.comision}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraInternacional" name="header">Internacional</f:facet>
+				<h:outputText id="textoInternacional" value="#{transOrigen.internacional}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN1" name="header">Iban</f:facet>
+				<h:outputText id="textoIBAN1" value="#{transOrigen.CUENTA_IBAN.iban}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraDIVISA1" name="header">Divisa</f:facet>
+				<h:outputText id="textoDIVISA1" value="#{transOrigen.DIVISA_ABREVIATURA.abreviatura}" />
+			</h:column>
+			
+			
+		</h:dataTable>
+	</h:form>
+	
+	<h:form id="formulario2">
+	
+		<h:dataTable value="#{mostrarTransacciones.transaccionesDestino}" var="transDestino">
+
+			<h:column>
+				<f:facet id="cabeceraID" name="header">Id Unico</f:facet>
+				<h:outputText id="cabeceraID" value="#{transDestino.idUnico}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaInstruccion" name="header">Fecha Instruccion</f:facet>
+				<h:outputText id="cabeceraFechaInstruccion" value="#{transDestino.fechainstruccion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cantidad" name="header">Cantidad</f:facet>
+				<h:outputText id="textoCantidad" value="#{transDestino.cantidad}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
+				<h:outputText id="textoFechaEjecucion" value="#{transDestino.fechaejecucion}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraTipo" name="header">Tipo</f:facet>
+				<h:outputText id="textoTipo" value="#{transDestino.tipo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraComision" name="header">Comision</f:facet>
+				<h:outputText id="textoComision" value="#{transDestino.comision}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraInternacional" name="header">Internacional</f:facet>
+				<h:outputText id="textoInternacional" value="#{transDestino.internacional}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN2" name="header">IBAN</f:facet>
+				<h:outputText id="textoIBAN2" value="#{transOrigen.CUENTA_IBAN.iban}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraDIVISA1" name="header">DIVISA</f:facet>
+				<h:outputText id="textoDIVISA1" value="#{transOrigen.internacional}" />
+			</h:column>
+			
+			
+		</h:dataTable>
+	</h:form>
+	
+	
+	
+	
+	
+</h:body>
+</html>
