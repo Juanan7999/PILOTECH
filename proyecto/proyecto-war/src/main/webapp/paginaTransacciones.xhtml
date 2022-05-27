@@ -14,11 +14,14 @@
 	<h1>
 		<h:outputText value="TRANSACCIONES" />
 	</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
+	<h:outputFormat value="Usuario: {0}">
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
+	<h:outputFormat value="Cuenta: {0}">
+		<f:param value="#{mostrarTransacciones.cuenta.iban}" />
+	</h:outputFormat>
 	
-	
+	<h2>TRANSACCIONES EN LAS QUE ES ORIGEN</h2>
 	<h:form id="formulario">
 	
 		<h:dataTable value="#{mostrarTransacciones.transaccionesOrigen}" var="transOrigen">
@@ -27,20 +30,41 @@
 				<f:facet id="cabeceraID" name="header">Id Unico</f:facet>
 				<h:outputText id="cabeceraID" value="#{transOrigen.idUnico}" />
 			</h:column>
-
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN1" name="header">Cuenta de origen</f:facet>
+				<h:outputText id="textoIBAN1" value="#{transOrigen.cuenta1.iban}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN1" name="header">Cuenta de destino</f:facet>
+				<h:outputText id="textoIBAN1" value="#{transOrigen.cuenta2.iban}" />
+			</h:column>
+			
+			
 			<h:column>
 				<f:facet id="cabeceraFechaInstruccion" name="header">Fecha Instruccion</f:facet>
 				<h:outputText id="cabeceraFechaInstruccion" value="#{transOrigen.fechainstruccion}" />
 			</h:column>
-
+			
+			<h:column>
+				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
+				<h:outputText id="textoFechaEjecucion" value="#{transOrigen.fechaejecucion}" />
+			</h:column>
+			
 			<h:column>
 				<f:facet id="cantidad" name="header">Cantidad</f:facet>
 				<h:outputText id="textoCantidad" value="#{transOrigen.cantidad}" />
 			</h:column>
 
 			<h:column>
-				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
-				<h:outputText id="textoFechaEjecucion" value="#{transOrigen.fechaejecucion}" />
+				<f:facet id="cabeceraDIVISA1" name="header">Divisa Origen</f:facet>
+				<h:outputText id="textoDIVISA1" value="#{transOrigen.divisa1.abreviatura}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraDIVISA2" name="header">Divisa Destino</f:facet>
+				<h:outputText id="textoDIVISA2" value="#{transOrigen.divisa2.abreviatura}}" />
 			</h:column>
 
 			<h:column>
@@ -58,72 +82,86 @@
 				<h:outputText id="textoInternacional" value="#{transOrigen.internacional}" />
 			</h:column>
 			
-			<h:column>
-				<f:facet id="cabeceraIBAN1" name="header">Iban</f:facet>
-				<h:outputText id="textoIBAN1" value="#{transOrigen.CUENTA_IBAN.iban}" />
-			</h:column>
 			
-			<h:column>
-				<f:facet id="cabeceraDIVISA1" name="header">Divisa</f:facet>
-				<h:outputText id="textoDIVISA1" value="#{transOrigen.DIVISA_ABREVIATURA.abreviatura}" />
-			</h:column>
+			
+			
 			
 			
 		</h:dataTable>
 	</h:form>
 	
+	<h2>TRANSACCIONES EN LAS QUE ES DESTINO</h2>
 	<h:form id="formulario2">
 	
-		<h:dataTable value="#{mostrarTransacciones.transaccionesDestino}" var="transDestino">
+		<h:dataTable value="#{mostrarTransacciones.transaccionesDestino}" var="transD">
 
 			<h:column>
 				<f:facet id="cabeceraID" name="header">Id Unico</f:facet>
-				<h:outputText id="cabeceraID" value="#{transDestino.idUnico}" />
+				<h:outputText id="cabeceraID" value="#{transD.idUnico}" />
 			</h:column>
-
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN1" name="header">Cuenta de origen</f:facet>
+				<h:outputText id="textoIBAN1" value="#{transD.cuenta1.iban}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraIBAN1" name="header">Cuenta de destino</f:facet>
+				<h:outputText id="textoIBAN1" value="#{transD.cuenta2.iban}" />
+			</h:column>
+			
+			
 			<h:column>
 				<f:facet id="cabeceraFechaInstruccion" name="header">Fecha Instruccion</f:facet>
-				<h:outputText id="cabeceraFechaInstruccion" value="#{transDestino.fechainstruccion}" />
+				<h:outputText id="cabeceraFechaInstruccion" value="#{transD.fechainstruccion}" />
 			</h:column>
-
-			<h:column>
-				<f:facet id="cantidad" name="header">Cantidad</f:facet>
-				<h:outputText id="textoCantidad" value="#{transDestino.cantidad}" />
-			</h:column>
-
+			
 			<h:column>
 				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
-				<h:outputText id="textoFechaEjecucion" value="#{transDestino.fechaejecucion}" />
+				<h:outputText id="textoFechaEjecucion" value="#{transD.fechaejecucion}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cantidad" name="header">Cantidad</f:facet>
+				<h:outputText id="textoCantidad" value="#{transD.cantidad}" />
+			</h:column>
+
+			<h:column>
+				<f:facet id="cabeceraDIVISA1" name="header">Divisa Origen</f:facet>
+				<h:outputText id="textoDIVISA1" value="#{transD.divisa1.abreviatura}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet id="cabeceraDIVISA2" name="header">Divisa Destino</f:facet>
+				<h:outputText id="textoDIVISA2" value="#{transD.divisa2.abreviatura}}" />
 			</h:column>
 
 			<h:column>
 				<f:facet id="cabeceraTipo" name="header">Tipo</f:facet>
-				<h:outputText id="textoTipo" value="#{transDestino.tipo}" />
+				<h:outputText id="textoTipo" value="#{transD.tipo}" />
 			</h:column>
 
 			<h:column>
 				<f:facet id="cabeceraComision" name="header">Comision</f:facet>
-				<h:outputText id="textoComision" value="#{transDestino.comision}" />
+				<h:outputText id="textoComision" value="#{transD.comision}" />
 			</h:column>
 			
 			<h:column>
 				<f:facet id="cabeceraInternacional" name="header">Internacional</f:facet>
-				<h:outputText id="textoInternacional" value="#{transDestino.internacional}" />
+				<h:outputText id="textoInternacional" value="#{transD.internacional}" />
 			</h:column>
 			
-			<h:column>
-				<f:facet id="cabeceraIBAN2" name="header">IBAN</f:facet>
-				<h:outputText id="textoIBAN2" value="#{transOrigen.CUENTA_IBAN.iban}" />
-			</h:column>
 			
-			<h:column>
-				<f:facet id="cabeceraDIVISA1" name="header">DIVISA</f:facet>
-				<h:outputText id="textoDIVISA1" value="#{transOrigen.internacional}" />
-			</h:column>
+			
+			
 			
 			
 		</h:dataTable>
 	</h:form>
+	
+	
+	
+	
 	
 	
 	

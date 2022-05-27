@@ -3,6 +3,7 @@ package es.uma.proyecto.backing;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +18,7 @@ import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 
 
 @Named(value = "mostrarTransacciones")
-@ViewScoped
+@RequestScoped
 public class MostrarTransacciones {
 	
 	@Inject
