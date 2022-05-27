@@ -17,6 +17,7 @@
 	<h:outputFormat value="Usuario: {0}">
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
+	<br></br>
 	<h:outputFormat value="Cuenta: {0}">
 		<f:param value="#{mostrarTransacciones.cuenta.iban}" />
 	</h:outputFormat>
@@ -37,8 +38,8 @@
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraIBAN1" name="header">Cuenta de destino</f:facet>
-				<h:outputText id="textoIBAN1" value="#{transOrigen.cuenta2.iban}" />
+				<f:facet id="cabeceraIBAN2" name="header">Cuenta de destino</f:facet>
+				<h:outputText id="textoIBAN2" value="#{transOrigen.cuenta2.iban}" />
 			</h:column>
 			
 			
@@ -64,7 +65,7 @@
 			
 			<h:column>
 				<f:facet id="cabeceraDIVISA2" name="header">Divisa Destino</f:facet>
-				<h:outputText id="textoDIVISA2" value="#{transOrigen.divisa2.abreviatura}}" />
+				<h:outputText id="textoDIVISA2" value="#{transOrigen.divisa2.abreviatura}" />
 			</h:column>
 
 			<h:column>
@@ -96,59 +97,59 @@
 		<h:dataTable value="#{mostrarTransacciones.transaccionesDestino}" var="transD">
 
 			<h:column>
-				<f:facet id="cabeceraID" name="header">Id Unico</f:facet>
-				<h:outputText id="cabeceraID" value="#{transD.idUnico}" />
+				<f:facet id="cabeceraID_2" name="header">Id Unico</f:facet>
+				<h:outputText id="cabeceraID_2" value="#{transD.idUnico}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraIBAN1" name="header">Cuenta de origen</f:facet>
-				<h:outputText id="textoIBAN1" value="#{transD.cuenta1.iban}" />
+				<f:facet id="cabeceraIBAN1_2" name="header">Cuenta de origen</f:facet>
+				<h:outputText id="textoIBAN1_2" value="#{transD.cuenta1.iban}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraIBAN1" name="header">Cuenta de destino</f:facet>
-				<h:outputText id="textoIBAN1" value="#{transD.cuenta2.iban}" />
+				<f:facet id="cabeceraIBAN2_2" name="header">Cuenta de destino</f:facet>
+				<h:outputText id="textoIBAN2_2" value="#{transD.cuenta2.iban}" />
 			</h:column>
 			
 			
 			<h:column>
-				<f:facet id="cabeceraFechaInstruccion" name="header">Fecha Instruccion</f:facet>
-				<h:outputText id="cabeceraFechaInstruccion" value="#{transD.fechainstruccion}" />
+				<f:facet id="cabeceraFechaInstruccion_2" name="header">Fecha Instruccion</f:facet>
+				<h:outputText id="cabeceraFechaInstruccion_2" value="#{transD.fechainstruccion}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraFechaEjecucion" name="header">Fecha Ejecucion</f:facet>
-				<h:outputText id="textoFechaEjecucion" value="#{transD.fechaejecucion}" />
+				<f:facet id="cabeceraFechaEjecucion_2" name="header">Fecha Ejecucion</f:facet>
+				<h:outputText id="textoFechaEjecucion_2" value="#{transD.fechaejecucion}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cantidad" name="header">Cantidad</f:facet>
-				<h:outputText id="textoCantidad" value="#{transD.cantidad}" />
+				<f:facet id="cantidad_2" name="header">Cantidad</f:facet>
+				<h:outputText id="textoCantidad_2" value="#{transD.cantidad}" />
 			</h:column>
 
 			<h:column>
-				<f:facet id="cabeceraDIVISA1" name="header">Divisa Origen</f:facet>
-				<h:outputText id="textoDIVISA1" value="#{transD.divisa1.abreviatura}" />
+				<f:facet id="cabeceraDIVISA1_2" name="header">Divisa Origen</f:facet>
+				<h:outputText id="textoDIVISA1_2" value="#{transD.divisa1.abreviatura}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraDIVISA2" name="header">Divisa Destino</f:facet>
-				<h:outputText id="textoDIVISA2" value="#{transD.divisa2.abreviatura}}" />
+				<f:facet id="cabeceraDIVISA2_2" name="header">Divisa Destino</f:facet>
+				<h:outputText id="textoDIVISA2_2" value="#{transD.divisa2.abreviatura}" />
 			</h:column>
 
 			<h:column>
-				<f:facet id="cabeceraTipo" name="header">Tipo</f:facet>
-				<h:outputText id="textoTipo" value="#{transD.tipo}" />
+				<f:facet id="cabeceraTipo_2" name="header">Tipo</f:facet>
+				<h:outputText id="textoTipo_2" value="#{transD.tipo}" />
 			</h:column>
 
 			<h:column>
-				<f:facet id="cabeceraComision" name="header">Comision</f:facet>
-				<h:outputText id="textoComision" value="#{transD.comision}" />
+				<f:facet id="cabeceraComision_2" name="header">Comision</f:facet>
+				<h:outputText id="textoComision_2" value="#{transD.comision}" />
 			</h:column>
 			
 			<h:column>
-				<f:facet id="cabeceraInternacional" name="header">Internacional</f:facet>
-				<h:outputText id="textoInternacional" value="#{transD.internacional}" />
+				<f:facet id="cabeceraInternacional_2" name="header">Internacional</f:facet>
+				<h:outputText id="textoInternacional_2" value="#{transD.internacional}" />
 			</h:column>
 			
 			

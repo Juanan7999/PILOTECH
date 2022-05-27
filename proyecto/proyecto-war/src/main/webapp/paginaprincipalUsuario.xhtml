@@ -12,13 +12,16 @@
 
 <h:body>
        <h1><h:outputText value="PAGINA PRINCIPAL"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
+                        
                         
                         <h:outputFormat value = "Bienvenido {0}">
                         	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
                         </h:outputFormat>
-                        
+                        <br></br>
+        <h:form>
+		<h:commandButton id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" class="boton"/>
+		</h:form>   
+		<br></br>             
         <h1>CUENTAS SEGREGADAS</h1>  
         <br> </br>              
        	<h:form id="formulario">
@@ -59,8 +62,8 @@
 				<h:outputText id="textoReferencia" value="#{c.cuentaReferencia.iban}" />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonTrans" value="Transacciones"
-					action="#{mostrarTransaccion.accion(c.iban)}" />
+				<h:commandButton id="botonTrans" value="Ver transacciones"
+					action="#{mostrarTransacciones.accion(c.iban)}" />
 				<h:message id="botonModMessage" for="botonMod" />
 			</h:column>
 			<h:column>
@@ -104,8 +107,8 @@
 				<h:outputText id="textoFechaCierre" value="#{p.fechaCierre}" />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonTrans2" value="Transacciones"
-					action="#{mostrarTransaccion.accion(c.iban)}" />
+				<h:commandButton id="botonTrans2" value="Ver transacciones"
+					action="#{mostrarTransacciones.accion(p.iban)}" />
 				<h:message id="botonModMessage2" for="botonMod" />
 			</h:column>
 			
