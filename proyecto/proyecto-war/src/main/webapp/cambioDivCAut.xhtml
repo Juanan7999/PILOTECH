@@ -11,12 +11,37 @@
 </h:head>
 
 <h:body>
-       <h1><h:outputText value="Cambio de Divisas Cliente/Autorizado"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
+       <h1><h:outputText value="Cambio de Divisas Cliente o Autorizado"/></h1>
                         
-                        <h:outputFormat value = "Bienvenido {0}">
-                        	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>  
+        <h:form id="cambiarDivisaCA" class="form-login">
+        
+            <h:outputLabel value="IDENTIFICACION DEL CLIENTE: "></h:outputLabel>
+			<h:inputText id="id_cliente" value="#{cambioDivisas.id}"></h:inputText>
+			<h:message id="identificacion" for="id_cliente"/>
+			<br/>
+                    
+            <h:outputLabel value="IBAN CUENTA POOLED : "></h:outputLabel>
+			<h:inputText id="ibanP" value="#{cambioDivisas.iban_pooled}"></h:inputText>
+			<h:message id="ibanPooled" for="ibanP"/>
+			<br/>
+            
+			<h:outputLabel value="IBAN CUENTA REFERENCIA ORIGEN : "></h:outputLabel>
+			<h:inputText id="ibanOrigen" value="#{cambioDivisas.iban_cuenta_ref_origen}"></h:inputText>
+			<h:message id="ibanOrigenMessage" for="ibanOrigen"/>
+			<br/>
+			
+			<h:outputLabel value="IBAN CUENTA REFERENCIA DESTINO : "></h:outputLabel>
+			<h:inputText id="ibanDestino" value="#{cambioDivisas.iban_cuenta_ref_destino}"></h:inputText>
+			<h:message id="ibanDestinoMessage" for="ibanDestino"/>
+			<br/>
+			
+			<h:outputLabel value="CANTIDAD EN DIVISA ORIGEN : "></h:outputLabel>
+			<h:inputText id="cantidad" value="#{cambioDivisas.cantidadOrigen}"></h:inputText>
+			<h:message id="cantidadMessage" for="cantidad"/>
+			<br/>
+			
+			<h:commandButton id="botonDivisa" value="Cambiar Divisa" action="#{cambioDivisas.realizarCambioCliente_Autorizado}"></h:commandButton>
+			<h:message id="boton" for="botonCambioDivisaAdmin"/>
+        </h:form>
 </h:body>
 </html>
