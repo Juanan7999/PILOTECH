@@ -4,22 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<title>Datos clientes individuales</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h1>CLIENTES INDIVIDUALES</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-	<br />
-	
+	<h1 class="display-3">CLIENTES FÍSICOS</h1>
+	<br/>
 	<h:form id="formulario">
 	
-		<h:dataTable value="#{accionesIndividuales.listaCliente}" var="c">
+		<h:dataTable class="table" value="#{accionesIndividuales.listaCliente}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraId" name="header">Identificacion</f:facet>
@@ -48,7 +47,12 @@
 
 			<h:column>
 				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-				<h:outputText id="textoEstado" value="#{c.estado}" />
+					<h:outputText rendered="#{c.estado eq 'activo'}" class="badge text-bg-success" id="textoEstado1" value="#{c.estado}" />
+
+					<h:outputText rendered="#{c.estado eq 'baja'}" class="badge text-bg-danger" id="textoEstado2" value="#{c.estado}" />
+
+					<h:outputText rendered="#{c.estado eq 'bloqueado'}" class="badge text-bg-secondary" id="textoEstado3" value="#{c.estado}" />
+
 			</h:column>
 
 			<h:column>
@@ -82,25 +86,25 @@
 			</h:column>
 
 			<h:column>
-				<h:commandButton id="botonBaja" value="Dar de baja"
+				<h:commandButton class="btn btn-danger btn-sm" id="botonBaja" value="Dar de baja"
 					action="#{accionesIndividuales.baja(c.identificacion)}" />
 				<h:message id="botonBajaMessage" for="botonBaja" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonBloq" value="Bloquear"
+				<h:commandButton class="btn btn-secondary btn-sm" id="botonBloq" value="Bloquear"
 					action="#{accionesIndividuales.bloquea(c.identificacion)}" />
 				<h:message id="botonBloqMessage" for="botonBloq" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonDesbloq" value="Desbloquear"
+				<h:commandButton class="btn btn-secondary btn-sm" id="botonDesbloq" value="Desbloquear"
 					action="#{accionesIndividuales.desbloquea(c.identificacion)}" />
 				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonMod" value="Modificar"
+				<h:commandButton class="btn btn-light btn-sm" id="botonMod" value="Modificar"
 					action="#{modClienteIndividual.accion(c.identificacion)}" />
 				<h:message id="botonModMessage" for="botonMod" />
 			</h:column>
@@ -110,12 +114,13 @@
 		</h:dataTable>
 	</h:form>
 	<br />
-	<h:button outcome="altaIndividual.xhtml" id="botonAltaIndividual"
-		value="Alta de un cliente Individual" class="boton" />
+	<h:button class="btn btn-primary btn-sm" outcome="altaIndividual.xhtml" id="botonAltaIndividual"
+		value="Alta de un cliente Individual"/>
 	<br />
 	<br />
-	<h:button id="inicio" outcome="paginaprincipalAdmin.xhtml"
-		value="Volver al inicio" class="boton" />
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"/>
+	</div>
 	<br />
 </h:body>
 </html>

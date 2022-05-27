@@ -8,32 +8,35 @@
 
 <h:head>
 	<title>Login de inicio</title>
-	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h:form id="loginAdmin" class="form-login">
-		<h5>
-			<h:outputText value="LOGIN ADMINISTRATIVO" />
-		</h5>
+<div class="mx-auto position-absolute top-50 start-50 translate-middle border border-primary rounded" style="width: 400px;">
+<div class="mx-auto" style="width: 300px;">
+	<h:form id="loginAdmin">
+	<div class="mx-auto" style="width: 200px;">
+		<h2 class="display-4">
+			<h:outputText value="ACCESO" />
+		</h2>
+	</div>
+			<div class="mb-3">
+			<label for="user" class="form-label">Usuario</label>
+			<h:inputText class="form-control rounded-pill" id="user" required="true" placeholder="Nombre de usuario" value="#{loginAdmin.usuario.nombreUsuario}"/>
+			</div>
+			
+			<div class="mb-3">
+			<label for="pass" class="form-label">Contraseña</label>
+			<h:inputSecret class="form-control rounded-pill" id="pass" required="true" placeholder="Contraseña"
+				value="#{loginAdmin.usuario.password}"/>
+			</div>
+					<h:commandButton class="btn btn-primary mb-3 rounded-pill"
+						id="botonLogin" value="Entrar" action="#{loginAdmin.login()}" />
+					<h:message id="loginException" for="botonLogin" />
 
-		<h:panelGrid columns="3">
-			<h:outputText value="Nombre de usuario:" />
-			<h:inputText id="user" required="true"
-				value="#{loginAdmin.usuario.nombreUsuario}" class="controls" />
-			<h:message id="userMessage" for="user" />
-
-			<h:outputText value="Contraseña:" />
-			<h:inputSecret id="pass" required="true"
-				value="#{loginAdmin.usuario.password}" class="controls" />
-			<h:message id="passwordMessage" for="pass" />
-
-			<h:commandButton id="botonLogin" value="Entrar"
-				action="#{loginAdmin.login()}" class="buttons" />
-			<h:message id="loginException" for="botonLogin" />
-
-
-		</h:panelGrid>
-	</h:form>
+			</h:form>
+</div>
+</div>
 </h:body>
 </html>

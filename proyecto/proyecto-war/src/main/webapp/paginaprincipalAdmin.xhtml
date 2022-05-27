@@ -8,48 +8,77 @@
 
 <h:head>
 	<title>Principal</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h1>
-		<h:outputText value="PAGINA PRINCIPAL" />
-	</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-	<br />
-	<h:form>
-	<h:commandButton id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" class="boton"/>
-	</h:form>
-	<br />
-	
-	<h:panelGrid columns="4">
-	
-	<br> <h:button outcome="clientesIndividuales.xhtml"
-			id="clientesIndividuales" value="CLIENTES INDIVIDUALES"
-			class="boton"  /> </br>
-
-	<br> <h:button outcome="clientesEmpresas.xhtml"
-			id="clientesEmpresas" value="CLIENTES EMPRESAS" class="boton" /> </br>
+	<div class="position-absolute top-0 start-50 translate-middle-x">
+		<h1 class="display-3">
+			<h:outputText value="PÁGINA PRINCIPAL" />
+		</h1>
+	</div>
+	<div class="position-absolute top-0 start-0">
+		<h:outputFormat class="font-monospace" value="Usuario: {0}">
+			<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+		</h:outputFormat>
+	</div>
+	<div class="position-absolute bottom-0 start-0">
+		<h:form>
+			<h:commandButton class="btn btn-dark btn-sm" id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+		</h:form>
+		<br />
+	</div>
+	<div class="position-absolute top-50 start-50 translate-middle row">
+			<div class="col-sm-4">
+				<div class="card">
+				  	<h:graphicImage value="#{resource['clientes.jpg']}" class="card-img-top" alt="..."/>
+				  	<div class="card-body">
+					    <h5 class="card-title">CLIENTES FÍSICOS</h5>
+					    <p class="card-text">Toda la información sobre clientes físicos</p>
+					    <h:button  class="btn btn-primary" outcome="clientesIndividuales.xhtml" id="clientesIndividuales" value="CLIENTES INDIVIDUALES"/>
+					</div>
+				</div>
+			</div>
 			
-	<br> <h:button outcome="cuentas.xhtml"
-			id="cuentas" value="CUENTAS" class="boton" /> </br>
-
-	<br> <h:button outcome="anadirAut.xhtml" id="añadirAutorizado"
-			value="Añadir una persona autorizada" class="boton"  /> </br>
-
-	<br> <h:button outcome="modAut.xhtml" id="modificarAutorizado"
-			value="Modificar una persona autorizada" class="boton"  /> </br>
-
-	<br> <h:button outcome="eliminarAut.xhtml" id="eliminarAutorizado"
-			value="Eliminar una persona autorizada" class="boton"  /> </br>
-
-	<br> <h:button outcome="cambioDivA.xhtml" id="cambioDivisas"
-			value="Cambio de Divisas" class="boton"  /> </br>
-
-	<br> <h:button outcome="generarInformeAlemania.xhtml"
-			id="generarAlemania" value="Generar Informes Alemania"
-			class="boton" /> </br>
-	</h:panelGrid>
+			<div class="col-sm-4">
+				<div class="card">
+				  	<h:graphicImage value="#{resource['empresa.jpg']}" class="card-img-top" alt="..."/>
+				  	<div class="card-body">
+					    <h5 class="card-title">CLIENTES JURÍDICOS</h5>
+					    <p class="card-text">Toda la información sobre clientes jurídicos</p>
+					    <h:button  class="btn btn-primary" outcome="clientesEmpresas.xhtml" id="clientesEmpresas" value="CLIENTES EMPRESAS"/>
+				  	</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="card">
+				  	<h:graphicImage value="#{resource['cuentas.jpg']}" class="card-img-top" alt="..."/>
+				  	<div class="card-body">
+					    <h5 class="card-title">CUENTAS</h5>
+					    <p class="card-text">Toda la información sobre cuentas</p>
+					    <h:button  class="btn btn-primary" outcome="cuentas.xhtml" id="cuentas" value="CUENTAS" />
+				  	</div>
+				</div>
+			</div>
+			
+			
+			<br> <h:button class="btn btn-primary" outcome="anadirAut.xhtml" id="añadirAutorizado"
+					value="Añadir una persona autorizada"/> </br>
+		
+			<br> <h:button class="btn btn-primary" outcome="modAut.xhtml" id="modificarAutorizado"
+					value="Modificar una persona autorizada"/> </br>
+		
+			<br> <h:button class="btn btn-primary" outcome="eliminarAut.xhtml" id="eliminarAutorizado"
+					value="Eliminar una persona autorizada"/> </br>
+		
+			<br> <h:button class="btn btn-primary" outcome="cambioDivA.xhtml" id="cambioDivisas"
+					value="Cambio de Divisas"/> </br>
+		
+			<br> <h:button class="btn btn-primary " outcome="generarInformeAlemania.xhtml"
+					id="generarAlemania" value="Generar Informes Alemania"
+					/> </br>
+	</div>
 </h:body>
 </html>

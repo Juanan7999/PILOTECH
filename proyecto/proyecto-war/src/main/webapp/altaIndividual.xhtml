@@ -8,92 +8,100 @@
 
 <h:head>
 	<title>Alta individual</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h1>
+	<h1 class="display-4">
 		<h:outputText value="ALTA DE UN INDIVIDUAL" />
 	</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
+
 	<br />
-	
-	<h:form id="altaIndividual" class="form-login">
-		<h:panelGrid columns="3">
-			<h:outputText value="Nombre de usuario:" />
-			<h:inputText id="user" required="true"
-				value="#{altaClienteIndividual.newusuario.nombreUsuario}"
-				class="controls" />
+	<div class="mx-auto" style="width: 80%;">
+	<h:form id="altaIndividual" class="row g-3">
+			
+			<div class="col-md-5">
+			<label for="user" class="form-label">Nombre de usuario</label>
+			<h:inputText class="form-control" id="user" required="true" value="#{altaClienteIndividual.newusuario.nombreUsuario}"/>
 			<h:message id="userMessage" for="user" />
-
-			<h:outputText value="Contraseña:" />
-			<h:inputSecret id="pass" required="true"
-				value="#{altaClienteIndividual.newusuario.password}" class="controls" />
+			</div>
+			
+			<div class="col-md-5">
+			<label for="pass" class="form-label">Contraseña</label>
+			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaClienteIndividual.newusuario.password}" />
 			<h:message id="passwordMessage" for="pass" />
-
-			<h:outputText value="Tipo de Usuario:" />
-			<h:inputText id="typeUsuario" required="true"
-				value="#{altaClienteIndividual.newusuario.tipo}" class="controls" />
+			</div>
+			
+			<div class="col-md-2">
+			<label for="typeUsuario" class="form-label">Tipo de usuario</label>
+			<h:selectOneMenu id="typeUsuario" value="#{altaClienteIndividual.newusuario.tipo}" class="form-select">
+      		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
+    		</h:selectOneMenu>
 			<h:message id="typeUserMessage" for="typeUsuario" />
-
-			<h:outputText value="Nombre:" />
-			<h:inputText id="nombre" required="true"
-				value="#{altaClienteIndividual.individual.nombre}" class="controls" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="nombre" class="form-label">Nombre</label>
+			<h:inputText class="form-control" id="nombre" required="true" value="#{altaClienteIndividual.individual.nombre}"  />
 			<h:message id="nombreMessage" for="nombre" />
-
-			<h:outputText value="Apellido:" />
-			<h:inputText id="apellido" required="true"
-				value="#{altaClienteIndividual.individual.apellido}"
-				class="controls" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="apellido" class="form-label">Apellido</label>
+			<h:inputText class="form-control" id="apellido" required="true" value="#{altaClienteIndividual.individual.apellido}"/>
 			<h:message id="apellidoMessage" for="apellido" />
-
-			<h:outputText value="Fecha de Nacimiento" />
-			<h:inputText id="fechaNacimiento" required="true"
-				value="#{altaClienteIndividual.individual.fechaNacimiento}"
-				class="controls" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{altaClienteIndividual.individual.fechaNacimiento}"/>
 			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
-
-			<h:outputText value="Identificacion" />
-			<h:inputText id="identificacion" required="true"
-				value="#{altaClienteIndividual.individual.identificacion}"
-				class="controls" />
+			</div>
+			
+			<div class="col-md-6">
+			<label for="identificacion" class="form-label">Identificacion</label>
+			<h:inputText class="form-control" id="identificacion" required="true" value="#{altaClienteIndividual.individual.identificacion}"/>
 			<h:message id="identificacionMessage" for="identificacion" />
-
-			<h:outputText value="Direccion:" />
-			<h:inputText id="direccion" required="true"
-				value="#{altaClienteIndividual.individual.direccion}"
-				class="controls" />
+			</div>
+			
+			<div class="col-md-6">
+			<label for="direccion" class="form-label">Direccion</label>
+			<h:inputText class="form-control" id="direccion" required="true" value="#{altaClienteIndividual.individual.direccion}"/>
 			<h:message id="direccionMessage" for="direccion" />
-
-			<h:outputText value="Ciudad:" />
-			<h:inputText id="ciudad" required="true"
-				value="#{altaClienteIndividual.individual.ciudad}" class="controls" />
+			</div>
+			
+			<div class="col-md-6">
+			<label for="ciudad" class="form-label">Ciudad</label>
+			<h:inputText class="form-control" id="ciudad" required="true" value="#{altaClienteIndividual.individual.ciudad}"/>
 			<h:message id="ciudadMessage" for="ciudad" />
-
-			<h:outputText value="Codigo Postal:" />
-			<h:inputText id="cp" required="true"
-				value="#{altaClienteIndividual.individual.codigopostal}"
-				class="controls" />
-			<h:message id="cpMessage" for="cp" />
-
-			<h:outputText value="Pais:" />
-			<h:inputText id="pais" required="true"
-				value="#{altaClienteIndividual.individual.pais}" class="controls" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="pais" class="form-label">Pais</label>
+			<h:inputText class="form-control" id="pais" required="true" value="#{altaClienteIndividual.individual.pais}" />
 			<h:message id="paisMessage" for="pais" />
-
-			<h:commandButton id="botonAltaIndividual" value="Alta"
-				action="#{altaClienteIndividual.altaIndividual()}" class="boton" />
+			</div>
+			
+			<div class="col-md-2">
+			<label for="cp" class="form-label">Código Postal</label>
+			<h:inputText class="form-control" id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}"/>
+			<h:message id="cpMessage" for="cp" />
+			</div>
+			
+			<div class="mx-auto" style="width: 200px;">
+			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaIndividual" value="Alta" action="#{altaClienteIndividual.altaIndividual()}" />
 			<h:message id="botonAltaMessage" for="botonAltaIndividual" />
-
-		</h:panelGrid>
+			</div>
 
 	</h:form>
-	<h:button id="aceptar" outcome="clientesIndividuales.xhtml"
-		value="Volver" class="boton" ></h:button>
-
-
-
-
+	
+	
+	</div>
+	
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="clientesIndividuales.xhtml" value="Volver" />
+	</div>
+	
 </h:body>
 </html>
