@@ -330,7 +330,7 @@ public class CuentaEJB implements GestionCuenta {
 			
 			
 		Query query = em.createQuery("SELECT c FROM CuentaFintech c");
-		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada.identificacion = :id");
 		query2.setParameter("id", id);
 		List<Autorizacion> autorizaciones = query2.getResultList();
 		List<CuentaFintech> listaCuentas = query.getResultList();
@@ -393,7 +393,7 @@ public class CuentaEJB implements GestionCuenta {
 			
 			
 		Query query = em.createQuery("SELECT c FROM Segregada c");
-		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada.identificacion = :id");
 		query2.setParameter("id", id);
 		List<Autorizacion> autorizaciones = query2.getResultList();
 		List<Segregada> listaCuentas = query.getResultList();
@@ -474,7 +474,7 @@ public class CuentaEJB implements GestionCuenta {
 			
 			
 		Query query = em.createQuery("SELECT c FROM PooledAccount c");
-		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :id");
+		Query query2 = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada.identificacion = :id");
 		query2.setParameter("id", id);
 		List<Autorizacion> autorizaciones = query2.getResultList();
 		List<PooledAccount> listaCuentas = query.getResultList();
