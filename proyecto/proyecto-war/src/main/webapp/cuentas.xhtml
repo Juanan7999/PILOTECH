@@ -16,7 +16,7 @@
 	<h1 class="display-3">CUENTAS</h1>
 	<br/>
 
-	<div class="accordion" id="accordionExample">
+	<div class="accordion" id="accordionCuentas">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="headingOne">
 				<button class="accordion-button" type="button"
@@ -25,12 +25,12 @@
 					Cuentas segregadas</button>
 			</h2>
 			<div id="collapseOne" class="accordion-collapse collapse show"
-				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				aria-labelledby="headingOne" data-bs-parent="#accordionCuentas">
 				<div class="accordion-body">
 
 					<h:form id="seg">
 
-						<h:dataTable value="#{accionesCuentas.segregadas}" var="c">
+						<h:dataTable class="table" value="#{accionesCuentas.segregadas}" var="c">
 
 							<h:column>
 								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -73,10 +73,18 @@
 							
 							<h:column>
 							<h:commandButton class="btn btn-danger btn-sm" id="botonCierraSeg" value="Dar de baja"
-									action="#{accionesCuentas.cerrarSeg(c.identificacion)}" />
+									action="#{accionesCuentas.cerrarSeg(c.iban)}" />
 								<h:message id="botonCierraSegMessage" for="botonCierraSeg" />
 								<br />
 							</h:column>
+							
+							<h:column>
+							<h:commandButton class="btn btn-light btn-sm" id="botonTransaccionesSeg" value="Transacciones"
+									action="#{mostrarTransacciones.accion(c.iban)}" />
+								<h:message id="botonTransSegMessage" for="botonTransaccionesSeg" />
+								<br />
+							</h:column>
+							
 						</h:dataTable>
 					</h:form>
 					
@@ -96,7 +104,7 @@
 					Cuentas Pooled</button>
 			</h2>
 			<div id="collapseTwo" class="accordion-collapse collapse"
-				aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				aria-labelledby="headingTwo" data-bs-parent="#accordionCuentas">
 				<div class="accordion-body">
 
 					<h:form id="pol">
@@ -130,10 +138,25 @@
 							
 							<h:column>
 							<h:commandButton class="btn btn-danger btn-sm" id="botonCierraPool" value="Dar de baja"
-									action="#{accionesCuentas.cerrarPool(c.identificacion)}" />
+									action="#{accionesCuentas.cerrarPool(p.iban)}" />
 								<h:message id="botonCierraPoolMessage" for="botonCierraPool" />
 								<br />
 							</h:column>
+							
+							<h:column>
+							<h:commandButton class="btn btn-light btn-sm" id="botonTransaccionesPool" value="Transacciones"
+									action="#{mostrarTransacciones.accion(p.iban)}" />
+								<h:message id="botonTransPoolMessage" for="botonTransaccionesPool" />
+								<br />
+							</h:column>
+							
+							<h:column>
+							<h:commandButton class="btn btn-light btn-sm" id="botonDepositoPool" value="Depósitos"
+									action="#{mostrarDepositaEn.accion(p.iban)}" />
+								<h:message id="botonDepPoolMessage" for="botonDepositoPool" />
+								<br />
+							</h:column>
+							
 						</h:dataTable>
 					</h:form>
 					<br/>
@@ -144,6 +167,10 @@
 			</div>
 		</div>
 	</div>
-
+	<br />
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"/>
+	</div>
+	<br />
 </h:body>
 </html>
