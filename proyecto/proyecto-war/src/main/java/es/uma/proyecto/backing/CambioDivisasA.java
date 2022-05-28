@@ -1,10 +1,16 @@
 package es.uma.proyecto.backing;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,10 +18,10 @@ import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
-import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
 import es.uma.proyecto.ejb.GestionDivisa;
 import es.uma.proyecto.ejb.exceptions.ClientePersonaAutorizadaNoEncontradoException;
+import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentasDiferentesException;
 import es.uma.proyecto.ejb.exceptions.PooledNoExistenteException;
@@ -23,9 +29,14 @@ import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
-@Named(value = "cambioDivisas")
+@Named(value = "cambioDivisasA")
 @RequestScoped
-public class CambioDivisasA {
+public class CambioDivisasA implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private GestionDivisa divisaejb;
@@ -35,6 +46,14 @@ public class CambioDivisasA {
 
 	@Inject
 	private GestionCuenta cuentaejb;
+	
+	private List<CuentaReferencia> l_cr_origen;
+	
+	private List<CuentaReferencia> l_cr_destino;
+		
+	private Map<String, String> lista_desplegables_origen;
+	
+	private Map<String, String> lista_desplegables_destino;
 	
 	private Usuario usuario;
 
@@ -99,7 +118,37 @@ public class CambioDivisasA {
 	public void setIban_pooled(String iban_pooled) {
 		this.iban_pooled = iban_pooled;
 	}
-
+	
+	public void init() {
+		
+		lista_desplegables_origen = new LinkedHashMap<String, String>();
+		lista_desplegables_destino = new LinkedHashMap<String, String>();
+		
+		for(CuentaReferencia cr : l_cr_origen) {
+			
+			lista_desplegables_origen.put(cr.getIban(), cr.getDivisa().getNombre());
+		}
+		
+		for(CuentaReferencia cd : l_cr_destino) {
+			
+			lista_desplegables_destino.put(cd.getIban(), cd.getDivisa().getNombre());
+		}	
+	}
+	
+	
+	public String accion(String c) throws CuentaNoExistenteException {
+		
+		this.iban_pooled = c;
+		
+		init();
+		
+		l_cr_origen = cuentaejb.getCuentaReferenciasDePooled(this.getIban_pooled());
+		
+		l_cr_destino = cuentaejb.getCuentaReferenciasDePooled(this.getIban_pooled());
+		
+		return "paginaDivisas.xhtml";
+	}
+	
 	public String realizarCambioAdmin() {
 
 		usuario = sesion.getUsuario();

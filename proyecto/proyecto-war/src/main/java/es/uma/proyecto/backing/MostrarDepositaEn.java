@@ -20,9 +20,6 @@ public class MostrarDepositaEn {
 	private GestionCuenta cuentaEJB;
 	
 	private List<DepositaEn> depositaen;
-	
-
-
 
 	private PooledAccount pooled;
 	
