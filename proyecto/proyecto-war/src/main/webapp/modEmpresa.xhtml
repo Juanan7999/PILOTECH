@@ -13,77 +13,64 @@
 </h:head>
 
 <h:body>
-	<h1>
-		<h:outputText value="MODIFICACION DE UNA EMPRESA" />
+	<h1 class="display-5">
+		<h:outputFormat value="MODIFICACIÓN DE {0}" >
+			<f:param value="#{modClienteEmpresa.empresa.identificacion}" />
+		</h:outputFormat>
 	</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-	<br />
-	<h:outputFormat value="Modificar al usuario {0}">
-		<f:param value="#{modClienteEmpresa.empresa.identificacion}" />
-	</h:outputFormat>
 	
-	<h:form id="modificarEmpresa" >
-		<h:panelGrid columns="3">
-			<h:outputText value="Identificacion" />
-			<h:inputText id="identificacion" required="true"
+	<br/>
+	<div class="mx-auto" style="width: 80%;">
+	<h:form id="modificarEmpresa" class="row g-3">
+		
+			
+			<h:inputHidden class="form-control" id="identificacion" required="true"
 				value="#{modClienteEmpresa.empresa.identificacion}"/>
-			<h:message id="identificacionMessage" for="identificacion" />
-
-			<h:outputText value="Razon social:" />
-			<h:inputText id="razonSocial" required="true"
+			
+			<div class="col-md-12">
+			<label for="razonSocial" class="form-label">Razón social</label>
+			<h:inputText class="form-control" id="razonSocial" required="true"
 				value="#{modClienteEmpresa.empresa.razonSocial}"/>
 			<h:message id="razonSocialMessage" for="razonSocial" />
-
-			<h:outputText value="Tipo de Cliente:" />
-			<h:inputText id="typeClient" required="true"
-				value="#{modClienteEmpresa.empresa.tipoCliente}"  />
-			<h:message id="typeClientMessage" for="typeClient" />
-
-			<h:outputText value="Estado:" />
-			<h:inputText id="state" required="true"
-				value="#{modClienteEmpresa.empresa.estado}" disabled="true" />
-			<h:message id="stateMessage" for="state" />
-
-			<h:outputText value="Fecha de alta:" />
-			<h:inputText id="fechaAlta" required="true"
-				value="#{modClienteEmpresa.empresa.fechaAlta}" disabled="true"/>
-			<h:message id="fechaAltaMessage" for="fechaAlta" />
-
-			<h:outputText value="Fecha de baja:" />
-			<h:inputText id="fechaBaja" required="false"
-				value="#{modClienteEmpresa.empresa.fechaBaja}" disabled="true" />
-			<h:message id="fechaBajaMessage" for="fechaBaja" />
-
-			<h:outputText value="Direccion:" />
-			<h:inputText id="direccion" required="true"
+			</div>
+			
+			<div class="col-md-6">
+			<label for="direccion" class="form-label">Direccion</label>
+			<h:inputText class="form-control" id="direccion" required="true"
 				value="#{modClienteEmpresa.empresa.direccion}"/>
 			<h:message id="direccionMessage" for="direccion" />
-
-			<h:outputText value="Ciudad:" />
-			<h:inputText id="ciudad" required="true"
+			</div>
+			
+			<div class="col-md-6">
+			<label for="ciudad" class="form-label">Ciudad</label>
+			<h:inputText class="form-control" id="ciudad" required="true"
 				value="#{modClienteEmpresa.empresa.ciudad}" />
 			<h:message id="ciudadMessage" for="ciudad" />
-
-			<h:outputText value="Codigo Postal:" />
-			<h:inputText id="cp" required="true"
-				value="#{modClienteEmpresa.empresa.codigopostal}"/>
-			<h:message id="cpMessage" for="cp" />
+			</div>
 			
-			<h:outputText value="Pais:" />
-			<h:inputText id="pais" required="true"
+			<div class="col-md-6">
+			<label for="pais" class="form-label">País</label>
+			<h:inputText class="form-control" id="pais" required="true"
 				value="#{modClienteEmpresa.empresa.pais}" />
 			<h:message id="paisMessage" for="pais" />
+			</div>
 			
-			<h:commandButton id="botonModificarEmpresa" value="Modificar"
+			<div class="col-md-6">
+			<label for="cp" class="form-label">Código postal</label>
+			<h:inputText class="form-control" id="cp" required="true"
+				value="#{modClienteEmpresa.empresa.codigopostal}"/>
+			<h:message id="cpMessage" for="cp" />
+			</div>
+			
+			<div class="mx-auto" style="width: 200px;">
+			<h:commandButton class="btn btn-primary btn-sm" id="botonModificarEmpresa" value="Modificar"
 				action="#{modClienteEmpresa.modificarEmpresa()}"/>
-
-		</h:panelGrid>
-		<br />
-		<br />
-		<h:button id="atras" value="Volver" outcome="clientesEmpresas.xhtml"  />
-	</h:form>
-
+			</div>
+			
+		</h:form>
+	</div>
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="clientesEmpresas.xhtml" value="Volver" />
+	</div>
 </h:body>
 </html>

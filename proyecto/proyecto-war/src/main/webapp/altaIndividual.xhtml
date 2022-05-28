@@ -21,25 +21,7 @@
 	<div class="mx-auto" style="width: 80%;">
 	<h:form id="altaIndividual" class="row g-3">
 			
-			<div class="col-md-5">
-			<label for="user" class="form-label">Nombre de usuario</label>
-			<h:inputText class="form-control" id="user" required="true" value="#{altaClienteIndividual.newusuario.nombreUsuario}"/>
-			<h:message id="userMessage" for="user" />
-			</div>
-			
-			<div class="col-md-5">
-			<label for="pass" class="form-label">Contraseña</label>
-			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaClienteIndividual.newusuario.password}" />
-			<h:message id="passwordMessage" for="pass" />
-			</div>
-			
-			<div class="col-md-2">
-			<label for="typeUsuario" class="form-label">Tipo de usuario</label>
-			<h:selectOneMenu id="typeUsuario" value="#{altaClienteIndividual.newusuario.tipo}" class="form-select">
-      		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
-    		</h:selectOneMenu>
-			<h:message id="typeUserMessage" for="typeUsuario" />
-			</div>
+			<h4 class="h4">Datos del cliente</h4>
 			
 			<div class="col-md-4">
 			<label for="nombre" class="form-label">Nombre</label>
@@ -87,6 +69,28 @@
 			<label for="cp" class="form-label">Código Postal</label>
 			<h:inputText class="form-control" id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}"/>
 			<h:message id="cpMessage" for="cp" />
+			</div>
+			
+			<h4 class="h4">Creacion del usuario para el cliente</h4>
+			
+			<div class="col-md-5">
+			<label for="user" class="form-label">Nombre de usuario</label>
+			<h:inputText class="form-control" id="user" required="true" value="#{altaClienteIndividual.newusuario.nombreUsuario}"/>
+			<h:message id="userMessage" for="user" />
+			</div>
+			
+			<div class="col-md-5">
+			<label for="pass" class="form-label">Contraseña</label>
+			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaClienteIndividual.newusuario.password}" />
+			<h:message id="passwordMessage" for="pass" />
+			</div>
+			
+			<div class="col-md-2">
+			<label for="typeUsuario" class="form-label">Tipo de usuario</label>
+			<h:selectOneMenu id="typeUsuario" value="#{altaClienteIndividual.newusuario.tipo}" class="form-select">
+      		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
+    		</h:selectOneMenu>
+			<h:message id="typeUserMessage" for="typeUsuario" />
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">

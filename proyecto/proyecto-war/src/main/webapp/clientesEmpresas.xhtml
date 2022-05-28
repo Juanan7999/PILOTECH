@@ -19,7 +19,7 @@
 	</h:outputFormat>
 	<br />
 	
-	<h:form id="formulario" class="mb-3">
+	<h:form id="formulario">
 		<h:dataTable class="table" value="#{accionesEmpresas.listaCliente}" var="c">
 
 			<h:column>
@@ -39,7 +39,12 @@
 
 			<h:column>
 				<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-				<h:outputText id="textoEstado" value="#{c.estado}" />
+				<h:outputText rendered="#{c.estado eq 'activo'}" class="badge text-bg-success" id="textoEstado1" value="#{c.estado}" />
+
+				<h:outputText rendered="#{c.estado eq 'baja'}" class="badge text-bg-danger" id="textoEstado2" value="#{c.estado}" />
+
+				<h:outputText rendered="#{c.estado eq 'bloqueado'}" class="badge text-bg-secondary" id="textoEstado3" value="#{c.estado}" />
+				
 			</h:column>
 
 			<h:column>
@@ -73,25 +78,25 @@
 			</h:column>
 
 			<h:column>
-				<h:commandButton id="botonBaja" value="Dar de baja"
+				<h:commandButton class="btn btn-danger btn-sm" id="botonBaja" value="Dar de baja"
 					action="#{accionesEmpresas.baja(c.identificacion)}" />
 				<h:message id="botonBajaMessage" for="botonBaja" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonBloq" value="Bloquear"
+				<h:commandButton class="btn btn-secondary btn-sm" id="botonBloq" value="Bloquear"
 					action="#{accionesEmpresas.bloquea(c.identificacion)}" />
 				<h:message id="botonBloqMessage" for="botonBloq" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonDesbloq" value="Desbloquear"
+				<h:commandButton class="btn btn-secondary btn-sm" id="botonDesbloq" value="Desbloquear"
 					action="#{accionesEmpresas.desbloquea(c.identificacion)}" />
 				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
 				<br />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonMod" value="Modificar"
+				<h:commandButton class="btn btn-light btn-sm" id="botonMod" value="Modificar"
 					action="#{modClienteEmpresa.accion(c.identificacion)}" />
 				<h:message id="botonModMessage" for="botonMod" />
 				<br />
@@ -99,12 +104,14 @@
 		</h:dataTable>
 	</h:form>
 	<br />
-	<h:button outcome="altaEmpresa.xhtml" id="botonAltaEmpresa"
+	<h:button class="btn btn-primary btn-sm" outcome="altaEmpresa.xhtml" id="botonAltaEmpresa"
 		value="Alta de un cliente Empresa"/>
 	<br />
 	<br />
-	<h:button id="inicio" outcome="paginaprincipalAdmin.xhtml"
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="inicio" outcome="paginaprincipalAdmin.xhtml"
 		value="Volver al inicio"></h:button>
+	</div>
 	<br />
 </h:body>
 </html>

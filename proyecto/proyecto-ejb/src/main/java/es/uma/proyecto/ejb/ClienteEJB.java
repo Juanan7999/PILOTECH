@@ -229,6 +229,7 @@ public class ClienteEJB implements GestionCliente {
 		
 		empresa.setEstado(clienteEntity.getEstado());
 		empresa.setFechaAlta(clienteEntity.getFechaAlta().toString());
+		empresa.setTipoCliente(clienteEntity.getTipoCliente());
 		if(clienteEntity.getFechaBaja() != null) {
 			empresa.setFechaBaja(clienteEntity.getFechaBaja().toString());
 		}

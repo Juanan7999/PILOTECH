@@ -18,19 +18,142 @@
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
 	<br />
-	
-	<br> <h:button outcome="cuentaSegregada.xhtml" id="segregada" value="CUENTAS SEGREGADAS"/> </br>
-			
-	<br> <h:button outcome="cuentaPooled.xhtml" id="pooled" value="CUENTAS POOLED"/> </br>
-	
-	<br> <h:button outcome="abrirSegregada.xhtml" id="abrirSegregada" value="Abrir cuenta segregada"/> </br>
+
+
+	<div class="accordion" id="accordionExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingOne">
+				<button class="accordion-button" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapseOne"
+					aria-expanded="true" aria-controls="collapseOne">
+					Cuentas segregadas</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse show"
+				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+
+					<h:form id="formulario">
+
+						<h:dataTable value="#{accionesCuentas.segregadas}" var="c">
+
+							<h:column>
+								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
+								<h:outputText id="textoIBAN" value="#{c.iban}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraSwift" name="header">SWIFT</f:facet>
+								<h:outputText id="textoSwift" value="#{c.swift}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+								<h:outputText id="textoEstado" value="#{c.estado}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraFechaApertura" name="header">Fecha Apertura</f:facet>
+								<h:outputText id="textoFechaApertura" value="#{c.fechaApertura}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
+								<h:outputText id="textoFechaCierre" value="#{c.fechaCierre}" />
+							</h:column>
+							<h:column>
+								<f:facet id="cabeceraComision" name="header">Comision</f:facet>
+								<h:outputText id="textoComision" value="#{c.comision}" />
+							</h:column>
+							<h:column>
+								<f:facet id="cabeceraReferencia" name="header">Cuenta de referencia</f:facet>
+								<h:outputText id="textoReferencia"
+									value="#{c.cuentaReferencia.iban}" />
+							</h:column>
+							<h:column>
+								<h:commandButton id="botonTrans" value="Ver transacciones"
+									action="#{mostrarTransacciones.accion(c.iban)}" />
+								<h:message id="botonModMessage" for="botonMod" />
+							</h:column>
+
+						</h:dataTable>
+					</h:form>
+
+				</div>
+			</div>
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingTwo">
+				<button class="accordion-button collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+					aria-expanded="false" aria-controls="collapseTwo">
+					Cuentas Pooled</button>
+			</h2>
+			<div id="collapseTwo" class="accordion-collapse collapse"
+				aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+
+					<h:form id="formulario2">
+
+						<h:dataTable class="table" value="#{accionesCliente.pooleds}" var="p">
+
+							<h:column>
+								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
+								<h:outputText id="textoIBAN" value="#{p.iban}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraSwift" name="header">SWIFT</f:facet>
+								<h:outputText id="textoSwift" value="#{p.swift}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
+								<h:outputText id="textoEstado" value="#{p.estado}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraFechaApertura" name="header">Fecha Apertura</f:facet>
+								<h:outputText id="textoFechaApertura" value="#{p.fechaApertura}" />
+							</h:column>
+
+							<h:column>
+								<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
+								<h:outputText id="textoFechaCierre" value="#{p.fechaCierre}" />
+							</h:column>
+
+							<h:column>
+								<h:commandButton id="botonTrans2" value="Ver transacciones"
+									action="#{mostrarTransacciones.accion(p.iban)}" />
+								<h:message id="botonModMessage2" for="botonMod" />
+							</h:column>
+
+						</h:dataTable>
+					</h:form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<br> <h:button outcome="cuentaSegregada.xhtml" id="segregada"
+			value="CUENTAS SEGREGADAS" /> </br>
+
+	<br> <h:button outcome="cuentaPooled.xhtml" id="pooled"
+			value="CUENTAS POOLED" /> </br>
+
+	<br> <h:button outcome="abrirSegregada.xhtml" id="abrirSegregada"
+			value="Abrir cuenta segregada" /> </br>
 
 	<br> <h:button outcome="abrirPooled.xhtml" id="abrirPooled"
-			value="Abrir cuenta pooled"/> </br>
+			value="Abrir cuenta pooled" /> </br>
 
-	<br> <h:button outcome="cerrarSegregada.xhtml" id="cerrarSegregada" value="Cerrar una cuenta segregada"/> </br>
+	<br> <h:button outcome="cerrarSegregada.xhtml"
+			id="cerrarSegregada" value="Cerrar una cuenta segregada" /> </br>
 
-	<br> <h:button outcome="cerrarPooled.xhtml" id="cerrarPooled" value="Cerrar una cuenta pooled"/> </br>
-	
+	<br> <h:button outcome="cerrarPooled.xhtml" id="cerrarPooled"
+			value="Cerrar una cuenta pooled" /> </br>
+
 </h:body>
 </html>
