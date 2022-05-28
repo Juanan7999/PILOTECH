@@ -154,5 +154,5 @@ public interface GestionCuenta {
 
 	void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
 			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
-	
+	public PersonaAutorizada devolverPersonaAutorizada(String id) throws ClienteNoExistenteException;
 }

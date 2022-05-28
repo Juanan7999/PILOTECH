@@ -29,6 +29,18 @@ public class MostrarEmpresas {
 	private PersonaAutorizada autorizado;
 	
 	
+	public PersonaAutorizada getAutorizado() {
+		return autorizado;
+	}
+
+
+
+	public void setAutorizado(PersonaAutorizada autorizado) {
+		this.autorizado = autorizado;
+	}
+
+
+
 	public List<Empresa> getEmpresas() throws PersonaAutorizadaNoExistenteException {
 		return cuentaEJB.getEmpresasDeAutorizado(autorizado.getIdentificacion());
 	}
