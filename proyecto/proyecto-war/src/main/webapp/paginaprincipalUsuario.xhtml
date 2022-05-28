@@ -23,10 +23,12 @@
 		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 	</h:outputFormat>
 	<br></br>
-	<h:form>
-		<h:commandButton id="sesion" value="Cerrar sesión"
-			action="#{infoSesion.invalidarSesion()}" class="boton" />
-	</h:form>
+	<div class="position-absolute bottom-0 start-0">
+		<h:form>
+			<h:commandButton class="btn btn-dark btn-sm" id="sesion" value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+		</h:form>
+		<br />
+	</div>
 	<br></br>
 
 
@@ -34,7 +36,7 @@
 	<br> </br>
 	<h:form id="formulario">
 
-		<h:dataTable value="#{accionesCliente.segregadas}" var="c">
+		<h:dataTable class="table" value="#{accionesCliente.segregadas}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -87,7 +89,7 @@
 	<br> </br>
 	<h:form id="formulario2">
 
-		<h:dataTable value="#{accionesCliente.pooleds}" var="p">
+		<h:dataTable class = "table" value="#{accionesCliente.pooleds}" var="p">
 
 			<h:column>
 				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
