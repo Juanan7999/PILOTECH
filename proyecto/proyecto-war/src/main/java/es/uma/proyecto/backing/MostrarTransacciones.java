@@ -24,11 +24,7 @@ public class MostrarTransacciones {
 	@Inject
 	private GestionCuenta cuentaEJB;
 	
-	@Inject
-	private InfoSesion sesion;
 	
-	@Inject
-	private GestionUsuario usuarioEJB;
 
 	private List<Transaccion> transaccionesOrigen;
 	
