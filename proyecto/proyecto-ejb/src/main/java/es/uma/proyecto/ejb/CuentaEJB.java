@@ -595,6 +595,19 @@ public class CuentaEJB implements GestionCuenta {
 		
 	}
 	
+	public PersonaAutorizada devolverPersonaAutorizada(String id) throws ClienteNoExistenteException {
+		PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+		
+		if(pa == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		return pa;
+		
+		
+	}
+	
+	
 	@Override
 	public List<PersonaAutorizada> devolverTodosAutorizados(){
 		Query query = em.createQuery("SELECT p FROM PersonaAutorizada p");

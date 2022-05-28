@@ -257,7 +257,7 @@ public class ClienteEJB implements GestionCliente {
 	}
 		
 	@Override
-	public Cliente devolverClienteEmpresa(String identificacion) throws ClienteNoExistenteException{
+	public Empresa devolverClienteEmpresa(String identificacion) throws ClienteNoExistenteException{
 		Empresa cliente = em.find(Empresa.class, identificacion);
 		
 		if(cliente == null) {
