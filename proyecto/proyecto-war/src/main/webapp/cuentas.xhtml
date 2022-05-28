@@ -13,12 +13,8 @@
 </h:head>
 
 <h:body>
-	<h1>CUENTAS</h1>
-	<h:outputFormat value="Usuario administrativo: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-	<br />
-
+	<h1 class="display-3">CUENTAS</h1>
+	<br/>
 
 	<div class="accordion" id="accordionExample">
 		<div class="accordion-item">
@@ -32,7 +28,7 @@
 				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				<div class="accordion-body">
 
-					<h:form id="formulario">
+					<h:form id="seg">
 
 						<h:dataTable value="#{accionesCuentas.segregadas}" var="c">
 
@@ -48,7 +44,12 @@
 
 							<h:column>
 								<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-								<h:outputText id="textoEstado" value="#{c.estado}" />
+								<h:outputText rendered="#{c.estado eq 'activo'}" class="badge text-bg-success" id="textoEstado1" value="#{c.estado}" />
+
+								<h:outputText rendered="#{c.estado eq 'baja'}" class="badge text-bg-danger" id="textoEstado2" value="#{c.estado}" />
+
+								<h:outputText rendered="#{c.estado eq 'bloqueado'}" class="badge text-bg-secondary" id="textoEstado3" value="#{c.estado}" />
+								
 							</h:column>
 
 							<h:column>
@@ -69,15 +70,21 @@
 								<h:outputText id="textoReferencia"
 									value="#{c.cuentaReferencia.iban}" />
 							</h:column>
+							
 							<h:column>
-								<h:commandButton id="botonTrans" value="Ver transacciones"
-									action="#{mostrarTransacciones.accion(c.iban)}" />
-								<h:message id="botonModMessage" for="botonMod" />
+							<h:commandButton class="btn btn-danger btn-sm" id="botonCierraSeg" value="Dar de baja"
+									action="#{accionesCuentas.cerrarSeg(c.identificacion)}" />
+								<h:message id="botonCierraSegMessage" for="botonCierraSeg" />
+								<br />
 							</h:column>
-
 						</h:dataTable>
 					</h:form>
-
+					
+					<br />
+					<h:button class="btn btn-primary btn-sm" outcome="abrirSegregada.xhtml" id="botonAbrirSegregada"
+					value="Abrir una cuenta segregada"/>
+					<br />
+					
 				</div>
 			</div>
 		</div>
@@ -92,9 +99,9 @@
 				aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				<div class="accordion-body">
 
-					<h:form id="formulario2">
+					<h:form id="pol">
 
-						<h:dataTable class="table" value="#{accionesCliente.pooleds}" var="p">
+						<h:dataTable class="table" value="#{accionesCuentas.pooleds}" var="p">
 
 							<h:column>
 								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -120,40 +127,23 @@
 								<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
 								<h:outputText id="textoFechaCierre" value="#{p.fechaCierre}" />
 							</h:column>
-
+							
 							<h:column>
-								<h:commandButton id="botonTrans2" value="Ver transacciones"
-									action="#{mostrarTransacciones.accion(p.iban)}" />
-								<h:message id="botonModMessage2" for="botonMod" />
+							<h:commandButton class="btn btn-danger btn-sm" id="botonCierraPool" value="Dar de baja"
+									action="#{accionesCuentas.cerrarPool(c.identificacion)}" />
+								<h:message id="botonCierraPoolMessage" for="botonCierraPool" />
+								<br />
 							</h:column>
-
 						</h:dataTable>
 					</h:form>
-
+					<br/>
+					<h:button class="btn btn-primary btn-sm" outcome="abrirPooled.xhtml" id="botonAbrirPooled"
+					value="Abrir una cuenta pooled"/>
+					<br />
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-	<br> <h:button outcome="cuentaSegregada.xhtml" id="segregada"
-			value="CUENTAS SEGREGADAS" /> </br>
-
-	<br> <h:button outcome="cuentaPooled.xhtml" id="pooled"
-			value="CUENTAS POOLED" /> </br>
-
-	<br> <h:button outcome="abrirSegregada.xhtml" id="abrirSegregada"
-			value="Abrir cuenta segregada" /> </br>
-
-	<br> <h:button outcome="abrirPooled.xhtml" id="abrirPooled"
-			value="Abrir cuenta pooled" /> </br>
-
-	<br> <h:button outcome="cerrarSegregada.xhtml"
-			id="cerrarSegregada" value="Cerrar una cuenta segregada" /> </br>
-
-	<br> <h:button outcome="cerrarPooled.xhtml" id="cerrarPooled"
-			value="Cerrar una cuenta pooled" /> </br>
 
 </h:body>
 </html>
