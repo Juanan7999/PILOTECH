@@ -12,17 +12,22 @@ import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
-@Named(value = "añadirAutorizados")
+@Named(value = "anadirAutorizados")
 @RequestScoped
-public class AñadirAutorizados {
+public class AnadirAutorizados {
 
 	@Inject
 	private GestionCuenta cuentaEJB;
 
+	@Inject
+	private GestionCliente clienteEJB;
+	
 	@Inject
 	private InfoSesion sesion;
 
@@ -31,9 +36,8 @@ public class AñadirAutorizados {
 	private PersonaAutorizada personaAutorizada;
 	
 	private Empresa empresa;
-	
-	
-	public AñadirAutorizados() {
+
+	public AnadirAutorizados() {
 		personaAutorizada = new PersonaAutorizada();
 		usuario = new Usuario();
 	}
@@ -51,7 +55,15 @@ public class AñadirAutorizados {
 	}
 	
 	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
-		this.personaAutorizada=personaAutorizada;
+		this.personaAutorizada = personaAutorizada;
+	}
+	
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 	
 	public String anadirAutorizados() {
@@ -59,8 +71,10 @@ public class AñadirAutorizados {
 		try {
 			
 			usuario = sesion.getUsuario();
+			System.out.println(personaAutorizada.getNombre());
+			System.out.println(empresa.getRazonSocial());
 			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa);
-			return "paginaprincipalAdmin.xhtml";
+			return "clientesEmpresas.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			
@@ -78,7 +92,16 @@ public class AñadirAutorizados {
 		
 	}
 	
-	
+	public String accion(String identificacion) {
+		try {
+			this.empresa = clienteEJB.devolverClienteEmpresa(identificacion);
+			return "anadirAut.xhtml";
+		} catch (ClienteNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

@@ -90,7 +90,7 @@ public class PersonaAutorizada implements Serializable {
 		this.estado = estado;
 	}
 
-	public Date getFechaNacimiento() {
+	public Object getFechaNacimiento() {
 		return this.fechaNacimiento;
 	}
 

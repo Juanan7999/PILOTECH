@@ -29,6 +29,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -165,8 +166,10 @@ public class CuentaEJB implements GestionCuenta {
 		if (p == null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
-		
-		pa.setFechafin(p.getFechafin().toString());
+		if(p.getFechafin() != null) {
+			pa.setFechafin(p.getFechafin().toString());
+		}
+		pa.setEstado(p.getEstado());
 		pa.setFechaInicio(p.getFechainicio().toString());
 		em.merge(pa);
 	}
@@ -187,7 +190,8 @@ public class CuentaEJB implements GestionCuenta {
 
 			throw new PersonaAutorizadaNoExistenteException();
 		}
-
+		
+		p.setFechafin(LocalDate.now().toString());
 		p.setEstado("baja");
 
 	}
@@ -309,7 +313,7 @@ public class CuentaEJB implements GestionCuenta {
 	
 	@Override
 	public void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
-			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException {
 
 		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
 
@@ -327,6 +331,8 @@ public class CuentaEJB implements GestionCuenta {
 			throw new PersonaAutorizadaNoExistenteException();
 		} else if (pa.getEstado().equals("activo")) {
 			throw new ClienteDesbloqueadoException();
+		} else if(pa.getEstado().equals("baja")) {
+			throw new ClienteYaDeBajaException();
 		}
 
 		pa.setEstado("activo");

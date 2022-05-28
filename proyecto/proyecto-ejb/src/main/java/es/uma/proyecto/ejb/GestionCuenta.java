@@ -19,6 +19,7 @@ import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaReferenciaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.CuentaSinSaldo0Exception;
@@ -153,6 +154,6 @@ public interface GestionCuenta {
 	List<PersonaAutorizada> devolverTodosAutorizados();
 
 	void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
-			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException;
 	public PersonaAutorizada devolverPersonaAutorizada(String id) throws ClienteNoExistenteException;
 }

@@ -18,6 +18,7 @@ import es.uma.proyecto.ejb.GestionCuenta;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
+import es.uma.proyecto.ejb.exceptions.ClienteYaDeBajaException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
@@ -121,10 +122,32 @@ public class AccionesAutorizada implements Serializable{
 		} catch (UsuarioNoEncontradoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ClienteYaDeBajaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return null;
 		
+	}
+	
+	public String eliminarAutorizado(String iden) {
+		
+		try {
+			usuario = sesion.getUsuario();
+			personaAutorizada = cuentaEJB.devolverPersonaAutorizada(iden);
+			cuentaEJB.eliminarAutorizados(usuario, personaAutorizada);
+		} catch (UsuarioNoEsAdministrativoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonaAutorizadaNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClienteNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

@@ -105,6 +105,12 @@
 				<h:message id="botonModMessage" for="botonMod" />
 				<br />
 			</h:column>
+			<h:column>
+				<h:commandButton class="btn btn-dark btn-sm" id="botonAnadirAut" value="Añadir Autorizado"
+					action="#{anadirAutorizados.accion(c.identificacion)}" />
+				<h:message id="botonAddMessage" for="botonAnadirAut" />
+				<br />
+			</h:column>
 		</h:dataTable>
 	</h:form>
 	<br />

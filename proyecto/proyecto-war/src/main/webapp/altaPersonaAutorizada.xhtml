@@ -14,14 +14,14 @@
 
 <h:body>
 	<h1 class="display-5">
-		<h:outputText value="ALTA DE UN INDIVIDUAL" />
+		<h:outputText value="ALTA DE UNA PERSONA AUTORIZADA" />
 	</h1>
 
 	<br />
 	<div class="mx-auto" style="width: 80%;">
 	<h:form id="altaAutorizado" class="row g-3">
 			
-			<h4 class="h4">Datos del cliente</h4>
+			<h4 class="h4">Datos de la persona autorizado</h4>
 			
 			<div class="col-md-4">
 			<label for="nombre" class="form-label">Nombre</label>
@@ -57,7 +57,7 @@
 			
 			<div class="col-md-5">
 			<label for="user" class="form-label">Nombre de usuario</label>
-			<h:inputText class="form-control" id="user" required="true" value="#{altaPersonaAutorizada.personaAutorizada.nombreUsuario}"/>
+			<h:inputText class="form-control" id="user" required="true" value="#{altaPersonaAutorizada.newusuario.nombreUsuario}"/>
 			<h:message id="userMessage" for="user" />
 			</div>
 			
@@ -76,17 +76,16 @@
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
-			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaAutorizado" value="Alta" action="#{altaPersonaAutorizada.personaAutorizada.altaPersonaAutorizada()}" />
+			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaAutorizado" value="Alta" action="#{altaPersonaAutorizada.altaPersonaAutorizada()}" />
 			<h:message id="botonAltaMessage" for="botonAltaAutorizado" />
 			</div>
 
 	</h:form>
 	
-	
 	</div>
 	
 	<div class="position-absolute bottom-0 start-0">
-	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="clientesIndividuales.xhtml" value="Volver" />
+	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="personasAutorizadas.xhtml" value="Volver" />
 	</div>
 	
 </h:body>
