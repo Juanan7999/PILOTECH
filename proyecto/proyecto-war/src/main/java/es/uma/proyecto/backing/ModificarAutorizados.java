@@ -61,6 +61,7 @@ public class ModificarAutorizados {
 			usuario = sesion.getUsuario();
 			cuentaEJB.modificarAutorizados(usuario, personaAutorizada);
 			return "personasAutorizadas.xhtml";
+			
 		}catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
 			FacesContext.getCurrentInstance().addMessage("modificarAutorizados", fm);

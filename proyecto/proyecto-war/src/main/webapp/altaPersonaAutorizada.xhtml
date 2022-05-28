@@ -7,70 +7,87 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Login de inicio</title>
+	<title>Alta personas autorizadas</title>
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h1>
-		<h:outputText value="ALTA DE UNA PERSONA AUTORIZADA" />
+	<h1 class="display-5">
+		<h:outputText value="ALTA DE UN INDIVIDUAL" />
 	</h1>
 
-
-
-
-	<h:outputText id="saludo" value="Pagina de pilotech. Hola usuario" />
 	<br />
-
-	
-	<h:form id="altaPersonaAutorizada">
-		<h5>
-			<h:outputText value="PAGINA DE INICIO" />
-		</h5>
-
-
-
-		<h:panelGrid columns="3">
-
-			<h:outputText value="Identificacion" />
-			<h:inputText id="identificacion" required="true" value="#{altaPersonaAutorizada.personaAutorizada.identificacion}"/>
-			<h:message id="identificacionMessage" for="identificacion" />
-
-
-			<h:outputText value="Nombre:" />
-			<h:inputText id="user" required="true" value="#{altaPersonaAutorizada.personaAutorizada.nombre}"/>
-			<h:message id="userMessage" for="user" />
-
-
-			<h:outputText value="Apellido:" />
-			<h:inputText id="apellido" required="true" value="#{altaPersonaAutorizada.personaAutorizada.apellidos}"/>
+	<div class="mx-auto" style="width: 80%;">
+	<h:form id="altaAutorizado" class="row g-3">
+			
+			<h4 class="h4">Datos del cliente</h4>
+			
+			<div class="col-md-4">
+			<label for="nombre" class="form-label">Nombre</label>
+			<h:inputText class="form-control" id="nombre" required="true" value="#{altaPersonaAutorizada.personaAutorizada.nombre}"  />
+			<h:message id="nombreMessage" for="nombre" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="apellido" class="form-label">Apellidos</label>
+			<h:inputText class="form-control" id="apellido" required="true" value="#{altaPersonaAutorizada.personaAutorizada.apellidos}"/>
 			<h:message id="apellidoMessage" for="apellido" />
-
-
-			<h:outputText value="Fecha de Nacimiento:" />
-			<h:inputText id="fechaNacimiento" required="false" value="#{altaPersonaAutorizada.personaAutorizada.fechaNacimiento}" />
+			</div>
+			
+			<div class="col-md-4">
+			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{altaPersonaAutorizada.personaAutorizada.fechaNacimiento}"/>
 			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
-
-			<h:outputText value="Estado:" />
-			<h:inputText id="estado" required="false"value="#{altaPersonaAutorizada.personaAutorizada.estado}" />
-			<h:message id="estadoMessage" for="estado" />
-
-			<h:outputText value="Fecha inicio:" />
-			<h:inputText id="fechaInicio" required="false" value="#{altaPersonaAutorizada.personaAutorizada.fechainicio}" />
-			<h:message id="fechaInicioMessage" for="fechaInicio" />
-
-			<h:outputText value="Fecha fin:" />
-			<h:inputText id="fechaFin" required="false" value="#{altaPersonaAutorizada.personaAutorizada.fechafin}" />
-			<h:message id="fechaFinMessage" for="fechaFin" />
-
-
-			<h:commandButton id="botonAltaAutorizado" value="Añadir" action="#{AltaPersonaAutorizada.altaPersonaAutorizada()}" />
-
-		</h:panelGrid>
+			</div>
+			
+			<div class="col-md-6">
+			<label for="identificacion" class="form-label">Identificacion</label>
+			<h:inputText class="form-control" id="identificacion" required="true" value="#{altaPersonaAutorizada.personaAutorizada.identificacion}"/>
+			<h:message id="identificacionMessage" for="identificacion" />
+			</div>
+			
+			<div class="col-md-6">
+			<label for="direccion" class="form-label">Direccion</label>
+			<h:inputText class="form-control" id="direccion" required="true" value="#{altaPersonaAutorizada.personaAutorizada.direccion}"/>
+			<h:message id="direccionMessage" for="direccion" />
+			</div>
+			
+			<h4 class="h4">Creacion del usuario para el cliente</h4>
+			
+			<div class="col-md-5">
+			<label for="user" class="form-label">Nombre de usuario</label>
+			<h:inputText class="form-control" id="user" required="true" value="#{altaPersonaAutorizada.personaAutorizada.nombreUsuario}"/>
+			<h:message id="userMessage" for="user" />
+			</div>
+			
+			<div class="col-md-5">
+			<label for="pass" class="form-label">Contraseña</label>
+			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaPersonaAutorizada.newusuario.password}" />
+			<h:message id="passwordMessage" for="pass" />
+			</div>
+			
+			<div class="col-md-2">
+			<label for="typeUsuario" class="form-label">Tipo de usuario</label>
+			<h:selectOneMenu id="typeUsuario" value="#{altaPersonaAutorizada.newusuario.tipo}" class="form-select">
+      		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
+    		</h:selectOneMenu>
+			<h:message id="typeUserMessage" for="typeUsuario" />
+			</div>
+			
+			<div class="mx-auto" style="width: 200px;">
+			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaAutorizado" value="Alta" action="#{altaPersonaAutorizada.personaAutorizada.altaPersonaAutorizada()}" />
+			<h:message id="botonAltaMessage" for="botonAltaAutorizado" />
+			</div>
 
 	</h:form>
-
-
+	
+	
+	</div>
+	
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="clientesIndividuales.xhtml" value="Volver" />
+	</div>
+	
 </h:body>
 </html>
