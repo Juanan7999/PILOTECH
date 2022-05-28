@@ -547,4 +547,26 @@ public class CuentaEJB implements GestionCuenta {
 		return cuenta;
 	}
 	
+
+	
+	
+	public List<DepositaEn> getDepositadaEnDePooled(String iban) throws CuentaNoExistenteException{
+		PooledAccount pooled = em.find(PooledAccount.class, iban);
+		
+		if(pooled == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		Query query = em.createQuery("SELECT c FROM DepositaEn c where c.pooledAccount.iban = :iban");
+		query.setParameter("iban", iban);
+		List<DepositaEn> depositados = query.getResultList();
+		
+		
+		return depositados;
+		
+	}
+	
+	
+	
+	
 }

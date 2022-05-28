@@ -28,19 +28,7 @@
 			action="#{infoSesion.invalidarSesion()}" class="boton" />
 	</h:form>
 	<br></br>
-	<h1>CUENTAS SEGREGADAS</h1>
-	<br> </br>
-	<h:form id="formulario">
 
-		<h1>
-			<h:outputText value="PAGINA PRINCIPAL PARA USUARIOS" />
-		</h1>
-		<h:outputText id="saludo" value="Pagina de pilotech. Hola usuario" />
-		<br />
-
-		<h:outputFormat value="Bienvenido {0}">
-			<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-		</h:outputFormat>
 
 		<h1>CUENTAS SEGREGADAS</h1>
 		<br> </br>
@@ -132,6 +120,11 @@
 					<h:message id="botonModMessage2" for="botonMod" />
 				</h:column>
 
+				<h:column>
+					<h:commandButton id="botonDepEn2" value="Ver depositaciones"
+						action="#{mostrarDepositaEn.accion(p.iban)}" />
+					<h:message id="botonModMessage3" for="botonDepEn2" />
+				</h:column>
 
 			</h:dataTable>
 		</h:form>
