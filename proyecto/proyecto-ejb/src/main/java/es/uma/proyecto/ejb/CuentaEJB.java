@@ -573,4 +573,23 @@ public class CuentaEJB implements GestionCuenta {
 		return autorizados;
 	}
 	
+	public List<Empresa> getEmpresasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException{
+		PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+		
+		if(pa == null) {
+			throw new PersonaAutorizadaNoExistenteException();
+		}
+		
+		Query query = em.createQuery("SELECT c FROM Autorizacion c where c.personaAutorizada = :pa");
+		query.setParameter("pa", pa);
+		List<Autorizacion> autorizaciones = query.getResultList();
+		List<Empresa> empresas = new ArrayList<>();
+		
+		for(Autorizacion aut : autorizaciones) {
+			empresas.add(aut.getEmpresa());
+		}
+		
+		return empresas;
+	}
+	
 }

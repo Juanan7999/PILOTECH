@@ -9,7 +9,7 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
-
+import es.uma.proyecto.Empresa;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Segregada;
@@ -148,7 +148,7 @@ public interface GestionCuenta {
 
 	CuentaFintech devolverCuenta(String iban) throws CuentaNoExistenteException;
 	public List<DepositaEn> getDepositadaEnDePooled(String iban) throws CuentaNoExistenteException;
-
+	public List<Empresa> getEmpresasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
 	List<PersonaAutorizada> devolverTodosAutorizados();
 	
 }
