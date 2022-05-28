@@ -33,7 +33,7 @@
 	<br/>
 	<br/>
 	<div>
-	<h1>CUENTAS SEGREGADAS</h1>
+	<h2 class="h2">CUENTAS SEGREGADAS</h2>
 	<br> </br>
 	<h:form id="formulario">
 
@@ -75,7 +75,7 @@
 					value="#{c.cuentaReferencia.iban}" />
 			</h:column>
 			<h:column>
-				<h:commandButton id="botonTrans" value="Ver transacciones"
+				<h:commandButton class="btn btn-light btn-sm" id="botonTrans" value="Ver transacciones"
 					action="#{mostrarTransacciones.accion(c.iban)}" />
 				<h:message id="botonModMessage" for="botonMod" />
 			</h:column>
@@ -87,7 +87,7 @@
 	</h:form>
 
 
-	<h1>CUENTAS POOLED</h1>
+	<h2 class="h2">CUENTAS POOLED</h2>
 	<br> </br>
 	<h:form id="formulario2">
 
@@ -119,13 +119,13 @@
 			</h:column>
 
 			<h:column>
-				<h:commandButton id="botonTrans2" value="Ver transacciones"
+				<h:commandButton class="btn btn-light btn-sm" id="botonTrans2" value="Ver transacciones"
 					action="#{mostrarTransacciones.accion(p.iban)}" />
 				<h:message id="botonModMessage2" for="botonMod" />
 			</h:column>
 
 			<h:column>
-				<h:commandButton id="botonDepEn2" value="Ver depositaciones"
+				<h:commandButton class="btn btn-light btn-sm" id="botonDepEn2" value="Ver depositaciones"
 					action="#{mostrarDepositaEn.accion(p.iban)}" />
 				<h:message id="botonModMessage3" for="botonDepEn2" />
 			</h:column>
