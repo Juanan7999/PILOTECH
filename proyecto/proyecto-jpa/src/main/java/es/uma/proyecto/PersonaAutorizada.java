@@ -95,9 +95,9 @@ public class PersonaAutorizada implements Serializable {
 	}
 
 	
-	public void setFechaNacimiento(String fechaNacimiento) {
-		if(fechaNacimiento != null) {
-			this.fechaNacimiento = Date.valueOf(fechaNacimiento);
+	public void setFechaNacimiento(String nacimiento) {
+		if(nacimiento != null) {
+			this.fechaNacimiento = Date.valueOf(nacimiento);
 		}
 	}
 

@@ -20,7 +20,7 @@
 		
 		<h:outputText class="text-muted text-center" rendered="#{empty accionesAutorizada.pa}" value="No existen clientes físicos"/>
 						
-		<h:dataTable class="table" rendered="#{not empty accionesAutorizada.pa}" value="#{accionesIndividuales.listaCliente}" var="c">
+		<h:dataTable class="table" rendered="#{not empty accionesAutorizada.pa}" value="#{accionesAutorizada.pa}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraId" name="header">Identificacion</f:facet>
@@ -34,7 +34,7 @@
 
 			<h:column>
 				<f:facet id="cabeceraAp" name="header">Apellido</f:facet>
-				<h:outputText id="textoApellido" value="#{c.apellido}" />
+				<h:outputText id="textoApellido" value="#{c.apellidos}" />
 			</h:column>
 
 			<h:column>
@@ -66,35 +66,45 @@
 				<f:facet id="cabeceraDireccion" name="header">Direccion</f:facet>
 				<h:outputText id="textoDireccion" value="#{c.direccion}" />
 			</h:column>
-
+			
+			<h:column>
+				<h:commandButton class="btn btn-secondary btn-sm" id="botonEmpresas" value="Empresas"
+					action="#{mostrarEmpresas.accion(c.identificacion)}" />
+				<h:message id="botonEmpresaMessage" for="botonEmpresas" />
+				<br />
+			</h:column>
+			
 			<h:column>
 				<h:commandButton class="btn btn-danger btn-sm" id="botonBaja" value="Dar de baja"
 					action="#{accionesIndividuales.baja(c.identificacion)}" />
 				<h:message id="botonBajaMessage" for="botonBaja" />
 				<br />
 			</h:column>
+			
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonBloq" value="Bloquear"
-					action="#{accionesIndividuales.bloquea(c.identificacion)}" />
+					action="#{accionesAutorizada.bloquea(c.identificacion)}" />
 				<h:message id="botonBloqMessage" for="botonBloq" />
 				<br />
 			</h:column>
+			
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonDesbloq" value="Desbloquear"
-					action="#{accionesIndividuales.desbloquea(c.identificacion)}" />
+					action="#{accionesAutorizada.desbloquea(c.identificacion)}" />
 				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
 				<br />
 			</h:column>
+			
 			<h:column>
 				<h:commandButton class="btn btn-light btn-sm" id="botonMod" value="Modificar"
-					action="#{modAutorizado.accion(c.identificacion)}" />
+					action="#{modificarAutorizados.accion(c.identificacion)}" />
 				<h:message id="botonModMessage" for="botonMod" />
 			</h:column>
 		</h:dataTable>
 	</h:form>
 	<br />
-	<h:button class="btn btn-primary btn-sm" outcome="altaIndividual.xhtml" id="botonAltaIndividual"
-		value="Alta de un cliente Individual"/>
+	<h:button class="btn btn-primary btn-sm" outcome="altaPersonaAutorizada.xhtml" id="botonAltaAut"
+		value="Alta de una persona autorizada"/>
 	<br />
 	<br />
 	<div class="position-absolute bottom-0 start-0">

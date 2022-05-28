@@ -66,8 +66,7 @@ public class ModClienteIndividual {
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
 			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
-		}
-		
+		}		
 		
 		return null;
 		

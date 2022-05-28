@@ -16,6 +16,7 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
@@ -150,5 +151,8 @@ public interface GestionCuenta {
 	public List<DepositaEn> getDepositadaEnDePooled(String iban) throws CuentaNoExistenteException;
 	public List<Empresa> getEmpresasDeAutorizado(String id) throws PersonaAutorizadaNoExistenteException;
 	List<PersonaAutorizada> devolverTodosAutorizados();
+
+	void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
+			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
 	
 }

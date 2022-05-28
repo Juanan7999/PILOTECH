@@ -26,6 +26,7 @@ import es.uma.proyecto.Segregada;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
 import es.uma.proyecto.ejb.exceptions.ClienteBloqueadoException;
+import es.uma.proyecto.ejb.exceptions.ClienteDesbloqueadoException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
 import es.uma.proyecto.ejb.exceptions.CuentaNoExistenteException;
@@ -158,13 +159,15 @@ public class CuentaEJB implements GestionCuenta {
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
 		}
-
+		
 		PersonaAutorizada p = em.find(PersonaAutorizada.class, pa.getIdentificacion());
 
 		if (p == null) {
 			throw new PersonaAutorizadaNoExistenteException();
 		}
-
+		
+		pa.setFechafin(p.getFechafin().toString());
+		pa.setFechaInicio(p.getFechainicio().toString());
 		em.merge(pa);
 	}
 
@@ -301,6 +304,32 @@ public class CuentaEJB implements GestionCuenta {
 		}
 
 		pa.setEstado("bloqueado");
+
+	}
+	
+	@Override
+	public void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
+			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+
+		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
+
+		if (administrador == null) { // Si no existe o no es administrativo
+			throw new UsuarioNoEncontradoException();
+		}
+
+		if (!administrador.esAdmin()) {
+			throw new UsuarioNoEsAdministrativoException();
+		}
+
+		PersonaAutorizada pa = em.find(PersonaAutorizada.class, id);
+
+		if (pa == null) {
+			throw new PersonaAutorizadaNoExistenteException();
+		} else if (pa.getEstado().equals("activo")) {
+			throw new ClienteDesbloqueadoException();
+		}
+
+		pa.setEstado("activo");
 
 	}
 	

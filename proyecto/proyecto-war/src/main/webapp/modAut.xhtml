@@ -13,48 +13,54 @@
 </h:head>
 
 <h:body>
-	<h1>
-		<h:outputText value="MODIFICAR AUTORIZADO" />
+	<h1 class="display-5">
+		<h:outputFormat value="MODIFICACIÓN DE {0}" >
+			<f:param value="#{modificarAutorizados.personaAutorizada.identificacion}" />
+		</h:outputFormat>
 	</h1>
-	<h:outputText id="saludo" value="Pagina de pilotech. Hola usuario" />
+
 	<br />
-
-	<h:outputFormat value="Bienvenido {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-
-	<h:form id="modAutorizado">
-
-		<h:panelGrid columns="3">
-
-
-
-			<h:outputText value="Identificacion: " />
-			<h:inputText id="identificacion" required="true"
-				value="#{modificarAutorizados.personaAutorizada.identificacion}"/>
-			<h:message id="identificacionMessage" for="identificacion" />
-
-			<h:outputText value="Nombre: " />
-			<h:inputText id="nombre" required="true"
-				value="#{modificarAutorizados.personaAutorizada.nombre}"/>
+	<div class="mx-auto" style="width: 80%;">
+	<h:form id="modAutorizado" class="row g-3">
+			
+			<h:inputHidden class="form-control" id="identificacion" required="true" value="#{modificarAutorizados.personaAutorizada.identificacion}"/>
+			
+			
+			<div class="col-md-6">
+			<label for="nombre" class="form-label">Nombre</label>
+			<h:inputText class="form-control" id="nombre" required="true" value="#{modificarAutorizados.personaAutorizada.nombre}"/>
 			<h:message id="nombreMessage" for="nombre" />
-
-			<h:outputText value="Apellidos: " />
-			<h:inputText id="apellido" required="true"
-				value="#{modificarAutorizados.personaAutorizada.apellidos}"/>
+			</div>
+			
+			<div class="col-md-6">
+			<label for="apellido" class="form-label">Apellido</label>
+			<h:inputText class="form-control" id="apellido" required="true" value="#{modificarAutorizados.personaAutorizada.apellidos}"/>
 			<h:message id="apellidoMessage" for="apellido" />
-
-			<h:outputText value="Direccion: " />
-			<h:inputText id="direccion" required="true"
-				value="#{modificarAutorizados.personaAutorizada.direccion}"/>
+			</div>
+			
+			<div class="col-md-6">
+			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{modificarAutorizados.personaAutorizada.fechaNacimiento}"/>
+			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
+			</div>
+			
+			<div class="col-md-6">
+			<label for="direccion" class="form-label">Direccion</label>
+			<h:inputText class="form-control" id="direccion" required="true" value="#{modificarAutorizados.personaAutorizada.direccion}"/>
 			<h:message id="direccionMessage" for="direccion" />
-
-
-			<h:commandButton id="botonModificarAutorizados" value="Modificar"
-				action="#{ModificarAutorizados.modificarAutorizado()}"/>
-
-		</h:panelGrid>
+			</div>
+			
+			<div class="mx-auto" style="width: 200px;">
+			<h:commandButton class="btn btn-primary btn-sm" id="botonModificarAut" value="Modificar" action="#{modificarAutorizados.modificarAutorizado()}" />
+			<h:message id="botonModMessage" for="botonModificarIndividual" />
+			</div>
 
 	</h:form>
+	
+	</div>
+	
+	<div class="position-absolute bottom-0 start-0">
+	<h:button class="btn btn-dark btn-sm" id="aceptar" outcome="clientesIndividuales.xhtml" value="Volver" />
+	</div>
 </h:body>
 </html>
