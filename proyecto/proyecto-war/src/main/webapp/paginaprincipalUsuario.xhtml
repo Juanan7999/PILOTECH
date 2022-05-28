@@ -14,14 +14,18 @@
 
 <h:body>
 
-	<h1>
-		<h:outputText value="PAGINA PRINCIPAL" />
-	</h1>
+	<div class="position-absolute top-0 start-50 translate-middle-x">
+		<h1 class="display-3">
+			<h:outputText value="PÁGINA PRINCIPAL EBURY" />
+		</h1>
+	</div>
 
 
-	<h:outputFormat value="Bienvenido {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
+	<div class="position-absolute top-0 start-0">
+		<h:outputFormat class="font-monospace" value="Usuario: {0}">
+			<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+		</h:outputFormat>
+	</div>
 	<br></br>
 	<div class="position-absolute bottom-0 start-0">
 		<h:form>
@@ -132,6 +136,6 @@
 	</h:form>
 	
 	<br> <h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas"
-			value="Cambio de Divisas" class="buttons" /> </br>
+			value="Cambio de Divisas"  class="btn btn-primary" /> </br>
 </h:body>
 </html>
