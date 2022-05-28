@@ -20,7 +20,11 @@
 	<br />
 	
 	<h:form id="formulario">
-		<h:dataTable class="table" value="#{accionesEmpresas.listaCliente}" var="c">
+		
+		<h:outputText class="text-muted text-center" rendered="#{empty accionesEmpresas.listaCliente}" value="No existen clientes jurídicos"/>
+		
+	
+		<h:dataTable class="table" rendered="#{not empty accionesEmpresas.listaCliente}" value="#{accionesEmpresas.listaCliente}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraId" name="header">Identificacion</f:facet>

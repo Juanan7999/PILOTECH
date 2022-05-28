@@ -13,63 +13,123 @@
 </h:head>
 
 <h:body>
-		<div>
-		<div class="position-absolute top-0 start-50 translate-middle-x">
-			<h1 class="display-3">
-				<h:outputText value="PÁGINA PRINCIPAL" />
-			</h1>
-		</div>
 
-		<div class="position-absolute top-0 start-0">
-			<h:outputFormat class="font-monospace" value="Usuario: {0}">
-				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-			</h:outputFormat>
-		</div>
-		</div>
-		<div>
-		<div class="position-absolute top-50 start-50 translate-middle row">
+
+
+
+
+
+	<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
+				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
+				class="d-inline-block align-text-top" />
+		</a>
+
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link" href="#"></a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+			<li class="nav-item">
+				<h:outputFormat class="text-light" value="Usuario: {0}">
+					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+				</h:outputFormat>
+			</li>
+			<li class="nav-item">
+				<h:form>
+					<h:commandButton class="btn btn-secondary btn-sm" id="sesion"
+						value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+				</h:form>
+			</li>
+		</ul>
+
+	</div>
+	</nav>
+
+	<div class="mx-auto" style="width: 80%;" >
+		<div class="row">
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['clientes.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
 						<h5 class="card-title">CLIENTES FÍSICOS</h5>
 						<p class="card-text">Toda la información sobre clientes
 							físicos</p>
-						<h:button class="btn btn-primary"
+						<h:button class="btn btn-primary btn-sm"
 							outcome="clientesIndividuales.xhtml" id="clientesIndividuales"
-							value="CLIENTES INDIVIDUALES" />
+							value="Ir a Clientes Físicos" />
 					</div>
 				</div>
 			</div>
 
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['empresa.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
 						<h5 class="card-title">CLIENTES JURÍDICOS</h5>
 						<p class="card-text">Toda la información sobre clientes
 							jurídicos</p>
-						<h:button class="btn btn-primary" outcome="clientesEmpresas.xhtml"
-							id="clientesEmpresas" value="CLIENTES EMPRESAS" />
+						<h:button class="btn btn-primary btn-sm" outcome="clientesEmpresas.xhtml"
+							id="clientesEmpresas" value="Ir a Clientes Jurídicos" />
 					</div>
 				</div>
 			</div>
 
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['cuentas.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
 						<h5 class="card-title">CUENTAS</h5>
 						<p class="card-text">Toda la información sobre cuentas</p>
-						<h:button class="btn btn-primary" outcome="cuentas.xhtml"
-							id="cuentas" value="CUENTAS" />
+						<h:button class="btn btn-primary btn-sm" outcome="cuentas.xhtml"
+							id="cuentas" value="Ir a Cuentas" />
 					</div>
 				</div>
 			</div>
-		
+			
+			<div class="col-sm-4">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
+					<h:graphicImage value="#{resource['pa.jpg']}"
+						class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">PERSONAS AUTORIZADAS</h5>
+						<p class="card-text">Toda la información sobre personas autorizadas</p>
+						<h:button class="btn btn-primary btn-sm" outcome="personasAutorizadas.xhtml"
+							id="pa" value="Ir a Personas autorizadas" />
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
+					<h:graphicImage value="#{resource['divisas.jpg']}"
+						class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">CAMBIO DE DIVISAS</h5>
+						<p class="card-text">Realice cambios de divisas entre dos cuentas</p>
+						<h:button class="btn btn-primary btn-sm" outcome="cambioDivA.xhtml"
+							id="cambiodivisa" value="Cambiar divisa" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="card shadow p-3 mb-5 bg-body rounded">
+					<h:graphicImage value="#{resource['informes.jpg']}"
+						class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">INFORMES</h5>
+						<p class="card-text">Genere informes para Holanda o Alemania</p>
+						<h:button class="btn btn-primary btn-sm" outcome="paginaInformes.xhtml"
+							id="informe" value="Ir a Informes" />
+					</div>
+				</div>
+			</div>
 
 			<br> <h:button class="btn btn-primary" outcome="anadirAut.xhtml"
 					id="añadirAutorizado" value="Añadir una persona autorizada" /> </br> <br>
@@ -83,15 +143,7 @@
 					class="btn btn-primary " outcome="generarInformeAlemania.xhtml"
 					id="generarAlemania" value="Generar Informes Alemania" /> </br>
 		</div>
-		</div>
-
-		<div class="position-absolute bottom-0 start-0">
-			<h:form>
-				<h:commandButton class="btn btn-dark btn-sm" id="sesion"
-					value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
-			</h:form>
-			<br />
-		</div>
+	</div>
 
 </h:body>
 </html>

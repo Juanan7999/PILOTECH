@@ -29,8 +29,10 @@
 				<div class="accordion-body">
 
 					<h:form id="seg">
-
-						<h:dataTable class="table" value="#{accionesCuentas.segregadas}" var="c">
+						
+						<h:outputText class="text-muted text-center" rendered="#{empty accionesCuentas.segregadas}" value="No existen cuentas segregadas"/>
+						
+						<h:dataTable class="table" rendered="#{not empty accionesCuentas.segregadas}" value="#{accionesCuentas.segregadas}" var="c">
 
 							<h:column>
 								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -109,7 +111,9 @@
 
 					<h:form id="pol">
 
-						<h:dataTable class="table" value="#{accionesCuentas.pooleds}" var="p">
+						<h:outputText class="text-muted text-center" rendered="#{empty accionesCuentas.pooleds}" value="No existen cuentas pooled"/>
+						
+						<h:dataTable class="table" rendered="#{not empty accionesCuentas.pooleds}" value="#{accionesCuentas.pooleds}" var="p">
 
 							<h:column>
 								<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>

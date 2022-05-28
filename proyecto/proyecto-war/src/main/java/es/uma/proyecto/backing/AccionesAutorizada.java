@@ -29,15 +29,15 @@ public class AccionesAutorizada implements Serializable{
 	
 	private String id;
 	
-	private List<CuentaFintech> cuentas;
+	private List<PersonaAutorizada> pa;
 	
+
 	private PersonaAutorizada personaAutorizada;
-	
 	
 	public AccionesAutorizada() {
 		usuario = new Usuario();
-		cuentas = new ArrayList<>();
 		personaAutorizada = new PersonaAutorizada();
+		pa = new ArrayList<>();
 	}
 	
 	
@@ -57,12 +57,13 @@ public class AccionesAutorizada implements Serializable{
 		this.id = id;
 	}
 	
-	public List<CuentaFintech> getCuentas() throws PersonaAutorizadaNoExistenteException{
-		return cuentaEJB.devolverCuentasDeAutorizado(usuario.getCliente().getIdentificacion());
+	public List<PersonaAutorizada> getPa() {
+		return cuentaEJB.devolverTodosAutorizados();
 	}
-	
-	public void setCuentas(List<CuentaFintech> lista) {
-		this.cuentas = lista;
+
+
+	public void setPa(List<PersonaAutorizada> pa) {
+		this.pa = pa;
 	}
 	
 	public PersonaAutorizada getPersonaAutorizada() {

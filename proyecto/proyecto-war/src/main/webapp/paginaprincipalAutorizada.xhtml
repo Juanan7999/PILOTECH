@@ -12,19 +12,34 @@
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
-	<h:body>
-       <h1><h:outputText value="PAGINA PRINCIPAL PARA AUTORIZADOS"/></h1>
-                        <h:outputText id="saludo" value="Pagina de pilotech. Hola usuario"/>
-                        <br/>
-                        
-                        <h:outputFormat value = "Bienvenido {0}">
-                        	<f:param value = "#{infoSesion.usuario.nombreUsuario}" />
-                        </h:outputFormat>
-                        
-                        
-       	<h:form id="formulario">
+<h:body>
+	<div class="position-absolute top-0 start-50 translate-middle-x">
+			<h1 class="display-3">
+				<h:outputText value="PÁGINA PRINCIPAL EBURY" />
+			</h1>
+		</div>
+
+
+		<div class="position-absolute top-0 start-0">
+			<h:outputFormat class="font-monospace" value="Usuario: {0}">
+				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+			</h:outputFormat>
+		</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+	<div>
+	<h2 class="h2">CUENTAS AUTORIZADAS</h2>
+	<br> </br>
+	<h:form id="formulario">
+		
+		<h:outputText class="text-muted text-center" rendered="#{empty accionesAutorizada.cuentas}" value="No existen cuentas para este usuario"/>
 	
-		<h:dataTable value="#{accionesAutorizada.cuentas}" var="c">
+		<h:dataTable rendered="#{not empty accionesAutorizada.cuentas}" value="#{accionesAutorizada.cuentas}" var="c">
 
 			<h:column>
 				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -55,14 +70,19 @@
 				<f:facet id="cabeceraFechaCierre" name="header">Fecha Cierre</f:facet>
 				<h:outputText id="textoFechaCierre" value="#{c.fechaCierre}" />
 			</h:column>
-			
+
 		</h:dataTable>
 	</h:form>
-                        
-                        
-                        <br>
-							<h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas" value="Cambio de Divisas"/>
-						</br>
-                        
+	</div>
+
+	<br> <h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas"
+			value="Cambio de Divisas" /> </br>
+	<div class="position-absolute bottom-0 start-0">
+		<h:form>
+			<h:commandButton class="btn btn-dark btn-sm" id="sesion"
+				value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+		</h:form>
+		<br />
+	</div>
 </h:body>
 </html>

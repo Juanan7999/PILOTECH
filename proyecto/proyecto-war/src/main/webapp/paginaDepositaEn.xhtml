@@ -7,27 +7,38 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Depositada en</title>
+	<title>Depósitos</title>
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
 
 <h:body>
-	<h1>
-		<h:outputText value="DEPOSITADA EN DE CUENTA" />
-	</h1>
-	<h:outputFormat value="Usuario: {0}">
-		<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-	</h:outputFormat>
-	<br></br>
+	<div>
+		<h1 class="display-5">
+			<h:outputText value="DEPÓSITOS" />
+		</h1>
+		<div class="position-absolute top-0 end-0">
+			<h:outputFormat value="Usuario: {0}">
+				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+			</h:outputFormat>
+		</div>
+	</div>
+	<br/>
+	<h3 class="lead">
 	<h:outputFormat value="Cuenta: {0}">
 		<f:param value="#{mostrarDepositaEn.pooled.iban}" />
 	</h:outputFormat>
+	</h3>
+	<br/>
+	<br/>
 	
-	<h2>DIVISAS EN LAS QUE TIENE SALDO</h2>
+	<h4 class="h4">DIVISAS EN LAS QUE TIENE SALDO</h4>
 	<h:form id="formulario">
-	
-		<h:dataTable class = "table" value="#{mostrarDepositaEn.depositaen}" var="d">
+		
+		<h:outputText class="text-muted text-center" rendered="#{empty mostrarDepositaEn.depositaen}" value="No existen depósitos"/>
+		
+		
+		<h:dataTable class = "table" rendered="#{not empty mostrarDepositaEn.depositaen}" value="#{mostrarDepositaEn.depositaen}" var="d">
 
 			
 			
@@ -56,7 +67,11 @@
 	
 	
 	
+	<div class="position-absolute bottom-0 start-0">
+	<h:button rendered="#{infoSesion.usuario.tipo eq 'N'}" class="btn btn-dark btn-sm" id="inicio1" outcome="paginaprincipalUsuario.xhtml" value="Volver al inicio"/>
+	<h:button rendered="#{infoSesion.usuario.tipo eq 'A'}" class="btn btn-dark btn-sm" id="inicio2" outcome="cuentas.xhtml" value="Volver al inicio"/>
 	
+	</div>
 	
 	
 	

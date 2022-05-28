@@ -65,15 +65,6 @@ public class PersonaAutorizada implements Serializable {
 	public PersonaAutorizada() {
 	}
 		
-	/*
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	*/
 	
 	public String getApellidos() {
 		return this.apellidos;
@@ -103,9 +94,6 @@ public class PersonaAutorizada implements Serializable {
 		return this.fechaNacimiento;
 	}
 
-	/*public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}*/
 	
 	public void setFechaNacimiento(String fechaNacimiento) {
 		if(fechaNacimiento != null) {
@@ -117,9 +105,6 @@ public class PersonaAutorizada implements Serializable {
 		return this.fechafin;
 	}
 
-	/*public void setFechafin(Date fechafin) {
-		this.fechafin = fechafin;
-	}*/
 	
 	public void setFechafin(String fechafin) {
 		if(fechafin != null) {
@@ -131,9 +116,6 @@ public class PersonaAutorizada implements Serializable {
 		return this.fechainicio;
 	}
 
-	/*public void setFechainicio(Date fechainicio) {
-		this.fechainicio = fechainicio;
-	}*/
 	
 	public void setFechaInicio(String fechainicio) {
 		if(fechainicio != null) {

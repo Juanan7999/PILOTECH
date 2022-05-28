@@ -148,5 +148,7 @@ public interface GestionCuenta {
 
 	CuentaFintech devolverCuenta(String iban) throws CuentaNoExistenteException;
 	public List<DepositaEn> getDepositadaEnDePooled(String iban) throws CuentaNoExistenteException;
+
+	List<PersonaAutorizada> devolverTodosAutorizados();
 	
 }

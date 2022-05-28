@@ -6,9 +6,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.Usuario;
+import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
+import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
@@ -19,7 +22,10 @@ public class ModificarAutorizados {
 	
 	@Inject
 	private GestionCuenta cuentaEJB;
-
+	
+	@Inject
+	private GestionCliente clienteEJB;
+	
 	@Inject
 	private InfoSesion sesion;
 
@@ -67,8 +73,15 @@ public class ModificarAutorizados {
 		
 	}
 	
-	
-	
+	public String accion(String c) {
+		try {
+			this.personaAutorizada = clienteEJB.devolverPersonaAut(c);
+		} catch (PersonaAutorizadaNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "modAut.xhtml";
+	}
 	
 	
 }

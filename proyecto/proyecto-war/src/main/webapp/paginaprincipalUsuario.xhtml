@@ -7,7 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<title>Login de inicio</title>
+	<title>Principal</title>
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </h:head>
@@ -36,8 +36,11 @@
 	<h2 class="h2">CUENTAS SEGREGADAS</h2>
 	<br> </br>
 	<h:form id="formulario">
-
-		<h:dataTable class="table" value="#{accionesCliente.segregadas}"
+		
+		<h:outputText class="text-muted text-center" rendered="#{empty accionesCliente.segregadas}" value="No existen cuentas de este tipo"/>
+	
+		
+		<h:dataTable class="table" rendered="#{not empty accionesCliente.segregadas}" value="#{accionesCliente.segregadas}"
 			var="c">
 
 			<h:column>
@@ -85,13 +88,17 @@
 
 		</h:dataTable>
 	</h:form>
-
-
+	
+	<br> </br>
+	<br> </br>
+	
 	<h2 class="h2">CUENTAS POOLED</h2>
 	<br> </br>
 	<h:form id="formulario2">
-
-		<h:dataTable class="table" value="#{accionesCliente.pooleds}" var="p">
+	
+		<h:outputText class="text-muted text-center" rendered="#{empty accionesCliente.pooleds}" value="No existen cuentas de este tipo"/>
+	
+		<h:dataTable class="table" rendered="#{not empty accionesCliente.pooleds}" value="#{accionesCliente.pooleds}" var="p">
 
 			<h:column>
 				<f:facet id="cabeceraIBAN" name="header">IBAN</f:facet>
@@ -125,7 +132,7 @@
 			</h:column>
 
 			<h:column>
-				<h:commandButton class="btn btn-light btn-sm" id="botonDepEn2" value="Ver depositaciones"
+				<h:commandButton class="btn btn-light btn-sm" id="botonDepEn2" value="Ver depósitos"
 					action="#{mostrarDepositaEn.accion(p.iban)}" />
 				<h:message id="botonModMessage3" for="botonDepEn2" />
 			</h:column>

@@ -566,7 +566,11 @@ public class CuentaEJB implements GestionCuenta {
 		
 	}
 	
-	
-	
+	@Override
+	public List<PersonaAutorizada> devolverTodosAutorizados(){
+		Query query = em.createQuery("SELECT p FROM PersonaAutorizada p");
+		List<PersonaAutorizada> autorizados = query.getResultList();
+		return autorizados;
+	}
 	
 }

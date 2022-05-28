@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Principal</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+</h:head>
+
+<h:body>
+
+
+
+
+
+
+	<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
+				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
+				class="d-inline-block align-text-top" />
+		</a>
+
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link" href="#"></a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+		</ul>
+
+	</div>
+	</nav>
+
+	<div>
+	
+		<div class="position-absolute top-50 start-50 translate-middle row">
+			<div class="col-sm-4">
+				<div class="card">
+					<h:graphicImage value="#{resource['holanda.jpg']}"
+						class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">INFORME HOLANDA</h5>
+						<p class="card-text">Genere el informe con los datos de Holanda</p>
+						<h:button class="btn btn-primary btn-sm"
+							outcome="clientesIndividuales.xhtml" id="informeHolanda"
+							value="Generar informe" />
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="col-sm-4">
+				<div class="card">
+					<h:graphicImage value="#{resource['alemania.jpg']}"
+						class="card-img-top" alt="..." />
+					<div class="card-body">
+						<h5 class="card-title">INFORME ALEMANIA</h5>
+						<p class="card-text">Genere el informe con los datos de Alemania</p>
+						<h:button class="btn btn-primary btn-sm" outcome="cuentas.xhtml"
+							id="informeAlemania" value="Generar informe" />
+					</div>
+				</div>
+			</div>
+			
+
+		</div>
+	</div>
+
+	<div class="position-absolute bottom-0 start-0">
+		<h:form>
+			<h:commandButton class="btn btn-dark btn-sm" id="sesion"
+				value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+		</h:form>
+		<br />
+	</div>
+
+</h:body>
+</html>
