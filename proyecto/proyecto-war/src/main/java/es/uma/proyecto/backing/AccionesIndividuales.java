@@ -121,8 +121,8 @@ public class AccionesIndividuales implements Serializable{
 				FacesMessage fm = new FacesMessage(" El usuario no existe");
 				FacesContext.getCurrentInstance().addMessage("formulario:botonBloq", fm);
 			} catch (ClienteYaDeBajaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				FacesMessage fm = new FacesMessage(" El cliente ya está de baja");
+				FacesContext.getCurrentInstance().addMessage("formulario:botonBloq", fm);
 			}
 			
 		return null;

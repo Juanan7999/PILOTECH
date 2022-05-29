@@ -114,27 +114,26 @@
 			<h:column>
 				<h:commandButton class="btn btn-danger btn-sm" id="botonBaja" value="Dar de baja"
 					action="#{accionesIndividuales.baja(c.identificacion)}" />
-				<h:message id="botonBajaMessage" for="botonBaja" />
 				<br />
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonBloq" value="Bloquear"
 					action="#{accionesIndividuales.bloquea(c.identificacion)}" />
-				<h:message id="botonBloqMessage" for="botonBloq" />
 				<br />
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonDesbloq" value="Desbloquear"
 					action="#{accionesIndividuales.desbloquea(c.identificacion)}" />
-				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
 				<br />
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-light btn-sm" id="botonMod" value="Modificar"
 					action="#{modClienteIndividual.accion(c.identificacion)}" />
-				<h:message id="botonModMessage" for="botonMod" />
-			</h:column>
+				</h:column>
 		</h:dataTable>
+		
+		<h:messages/>
+		
 	</h:form>
 	<br />
 	<h:button class="btn btn-primary btn-sm" outcome="altaIndividual.xhtml" id="botonAltaIndividual"
