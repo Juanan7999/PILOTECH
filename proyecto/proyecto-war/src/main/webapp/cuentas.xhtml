@@ -87,6 +87,12 @@
 								<br />
 							</h:column>
 							
+							<h:column>
+							<h:commandButton class="btn btn-light btn-sm" id="botonTrans" value="Ver transacciones"
+								action="#{mostrarTransacciones.accion(c.iban)}" />
+							<h:message id="botonModMessage" for="botonMod" />
+							</h:column>
+							
 						</h:dataTable>
 					</h:form>
 					
@@ -159,6 +165,12 @@
 									action="#{mostrarDepositaEn.accion(p.iban)}" />
 								<h:message id="botonDepPoolMessage" for="botonDepositoPool" />
 								<br />
+							</h:column>
+							
+							<h:column>
+								<h:commandButton class="btn btn-light btn-sm" id="cambioDivisa" value="Cambio Divisa"
+									action="#{infoSesion.cambiarDivisa(p.iban)}" />
+								<h:message id="botonModMessage4" for="cambioDivisa" />
 							</h:column>
 							
 						</h:dataTable>
