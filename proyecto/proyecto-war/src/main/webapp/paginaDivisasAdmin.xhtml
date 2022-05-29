@@ -51,7 +51,7 @@
 	</h3>
 	<br />
 	<div class="mx-auto" style="width: 80%;">
-	<h:form id="cambiarDivisaCA" class="row g-3">	
+	<h:form id="cambiarDivisaA" class="row g-3">	
 
 		<div class="col-md-4">
 			<label for="do" class="form-label">Divisa de origen</label>
@@ -73,9 +73,12 @@
 		</div>
 		
 		<div class="col-md-4">
-		<h:commandButton class="btn btn-dark btn-sm" id="sesion1" value="Realizar Cambio" action="#{cambioDivisas.realizarCambioAdmin()}" />
+		<h:commandButton class="btn btn-dark btn-sm" id="sesion2" value="Realizar Cambio" action="#{cambioDivisas.realizarCambioAdmin()}" />
 		</div>
 		</h:form>
+		
+		<h:messages/>
+		
 	</div>
 		
 </h:body>

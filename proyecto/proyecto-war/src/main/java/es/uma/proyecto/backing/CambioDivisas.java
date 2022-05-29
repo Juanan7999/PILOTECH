@@ -142,19 +142,19 @@ public class CambioDivisas implements Serializable{
 			
 		} catch (CuentasDiferentesException e) {
 			FacesMessage fm = new FacesMessage("Las cuentas de referencia no pertenecen a la misma Cuenta Pooled");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:ibanP", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaA:sesion2", fm);
 		} catch (ClientePersonaAutorizadaNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaA:sesion2", fm);
 		} catch (PooledNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta pooled no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaA:sesion2", fm);
 		} catch (SaldoInsuficienteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta origen no tiene saldo suficiente");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaA:sesion2", fm);
 		} catch (CuentaReferenciaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta de referencia origen o destino no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaA:sesion2", fm);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -184,19 +184,19 @@ public class CambioDivisas implements Serializable{
 			
 		} catch (CuentasDiferentesException e) {
 			FacesMessage fm = new FacesMessage("Las cuentas de referencia no pertenecen a la misma Cuenta Pooled");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:ibanP", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:sesion1", fm);
 		} catch (ClientePersonaAutorizadaNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:sesion1", fm);
 		} catch (PooledNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta pooled no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:sesion1", fm);
 		} catch (SaldoInsuficienteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta origen no tiene saldo suficiente");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:sesion1", fm);
 		} catch (CuentaReferenciaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta de referencia origen o destino no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:sesion1", fm);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
