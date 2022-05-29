@@ -2,19 +2,18 @@ package es.uma.proyecto.backing;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.PostConstruct;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import es.uma.proyecto.CuentaReferencia;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.PooledAccount;
 import es.uma.proyecto.Transaccion;
 import es.uma.proyecto.Usuario;
@@ -29,9 +28,9 @@ import es.uma.proyecto.ejb.exceptions.SaldoInsuficienteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEncontradoException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
-@Named(value = "cambioDivisasA")
+@Named(value = "cambioDivisas")
 @RequestScoped
-public class CambioDivisasA implements Serializable{
+public class CambioDivisas implements Serializable{
 
 	/**
 	 * 
@@ -47,13 +46,9 @@ public class CambioDivisasA implements Serializable{
 	@Inject
 	private GestionCuenta cuentaejb;
 	
-	private List<CuentaReferencia> l_cr_origen;
+	private List<CuentaReferencia> l_cr;
 	
-	private List<CuentaReferencia> l_cr_destino;
-		
-	private Map<String, String> lista_desplegables_origen;
-	
-	private Map<String, String> lista_desplegables_destino;
+	private List<String> l_d;
 	
 	private Usuario usuario;
 
@@ -63,9 +58,9 @@ public class CambioDivisasA implements Serializable{
 
 	private String iban_pooled;
 
-	private String iban_cuenta_ref_origen;
+	private String divisa_origen;
 
-	private String iban_cuenta_ref_destino;
+	private String divisa_destino;
 
 	private double cantidadOrigen;
 
@@ -87,22 +82,6 @@ public class CambioDivisasA implements Serializable{
 		this.id = id;
 	}
 
-	public String getIban_cuenta_ref_origen() {
-		return iban_cuenta_ref_origen;
-	}
-
-	public void setIban_cuenta_ref_origen(String iban_cuenta_ref_origen) {
-		this.iban_cuenta_ref_origen = iban_cuenta_ref_origen;
-	}
-
-	public String getIban_cuenta_ref_destino() {
-		return iban_cuenta_ref_destino;
-	}
-
-	public void setIban_cuenta_ref_destino(String iban_cuenta_ref_destino) {
-		this.iban_cuenta_ref_destino = iban_cuenta_ref_destino;
-	}
-
 	public double getCantidadOrigen() {
 		return cantidadOrigen;
 	}
@@ -119,32 +98,59 @@ public class CambioDivisasA implements Serializable{
 		this.iban_pooled = iban_pooled;
 	}
 	
-	public void init() {
-		
-		lista_desplegables_origen = new LinkedHashMap<String, String>();
-		lista_desplegables_destino = new LinkedHashMap<String, String>();
-		
-		for(CuentaReferencia cr : l_cr_origen) {
-			
-			lista_desplegables_origen.put(cr.getIban(), cr.getDivisa().getNombre());
+	public List<CuentaReferencia> getL_cr() {
+		try {
+			return cuentaejb.getCuentaReferenciasPooled(iban_pooled);
+		} catch (CuentaNoExistenteException e) {
+			System.out.println("Cuenta no existe");
 		}
-		
-		for(CuentaReferencia cd : l_cr_destino) {
-			
-			lista_desplegables_destino.put(cd.getIban(), cd.getDivisa().getNombre());
-		}	
+		return null;
+	}
+
+	public void setL_cr(List<CuentaReferencia> l_cr) {
+		this.l_cr = l_cr;
 	}
 	
+	public List<String> getL_d() {
+		
+		try {
+			l_d = cuentaejb.getDivisas(this.iban_pooled);
+		} catch (CuentaNoExistenteException e) {
+			System.out.println("La cuenta no existe");
+		}
+		
+		return l_d;
+	}
+
+	public void setL_d(List<String> l_d) {
+		this.l_d = l_d;
+	}
 	
+	public String getDivisa_origen() {
+		return divisa_origen;
+	}
+
+	public void setDivisa_origen(String divisa_origen) {
+		this.divisa_origen = divisa_origen;
+	}
+
+	public String getDivisa_destino() {
+		return divisa_destino;
+	}
+
+	public void setDivisa_destino(String divisa_destino) {
+		this.divisa_destino = divisa_destino;
+	}
+	
+	public CambioDivisas() {
+		
+		
+		l_cr = new ArrayList<>();
+		l_d = new ArrayList<>();
+	}	
 	public String accion(String c) throws CuentaNoExistenteException {
 		
 		this.iban_pooled = c;
-		
-		init();
-		
-		l_cr_origen = cuentaejb.getCuentaReferenciasDePooled(this.getIban_pooled());
-		
-		l_cr_destino = cuentaejb.getCuentaReferenciasDePooled(this.getIban_pooled());
 		
 		return "paginaDivisas.xhtml";
 	}
@@ -158,17 +164,17 @@ public class CambioDivisasA implements Serializable{
 
 			t = new Transaccion();
 
-			t.setIdUnico(1236);
+			t.setIdUnico(1239);
 			t.setFechainstruccion(LocalDate.now().toString());
 
 			CuentaReferencia cr_origen;
 			CuentaReferencia cr_destino;
 
-			cr_origen = cuentaejb.devolverCuentaReferencia(iban_cuenta_ref_origen);
-			cr_destino = cuentaejb.devolverCuentaReferencia(iban_cuenta_ref_destino);
+			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_origen());
+			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_destino());
 
 			divisaejb.cambioDeDivisaAdmin(usuario, id, pa, cr_origen, cr_destino, this.getCantidadOrigen(), t);
-			return "paginaprincipalAdmin.xhtml";
+			return "paginaDivisas.xhtml";
 			
 		} catch (CuentasDiferentesException e) {
 			FacesMessage fm = new FacesMessage("Las cuentas de referencia no pertenecen a la misma Cuenta Pooled");
@@ -204,21 +210,22 @@ public class CambioDivisasA implements Serializable{
 		usuario = sesion.getUsuario();
 		
 		try {
+			
 			pa = cuentaejb.devolverPooled(iban_pooled);
 
 			t = new Transaccion();
 
-			t.setIdUnico(1236);
+			t.setIdUnico(1239);
 			t.setFechainstruccion(LocalDate.now().toString());
 
 			CuentaReferencia cr_origen;
 			CuentaReferencia cr_destino;
 
-			cr_origen = cuentaejb.devolverCuentaReferencia(iban_cuenta_ref_origen);
-			cr_destino = cuentaejb.devolverCuentaReferencia(iban_cuenta_ref_destino);
+			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_origen());
+			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_destino());
 
 			divisaejb.cambioDeDivisaAdmin(usuario, id, pa, cr_origen, cr_destino, this.getCantidadOrigen(), t);
-			return "paginaprincipalAdmin.xhtml";
+			return "paginaDivisas.xhtml";
 			
 		} catch (CuentasDiferentesException e) {
 			FacesMessage fm = new FacesMessage("Las cuentas de referencia no pertenecen a la misma Cuenta Pooled");
@@ -248,5 +255,4 @@ public class CambioDivisasA implements Serializable{
 
 		return null;
 	}
-
 }

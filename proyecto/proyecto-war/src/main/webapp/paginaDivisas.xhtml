@@ -30,22 +30,24 @@
 		<br/>
 		<h3 class="lead">
 		<h:outputFormat value="Cuenta: {0}">
-			<f:param value="#{cambioDivisasA.iban_pooled}" />
+			<f:param value="#{cambioDivisas.iban_pooled}" />
 		</h:outputFormat>
 		</h3>
-		<br/>
-		
-		<h:outputLabel value="Eliga la cuenta origen: "/>
-		<h:selectOneMenu value="#{cambioDivisasA.iban_cuenta_ref_origen}">
-			<f:selectItems value="#{cambioDivisasA.lista_desplegbables_origen}"/>
+		<h:outputLabel value="Eliga la divisa origen: "/>
+		<h:selectOneMenu value="#{cambioDivisas.divisa_origen}">
+		   	<f:selectItems value="#{cambioDivisas.getL_d()}" />
 		</h:selectOneMenu>
-		
 		<br/>
-		
-		<h:outputLabel value="Eliga la cuenta destino: "/>
-		<h:selectOneMenu value="#{cambioDivisasA.iban_cuenta_ref_destino}">
-			<f:selectItems value="#{cambioDivisasA.lista_desplegbables_destino}"/>
+		<h:outputLabel value="Eliga la divisa destino: "/>
+		<h:selectOneMenu value="#{cambioDivisas.divisa_destino}">
+		   	<f:selectItems value="#{cambioDivisas.getL_d()}" />
 		</h:selectOneMenu>
+		<br/>
+		<h:inputText id="cantidad" value="#{cambioDivisas.cantidadOrigen}"></h:inputText>
+			<h:message id="cantidadMessage" for="cantidad"/>
+		<br/>
+		<h:commandButton class="btn btn-dark btn-sm" id="sesion"
+				value="Realizar Cambio" action="#{cambioDivisas.realizarCambioCliente_Autorizado}" />
 	</div>
 		
 		

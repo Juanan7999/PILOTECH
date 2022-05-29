@@ -18,6 +18,7 @@ import es.uma.proyecto.Cuenta;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.Individual;
 import es.uma.proyecto.PersonaAutorizada;
@@ -283,6 +284,30 @@ public class CuentaEJB implements GestionCuenta {
 		}
 		
 		return cuenta;
+	}
+	
+	public CuentaReferencia devolverCuentaReferencia_Divisa(String iban, String divisa) throws CuentaReferenciaNoExistenteException {
+		
+		CuentaReferencia elegida = new CuentaReferencia();;
+		List<CuentaReferencia> cuentas = new ArrayList<>();
+		try {
+			cuentas = this.getCuentaReferenciasPooled(iban);
+		} catch (CuentaNoExistenteException e) {
+			System.out.println("La cuenta referencia no existe");
+		}
+		
+		int i = 0 ;
+		
+		while(i<cuentas.size() && !cuentas.get(i).getDivisa().getNombre().equals(divisa)) {
+			i++;
+		}
+		
+		if(cuentas.get(i).getDivisa().getNombre().equals(divisa)) {
+			
+			elegida = cuentas.get(i);
+		}
+		
+		return elegida;
 	}
 	
 	@Override
@@ -599,6 +624,62 @@ public class CuentaEJB implements GestionCuenta {
 		
 		return depositados;
 		
+	}
+	
+	public List<CuentaReferencia> getCuentaReferenciasPooled(String iban) throws CuentaNoExistenteException{
+		
+		PooledAccount pooled = em.find(PooledAccount.class, iban);
+		
+		if(pooled == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		Query query = em.createQuery("SELECT c FROM DepositaEn c where c.pooledAccount.iban = :iban");
+		query.setParameter("iban", iban);
+		List<DepositaEn> depositados = query.getResultList();
+		
+		List<CuentaReferencia> cr = new ArrayList<>();
+		
+		for(DepositaEn dp : depositados) {
+		
+			cr.add(dp.getCuentaReferencia());
+		
+		}
+		
+		return cr;
+	}
+	
+	public List<String> getDivisas(String iban) throws CuentaNoExistenteException{
+		
+		PooledAccount pooled = em.find(PooledAccount.class, iban);
+		
+		if(pooled == null) {
+			throw new CuentaNoExistenteException();
+		}
+		
+		Query query = em.createQuery("SELECT c FROM DepositaEn c where c.pooledAccount.iban = :iban");
+		query.setParameter("iban", iban);
+		List<DepositaEn> depositados = query.getResultList();
+		
+		List<CuentaReferencia> cr = new ArrayList<>();
+		
+		for(DepositaEn dp : depositados) {
+		
+			cr.add(dp.getCuentaReferencia());
+			
+		}
+		
+		List<String> l_d = new ArrayList<>();
+		
+		for(CuentaReferencia cuenta : cr) {
+			
+			l_d.add(cuenta.getDivisa().getNombre());
+			
+		}
+		
+		System.out.println(l_d.toString());
+		
+		return l_d;
 	}
 	
 	public PersonaAutorizada devolverPersonaAutorizada(String id) throws ClienteNoExistenteException {

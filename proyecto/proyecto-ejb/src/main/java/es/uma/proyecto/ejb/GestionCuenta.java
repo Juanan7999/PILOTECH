@@ -9,6 +9,7 @@ import es.uma.proyecto.Cliente;
 import es.uma.proyecto.CuentaFintech;
 import es.uma.proyecto.CuentaReferencia;
 import es.uma.proyecto.DepositaEn;
+import es.uma.proyecto.Divisa;
 import es.uma.proyecto.Empresa;
 import es.uma.proyecto.PersonaAutorizada;
 import es.uma.proyecto.PooledAccount;
@@ -156,4 +157,10 @@ public interface GestionCuenta {
 	void desbloqueaAutorizado(Usuario admin, String id) throws PersonaAutorizadaNoExistenteException,
 			ClienteDesbloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException;
 	public PersonaAutorizada devolverPersonaAutorizada(String id) throws ClienteNoExistenteException;
+	
+	public List<CuentaReferencia> getCuentaReferenciasPooled(String iban) throws CuentaNoExistenteException;
+	
+	public List<String> getDivisas(String iban) throws CuentaNoExistenteException;
+	public CuentaReferencia devolverCuentaReferencia_Divisa(String iban, String divisa) throws CuentaReferenciaNoExistenteException;
+	
 }
