@@ -23,11 +23,14 @@
 		<ul class="nav">
 			<li class="nav-item"><a class="nav-link active"
 				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"></a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-			<li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+			<li class="nav-item"><a class="nav-link" href="#fisico">Físicos</a></li>
+			<li class="nav-item"><a class="nav-link" href="#juridico">Jurídicos</a></li>
+			<li class="nav-item"><a class="nav-link" href="#cuenta">Cuentas</a></li>
+			<li class="nav-item"><a class="nav-link" href="#aut">Autorizados</a></li>
+			<li class="nav-item"><a class="nav-link" href="#div">Divisas</a></li>
+			<li class="nav-item"><a class="nav-link" href="#inform">Informes</a></li>
 			<li class="nav-item">
-				<h:outputFormat class="text-light" value="Usuario: {0}">
+				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
 					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
 				</h:outputFormat>
 			</li>
@@ -45,7 +48,7 @@
 	<div class="mx-auto" style="width: 80%;" >
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="fisico" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['clientes.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
@@ -60,7 +63,7 @@
 			</div>
 
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="juridico" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['empresa.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
@@ -74,7 +77,7 @@
 			</div>
 
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="cuenta" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['cuentas.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
@@ -87,7 +90,7 @@
 			</div>
 			
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="aut" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['pa.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
@@ -100,20 +103,20 @@
 			</div>
 
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="div" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['divisas.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
 						<h5 class="card-title">CAMBIO DE DIVISAS</h5>
 						<p class="card-text">Realice cambios de divisas entre dos cuentas</p>
-						<h:button class="btn btn-primary btn-sm" outcome="cambioDivA.xhtml"
+						<h:button class="btn btn-primary btn-sm" outcome="paginaDivisas.xhtml"
 							id="cambiodivisa" value="Cambiar divisa" />
 					</div>
 				</div>
 			</div>
 			
 			<div class="col-sm-4">
-				<div class="card shadow p-3 mb-5 bg-body rounded">
+				<div id="inform" class="card shadow p-3 mb-5 bg-body rounded">
 					<h:graphicImage value="#{resource['informes.jpg']}"
 						class="card-img-top" alt="..." />
 					<div class="card-body">
@@ -125,17 +128,6 @@
 				</div>
 			</div>
 
-			<br> <h:button class="btn btn-primary" outcome="anadirAut.xhtml"
-					id="añadirAutorizado" value="Añadir una persona autorizada" /> </br> <br>
-				<h:button class="btn btn-primary" outcome="modAut.xhtml"
-					id="modificarAutorizado" value="Modificar una persona autorizada" />
-			</br> <br> <h:button class="btn btn-primary"
-					outcome="eliminarAut.xhtml" id="eliminarAutorizado"
-					value="Eliminar una persona autorizada" /> </br> <br> <h:button
-					class="btn btn-primary" outcome="cambioDivA.xhtml"
-					id="cambioDivisas" value="Cambio de Divisas" /> </br> <br> <h:button
-					class="btn btn-primary " outcome="generarInformeAlemania.xhtml"
-					id="generarAlemania" value="Generar Informes Alemania" /> </br>
 		</div>
 	</div>
 

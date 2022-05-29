@@ -24,7 +24,7 @@ public interface GestionDivisa {
 	//Los saldos de las cuentas asociadas con la cuenta agrupada deberá actualizarse también
 	//No sera posible realizar un cambio de divisa en cuentas segregadas
 	
-	public void cambioDeDivisaCliente_Autorizado(String id,PooledAccount pa, CuentaReferencia origen, CuentaReferencia destino,Double cantidad, Transaccion t) throws 
+	public void cambioDeDivisaCliente_Autorizado(PooledAccount pa, CuentaReferencia origen, CuentaReferencia destino,Double cantidad) throws 
 	CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException;
 	
 	

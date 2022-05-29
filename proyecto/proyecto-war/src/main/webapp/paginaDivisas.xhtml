@@ -16,7 +16,16 @@
 <h:body>
 	<h1 class="display-3">CAMBIO DIVISAS</h1>
 	<br/>
-	<h:form id="formulario">
+	
+	<h:outputFormat value="Usuario: {0}">
+				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+	</h:outputFormat>
+	
+		<h:outputFormat value="Cuenta: {0}">
+			<f:param value="#{infoSesion.pa.iban}" />
+		</h:outputFormat>
+	
+	<h:form id="cambiarDivisaCA">	
 		
 	<div>
 		<h1 class="display-5">
@@ -28,33 +37,31 @@
 			</h:outputFormat>
 		</div>
 		<br/>
-		<h3 class="lead">
-		<h:outputFormat value="Cuenta: {0}">
-			<f:param value="#{cambioDivisas.iban_pooled}" />
-		</h:outputFormat>
-		</h3>
 		<h:outputLabel value="Eliga la divisa origen: "/>
-		<h:selectOneMenu value="#{cambioDivisas.divisa_origen}">
-		   	<f:selectItems value="#{cambioDivisas.getL_d()}" />
+		<h:selectOneMenu value="#{cambioDivisas.divisaOrigen}">
+		   	<f:selectItems value="#{cambioDivisas.divisas}"/>
 		</h:selectOneMenu>
 		<br/>
 		<h:outputLabel value="Eliga la divisa destino: "/>
-		<h:selectOneMenu value="#{cambioDivisas.divisa_destino}">
-		   	<f:selectItems value="#{cambioDivisas.getL_d()}" />
+		<h:selectOneMenu value="#{cambioDivisas.divisaDestino}">
+		   	<f:selectItems value="#{cambioDivisas.divisas}" />
 		</h:selectOneMenu>
 		<br/>
 		<h:inputText id="cantidad" value="#{cambioDivisas.cantidadOrigen}"></h:inputText>
 			<h:message id="cantidadMessage" for="cantidad"/>
 		<br/>
 		<h:commandButton class="btn btn-dark btn-sm" id="sesion"
-				value="Realizar Cambio" action="#{cambioDivisas.realizarCambioCliente_Autorizado}" />
+				value="Realizar Cambio" action="#{cambioDivisas.realizarCambioCliente_Autorizado()}" />
 	</div>
 		
 		
 	</h:form>
+	
+	<h:messages></h:messages>
+	
 	<br />
 	<div class="position-absolute bottom-0 start-0">
-	<h:button class="btn btn-dark btn-sm" id="inicio" outcome="paginaprincipalAdmin.xhtml" value="Volver al inicio"/>
+	<h:button class="btn btn-dark btn-sm" id="inicio" outcome="paginaprincipalUsuario.xhtml" value="Volver al inicio"/>
 	</div>
 	<br />
 </h:body>

@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -46,26 +48,53 @@ public class CambioDivisas implements Serializable{
 	@Inject
 	private GestionCuenta cuentaejb;
 	
-	private List<CuentaReferencia> l_cr;
+	//private List<CuentaReferencia> l_cr;
 	
-	private List<String> l_d;
+	//private List<String> ld;
 	
+	private List<SelectItem> divisas;
+
 	private Usuario usuario;
 
-	private PooledAccount pa;
+	//private PooledAccount pa;
 
-	private String id;
+	//private String id;
 
-	private String iban_pooled;
+	//private String ibanPooled;
 
-	private String divisa_origen;
+	private String divisaOrigen;
 
-	private String divisa_destino;
+	private String divisaDestino;
 
 	private double cantidadOrigen;
 
-	private Transaccion t;
+	@PostConstruct
+	public void init() {
+		
+		
+		
+		divisas = new ArrayList<SelectItem>();
+		for(String d : sesion.getLd()) {
+			divisas.add(new SelectItem(d));
+		}
+	}
+	
+	public CambioDivisas() {
+		
+		//pa = new PooledAccount();
+		usuario = new Usuario();
+		//l_cr = new ArrayList<>();
+		//ld = new ArrayList<>();
+	}	
+	
+	public List<SelectItem> getDivisas() {
+		return divisas;
+	}
 
+	public void setDivisas(List<SelectItem> divisas) {
+		this.divisas = divisas;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -73,14 +102,26 @@ public class CambioDivisas implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	/*
+	public void setPa(PooledAccount p) {
+		this.pa = p;
+	}*/
 
+	/*
+	public PooledAccount getPa() {
+		return this.pa;
+	}*/
+	
+	
+	/*
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
+	}*/
 
 	public double getCantidadOrigen() {
 		return cantidadOrigen;
@@ -90,77 +131,80 @@ public class CambioDivisas implements Serializable{
 		this.cantidadOrigen = cantidadOrigen;
 	}
 
-	public String getIban_pooled() {
-		return iban_pooled;
+	/*
+	public String getIbanPooled() {
+		return ibanPooled;
 	}
 
-	public void setIban_pooled(String iban_pooled) {
-		this.iban_pooled = iban_pooled;
-	}
+	public void setIbanPooled(String iban_pooled) {
+		this.ibanPooled = iban_pooled;
+	}*/
 	
 	public List<CuentaReferencia> getL_cr() {
 		try {
-			return cuentaejb.getCuentaReferenciasPooled(iban_pooled);
+			return cuentaejb.getCuentaReferenciasPooled(sesion.getPa().getIban());
 		} catch (CuentaNoExistenteException e) {
 			System.out.println("Cuenta no existe");
 		}
 		return null;
 	}
 
-	public void setL_cr(List<CuentaReferencia> l_cr) {
+	/*public void setL_cr(List<CuentaReferencia> l_cr) {
 		this.l_cr = l_cr;
+	}*/
+	
+	/*
+	public List<String> getLd() {		
+		return ld;
+	}
+
+	public void setL_d(List<String> ld) {
+		this.ld = ld;
+	}*/
+	
+	public String getDivisaOrigen() {
+		return divisaOrigen;
+	}
+
+	public void setDivisaOrigen(String divisa_origen) {
+		this.divisaOrigen = divisa_origen;
+	}
+
+	public String getDivisaDestino() {
+		return divisaDestino;
+	}
+
+	public void setDivisaDestino(String divisa_destino) {
+		this.divisaDestino = divisa_destino;
 	}
 	
-	public List<String> getL_d() {
-		
-		try {
-			l_d = cuentaejb.getDivisas(this.iban_pooled);
-		} catch (CuentaNoExistenteException e) {
-			System.out.println("La cuenta no existe");
-		}
-		
-		return l_d;
-	}
-
-	public void setL_d(List<String> l_d) {
-		this.l_d = l_d;
-	}
-	
-	public String getDivisa_origen() {
-		return divisa_origen;
-	}
-
-	public void setDivisa_origen(String divisa_origen) {
-		this.divisa_origen = divisa_origen;
-	}
-
-	public String getDivisa_destino() {
-		return divisa_destino;
-	}
-
-	public void setDivisa_destino(String divisa_destino) {
-		this.divisa_destino = divisa_destino;
-	}
-	
-	public CambioDivisas() {
-		
-		
-		l_cr = new ArrayList<>();
-		l_d = new ArrayList<>();
-	}	
+	/*
 	public String accion(String c) throws CuentaNoExistenteException {
 		
-		this.iban_pooled = c;
+		try {
+			this.pa = cuentaejb.devolverPooled(c);
+			this.ld = cuentaejb.getDivisas(c);
+			System.out.println(this.pa.getIban());
+			return "paginaDivisas.xhtml";
+		} catch (PooledNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return "paginaDivisas.xhtml";
-	}
+		return null;
+		
+	}*/
 	
+	/*
 	public String realizarCambioAdmin() {
 
-		usuario = sesion.getUsuario();
+		
 		
 		try {
-			pa = cuentaejb.devolverPooled(iban_pooled);
+			
+			usuario = sesion.getUsuario();
+			
+			pa = cuentaejb.devolverPooled(this.ibanPooled);
 
 			t = new Transaccion();
 
@@ -170,8 +214,8 @@ public class CambioDivisas implements Serializable{
 			CuentaReferencia cr_origen;
 			CuentaReferencia cr_destino;
 
-			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_origen());
-			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_destino());
+			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(ibanPooled, this.getDivisa_origen());
+			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(ibanPooled, this.getDivisa_destino());
 
 			divisaejb.cambioDeDivisaAdmin(usuario, id, pa, cr_origen, cr_destino, this.getCantidadOrigen(), t);
 			return "paginaDivisas.xhtml";
@@ -203,51 +247,42 @@ public class CambioDivisas implements Serializable{
 		}
 
 		return null;
-	}
+	}*/
 	
+
 	public String realizarCambioCliente_Autorizado() {
 
 		usuario = sesion.getUsuario();
 		
 		try {
 			
-			pa = cuentaejb.devolverPooled(iban_pooled);
-
-			t = new Transaccion();
-
-			t.setIdUnico(1239);
-			t.setFechainstruccion(LocalDate.now().toString());
-
 			CuentaReferencia cr_origen;
 			CuentaReferencia cr_destino;
+			
+			System.out.println(this.divisaOrigen);
+			System.out.println(this.divisaDestino);
+			
+			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(sesion.getPa().getIban(), divisaOrigen);
+			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(sesion.getPa().getIban(), divisaDestino);
 
-			cr_origen = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_origen());
-			cr_destino = cuentaejb.devolverCuentaReferencia_Divisa(iban_pooled, this.getDivisa_destino());
-
-			divisaejb.cambioDeDivisaAdmin(usuario, id, pa, cr_origen, cr_destino, this.getCantidadOrigen(), t);
-			return "paginaDivisas.xhtml";
+			divisaejb.cambioDeDivisaCliente_Autorizado(sesion.getPa(), cr_origen, cr_destino, this.getCantidadOrigen());
+			return "paginaprincipalUsuario.xhtml";
 			
 		} catch (CuentasDiferentesException e) {
 			FacesMessage fm = new FacesMessage("Las cuentas de referencia no pertenecen a la misma Cuenta Pooled");
 			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:ibanP", fm);
 		} catch (ClientePersonaAutorizadaNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:ibanOrigen", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
 		} catch (PooledNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta pooled no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:iban_pooled", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
 		} catch (SaldoInsuficienteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta origen no tiene saldo suficiente");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:ibanOrigen", fm);
-		} catch (UsuarioNoEsAdministrativoException e) {
-			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:botonDivisa", fm);
-		} catch (UsuarioNoEncontradoException e) {
-			FacesMessage fm = new FacesMessage("El usuario no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:botonDivisa", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
 		} catch (CuentaReferenciaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta de referencia origen o destino no existe");
-			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA:botonDivisa", fm);
+			FacesContext.getCurrentInstance().addMessage("cambiarDivisaCA", fm);
 		} catch (Exception e) {
 			
 			e.printStackTrace();

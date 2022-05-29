@@ -682,8 +682,6 @@ public class CuentaEJB implements GestionCuenta {
 			
 		}
 		
-		System.out.println(l_d.toString());
-		
 		return l_d;
 	}
 	

@@ -1,6 +1,7 @@
 package es.uma.proyecto.ejb;
 
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -33,11 +34,11 @@ public class DivisaEJB implements GestionDivisa {
 	private EntityManager em;
 
 	@Override
-	public void cambioDeDivisaCliente_Autorizado(String id, PooledAccount cuentaP, CuentaReferencia origen,
-			CuentaReferencia destino, Double cantidadOrigen, Transaccion t) throws 
+	public void cambioDeDivisaCliente_Autorizado(PooledAccount cuentaP, CuentaReferencia origen,
+			CuentaReferencia destino, Double cantidadOrigen) throws 
 			CuentasDiferentesException, ClientePersonaAutorizadaNoEncontradoException, PooledNoExistenteException, SaldoInsuficienteException {
 
-		Cliente c = em.find(Cliente.class, id);
+		/*Cliente c = em.find(Cliente.class, id);
 
 		if (c == null) {
 
@@ -47,7 +48,7 @@ public class DivisaEJB implements GestionDivisa {
 
 				throw new ClientePersonaAutorizadaNoEncontradoException();
 			}
-		}
+		}*/
 
 		PooledAccount pooled = em.find(PooledAccount.class, cuentaP.getIban());
 
@@ -103,15 +104,16 @@ public class DivisaEJB implements GestionDivisa {
 				dp.setSaldo(dp.getSaldo()+cantidadEnDivisaDestino);
 			}
 		}
-		
+		Transaccion t = new Transaccion();
 		t.setCuenta1(origen);
 		t.setCuenta2(destino);
 		t.setCantidad(cantidadOrigen*origen.getDivisa().getCambioeuro());
 		t.setDivisa1(origen.getDivisa());
 		t.setDivisa2(origen.getDivisa());
+		t.setFechainstruccion(LocalDate.now().toString());
 		t.setTipo("CD");
 		
-		em.merge(t);
+		em.persist(t);
 	}
 
 	@Override
