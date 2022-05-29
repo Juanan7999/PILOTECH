@@ -21,6 +21,9 @@
 	<br />
 	<div class="mx-auto" style="width: 80%;">
 	<h:form id="altaAutorizado" class="row row-cols-lg-auto g-3 align-items-center">
+	
+			<h:inputHidden class="form-control" id="identificacion23" required="true" value="#{anadirAutorizados.empresa.identificacion}"/>
+			
 			
 			<h4 class="h4">Datos de la persona autorizado</h4>
 			<br/>
@@ -29,9 +32,9 @@
 			<h:inputText class="form-control" id="identificacion" required="true" value="#{anadirAutorizados.identificacion_pa}"  />
 			<h:message id="nombreMessage" for="identificacion" />
 			</div>
-			
+		
 			<div class="col-12">
-			<h:commandButton class="btn btn-primary btn-sm" id="botonAñadirAut" value="Añadir"
+			<h:commandButton class="btn btn-primary btn-sm" id="botonAñadirAut2" value="Añadir"
 				action="#{anadirAutorizados.anadirAut()}"/>
 			</div>
 			

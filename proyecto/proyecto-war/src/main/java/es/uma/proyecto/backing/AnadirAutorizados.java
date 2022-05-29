@@ -77,7 +77,7 @@ public class AnadirAutorizados{
 	}
 	
 	public String anadirAut() {
-		
+		System.out.println(this.empresa.getIdentificacion());
 		try {
 			
 			usuario = sesion.getUsuario();
@@ -94,19 +94,22 @@ public class AnadirAutorizados{
 		}catch(UsuarioNoEsAdministrativoException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("añadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
 			
 		}catch(ClienteNoJuridicoException e) {
 			
 			FacesMessage fm = new FacesMessage("El cliente no es juridico");
-			FacesContext.getCurrentInstance().addMessage("añadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
 			
 		} catch (PersonaAutorizadaNoExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage fm = new FacesMessage("No existe esa persona autorizada");
+			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
+			
 		} catch (ClienteNoExistenteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage fm = new FacesMessage("No existe esa empresa");
+			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
 		}
 		
 		return null;
