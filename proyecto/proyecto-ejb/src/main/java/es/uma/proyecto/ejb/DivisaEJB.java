@@ -71,7 +71,7 @@ public class DivisaEJB implements GestionDivisa {
 			throw new CuentasDiferentesException();
 		}
 		
-		if(origen.getSaldo() < cantidadOrigen || destino.getSaldo() == 0) {
+		if(origen.getSaldo() < cantidadOrigen) {
 		
 			throw new SaldoInsuficienteException();	
 		}
@@ -86,10 +86,11 @@ public class DivisaEJB implements GestionDivisa {
 			if(dp.getCuentaReferencia().equals(origen)) {
 				
 				dp.setSaldo(dp.getSaldo()-cantidadOrigen);
-				
+				em.merge(dp);
 			}else if(dp.getCuentaReferencia().equals(destino)) {
 				
 				dp.setSaldo(dp.getSaldo()+cantidadEnDivisaDestino);
+				em.merge(dp);
 			}
 		}
 		Transaccion t = new Transaccion();
@@ -102,5 +103,7 @@ public class DivisaEJB implements GestionDivisa {
 		t.setTipo("CD");
 		
 		em.persist(t);
+		em.merge(origen);
+		em.merge(destino);
 	}
 }

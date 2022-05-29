@@ -52,8 +52,6 @@ public class CambioDivisas implements Serializable{
 
 	private Usuario usuario;
 
-
-
 	private String divisaOrigen;
 
 	private String divisaDestino;
@@ -62,8 +60,6 @@ public class CambioDivisas implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		
-		
 		
 		divisas = new ArrayList<SelectItem>();
 		for(String d : sesion.getLd()) {
@@ -74,7 +70,6 @@ public class CambioDivisas implements Serializable{
 	public CambioDivisas() {
 		
 		usuario = new Usuario();
-
 	}	
 	
 	public List<SelectItem> getDivisas() {
@@ -92,9 +87,6 @@ public class CambioDivisas implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-
-
 
 	public double getCantidadOrigen() {
 		return cantidadOrigen;
@@ -104,8 +96,6 @@ public class CambioDivisas implements Serializable{
 		this.cantidadOrigen = cantidadOrigen;
 	}
 
-
-	
 	public List<CuentaReferencia> getL_cr() {
 		try {
 			return cuentaejb.getCuentaReferenciasPooled(sesion.getPa().getIban());
