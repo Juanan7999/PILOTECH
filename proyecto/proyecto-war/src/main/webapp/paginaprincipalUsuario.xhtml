@@ -13,24 +13,31 @@
 </h:head>
 
 <h:body>
+<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
+				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
+				class="d-inline-block align-text-top" />
+		</a>
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" href="paginaprincipalUsuario.xhtml">Inicio</a></li>
+		
+			<li class="nav-item">
+				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
+					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+				</h:outputFormat>
+			</li>
+			<li class="nav-item">
+				<h:form>
+					<h:commandButton class="btn btn-secondary btn-sm" id="sesion"
+						value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+				</h:form>
+			</li>
+		</ul>
+	</div>
+	</nav>
 
-		<div class="position-absolute top-0 start-50 translate-middle-x">
-			<h1 class="display-3">
-				<h:outputText value="PÁGINA PRINCIPAL EBURY" />
-			</h1>
-		</div>
-
-
-		<div class="position-absolute top-0 start-0">
-			<h:outputFormat class="font-monospace" value="Usuario: {0}">
-				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
-			</h:outputFormat>
-		</div>
-
-	<br/>
-	<br/>
-	<br/>
-	<br/>
 	<br/>
 	<div>
 	<h2 class="h2">CUENTAS SEGREGADAS</h2>
@@ -142,15 +149,8 @@
 	</h:form>
 	</div>
 
-	<br> <h:button outcome="cambioDivCAut.xhtml" id="cambioDivisas"
-			value="Cambio de Divisas" class="btn btn-primary" /> </br>
-	<div class="position-absolute bottom-0 start-0">
-		<h:form>
-			<h:commandButton class="btn btn-dark btn-sm" id="sesion"
-				value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
-		</h:form>
-		<br />
-	</div>
+	
+	
 
 </h:body>
 </html>
