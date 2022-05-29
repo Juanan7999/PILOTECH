@@ -88,41 +88,46 @@ public class CuentaEJB implements GestionCuenta {
 	}
 
 	@Override
-	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
-			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException {
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, String identificacion)
+			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, ClienteNoExistenteException {
 
 		Usuario administrador = em.find(Usuario.class, usuario.getNombreUsuario());
 
 		if (administrador == null || !administrador.getTipo().equals("A")) { // Si no existe o no es administrativo
 			throw new UsuarioNoEsAdministrativoException();
 		}
-
-		if (!cl.getEstado().equals("J")) {
+		
+		Empresa empresaEntity = em.find(Empresa.class, identificacion);
+		
+		if(empresaEntity == null) {
+			throw new ClienteNoExistenteException();
+		}
+		
+		if (!empresaEntity.getTipoCliente().equals("J")) {
 			throw new ClienteNoJuridicoException();
 		}
+		
+		TypedQuery<Autorizacion> query = em.createQuery("SELECT c FROM Autorizacion c where c.empresa.identificacion = :empresa and c.personaAutorizada.identificacion = :pa", Autorizacion.class);
+		query.setParameter("empresa", empresaEntity.getIdentificacion());
+		query.setParameter("pa", pa.getIdentificacion());
+		List<Autorizacion> autorizaciones = query.getResultList();
 
-		Empresa e = em.find(Empresa.class, cl.getIdentificacion());
-
-		List<Autorizacion> autorizaciones = e.getAutorizacions();
-
-	
-
+		if(autorizaciones.size() == 0) {
+			
 			Autorizacion aut = new Autorizacion();
 			aut.setTipo(1); // Revisar
 
 			AutorizacionPK aut_pk = new AutorizacionPK();
-			aut_pk.setEmpresaId(e.getIdentificacion());
+			aut_pk.setEmpresaId(empresaEntity.getIdentificacion());
 			aut_pk.setPersonaAutorizadaId(pa.getIdentificacion());
-
-			aut.setEmpresa(e);
+			
 			aut.setId(aut_pk);
+			aut.setEmpresa(empresaEntity);
 			aut.setPersonaAutorizada(pa);
 			em.persist(aut);
-			autorizaciones.add(aut);
 
+		}
 		
-
-		em.merge(e);
 	}
 	
 	@Override

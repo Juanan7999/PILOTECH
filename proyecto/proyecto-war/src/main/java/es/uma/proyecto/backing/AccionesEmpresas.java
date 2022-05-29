@@ -116,6 +116,9 @@ public class AccionesEmpresas implements Serializable{
 			} catch (UsuarioNoEncontradoException e) {
 				FacesMessage fm = new FacesMessage(" El usuario no existe");
 				FacesContext.getCurrentInstance().addMessage("formulario:botonBloq", fm);
+			} catch (ClienteYaDeBajaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		return null;

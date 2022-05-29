@@ -152,7 +152,7 @@ public class ClienteEJB implements GestionCliente {
 
 	@Override
 	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException,
-			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException {
+			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException {
 
 		Usuario administrador = em.find(Usuario.class, admin.getNombreUsuario());
 
@@ -170,6 +170,8 @@ public class ClienteEJB implements GestionCliente {
 			throw new ClienteNoExistenteException();
 		} else if (clienteEntity.getEstado().endsWith("bloqueado")) {
 			throw new ClienteBloqueadoException();
+		} else if (clienteEntity.getEstado().endsWith("bloqueado")) {
+			throw new ClienteYaDeBajaException();
 		}
 
 		clienteEntity.setEstado("bloqueado");

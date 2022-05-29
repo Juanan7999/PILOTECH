@@ -16,6 +16,7 @@ import es.uma.proyecto.ejb.GestionCliente;
 import es.uma.proyecto.ejb.GestionCuenta;
 import es.uma.proyecto.ejb.exceptions.ClienteNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.ClienteNoJuridicoException;
+import es.uma.proyecto.ejb.exceptions.PersonaAutorizadaNoExistenteException;
 import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Named(value = "anadirAutorizados")
@@ -33,13 +34,14 @@ public class AnadirAutorizados {
 
 	private Usuario usuario;
 	
-	private PersonaAutorizada personaAutorizada;
-	
+	private String identificacion;
+
 	private Empresa empresa;
 
 	public AnadirAutorizados() {
-		personaAutorizada = new PersonaAutorizada();
 		usuario = new Usuario();
+		empresa = new Empresa();
+		identificacion = new String();
 	}
 	
 	public Usuario getUsuario() {
@@ -50,14 +52,6 @@ public class AnadirAutorizados {
 		this.usuario = usuario;
 	}
 	
-	public PersonaAutorizada getPersonaAutorizada() {
-		return personaAutorizada;
-	}
-	
-	public void setPersonaAutorizada(PersonaAutorizada personaAutorizada) {
-		this.personaAutorizada = personaAutorizada;
-	}
-	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -66,14 +60,29 @@ public class AnadirAutorizados {
 		this.empresa = empresa;
 	}
 	
+	
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String p) {
+		this.identificacion = p;
+	}
+	
 	public String anadirAutorizados() {
 		
 		try {
 			
 			usuario = sesion.getUsuario();
-			System.out.println(personaAutorizada.getNombre());
-			System.out.println(empresa.getRazonSocial());
-			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa);
+			
+			System.out.println(empresa.getIdentificacion());
+			
+			PersonaAutorizada personaAutorizada = clienteEJB.devolverPersonaAut(identificacion);
+			
+			System.out.println(personaAutorizada.getIdentificacion());
+			
+			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa.getIdentificacion());
+			
 			return "clientesEmpresas.xhtml";
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
@@ -86,6 +95,12 @@ public class AnadirAutorizados {
 			FacesMessage fm = new FacesMessage("El cliente no es juridico");
 			FacesContext.getCurrentInstance().addMessage("añadirAutorizados", fm);
 			
+		} catch (PersonaAutorizadaNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClienteNoExistenteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return null;
@@ -93,14 +108,14 @@ public class AnadirAutorizados {
 	}
 	
 	public String accion(String identificacion) {
-		try {
-			this.empresa = clienteEJB.devolverClienteEmpresa(identificacion);
-			return "anadirAut.xhtml";
-		} catch (ClienteNoExistenteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+			try {
+				this.empresa = (Empresa) clienteEJB.devolverClienteEmpresa(identificacion);
+				return "anadirAut.xhtml";
+			} catch (ClienteNoExistenteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 	}
 	
 	

@@ -68,8 +68,8 @@ public interface GestionCuenta {
 	 * cliente en cuestion.
 	 */
 
-	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, Cliente cl)
-			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException;
+	public void anadirAutorizados(Usuario usuario, PersonaAutorizada pa, String identificacion)
+			throws UsuarioNoEsAdministrativoException, ClienteNoJuridicoException, ClienteNoExistenteException;
 
 	/*
 	 * Este metodo se encarga de comprobar en primer lugar que la persona que esta

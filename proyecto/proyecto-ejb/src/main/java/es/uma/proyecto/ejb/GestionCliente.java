@@ -64,7 +64,7 @@ public interface GestionCliente {
 			ClienteYaActivoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException;
 
 	public void bloqueaCliente(Usuario admin, String idCliente) throws ClienteNoExistenteException,
-			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException;
+			ClienteBloqueadoException, UsuarioNoEsAdministrativoException, UsuarioNoEncontradoException, ClienteYaDeBajaException;
 
 	public void modificarDatosClienteIndividual(Usuario admin, String identificacion, Individual individual)
 			throws UsuarioNoEsAdministrativoException, ClienteNoExistenteException, UsuarioNoEncontradoException;

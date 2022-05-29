@@ -15,7 +15,7 @@
 <h:body>
 	<h1 class="display-5">
 		<h:outputFormat value="Añadir autorizado a {0}" >
-			<f:param value="#{añadirAutorizados.empresa.identificacion}" />
+			<f:param value="#{anadirAutorizados.empresa.identificacion}" />
 		</h:outputFormat>
 	</h1>
 	<br />
@@ -23,10 +23,10 @@
 	<h:form id="altaAutorizado" class="row row-cols-lg-auto g-3 align-items-center">
 			
 			<h4 class="h4">Datos de la persona autorizado</h4>
-			
+			<br/>
 			<div class="col-12">
 			<label for="identificacion" class="form-label">Identificación de la persona</label>
-			<h:inputText class="form-control" id="identificacion" required="true" value="#{anadirAutorizados.personaAutorizada.identificacion}"  />
+			<h:inputText class="form-control" id="identificacion" required="true" value="#{anadirAutorizados.identificacion}"  />
 			<h:message id="nombreMessage" for="identificacion" />
 			</div>
 			
