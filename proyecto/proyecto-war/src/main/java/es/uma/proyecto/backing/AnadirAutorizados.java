@@ -75,13 +75,13 @@ public class AnadirAutorizados {
 			
 			usuario = sesion.getUsuario();
 			
-			System.out.println(empresa.getIdentificacion());
+			System.out.println(this.empresa.getIdentificacion());
 			
 			PersonaAutorizada personaAutorizada = clienteEJB.devolverPersonaAut(identificacion);
 			
 			System.out.println(personaAutorizada.getIdentificacion());
 			
-			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, empresa.getIdentificacion());
+			cuentaEJB.anadirAutorizados(usuario, personaAutorizada, this.empresa.getIdentificacion());
 			
 			return "clientesEmpresas.xhtml";
 			
@@ -107,9 +107,10 @@ public class AnadirAutorizados {
 		
 	}
 	
-	public String accion(String identificacion) {
+	public String accion(String iden) {
 			try {
-				this.empresa = (Empresa) clienteEJB.devolverClienteEmpresa(identificacion);
+				this.empresa = (Empresa) clienteEJB.devolverClienteEmpresa(iden);
+				System.out.println(this.empresa.getIdentificacion());
 				return "anadirAut.xhtml";
 			} catch (ClienteNoExistenteException e) {
 				// TODO Auto-generated catch block
