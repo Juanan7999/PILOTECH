@@ -143,7 +143,7 @@ public class AbrirCuentaPooled {
 			} catch (PooledAccountConSolo1CuentaExternaException e) {
 				
 			}
-			return "paginaprincipalAdmin.xhtml";
+			return "cuentas.xhtml";
 			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");

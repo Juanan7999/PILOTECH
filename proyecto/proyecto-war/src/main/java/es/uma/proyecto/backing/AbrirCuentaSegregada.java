@@ -123,7 +123,7 @@ public class AbrirCuentaSegregada {
 			
 			cuentaejb.abrirCuentaFintechSegregada(usuario, cuenta, cliente, c);
 			
-			return "paginaprincipalAdmin.xhtml";
+			return "cuentas.xhtml";
 			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");

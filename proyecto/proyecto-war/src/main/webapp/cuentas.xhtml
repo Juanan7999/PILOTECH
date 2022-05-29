@@ -71,11 +71,11 @@
 
 							<h:column>
 								<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-								<h:outputText rendered="#{c.estado eq 'activo'}" class="badge text-bg-success" id="textoEstado1" value="#{c.estado}" />
+								<h:outputText rendered="#{c.estado eq 'activa'}" class="badge text-bg-success" id="textoEstado1" value="#{c.estado}" />
 
 								<h:outputText rendered="#{c.estado eq 'baja'}" class="badge text-bg-danger" id="textoEstado2" value="#{c.estado}" />
 
-								<h:outputText rendered="#{c.estado eq 'bloqueado'}" class="badge text-bg-secondary" id="textoEstado3" value="#{c.estado}" />
+								<h:outputText rendered="#{c.estado eq 'bloqueada'}" class="badge text-bg-secondary" id="textoEstado3" value="#{c.estado}" />
 								
 							</h:column>
 
@@ -152,7 +152,12 @@
 
 							<h:column>
 								<f:facet id="cabeceraEstado" name="header">Estado</f:facet>
-								<h:outputText id="textoEstado" value="#{p.estado}" />
+								<h:outputText rendered="#{p.estado eq 'activa'}" class="badge text-bg-success" id="textoEstado1" value="#{p.estado}" />
+
+								<h:outputText rendered="#{c.estado eq 'baja'}" class="badge text-bg-danger" id="textoEstado2" value="#{p.estado}" />
+
+								<h:outputText rendered="#{c.estado eq 'bloqueada'}" class="badge text-bg-secondary" id="textoEstado3" value="#{p.estado}" />
+								
 							</h:column>
 
 							<h:column>
