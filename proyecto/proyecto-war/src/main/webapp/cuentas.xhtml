@@ -13,6 +13,37 @@
 </h:head>
 
 <h:body>
+	
+	<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
+				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
+				class="d-inline-block align-text-top" />
+		</a>
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link active"
+				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link" href="#fisico">Físicos</a></li>
+			<li class="nav-item"><a class="nav-link" href="#juridico">Jurídicos</a></li>
+			<li class="nav-item"><a class="nav-link" href="#cuenta">Cuentas</a></li>
+			<li class="nav-item"><a class="nav-link" href="#aut">Autorizados</a></li>
+			<li class="nav-item"><a class="nav-link" href="#div">Divisas</a></li>
+			<li class="nav-item"><a class="nav-link" href="#inform">Informes</a></li>
+			<li class="nav-item">
+				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
+					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+				</h:outputFormat>
+			</li>
+			<li class="nav-item">
+				<h:form>
+					<h:commandButton class="btn btn-secondary btn-sm" id="sesion"
+						value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+				</h:form>
+			</li>
+		</ul>
+	</div>
+	</nav>
+	
 	<h1 class="display-3">CUENTAS</h1>
 	<br/>
 
@@ -169,7 +200,7 @@
 							
 							<h:column>
 								<h:commandButton class="btn btn-light btn-sm" id="cambioDivisa" value="Cambio Divisa"
-									action="#{infoSesion.cambiarDivisa(p.iban)}" />
+									action="#{infoSesion.cambiarDivisaAdmin(p.iban)}" />
 								<h:message id="botonModMessage4" for="cambioDivisa" />
 							</h:column>
 							

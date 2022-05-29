@@ -77,6 +77,23 @@ public class InfoSesion implements Serializable{
 	    		this.pa = cuentaejb.devolverPooled(c);
 				this.ld = cuentaejb.getDivisas(c);
 				return "paginaDivisas.xhtml";
+				
+			} catch (CuentaNoExistenteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (PooledNoExistenteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	return null;
+	    }
+	    
+	    public synchronized String cambiarDivisaAdmin(String c) {
+	    	try {
+	    		this.pa = cuentaejb.devolverPooled(c);
+				this.ld = cuentaejb.getDivisas(c);
+				return "paginaDivisasAdmin.xhtml";
+				
 			} catch (CuentaNoExistenteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
