@@ -1,10 +1,12 @@
 package es.uma.proyecto.backing;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +23,7 @@ import es.uma.proyecto.ejb.exceptions.UsuarioNoEsAdministrativoException;
 
 @Named(value = "anadirAutorizados")
 @RequestScoped
-public class AnadirAutorizados {
+public class AnadirAutorizados{
 
 	@Inject
 	private GestionCuenta cuentaEJB;
@@ -34,15 +36,20 @@ public class AnadirAutorizados {
 
 	private Usuario usuario;
 	
-	private String identificacion;
+	private String identificacion_pa;
+	
+
+	
 
 	private Empresa empresa;
 
 	public AnadirAutorizados() {
 		usuario = new Usuario();
 		empresa = new Empresa();
-		identificacion = new String();
+		identificacion_pa = new String();
 	}
+	
+
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -61,23 +68,22 @@ public class AnadirAutorizados {
 	}
 	
 	
-	public String getIdentificacion() {
-		return identificacion;
+	public String getIdentificacion_pa() {
+		return identificacion_pa;
 	}
 
-	public void setIdentificacion(String p) {
-		this.identificacion = p;
+	public void setIdentificacion_pa(String p) {
+		this.identificacion_pa = p;
 	}
 	
-	public String anadirAutorizados() {
+	public String anadirAut() {
 		
 		try {
 			
 			usuario = sesion.getUsuario();
-			
 			System.out.println(this.empresa.getIdentificacion());
 			
-			PersonaAutorizada personaAutorizada = clienteEJB.devolverPersonaAut(identificacion);
+			PersonaAutorizada personaAutorizada = clienteEJB.devolverPersonaAut(identificacion_pa);
 			
 			System.out.println(personaAutorizada.getIdentificacion());
 			
@@ -110,6 +116,7 @@ public class AnadirAutorizados {
 	public String accion(String iden) {
 			try {
 				this.empresa = (Empresa) clienteEJB.devolverClienteEmpresa(iden);
+			
 				System.out.println(this.empresa.getIdentificacion());
 				return "anadirAut.xhtml";
 			} catch (ClienteNoExistenteException e) {
