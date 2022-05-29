@@ -18,6 +18,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
@@ -67,6 +70,8 @@ public class PilotechIT {
     driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:0:textoIdentificacion")).getText(), is("12345634V"));
   }
+  
+  @Requisitos(value = { "RF7" })
   @Test
   public void modificarAutorizadosIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -84,6 +89,7 @@ public class PilotechIT {
     driver.findElement(By.id("formulario:j_idt16:1:textoNombre")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:1:textoNombre")).getText(), is("Juan"));
   }
+  @Requisitos(value = { "RF8" })
   @Test
   public void eliminarAutorizadosIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -98,6 +104,7 @@ public class PilotechIT {
     driver.findElement(By.id("formulario:j_idt16:0:textoEstado2")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:0:textoEstado2")).getText(), is("baja"));
   }
+  @Requisitos(value = { "RF16" })
   @Test
   public void bloquearClientesIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -112,6 +119,7 @@ public class PilotechIT {
     driver.findElement(By.id("formulario:j_idt16:0:textoEstado3")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:0:textoEstado3")).getText(), is("bloqueado"));
   }
+  @Requisitos(value = { "RF16" })
   @Test
   public void bloquearAutorizadoIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -126,6 +134,7 @@ public class PilotechIT {
     driver.findElement(By.id("formulario:j_idt16:1:textoEstado3")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:1:textoEstado3")).getText(), is("bloqueado"));
   }
+  @Requisitos(value = { "RF16" })
   @Test
   public void desbloquearClienteIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -140,6 +149,7 @@ public class PilotechIT {
     driver.findElement(By.cssSelector("td:nth-child(6)")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:0:textoEstado1")).getText(), is("activo"));
   }
+  @Requisitos(value = { "RF16" })
   @Test
   public void desbloquearAutorizadoIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -154,6 +164,7 @@ public class PilotechIT {
     driver.findElement(By.id("formulario:j_idt16:1:textoEstado1")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:1:textoEstado1")).getText(), is("activo"));
   }
+  @Requisitos(value = { "RF17" })
   @Test
   public void cambioDivisaClienteIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -174,6 +185,7 @@ public class PilotechIT {
     driver.findElement(By.cssSelector(".h2:nth-child(1)")).click();
     assertThat(driver.findElement(By.cssSelector(".h2:nth-child(1)")).getText(), is("CUENTAS SEGREGADAS"));
   }
+  @Requisitos(value = { "RF18" })
   @Test
   public void cambioDivisaAdminIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -197,6 +209,7 @@ public class PilotechIT {
     driver.findElement(By.cssSelector(".display-3")).click();
     assertThat(driver.findElement(By.cssSelector(".display-3")).getText(), is("CUENTAS"));
   }
+  @Requisitos(value = { "RF2" })
   @Test
   public void altaClienteFisicoIT() {
     driver.get("http://localhost:8080/proyecto-war/");
@@ -233,6 +246,7 @@ public class PilotechIT {
     driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(1)")).click();
     assertThat(driver.findElement(By.id("formulario:j_idt16:0:textoIdentificacion")).getText(), is("12376423N"));
   }
+  @Requisitos(value = { "RF2" })
   @Test
   public void altaClienteJuridicoIT() {
     driver.get("http://localhost:8080/proyecto-war/");

@@ -2486,6 +2486,127 @@
       ],
       "value": "45678912M"
     }]
+  }, {
+    "id": "d44f8e82-c6dd-481e-a1ba-64e1f19fe2f0",
+    "name": "AccesoClienteIT",
+    "commands": [{
+      "id": "58e2428d-c3e8-42d4-a802-ebd44b4a928b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/proyecto-war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3b22981f-94e5-40a0-a7e5-6e02cb32721b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0cff86ae-ebc3-41c5-b08d-e4b1bdd51cb9",
+      "comment": "",
+      "command": "click",
+      "target": "id=login:user",
+      "targets": [
+        ["id=login:user", "id"],
+        ["name=login:user", "name"],
+        ["css=#login\\3Auser", "css:finder"],
+        ["xpath=//input[@id='login:user']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b108b43-4c11-4b69-9511-5662e196cde3",
+      "comment": "",
+      "command": "type",
+      "target": "id=login:user",
+      "targets": [
+        ["id=login:user", "id"],
+        ["name=login:user", "name"],
+        ["css=#login\\3Auser", "css:finder"],
+        ["xpath=//input[@id='login:user']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "juan"
+    }, {
+      "id": "c579da7d-6d28-4b39-8ca0-799666f65a31",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mb-3:nth-child(4)",
+      "targets": [
+        ["css=.mb-3:nth-child(4)", "css:finder"],
+        ["xpath=//form[@id='login']/div[3]", "xpath:idRelative"],
+        ["xpath=//div[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7422de89-7038-4b3e-8468-203a5de22d08",
+      "comment": "",
+      "command": "click",
+      "target": "id=login:pass",
+      "targets": [
+        ["id=login:pass", "id"],
+        ["name=login:pass", "name"],
+        ["css=#login\\3Apass", "css:finder"],
+        ["xpath=//input[@id='login:pass']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2d19664-51a5-490e-ad48-68043e23b4f5",
+      "comment": "",
+      "command": "type",
+      "target": "id=login:pass",
+      "targets": [
+        ["id=login:pass", "id"],
+        ["name=login:pass", "name"],
+        ["css=#login\\3Apass", "css:finder"],
+        ["xpath=//input[@id='login:pass']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "juan"
+    }, {
+      "id": "b3669daa-fc16-4ef7-b0a4-48b3a8fac054",
+      "comment": "",
+      "command": "click",
+      "target": "id=login:botonLogin",
+      "targets": [
+        ["id=login:botonLogin", "id"],
+        ["name=login:botonLogin", "name"],
+        ["css=#login\\3A botonLogin", "css:finder"],
+        ["xpath=//input[@id='login:botonLogin']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7ffe948-838c-4314-a6f5-5071a8baaf16",
+      "comment": "",
+      "command": "click",
+      "target": "css=.h2:nth-child(1)",
+      "targets": [
+        ["css=.h2:nth-child(1)", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'CUENTAS SEGREGADAS')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2438745-576e-4f10-aefa-c8b6b3d7a737",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.h2:nth-child(1)",
+      "targets": [
+        ["css=.h2:nth-child(1)", "css:finder"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'CUENTAS SEGREGADAS')]", "xpath:innerText"]
+      ],
+      "value": "CUENTAS SEGREGADAS"
+    }]
   }],
   "suites": [{
     "id": "764aa5e0-6bc3-40b1-98e5-7f05a2f884f6",
@@ -2494,6 +2615,13 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["9aa1222b-d304-4a12-9785-57cbad5b913a", "96952705-6462-4ba1-8c3b-f2238770e40d", "4482cf04-962c-4163-b9ff-5fb0a6edc553", "521c7f08-fec6-41d4-aac7-9bd99582614b", "b54cd880-f76e-4a95-a403-4cf3cc9d7493", "5f880a81-bc3b-4137-9288-79cd12c96d3a", "8056a810-f7d9-40c5-8fb0-0a8932bc0e2e", "2fb1d589-1b18-4653-beb8-7336cb552ebf", "a712aa86-f902-4fc6-9463-afc196435919", "7dcf5121-8500-49ef-bcf5-74f5f0289fee", "35c39a8c-622d-4e62-89cf-98340262c2e5"]
+  }, {
+    "id": "ffb98893-42dc-4677-8a51-75608611ff41",
+    "name": "AccesoClienteIT",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
   }],
   "urls": ["http://localhost:8080/proyecto-war"],
   "plugins": []
