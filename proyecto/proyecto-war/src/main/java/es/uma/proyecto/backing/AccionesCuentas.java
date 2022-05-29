@@ -71,13 +71,13 @@ public class AccionesCuentas implements Serializable{
 				
 			} catch (SegregadaNoExistenteException e) {
 				FacesMessage fm = new FacesMessage("La cuenta introducida no existe");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaSegregada:iban", fm);
+				FacesContext.getCurrentInstance().addMessage("seg:botonCierraSeg", fm);
 			} catch (UsuarioNoEsAdministrativoException e) {
 				FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaSegregada:usuario", fm);
+				FacesContext.getCurrentInstance().addMessage("seg:botonCierraSeg", fm);
 			} catch (CuentaSinSaldo0Exception e) {
 				FacesMessage fm = new FacesMessage("La cuenta aun tiene saldo");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaSegregada:iban", fm);
+				FacesContext.getCurrentInstance().addMessage("seg:botonCierraSeg", fm);
 			}
 			return null;
 		}
@@ -98,13 +98,13 @@ public class AccionesCuentas implements Serializable{
 				
 			} catch (UsuarioNoEsAdministrativoException e) {
 				FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaPooled:usuario", fm);
+				FacesContext.getCurrentInstance().addMessage("pol:botonCierraPool", fm);
 			} catch (CuentaSinSaldo0Exception e) {
 				FacesMessage fm = new FacesMessage("La cuenta aun tiene saldo");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaPooled:iban", fm);
+				FacesContext.getCurrentInstance().addMessage("pol:botonCierraPool", fm);
 			} catch (PooledNoExistenteException e) {
 				FacesMessage fm = new FacesMessage("La cuenta introducida no existe");
-				FacesContext.getCurrentInstance().addMessage("cerrarCuentaPooled:iban", fm);
+				FacesContext.getCurrentInstance().addMessage("pol:botonCierraPool", fm);
 			}
 			return null;
 		}
