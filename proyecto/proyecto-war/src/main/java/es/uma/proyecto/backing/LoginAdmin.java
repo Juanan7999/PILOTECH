@@ -46,10 +46,10 @@ public class LoginAdmin {
 			return "paginaprincipalAdmin.xhtml";		
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
-			FacesContext.getCurrentInstance().addMessage("loginAdmin:user", fm);
+			FacesContext.getCurrentInstance().addMessage("loginAdmin:botonLogin", fm);
 		} catch (ContraseñaIncorrectaException e) {
 			FacesMessage fm = new FacesMessage("La password no es valida");
-			FacesContext.getCurrentInstance().addMessage("loginAdmin:pass", fm);
+			FacesContext.getCurrentInstance().addMessage("loginAdmin:botonLogin", fm);
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
 			FacesContext.getCurrentInstance().addMessage("loginAdmin:botonLogin", fm);

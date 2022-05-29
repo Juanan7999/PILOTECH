@@ -137,23 +137,22 @@ public class AbrirCuentaPooled {
 			
 			c.setDepositaEns(lista_deposito);
 			
-			try {
-				cuentaejb.abrirCuentaFintechPooled(usuario, pa, cliente, lista_deposito);
-				
-			} catch (PooledAccountConSolo1CuentaExternaException e) {
-				
-			}
+			cuentaejb.abrirCuentaFintechPooled(usuario, pa, cliente, lista_deposito);
+			
 			return "cuentas.xhtml";
 			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:cliente", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);
 		} catch (CuentaReferenciaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta de referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);
+		} catch (PooledAccountConSolo1CuentaExternaException e) {
+			FacesMessage fm = new FacesMessage("Cuenta pooled con 1 sola cuenta externa");
+			FacesContext.getCurrentInstance().addMessage("abrirPooled:boton", fm);
 		}
 		
 		return null;

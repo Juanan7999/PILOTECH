@@ -48,16 +48,16 @@ public class LoginNormal {
 			return "paginaprincipalUsuario.xhtml";	
 		} catch (UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("La cuenta no existe");
-			FacesContext.getCurrentInstance().addMessage("login:user", fm);
+			FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);
 		} catch (ContraseñaIncorrectaException e) {
 			FacesMessage fm = new FacesMessage("Contraseña incorrecta");
-			FacesContext.getCurrentInstance().addMessage("login:pass", fm);        
+			FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);        
 		} catch (ClienteBloqueadoException e) {
 			FacesMessage fm = new FacesMessage("El cliente está bloqueado");
-		    FacesContext.getCurrentInstance().addMessage("login:user", fm);
+		    FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);
 		} catch (ClienteYaDeBajaException e) {
 			FacesMessage fm = new FacesMessage("El cliente no está activo");
-		    FacesContext.getCurrentInstance().addMessage("login:user", fm);		
+		    FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);		
 		} catch (UsuarioNoEsNormalException e) {
 			FacesMessage fm = new FacesMessage("El usuario es admin");
 		    FacesContext.getCurrentInstance().addMessage("login:botonLogin", fm);	

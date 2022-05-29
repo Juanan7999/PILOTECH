@@ -29,7 +29,6 @@
 					<h:inputText class="form-control rounded-pill" id="user"
 						required="true" placeholder="Nombre de usuario"
 						value="#{loginNormal.usuario.nombreUsuario}" />
-					<h:message id="userMessage" for="user" />
 				</div>
 
 				<div class="mb-3">
@@ -37,14 +36,11 @@
 					<h:inputSecret class="form-control rounded-pill" id="pass"
 						required="true" placeholder="Contraseña"
 						value="#{loginNormal.usuario.password}" />
-					<h:message id="passwordMessage" for="pass" />
+					
 				</div>
-
-				
 					<h:commandButton class="btn btn-primary mb-3 rounded-pill"
 						id="botonLogin" value="Entrar" action="#{loginNormal.login()}" />
-					<h:message id="loginException" for="botonLogin" />
-
+					<h:messages/>
 				<div>
 					<p>
 						Si eres administrador
