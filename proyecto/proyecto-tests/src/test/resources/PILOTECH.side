@@ -2607,6 +2607,164 @@
       ],
       "value": "CUENTAS SEGREGADAS"
     }]
+  }, {
+    "id": "5fd373ce-ef30-4596-906d-88e781dd8b00",
+    "name": "CerrarCuentaIT",
+    "commands": [{
+      "id": "95ac709a-45bf-4222-bf9b-a854b728c957",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/proyecto-war/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5439861-861d-45ce-b44e-f1a09d02ee09",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=pulse aqui",
+      "targets": [
+        ["linkText=pulse aqui", "linkText"],
+        ["css=a", "css:finder"],
+        ["xpath=//a[contains(text(),'pulse aqui')]", "xpath:link"],
+        ["xpath=//form[@id='login']/div[4]/p/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/proyecto-war/admin.xhtml')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'pulse aqui')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ebc79432-d55f-436f-9995-6003f3af60c1",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginAdmin:user",
+      "targets": [
+        ["id=loginAdmin:user", "id"],
+        ["name=loginAdmin:user", "name"],
+        ["css=#loginAdmin\\3Auser", "css:finder"],
+        ["xpath=//input[@id='loginAdmin:user']", "xpath:attributes"],
+        ["xpath=//form[@id='loginAdmin']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ebf5ac4-77ff-4942-a4f0-eb59a25a70f1",
+      "comment": "",
+      "command": "type",
+      "target": "id=loginAdmin:user",
+      "targets": [
+        ["id=loginAdmin:user", "id"],
+        ["name=loginAdmin:user", "name"],
+        ["css=#loginAdmin\\3Auser", "css:finder"],
+        ["xpath=//input[@id='loginAdmin:user']", "xpath:attributes"],
+        ["xpath=//form[@id='loginAdmin']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "ponciano"
+    }, {
+      "id": "cb34192d-dff2-4d13-affc-605f36600619",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginAdmin:pass",
+      "targets": [
+        ["id=loginAdmin:pass", "id"],
+        ["name=loginAdmin:pass", "name"],
+        ["css=#loginAdmin\\3Apass", "css:finder"],
+        ["xpath=//input[@id='loginAdmin:pass']", "xpath:attributes"],
+        ["xpath=//form[@id='loginAdmin']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "647ff35d-2189-494c-86d8-85e213a86bcb",
+      "comment": "",
+      "command": "type",
+      "target": "id=loginAdmin:pass",
+      "targets": [
+        ["id=loginAdmin:pass", "id"],
+        ["name=loginAdmin:pass", "name"],
+        ["css=#loginAdmin\\3Apass", "css:finder"],
+        ["xpath=//input[@id='loginAdmin:pass']", "xpath:attributes"],
+        ["xpath=//form[@id='loginAdmin']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "ponciano"
+    }, {
+      "id": "d2b44c42-06f7-442e-aa8f-98aaadcfdd9a",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginAdmin:botonLogin",
+      "targets": [
+        ["id=loginAdmin:botonLogin", "id"],
+        ["name=loginAdmin:botonLogin", "name"],
+        ["css=#loginAdmin\\3A botonLogin", "css:finder"],
+        ["xpath=//input[@id='loginAdmin:botonLogin']", "xpath:attributes"],
+        ["xpath=//form[@id='loginAdmin']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05808cba-1b2c-47a0-8374-9ed22a90adac",
+      "comment": "",
+      "command": "click",
+      "target": "css=#cuenta > .card-body",
+      "targets": [
+        ["css=#cuenta > .card-body", "css:finder"],
+        ["xpath=//div[@id='cuenta']/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6314f888-0bd5-42a9-9605-f12a55a6dffa",
+      "comment": "",
+      "command": "click",
+      "target": "id=cuentas",
+      "targets": [
+        ["id=cuentas", "id"],
+        ["css=#cuentas", "css:finder"],
+        ["xpath=//input[@id='cuentas']", "xpath:attributes"],
+        ["xpath=//div[@id='cuenta']/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc44b328-4244-48af-a512-7067c290dd37",
+      "comment": "",
+      "command": "click",
+      "target": "id=seg:j_idt16:2:botonCierraSeg",
+      "targets": [
+        ["id=seg:j_idt16:2:botonCierraSeg", "id"],
+        ["name=seg:j_idt16:2:botonCierraSeg", "name"],
+        ["css=#seg\\3Aj_idt16\\3A 2\\3A botonCierraSeg", "css:finder"],
+        ["xpath=//input[@id='seg:j_idt16:2:botonCierraSeg']", "xpath:attributes"],
+        ["xpath=//form[@id='seg']/table/tbody/tr[3]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[3]/td[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00cf3dcd-25de-45d8-8261-3feff9bfad81",
+      "comment": "",
+      "command": "click",
+      "target": "css=#seg li",
+      "targets": [
+        ["css=#seg li", "css:finder"],
+        ["xpath=//form[@id='seg']/ul/li", "xpath:idRelative"],
+        ["xpath=//form/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'La cuenta aun tiene saldo')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad46d9b8-e0e4-4044-b416-47f089baa34c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#seg li",
+      "targets": [
+        ["css=#seg li", "css:finder"],
+        ["xpath=//form[@id='seg']/ul/li", "xpath:idRelative"],
+        ["xpath=//form/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'La cuenta aun tiene saldo')]", "xpath:innerText"]
+      ],
+      "value": "La cuenta aun tiene saldo"
+    }]
   }],
   "suites": [{
     "id": "764aa5e0-6bc3-40b1-98e5-7f05a2f884f6",
@@ -2621,7 +2779,14 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": []
+    "tests": ["d44f8e82-c6dd-481e-a1ba-64e1f19fe2f0"]
+  }, {
+    "id": "49b84944-b6eb-46d5-a6d7-d62be831725f",
+    "name": "CerrarCuentaIT",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5fd373ce-ef30-4596-906d-88e781dd8b00"]
   }],
   "urls": ["http://localhost:8080/proyecto-war"],
   "plugins": []

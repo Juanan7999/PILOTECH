@@ -41,6 +41,7 @@ public class PilotechIT {
   public void tearDown() {
     driver.quit();
   }
+  @Requisitos(value = {"RF6"})
   @Test
   public void aadirAutorizadosIT() {
     driver.get("http://localhost:8080/proyecto-war/");
