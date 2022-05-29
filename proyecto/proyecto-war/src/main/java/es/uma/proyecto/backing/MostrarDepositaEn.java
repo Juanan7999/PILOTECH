@@ -50,5 +50,12 @@ public class MostrarDepositaEn {
 		return "paginaDepositaEn.xhtml";
 	}
 	
+public String accionA(String c) throws CuentaNoExistenteException, PooledNoExistenteException {
+		
+		this.pooled =  cuentaEJB.devolverPooled(c);
+		
+		return "paginaDepositaEnAdmin.xhtml";
+	}
+	
 	
 }

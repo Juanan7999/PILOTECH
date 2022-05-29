@@ -170,7 +170,7 @@ public class ClienteEJB implements GestionCliente {
 			throw new ClienteNoExistenteException();
 		} else if (clienteEntity.getEstado().endsWith("bloqueado")) {
 			throw new ClienteBloqueadoException();
-		} else if (clienteEntity.getEstado().endsWith("bloqueado")) {
+		} else if (clienteEntity.getEstado().endsWith("baja")) {
 			throw new ClienteYaDeBajaException();
 		}
 

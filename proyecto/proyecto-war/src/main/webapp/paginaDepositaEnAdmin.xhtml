@@ -22,8 +22,8 @@
 		</a>
 		<ul class="nav">
 			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="paginaprincipalUsuario.xhtml">Inicio</a></li>
-		
+				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link active" href="cuentas.xhtml">Atrás</a></li>
 			<li class="nav-item">
 				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
 					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
@@ -42,6 +42,11 @@
 		<h1 class="display-5">
 			<h:outputText value="DEPÓSITOS" />
 		</h1>
+		<div class="position-absolute top-0 end-0">
+			<h:outputFormat value="Usuario: {0}">
+				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+			</h:outputFormat>
+		</div>
 	</div>
 	<br/>
 	<h3 class="lead">

@@ -14,47 +14,32 @@
 
 <h:body>
 
-
-
-
-
-
 	<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
 				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
 				class="d-inline-block align-text-top" />
 		</a>
-
 		<ul class="nav">
 			<li class="nav-item"><a class="nav-link active"
 				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"></a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-			<li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+			<li class="nav-item">
+				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
+					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+				</h:outputFormat>
+			</li>
+			<li class="nav-item">
+				<h:form>
+					<h:commandButton class="btn btn-secondary btn-sm" id="sesion"
+						value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
+				</h:form>
+			</li>
 		</ul>
-
 	</div>
 	</nav>
 
-	<div>
-	
-		<div class="position-absolute top-50 start-50 translate-middle row">
-			<div class="col-sm-4">
-				<div class="card">
-					<h:graphicImage value="#{resource['holanda.jpg']}"
-						class="card-img-top" alt="..." />
-					<div class="card-body">
-						<h5 class="card-title">INFORME HOLANDA</h5>
-						<p class="card-text">Genere el informe con los datos de Holanda</p>
-						<h:button class="btn btn-primary btn-sm"
-							outcome="clientesIndividuales.xhtml" id="informeHolanda"
-							value="Generar informe" />
-					</div>
-				</div>
-			</div>
-
-			
+		<div class="mx-auto" style="width: 80%;" >
+		<div class="row">
 			<div class="col-sm-4">
 				<div class="card">
 					<h:graphicImage value="#{resource['alemania.jpg']}"
@@ -62,23 +47,13 @@
 					<div class="card-body">
 						<h5 class="card-title">INFORME ALEMANIA</h5>
 						<p class="card-text">Genere el informe con los datos de Alemania</p>
-						<h:button class="btn btn-primary btn-sm" outcome="cuentas.xhtml"
+						<h:button class="btn btn-primary btn-sm" outcome="generarInformeAlemania.xhtml"
 							id="informeAlemania" value="Generar informe" />
 					</div>
 				</div>
 			</div>
 			
-
 		</div>
 	</div>
-
-	<div class="position-absolute bottom-0 start-0">
-		<h:form>
-			<h:commandButton class="btn btn-dark btn-sm" id="sesion"
-				value="Cerrar sesión" action="#{infoSesion.invalidarSesion()}" />
-		</h:form>
-		<br />
-	</div>
-
 </h:body>
 </html>

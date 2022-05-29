@@ -78,4 +78,11 @@ public class MostrarTransacciones {
 		return "paginaTransacciones.xhtml";
 	}
 	
+	public String accionA(String c) throws CuentaNoExistenteException {
+		
+		this.cuenta = cuentaEJB.devolverCuenta(c);
+		
+		return "paginaTransaccionesAdmin.xhtml";
+	}
+	
 }

@@ -13,7 +13,8 @@
 </h:head>
 
 <h:body>
-<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
+	<div>
+	<nav class="navbar navbar-dark bg-dark navbar-nav me-auto mb-2 mb-lg-0">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="https://www.ebury.es/"> <h:graphicImage
 				value="#{resource['logo.jpg']}" alt="" width="70" height="30"
@@ -21,8 +22,8 @@
 		</a>
 		<ul class="nav">
 			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="paginaprincipalUsuario.xhtml">Inicio</a></li>
-		
+				aria-current="page" href="paginaprincipalAdmin.xhtml">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link active" href="cuentas.xhtml">Atrás</a></li>
 			<li class="nav-item">
 				<h:outputFormat class="text-light nav-link" value="Usuario: {0}">
 					<f:param value="#{infoSesion.usuario.nombreUsuario}" />
@@ -37,10 +38,14 @@
 		</ul>
 	</div>
 	</nav>
-	<div>
 		<h1 class="display-5">
 			<h:outputText value="TRANSACCIONES" />
 		</h1>
+		<div class="position-absolute top-0 end-0">
+			<h:outputFormat value="Usuario: {0}">
+				<f:param value="#{infoSesion.usuario.nombreUsuario}" />
+			</h:outputFormat>
+		</div>
 	</div>
 	<br/>
 	<h3 class="lead">
@@ -192,6 +197,7 @@
 		</h:dataTable>
 	</h:form>
 	
+
 	
 </h:body>
 </html>

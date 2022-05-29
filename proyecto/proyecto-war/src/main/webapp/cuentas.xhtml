@@ -107,7 +107,7 @@
 							
 							<h:column>
 							<h:commandButton class="btn btn-light btn-sm" id="botonTransaccionesSeg" value="Transacciones"
-									action="#{mostrarTransacciones.accion(c.iban)}" />
+									action="#{mostrarTransacciones.accionA(c.iban)}" />
 								<h:message id="botonTransSegMessage" for="botonTransaccionesSeg" />
 								<br />
 							</h:column>
@@ -179,14 +179,14 @@
 							
 							<h:column>
 							<h:commandButton class="btn btn-light btn-sm" id="botonTransaccionesPool" value="Transacciones"
-									action="#{mostrarTransacciones.accion(p.iban)}" />
+									action="#{mostrarTransacciones.accionA(p.iban)}" />
 								<h:message id="botonTransPoolMessage" for="botonTransaccionesPool" />
 								<br />
 							</h:column>
 							
 							<h:column>
 							<h:commandButton class="btn btn-light btn-sm" id="botonDepositoPool" value="Depósitos"
-									action="#{mostrarDepositaEn.accion(p.iban)}" />
+									action="#{mostrarDepositaEn.accionA(p.iban)}" />
 								<h:message id="botonDepPoolMessage" for="botonDepositoPool" />
 								<br />
 							</h:column>
