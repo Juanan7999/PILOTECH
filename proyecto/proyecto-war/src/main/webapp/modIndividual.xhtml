@@ -56,50 +56,43 @@
 			<div class="col-md-4">
 			<label for="nombre" class="form-label">Nombre</label>
 			<h:inputText class="form-control" id="nombre" required="true" value="#{modClienteIndividual.individual.nombre}"/>
-			<h:message id="nombreMessage" for="nombre" />
 			</div>
 			
 			<div class="col-md-4">
 			<label for="apellido" class="form-label">Apellido</label>
 			<h:inputText class="form-control" id="apellido" required="true" value="#{modClienteIndividual.individual.apellido}"/>
-			<h:message id="apellidoMessage" for="apellido" />
 			</div>
 			
 			<div class="col-md-4">
 			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
 			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{modClienteIndividual.individual.fechaNacimiento}"/>
-			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
 			</div>
 			
 			<div class="col-md-3">
 			<label for="direccion" class="form-label">Direccion</label>
 			<h:inputText class="form-control" id="direccion" required="true" value="#{modClienteIndividual.individual.direccion}"/>
-			<h:message id="direccionMessage" for="direccion" />
 			</div>
 			
 			<div class="col-md-3">
 			<label for="ciudad" class="form-label">Ciudad</label>
 			<h:inputText class="form-control" id="ciudad" required="true" value="#{modClienteIndividual.individual.ciudad}"/>
-			<h:message id="ciudadMessage" for="ciudad" />
 			</div>
 			
 			<div class="col-md-3">
 			<label for="pais" class="form-label">Pais</label>
 			<h:inputText class="form-control" id="pais" required="true" value="#{modClienteIndividual.individual.pais}"/>
-			<h:message id="paisMessage" for="pais" />
 			</div>
 			
 			<div class="col-md-3">
 			<label for="cp" class="form-label">Código Postal</label>
 			<h:inputText class="form-control" id="cp" required="true" value="#{modClienteIndividual.individual.codigopostal}"/>
-			<h:message id="cpMessage" for="cp" />
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
 			<h:commandButton class="btn btn-primary btn-sm" id="botonModificarIndividual" value="Modificar" action="#{modClienteIndividual.modificarIndividual()}" />
-			<h:message id="botonModMessage" for="botonModificarIndividual" />
 			</div>
-
+			
+			<h:messages/>
 	</h:form>
 	
 	</div>

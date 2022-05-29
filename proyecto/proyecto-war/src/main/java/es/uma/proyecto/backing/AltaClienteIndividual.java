@@ -90,7 +90,7 @@ public class AltaClienteIndividual {
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		} catch (UsuarioExistenteException e) {
 			// TODO Auto-generated catch block
-			FacesMessage fm = new FacesMessage("Este usuario ya existe");
+			FacesMessage fm = new FacesMessage("Nombre de usuario no disponible");
 			FacesContext.getCurrentInstance().addMessage("altaIndividual:botonAltaIndividual", fm);
 		}
 		

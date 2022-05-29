@@ -52,31 +52,26 @@
 			<div class="col-md-4">
 			<label for="nombre" class="form-label">Nombre</label>
 			<h:inputText class="form-control" id="nombre" required="true" value="#{altaPersonaAutorizada.personaAutorizada.nombre}"  />
-			<h:message id="nombreMessage" for="nombre" />
 			</div>
 			
 			<div class="col-md-4">
 			<label for="apellido" class="form-label">Apellidos</label>
 			<h:inputText class="form-control" id="apellido" required="true" value="#{altaPersonaAutorizada.personaAutorizada.apellidos}"/>
-			<h:message id="apellidoMessage" for="apellido" />
 			</div>
 			
 			<div class="col-md-4">
 			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
 			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{altaPersonaAutorizada.personaAutorizada.fechaNacimiento}"/>
-			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="identificacion" class="form-label">Identificacion</label>
 			<h:inputText class="form-control" id="identificacion" required="true" value="#{altaPersonaAutorizada.personaAutorizada.identificacion}"/>
-			<h:message id="identificacionMessage" for="identificacion" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="direccion" class="form-label">Direccion</label>
 			<h:inputText class="form-control" id="direccion" required="true" value="#{altaPersonaAutorizada.personaAutorizada.direccion}"/>
-			<h:message id="direccionMessage" for="direccion" />
 			</div>
 			
 			<h4 class="h4">Creacion del usuario para el cliente</h4>
@@ -84,13 +79,11 @@
 			<div class="col-md-5">
 			<label for="user" class="form-label">Nombre de usuario</label>
 			<h:inputText class="form-control" id="user" required="true" value="#{altaPersonaAutorizada.newusuario.nombreUsuario}"/>
-			<h:message id="userMessage" for="user" />
 			</div>
 			
 			<div class="col-md-5">
 			<label for="pass" class="form-label">Contraseña</label>
 			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaPersonaAutorizada.newusuario.password}" />
-			<h:message id="passwordMessage" for="pass" />
 			</div>
 			
 			<div class="col-md-2">
@@ -98,14 +91,13 @@
 			<h:selectOneMenu id="typeUsuario" value="#{altaPersonaAutorizada.newusuario.tipo}" class="form-select">
       		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
     		</h:selectOneMenu>
-			<h:message id="typeUserMessage" for="typeUsuario" />
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
 			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaAutorizado" value="Alta" action="#{altaPersonaAutorizada.altaPersonaAutorizada()}" />
-			<h:message id="botonAltaMessage" for="botonAltaAutorizado" />
 			</div>
 
+			<h:messages/>
 	</h:form>
 	
 	</div>

@@ -51,49 +51,49 @@
 			<div class="col-md-4">
 			<label for="nombre" class="form-label">Nombre</label>
 			<h:inputText class="form-control" id="nombre" required="true" value="#{altaClienteIndividual.individual.nombre}"  />
-			<h:message id="nombreMessage" for="nombre" />
+			
 			</div>
 			
 			<div class="col-md-4">
 			<label for="apellido" class="form-label">Apellido</label>
 			<h:inputText class="form-control" id="apellido" required="true" value="#{altaClienteIndividual.individual.apellido}"/>
-			<h:message id="apellidoMessage" for="apellido" />
+			
 			</div>
 			
 			<div class="col-md-4">
 			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
 			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{altaClienteIndividual.individual.fechaNacimiento}"/>
-			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
+			
 			</div>
 			
 			<div class="col-md-6">
 			<label for="identificacion" class="form-label">Identificacion</label>
 			<h:inputText class="form-control" id="identificacion" required="true" value="#{altaClienteIndividual.individual.identificacion}"/>
-			<h:message id="identificacionMessage" for="identificacion" />
+			
 			</div>
 			
 			<div class="col-md-6">
 			<label for="direccion" class="form-label">Direccion</label>
 			<h:inputText class="form-control" id="direccion" required="true" value="#{altaClienteIndividual.individual.direccion}"/>
-			<h:message id="direccionMessage" for="direccion" />
+			
 			</div>
 			
 			<div class="col-md-6">
 			<label for="ciudad" class="form-label">Ciudad</label>
 			<h:inputText class="form-control" id="ciudad" required="true" value="#{altaClienteIndividual.individual.ciudad}"/>
-			<h:message id="ciudadMessage" for="ciudad" />
+			
 			</div>
 			
 			<div class="col-md-4">
 			<label for="pais" class="form-label">Pais</label>
 			<h:inputText class="form-control" id="pais" required="true" value="#{altaClienteIndividual.individual.pais}" />
-			<h:message id="paisMessage" for="pais" />
+			
 			</div>
 			
 			<div class="col-md-2">
 			<label for="cp" class="form-label">Código Postal</label>
 			<h:inputText class="form-control" id="cp" required="true" value="#{altaClienteIndividual.individual.codigopostal}"/>
-			<h:message id="cpMessage" for="cp" />
+			
 			</div>
 			
 			<h4 class="h4">Creacion del usuario para el cliente</h4>
@@ -101,13 +101,12 @@
 			<div class="col-md-5">
 			<label for="user" class="form-label">Nombre de usuario</label>
 			<h:inputText class="form-control" id="user" required="true" value="#{altaClienteIndividual.newusuario.nombreUsuario}"/>
-			<h:message id="userMessage" for="user" />
 			</div>
 			
 			<div class="col-md-5">
 			<label for="pass" class="form-label">Contraseña</label>
 			<h:inputSecret class="form-control" id="pass" required="true" value="#{altaClienteIndividual.newusuario.password}" />
-			<h:message id="passwordMessage" for="pass" />
+			
 			</div>
 			
 			<div class="col-md-2">
@@ -115,14 +114,15 @@
 			<h:selectOneMenu id="typeUsuario" value="#{altaClienteIndividual.newusuario.tipo}" class="form-select">
       		<f:selectItem selected="true" itemValue="N" itemLabel="Normal"/>
     		</h:selectOneMenu>
-			<h:message id="typeUserMessage" for="typeUsuario" />
+		
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
 			<h:commandButton class="btn btn-primary btn-sm" id="botonAltaIndividual" value="Alta" action="#{altaClienteIndividual.altaIndividual()}" />
-			<h:message id="botonAltaMessage" for="botonAltaIndividual" />
+			
 			</div>
 
+			<h:messages/>
 	</h:form>
 	
 	

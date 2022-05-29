@@ -59,13 +59,13 @@ public class ModClienteIndividual {
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modIndividual:botonModificarIndividual", fm);
 		}catch(ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modIndividual:botonModificarIndividual", fm);
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
-			FacesContext.getCurrentInstance().addMessage("modClienteIndividual", fm);
+			FacesContext.getCurrentInstance().addMessage("modIndividual:botonModificarIndividual", fm);
 		}		
 		
 		return null;

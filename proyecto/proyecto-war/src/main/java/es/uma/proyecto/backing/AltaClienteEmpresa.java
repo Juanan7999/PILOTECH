@@ -61,13 +61,13 @@ public class AltaClienteEmpresa {
 			return "clientesEmpresas.xhtml";
 		}catch (ClienteExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente ya existe");
-			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa:botonAltaEmpresa", fm);
 		}catch(UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa:botonAltaEmpresa", fm);
 		}catch(UsuarioNoEncontradoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
-			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa", fm);
+			FacesContext.getCurrentInstance().addMessage("altaClienteEmpresa:botonAltaEmpresa", fm);
 		}
 		
 		return null;

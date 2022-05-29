@@ -55,41 +55,38 @@
 			<label for="razonSocial" class="form-label">Razón social</label>
 			<h:inputText class="form-control" id="razonSocial" required="true"
 				value="#{modClienteEmpresa.empresa.razonSocial}"/>
-			<h:message id="razonSocialMessage" for="razonSocial" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="direccion" class="form-label">Direccion</label>
 			<h:inputText class="form-control" id="direccion" required="true"
 				value="#{modClienteEmpresa.empresa.direccion}"/>
-			<h:message id="direccionMessage" for="direccion" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="ciudad" class="form-label">Ciudad</label>
 			<h:inputText class="form-control" id="ciudad" required="true"
 				value="#{modClienteEmpresa.empresa.ciudad}" />
-			<h:message id="ciudadMessage" for="ciudad" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="pais" class="form-label">País</label>
 			<h:inputText class="form-control" id="pais" required="true"
 				value="#{modClienteEmpresa.empresa.pais}" />
-			<h:message id="paisMessage" for="pais" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="cp" class="form-label">Código postal</label>
 			<h:inputText class="form-control" id="cp" required="true"
 				value="#{modClienteEmpresa.empresa.codigopostal}"/>
-			<h:message id="cpMessage" for="cp" />
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
 			<h:commandButton class="btn btn-primary btn-sm" id="botonModificarEmpresa" value="Modificar"
 				action="#{modClienteEmpresa.modificarEmpresa()}"/>
 			</div>
+			
+			<h:messages/>
 			
 		</h:form>
 	</div>

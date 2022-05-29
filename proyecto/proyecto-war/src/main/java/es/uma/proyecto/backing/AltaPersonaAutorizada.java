@@ -80,21 +80,22 @@ public class AltaPersonaAutorizada {
 		}catch(PersonaAutorizadaExistenteException e){
 			
 			FacesMessage fm = new FacesMessage("La persona autorizada no existe");
-			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonAltaAutorizado", fm);
 			
 		}catch(UsuarioNoEsAdministrativoException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonAltaAutorizado", fm);
 			
 		}catch(UsuarioNoEncontradoException e) {
 		
 			FacesMessage fm = new FacesMessage("El usuario no se ha encontrado");
-			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada", fm);
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonAltaAutorizado", fm);
 			
 		} catch (UsuarioExistenteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			FacesMessage fm = new FacesMessage("Nombre de usuario no disponible");
+			FacesContext.getCurrentInstance().addMessage("altaPersonaAutorizada:botonAltaAutorizado", fm);
+			
 		}
 		
 		

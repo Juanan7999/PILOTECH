@@ -53,32 +53,28 @@
 			<div class="col-md-6">
 			<label for="nombre" class="form-label">Nombre</label>
 			<h:inputText class="form-control" id="nombre" required="true" value="#{modificarAutorizados.personaAutorizada.nombre}"/>
-			<h:message id="nombreMessage" for="nombre" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="apellido" class="form-label">Apellido</label>
 			<h:inputText class="form-control" id="apellido" required="true" value="#{modificarAutorizados.personaAutorizada.apellidos}"/>
-			<h:message id="apellidoMessage" for="apellido" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
 			<h:inputText class="form-control" id="fechaNacimiento" required="true" value="#{modificarAutorizados.personaAutorizada.fechaNacimiento}"/>
-			<h:message id="fechaNacimientoMessage" for="fechaNacimiento" />
 			</div>
 			
 			<div class="col-md-6">
 			<label for="direccion" class="form-label">Direccion</label>
 			<h:inputText class="form-control" id="direccion" required="true" value="#{modificarAutorizados.personaAutorizada.direccion}"/>
-			<h:message id="direccionMessage" for="direccion" />
 			</div>
 			
 			<div class="mx-auto" style="width: 200px;">
 			<h:commandButton class="btn btn-primary btn-sm" id="botonModificarAut" value="Modificar" action="#{modificarAutorizados.modificarAutorizado()}" />
-			<h:message id="botonModMessage" for="botonModificarIndividual" />
 			</div>
-
+			
+			<h:messages/>
 	</h:form>
 	
 	</div>

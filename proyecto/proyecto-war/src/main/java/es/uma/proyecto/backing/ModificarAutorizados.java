@@ -64,10 +64,10 @@ public class ModificarAutorizados {
 			
 		}catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("modificarAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("modAutorizado:botonModificarAut", fm);
 		}catch (PersonaAutorizadaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La persona autorizada no existe");
-			FacesContext.getCurrentInstance().addMessage("modificarAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("modAutorizado:botonModificarAut", fm);
 		}
 		
 		return null;

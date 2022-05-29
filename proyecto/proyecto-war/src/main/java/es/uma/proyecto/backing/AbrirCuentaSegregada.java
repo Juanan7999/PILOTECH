@@ -127,10 +127,10 @@ public class AbrirCuentaSegregada {
 			
 		} catch (ClienteNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("El cliente no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:cliente", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
 		} catch (CuentaReferenciaNoExistenteException e) {
 			FacesMessage fm = new FacesMessage("La cuenta de referencia no existe");
-			FacesContext.getCurrentInstance().addMessage("abrirSegregada:ibanReferencia", fm);
+			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);
 		} catch (UsuarioNoEsAdministrativoException e) {
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
 			FacesContext.getCurrentInstance().addMessage("abrirSegregada:boton", fm);

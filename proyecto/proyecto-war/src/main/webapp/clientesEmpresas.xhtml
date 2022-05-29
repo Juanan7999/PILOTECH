@@ -108,34 +108,32 @@
 			<h:column>
 				<h:commandButton class="btn btn-danger btn-sm" id="botonBaja" value="Dar de baja"
 					action="#{accionesEmpresas.baja(c.identificacion)}" />
-				<h:message id="botonBajaMessage" for="botonBaja" />
-				<br />
+
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonBloq" value="Bloquear"
 					action="#{accionesEmpresas.bloquea(c.identificacion)}" />
-				<h:message id="botonBloqMessage" for="botonBloq" />
-				<br />
+				
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-secondary btn-sm" id="botonDesbloq" value="Desbloquear"
 					action="#{accionesEmpresas.desbloquea(c.identificacion)}" />
-				<h:message id="botonDesbloqMessage" for="botonDesbloq" />
-				<br />
+				
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-light btn-sm" id="botonMod" value="Modificar"
 					action="#{modClienteEmpresa.accion(c.identificacion)}" />
-				<h:message id="botonModMessage" for="botonMod" />
-				<br />
+				
 			</h:column>
 			<h:column>
 				<h:commandButton class="btn btn-dark btn-sm" id="botonAnadirAut" value="Añadir Autorizado"
 					action="#{anadirAutorizados.accion(c.identificacion)}" />
-				<h:message id="botonAddMessage" for="botonAnadirAut" />
-				<br />
+				
 			</h:column>
 		</h:dataTable>
+		
+		<h:messages/>
+		
 	</h:form>
 	<br />
 	<h:button class="btn btn-primary btn-sm" outcome="altaEmpresa.xhtml" id="botonAltaEmpresa"

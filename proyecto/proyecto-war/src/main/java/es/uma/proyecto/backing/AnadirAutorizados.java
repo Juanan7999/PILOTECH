@@ -94,22 +94,22 @@ public class AnadirAutorizados{
 		}catch(UsuarioNoEsAdministrativoException e) {
 			
 			FacesMessage fm = new FacesMessage("El usuario no es administrativo");
-			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("añadirAutorizado:botonAñadirAut", fm);
 			
 		}catch(ClienteNoJuridicoException e) {
 			
 			FacesMessage fm = new FacesMessage("El cliente no es juridico");
-			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("añadirAutorizado:botonAñadirAut", fm);
 			
 		} catch (PersonaAutorizadaNoExistenteException e) {
 			// TODO Auto-generated catch block
 			FacesMessage fm = new FacesMessage("No existe esa persona autorizada");
-			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("añadirAutorizado:botonAñadirAut", fm);
 			
 		} catch (ClienteNoExistenteException e) {
 			// TODO Auto-generated catch block
 			FacesMessage fm = new FacesMessage("No existe esa empresa");
-			FacesContext.getCurrentInstance().addMessage("anadirAutorizados", fm);
+			FacesContext.getCurrentInstance().addMessage("añadirAutorizado:botonAñadirAut", fm);
 		}
 		
 		return null;
